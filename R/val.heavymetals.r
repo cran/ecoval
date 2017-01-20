@@ -16,9 +16,9 @@ val.heavymetals.create <- function(language     = "English",
   # Statusbericht 2006: Wasserqualitaet der Seen, Fliessgewaesser und 
   # des Grundwasser im Kanton Zuerich.
   #
-  # LAWA (Länderarbeitsgemeinschaft Wasser) 1998: Zielvorgaben zum Schutz oberirdischer 
-  # Binnengewässer. Band II: Ableitung und Erprobung von Zielvorgaben zum Schutz  
-  # oberiridischer Binnengewässer für die Schwermetalle Blei, Cadmium, Chrom, Kupfer, 
+  # LAWA (Laenderarbeitsgemeinschaft Wasser) 1998: Zielvorgaben zum Schutz oberirdischer 
+  # Binnengewaesser. Band II: Ableitung und Erprobung von Zielvorgaben zum Schutz  
+  # oberiridischer Binnengewaesser fuer die Schwermetalle Blei, Cadmium, Chrom, Kupfer, 
   # Nickel, Quecksilber und Zink. Kulturbuchverlag Berlin GmbH, Berlin.
   #
   # IKSR (Internationale Kommisstion zum Schutz des Rheins) 2009. Bericht Nr. 175, Sedimentmanagementplan Rhein.

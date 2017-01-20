@@ -54,9 +54,17 @@ ecoval.plotsymbols(nodes,x,y,r,u,
 
 
 \references{
-Reichert, P., Schuwirth, N. and Langhans, S. Constructing, evaluating and visualizing value and utility functions for decision support, Environmental Modelling & Software 46, 283-291, 2013. \cr\cr
-Reichert, P., Langhans, S., Lienert, J. and Schuwirth, N. The conceptual foundation of environmental decision support. Journal of Environmental Management . In review. \cr\cr
-Baumann P., Langhans S.D. 2010: Methoden zur Untersuchung und Beurteilung der Fliessgewaesser. Synthese der Beurteilungen auf Stufe F (flaechendeckend). Umwelt-Vollzug Nr. Bundesamt fuer Umwelt, Bern: 47 S.\cr\cr
+Reichert, P., Schuwirth, N. and Langhans, S. 
+Constructing, evaluating and visualizing value and utility functions for decision support,
+Environmental Modelling & Software 46, 283-291, 2013. 
+\url{http://dx.doi.org/10.1016/j.envsoft.2013.01.017}\cr\cr
+Reichert, P., Langhans, S., Lienert, J. and Schuwirth, N. 
+The conceptual foundation of environmental decision support. 
+Journal of Environmental Management. 154, 316-332, 2015.
+\url{http://dx.doi.org/10.1016/j.jenvman.2015.01.053}\cr\cr
+Baumann P., Langhans S.D.
+Methoden zur Untersuchung und Beurteilung der Fliessgewaesser. Synthese der Beurteilungen auf Stufe F (flaechendeckend).
+Umwelt-Vollzug Nr. Bundesamt fuer Umwelt, Bern: 47 S.\cr\cr
 \url{http://www.modul-stufen-konzept.ch}
 }
 
@@ -68,9 +76,9 @@ Baumann P., Langhans S.D. 2010: Methoden zur Untersuchung und Beurteilung der Fl
 \examples{
 plot(1, type="n",axes=FALSE,ann=FALSE,xlim=c(0, 10),ylim=c(0, 10))
 u1 <- matrix(data=c(0.1,0.5,1,0.3,0.4,0.7),nrow=2,
-             dimnames=list(c(NA,NA),c("ecomorph","hydrology","nutrients")))
+             dimnames=list(c(NA,NA),c("morphology","hydrology","nutrients")))
 
-ecoval.plotsymbols(nodes      = c("ecomorph","hydrology","nutrients"),
+ecoval.plotsymbols(nodes      = c("morphology","hydrology","nutrients"),
                    x          = c(1,2),
                    y          = c(7,8.5),
                    r          = 0.5,

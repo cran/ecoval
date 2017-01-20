@@ -21,7 +21,17 @@ export("val.invertebrates.create")
 export("msk.create")
 export("ecoval.river.create")
 
+export("lake.morphol.2016.create")
+export("lake.morphol.2016.read.attrib")
+export("lake.morphol.2016.plot.val.spatial")
+export("lake.morphol.2016.aggregate.val.spatial")
+
 export("ecoval.plotsymbols")
 
 import(utility)
 import(rivernet)
+
+importFrom("utils", "read.table")
+importFrom("graphics", "plot","lines","points","abline","polygon","text")
+importFrom("stats", "approx")
+

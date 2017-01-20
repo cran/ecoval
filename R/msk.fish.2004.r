@@ -407,7 +407,7 @@ msk.fish.2004.create <- function(language="English",dictionaries=NA,col="black")
   
   # Aggregationsknoten:
   
-  # Artenspektrum und Dominanzverhältnis
+  # Artenspektrum und Dominanzverhaeltnis
   
   specdom <-
     utility.aggregation.create(

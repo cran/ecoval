@@ -35,11 +35,11 @@ ecoval.plotsymbols <- function(nodes,x,y,r,u,
   
   n.points.seg <- 20
   n <- length(x)
-  if ( n < 1 ) return
-  if ( length(y) != n ) return
-  if ( nrow(u) != n ) return
+  if ( n < 1 ) return()
+  if ( length(y) != n ) return()
+  if ( nrow(u) != n ) return()
   m <- length(nodes)
-  if ( m < 1 ) return
+  if ( m < 1 ) return()
   for ( i in 1:n )
   {
     # determine nearest neighbours:
