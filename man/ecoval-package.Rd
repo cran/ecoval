@@ -13,9 +13,9 @@ Procedures for the Ecological Assessment of Surface Waters
 \tabular{ll}{
 Package: \tab ecoval\cr
 Type: \tab Package\cr
-Version: \tab 1.1\cr
-Date: \tab 2017-01-19\cr
-License: \tab GPL (>= 2)\cr
+Version: \tab 1.2\cr
+Date: \tab 2018-05-03\cr
+License: \tab GPL-3\cr
 Depends: \tab utility\cr
 }
 }
@@ -32,7 +32,8 @@ Swiss river assessment program and individual modules (MSK, \url{http://www.modu
 \code{\link{msk.nutrients.2010.create}}, \cr
 \code{\link{msk.diatoms.2007.create}}, \cr
 \code{\link{msk.invertebrates.2010.create}}, \cr
-\code{\link{msk.fish.2004.create}}, \cr\cr
+\code{\link{msk.fish.2004.create}}, \cr
+\code{\link{msk.macrophytes.2017.create}}. \cr\cr
 Additional modules in the evaluation state:\cr\cr
 \code{\link{val.pesticides.create}}, \cr
 \code{\link{val.micropoll.create}}, \cr

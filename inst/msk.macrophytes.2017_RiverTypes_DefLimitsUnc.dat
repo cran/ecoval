@@ -1,0 +1,21 @@
+A_macrophytes_site_discharge_lpers	Delta	0			
+A_macrophytes_site_discharge_lpers	LognormalTrunc	200	40	80	400
+A_macrophytes_site_discharge_lpers	LognormalTrunc	1000	100	600	1400
+A_macrophytes_site_discharge_lpers	LognormalTrunc	2000	150	1400	3000
+A_macrophytes_site_discharge_lpers	LognormalTrunc	10000	1000	5000	15000
+A_macrophytes_site_discharge_lpers	Delta	Inf			
+A_macrophytes_site_waterdepth_m	Delta	0			
+A_macrophytes_site_waterdepth_m	LognormalTrunc	0.31	0.09	0.1	0.5
+A_macrophytes_site_waterdepth_m	Delta	Inf			
+A_macrophytes_site_slope_percent	Delta	0			
+A_macrophytes_site_slope_percent	LognormalTrunc	0.5	0.1	0.2	0.9
+A_macrophytes_site_slope_percent	LognormalTrunc	2	0.2	1	4
+A_macrophytes_site_slope_percent	Delta	Inf			
+A_macrophytes_site_coarsegravel_percent	Delta	0			
+A_macrophytes_site_coarsegravel_percent	NormalTrunc	40	10	10	90
+A_macrophytes_site_coarsegravel_percent	NormalTrunc	50	10	10	90
+A_macrophytes_site_coarsegravel_percent	NormalTrunc	60	10	10	90
+A_macrophytes_site_coarsegravel_percent	Delta	100			
+A_macrophytes_site_shading_percent	Delta	0			
+A_macrophytes_site_shading_percent	NormalTrunc	50	10	10	90
+A_macrophytes_site_shading_percent	Delta	100			

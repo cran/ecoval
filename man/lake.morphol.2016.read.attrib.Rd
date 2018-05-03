@@ -71,11 +71,11 @@ Environmental Modelling and Software 22, 188-201, 2007.
 Niederberger, K., Rey, P., Reichert, P., Schlosser, J., Helg, U., Haertel-Borer, S., Binderheim, E.
 Methoden zur Untersuchung und Beurteilung der Seen. Modul: Oekomorphologie Seeufer.
 Bundesamt fuer Umwelt, Bern. Umwelt-Vollzug Nr. 1632. 73 S. 2016. 
-\url{http://www.bafu.admin.ch/publikationen/publikation/01874/index.html?lang=de}\cr\cr
+\url{http://www.bafu.admin.ch/uv-1632-d}\cr\cr
 Schlosser, J.A., Haertel-Borer, S., Liechti, P., Reichert, P.
 Konzept fuer die Untersuchung und Beurteilung der Seen in der Schweiz. Anleitung zur Entwicklung und Anwendung von Beurteilungsmethoden.
 Bundesamt fuer Umwelt, Bern. Umwelt-Wissen Nr. 1326. 38 S. 2013.
-\url{http://www.bafu.admin.ch/publikationen/publikation/01749/index.html?lang=de}
+\url{http://www.bafu.admin.ch/uw-1326-d}
 }
 
 \seealso{

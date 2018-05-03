@@ -58,7 +58,7 @@ lake.morphol.2016.create <- function(language     = "English",
                                  "E01.0603",
                                  "E01.07",
                                  "E01.08"))
-  colnames(attrib.levels) <- ecoval.translate("A_E01",dict)
+  colnames(attrib.levels) <- ecoval.translate("A_lake_morphol_E01",dict)
   FlachwasserSohle <- utility.endnode.discrete.create(
     name.node     = ecoval.translate("N_lake_morphol_bedmod_shallowwater",dict), 
     attrib.levels = attrib.levels,
@@ -114,7 +114,7 @@ lake.morphol.2016.create <- function(language     = "English",
                                  "E02.0503",
                                  "E02.0504",
                                  "E02.0505"))
-  colnames(attrib.levels) <- ecoval.translate("A_E02",dict)
+  colnames(attrib.levels) <- ecoval.translate("A_lake_morphol_E02",dict)
   FlachwasserAnlagen <- utility.endnode.discrete.create(
     name.node     = ecoval.translate("N_lake_morphol_facilities_shallowwater",dict), 
     attrib.levels = attrib.levels,
@@ -163,7 +163,7 @@ lake.morphol.2016.create <- function(language     = "English",
                                  "B02.02",
                                  "B02.03",
                                  "B02.04"))
-  colnames(attrib.levels) <- ecoval.translate("A_B02",dict)
+  colnames(attrib.levels) <- ecoval.translate("A_lake_morphol_B02",dict)
   Fliessgewaesseranbindung <- utility.endnode.discrete.create(
     name.node     = ecoval.translate("N_lake_morphol_tributary_mouth",dict), 
     attrib.levels = attrib.levels,
@@ -205,7 +205,7 @@ lake.morphol.2016.create <- function(language     = "English",
                                  "B01.0507",
                                  "B01.0508",
                                  "B01.06"))
-  colnames(attrib.levels) <- ecoval.translate("A_B01",dict)
+  colnames(attrib.levels) <- ecoval.translate("A_lake_morphol_B01",dict)
   Uferverbauung <- utility.endnode.discrete.create(
     name.node     = ecoval.translate("N_lake_morphol_shorline_stabilization",dict), 
     attrib.levels = attrib.levels,
@@ -247,7 +247,7 @@ lake.morphol.2016.create <- function(language     = "English",
                                  "C06.02",
                                  "C06.03",
                                  "C06.04"))
-  colnames(attrib.levels) <- ecoval.translate("A_C06",dict)
+  colnames(attrib.levels) <- ecoval.translate("A_lake_morphol_C06",dict)
   UfersaumVegetation <- utility.endnode.discrete.create(
     name.node     = ecoval.translate("N_lake_morphol_shore_stripe_vegetation",dict), 
     attrib.levels = attrib.levels,
@@ -286,7 +286,7 @@ lake.morphol.2016.create <- function(language     = "English",
                                  "C01.0702",
                                  "C01.0703",
                                  "C01.0704"))
-  colnames(attrib.levels) <- ecoval.translate("A_C01",dict)
+  colnames(attrib.levels) <- ecoval.translate("A_lake_morphol_C01",dict)
   UferstreifenSiedlung <- utility.endnode.discrete.create(
     name.node     = ecoval.translate("N_lake_morphol_settlements_industry",dict), 
     attrib.levels = attrib.levels,
@@ -339,7 +339,7 @@ lake.morphol.2016.create <- function(language     = "English",
                                  "C02.0406",
                                  "C02.05",
                                  "C02.0501"))
-  colnames(attrib.levels) <- ecoval.translate("A_C02",dict)
+  colnames(attrib.levels) <- ecoval.translate("A_lake_morphol_C02",dict)
   UferstreifenFreizeit <- utility.endnode.discrete.create(
     name.node     = ecoval.translate("N_lake_morphol_recreational_landuse",dict), 
     attrib.levels = attrib.levels,
@@ -380,7 +380,7 @@ lake.morphol.2016.create <- function(language     = "English",
                                  "C03.09",
                                  "C03.10",
                                  "C03.11"))
-  colnames(attrib.levels) <- ecoval.translate("A_C03",dict)
+  colnames(attrib.levels) <- ecoval.translate("A_lake_morphol_C03",dict)
   UferstreifenVerkehr <- utility.endnode.discrete.create(
     name.node     = ecoval.translate("N_lake_morphol_traffic_areas",dict), 
     attrib.levels = attrib.levels,
@@ -415,7 +415,7 @@ lake.morphol.2016.create <- function(language     = "English",
                                  "C04.0302",
                                  "C04.0303",
                                  "C04.0304"))
-  colnames(attrib.levels) <- ecoval.translate("A_C04",dict)
+  colnames(attrib.levels) <- ecoval.translate("A_lake_morphol_C04",dict)
   UferstreifenLandwirtschaft <- utility.endnode.discrete.create(
     name.node     = ecoval.translate("N_lake_morphol_agriculture_forestry",dict), 
     attrib.levels = attrib.levels,
@@ -446,7 +446,7 @@ lake.morphol.2016.create <- function(language     = "English",
                                  "C05.05",
                                  "C05.06",
                                  "C05.07"))
-  colnames(attrib.levels) <- ecoval.translate("A_C05",dict)
+  colnames(attrib.levels) <- ecoval.translate("A_lake_morphol_C05",dict)
   Fliessgewaesserverbauung <- utility.endnode.discrete.create(
     name.node     = ecoval.translate("N_lake_morphol_river_control_structures",dict), 
     attrib.levels = attrib.levels,
@@ -488,7 +488,7 @@ lake.morphol.2016.create <- function(language     = "English",
                                  "D01.0502",
                                  "D01.0503",
                                  "D01.0504"))
-  colnames(attrib.levels) <- ecoval.translate("A_D01",dict)
+  colnames(attrib.levels) <- ecoval.translate("A_lake_morphol_D01",dict)
   HinterlandNutzung <- utility.endnode.discrete.create(
     name.node     = ecoval.translate("N_lake_morphol_human_landuse_fartherarea",dict), 
     attrib.levels = attrib.levels,
@@ -527,7 +527,7 @@ lake.morphol.2016.create <- function(language     = "English",
                                  "D02.02",
                                  "D02.03",
                                  "D02.04"))
-  colnames(attrib.levels) <- ecoval.translate("A_D02",dict)
+  colnames(attrib.levels) <- ecoval.translate("A_lake_morphol_D02",dict)
   HinterlandVegetation <- utility.endnode.discrete.create(
     name.node     = ecoval.translate("N_lake_morphol_vegetation_bordertofartherarea",dict), 
     attrib.levels = attrib.levels,

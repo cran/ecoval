@@ -63,7 +63,7 @@ Environmental Modelling and Software 22, 188-201, 2007.
 Stucki P.
 Methoden zur Untersuchung und Beurteilung der Fliessgewaesser - Makrozoobenthos Stufe F.
 Bundesamt fuer Umwelt, Bern. Umwelt-Vollzug Nr. 1026: 61 S. 2010.
-\url{http://www.bafu.admin.ch/publikationen/publikation/01575/index.html?lang=de}\cr\cr
+\url{http://www.bafu.admin.ch/uv-1026-d}\cr\cr
 Indice Biologique Global Normalise IBGN, NF-T90-350. Guide Technique.
 Agences de l'Eau, 2000.
 \url{http://www.km-dev.com/eaufrance/francais/etudes/pdf/IBGN.pdf}\cr\cr

@@ -1,0 +1,49 @@
+================================
+Change history of ecoval package
+================================
+
+
+Changes version 1.1 (19.01.2017) -> version 1.2 (03.05.2018)
+============================================================
+
+PR/CM:  module for macrophyte assessment of rivers implemented:
+          msk.macrophytes.2017.create
+          msk.macrophytes.2017.read.compile.evaluate
+          msk.macrophytes.2017.calc.types
+          msk.macrophytes.2017.doc.site
+          msk.macrophytes.2017.doc.typology
+          msk.macrophytes.2017.doc.vegetation
+          msk.macrophytes.2017.doc.valuation
+          msk.macrophytes.2017.plot.typedef
+          msk.macrophytes.2017.plot.types.scheme
+          msk.macrophytes.2017.plot.types.grfo
+          msk.macrophytes.2017.plot.hierarchy
+          
+PR:     continous formulations for river bed and bank in msk.morphol.1998 removed.
+          
+PR:     ranges of definition of nutrient assessments in msk.nutrients.2010 adapted,
+        for 1d extrapolation, extended to constant extrapolation
+          
+PR:     range of definition for riparian zone node in msk.morphol.1998 extended
+
+PR:     links to BAFU publications updated to permanent links
+
+PR:     attribute encoding for lake morphology module modified
+
+
+Changes version 1.0 (17.10.2014) -> version 1.1 (19.01.2017)
+============================================================
+
+PR:     lakeshore morphology module added: 
+          lake.morphol.2016.create
+          lake.morphol.2016.read.attrib
+          lake.morphol.2016.plot.val.spatial
+          lake.morphol.2016.aggregate.val.spatial
+       
+PR:     links to references added
+
+NIS:    ecoval.plotsymbols.r: Missing "()" added after return statements in function 
+        ecoval.plotsymbols()
+
+NIS:    dictionary: Typo in English nodes "nicropollutants" corrected to "micropollutants 
+

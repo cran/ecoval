@@ -63,7 +63,7 @@ Environmental Modelling and Software 22, 188-201, 2007.
 Liechti, P.
 Methoden zur Untersuchung und Beurteilung der Fliessgewaesser. Chemisch-physikalische Erhebungen, Naehrstoffe.
 Umwelt-Vollzug Nr. 1005. Bundesamt fuer Umwelt, Bern. 44 S. 2010.
-\url{http://www.bafu.admin.ch/publikationen/publikation/01540/index.html?lang=de}
+\url{http://www.bafu.admin.ch/uv-1005-d}
 }
 
 \seealso{

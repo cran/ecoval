@@ -29,40 +29,40 @@ msk.nutrients.2010.create <- function(language="English",dictionaries=NA,col="bl
   
   Z.TP              <-   0.07
   min.TP            <-   0.005
-  max.TP            <-   1.5
+  max.TP            <-   0.5
   
   Z.TP.filt         <-   0.05   # note two exceptions from rule below!
   min.TP.filt       <-   0.005
-  max.TP.filt       <-   1.0
+  max.TP.filt       <-   0.3
   
   Z.PO4             <-   0.04
   min.PO4           <-   0.005
-  max.PO4           <-   1.0
+  max.PO4           <-   0.25
   
   Z.TN              <-   7.0    # note exception from rule below
   min.TN            <-   0.5
-  max.TN            <-  20
+  max.TN            <-  25
   
   Z.NO3             <-   5.6    # note exception from rule below
   min.NO3           <-   0.25
-  max.NO3           <-  15
+  max.NO3           <-  20
   
   Z.NO2.Clsmaller10 <-   0.02
   Z.NO2.Cl10to20    <-   0.05
   Z.NO2.Cllarger20  <-   0.10
   min.NO2           <-   0
-  max.NO2           <-   0.5
+  max.NO2           <-   1.5
   
-  max.ClforNO2      <- 200
+  max.ClforNO2      <- 300
   
   Z.NH4.Tsmaller10  <-   0.4    # note exception from rule below
   Z.NH4.Tlarger10   <-   0.2
   min.NH4           <-   0
-  max.NH4           <-   2.0
+  max.NH4           <-   5.0
   
   translow.TforNH4  <-   7.5
   transhigh.TforNH4 <-  12.5
-  max.TforNH4       <-  25
+  max.TforNH4       <-  30
   
   Z.TOC             <-   5
   min.TOC           <-   0.5
@@ -74,7 +74,7 @@ msk.nutrients.2010.create <- function(language="English",dictionaries=NA,col="bl
   
   Z.BOD5            <-   4
   min.BOD5          <-   1
-  max.BOD5          <-  10
+  max.BOD5          <-  12
   
   # implementation of valuation nodes:
   # ----------------------------------
@@ -85,7 +85,7 @@ msk.nutrients.2010.create <- function(language="English",dictionaries=NA,col="bl
     utility.endnode.intpol1d.create(
       name.node   = ecoval.translate("N_nutrients_TP",dict),
       name.attrib = ecoval.translate("A_nutrients_TP_mgPperl",dict),
-      range       = c(0,max.TP),
+      range       = c(0,Inf),
       x           = c(0  ,min.TP,4/7*Z.TP,Z.TP,10/7*Z.TP,2*Z.TP,max.TP),         # two exceptions
       u           = c(1.0,  1.0 ,   0.8  , 0.6,   0.4  ,  0.2 ,  0.0 ),
       utility     = FALSE,
@@ -98,7 +98,7 @@ msk.nutrients.2010.create <- function(language="English",dictionaries=NA,col="bl
     utility.endnode.intpol1d.create(
       name.node   = ecoval.translate("N_nutrients_TPfilt",dict),
       name.attrib = ecoval.translate("A_nutrients_TPfilt_mgPperl",dict),
-      range       = c(0,max.TP.filt),
+      range       = c(0,Inf),
       x           = c(0  ,min.TP.filt,0.5*Z.TP.filt,Z.TP.filt,1.5*Z.TP.filt,2*Z.TP.filt,max.TP.filt),
       u           = c(1.0,    1.0    ,     0.8     ,   0.6   ,     0.4     ,    0.2    ,    0.0    ),
       utility     = FALSE,
@@ -111,7 +111,7 @@ msk.nutrients.2010.create <- function(language="English",dictionaries=NA,col="bl
     utility.endnode.intpol1d.create(
       name.node   = ecoval.translate("N_nutrients_PO4",dict),
       name.attrib = ecoval.translate("A_nutrients_PO4_mgPperl",dict),
-      range       = c(0,max.PO4),
+      range       = c(0,Inf),
       x           = c(0  ,min.PO4,0.5*Z.PO4,Z.PO4,1.5*Z.PO4,2*Z.PO4,max.PO4),
       u           = c(1.0,  1.0  ,   0.8   , 0.6 ,   0.4   ,  0.2  ,  0.0  ),
       utility     = FALSE,
@@ -124,7 +124,7 @@ msk.nutrients.2010.create <- function(language="English",dictionaries=NA,col="bl
     utility.endnode.intpol1d.create(
       name.node   = ecoval.translate("N_nutrients_TN",dict),
       name.attrib = ecoval.translate("A_nutrients_TN_mgNperl",dict),
-      range       = c(0,max.TN),
+      range       = c(0,Inf),
       x           = c(0  ,min.TN,2,Z.TN,1.5*Z.TN,2*Z.TN,max.TN),                   # exception
       u           = c(1.0,  1.0 ,   0.8  , 0.6,   0.4  ,  0.2 ,  0.0 ),
       utility     = FALSE,
@@ -137,7 +137,7 @@ msk.nutrients.2010.create <- function(language="English",dictionaries=NA,col="bl
     utility.endnode.intpol1d.create(
       name.node   = ecoval.translate("N_nutrients_NO3",dict),
       name.attrib = ecoval.translate("A_nutrients_NO3_mgNperl",dict),
-      range       = c(0,max.NO3),
+      range       = c(0,Inf),
       x           = c(0  ,min.NO3,1.5/5.6*Z.NO3,Z.NO3,1.5*Z.NO3,2*Z.NO3,max.NO3),     # exception
       u           = c(1.0,  1.0  ,   0.8   , 0.6 ,   0.4   ,  0.2  ,  0.0  ),
       utility     = FALSE,
@@ -276,7 +276,7 @@ msk.nutrients.2010.create <- function(language="English",dictionaries=NA,col="bl
     utility.endnode.intpol1d.create(
       name.node   = ecoval.translate("N_nutrients_TOC",dict),
       name.attrib = ecoval.translate("A_nutrients_TOC_mgCperl",dict),
-      range       = c(0,max.TOC),
+      range       = c(0,Inf),
       x           = c(0  ,min.TOC,0.5*Z.TOC,Z.TOC,1.5*Z.TOC,2*Z.TOC,max.TOC),
       u           = c(1.0,  1.0  ,   0.8   , 0.6 ,   0.4   ,  0.2  ,  0.0  ),
       utility     = FALSE,
@@ -289,7 +289,7 @@ msk.nutrients.2010.create <- function(language="English",dictionaries=NA,col="bl
     utility.endnode.intpol1d.create(
       name.node   = ecoval.translate("N_nutrients_DOC",dict),
       name.attrib = ecoval.translate("A_nutrients_DOC_mgCperl",dict),
-      range       = c(0,max.DOC),
+      range       = c(0,Inf),
       x           = c(0  ,min.DOC,0.5*Z.DOC,Z.DOC,1.5*Z.DOC,2*Z.DOC,max.DOC),
       u           = c(1.0,  1.0  ,   0.8   , 0.6 ,   0.4   ,  0.2  ,  0.0  ),
       utility     = FALSE,
@@ -302,7 +302,7 @@ msk.nutrients.2010.create <- function(language="English",dictionaries=NA,col="bl
     utility.endnode.intpol1d.create(
       name.node   = ecoval.translate("N_nutrients_BOD5",dict),
       name.attrib = ecoval.translate("A_nutrients_BOD5_mgOperl",dict),
-      range       = c(0,max.BOD5),
+      range       = c(0,Inf),
       x           = c(0  ,min.BOD5,0.5*Z.BOD5,Z.BOD5,1.5*Z.BOD5,2*Z.BOD5,max.BOD5),
       u           = c(1.0,   1.0  ,    0.8   ,  0.6 ,    0.4   ,   0.2  ,   0.0  ),
       utility     = FALSE,

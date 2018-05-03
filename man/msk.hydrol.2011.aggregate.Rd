@@ -53,7 +53,7 @@ Environmental Modelling and Software 22, 188-201, 2007.
 Pfaundler M.,Duebendorfer,C, Zysset, A.
 Methoden zur Untersuchung und Beurteilung der Fliessgewaesser. Hydrologie - Abflussregime Stufe F (flaechendeckend).
 Bundesamt fuer Umwelt, Bern. Umwelt-Vollzug Nr. 1107: 113 S, 2011.
-\url{http://www.bafu.admin.ch/publikationen/publikation/01603/index.html?lang=de}
+\url{http://www.bafu.admin.ch/uv-1107-d}
 }
 
 \seealso{

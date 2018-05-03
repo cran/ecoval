@@ -59,7 +59,7 @@ Environmental Modelling and Software 22, 188-201, 2007.
 Huette, M. and Niederhauser P.
 Methoden zur Untersuchung und Beurteilung der Fliessgewaesser in der Schweiz: Oekomorphologie Stufe F. 
 Mitteilungen zum Gewaesserschutz Nr. 27. Bundesamt fuer Umwelt, Wald und Landschaft, BUWAL, Bern. 1998.
-\url{http://www.bafu.admin.ch/publikationen/publikation/00398/index.html?lang=de}
+\url{https://www.bafu.admin.ch/bafu/de/home/themen/wasser/publikationen-studien/publikationen-wasser/methoden-fliessgewaesser-oekomorphologie-stufe-f.html}
 }
 
 \seealso{

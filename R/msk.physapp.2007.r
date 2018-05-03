@@ -277,7 +277,7 @@ msk.physapp.2007.create <- function(language="English",dictionaries=NA,col="blac
       required  = FALSE,
       col       = col)
   
-  # Abf??lle 
+  # Abfaelle 
   
   comb <- data.frame(c(ecoval.translate("L_physappearance_solidwaste_quant_class_none",dict),
                        ecoval.translate("L_physappearance_solidwaste_quant_class_moderate",dict),

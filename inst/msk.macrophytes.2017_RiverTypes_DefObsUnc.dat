@@ -1,0 +1,5 @@
+A_macrophytes_site_discharge_lpers	LognormalTrunc	rel	0.2	0	Inf
+A_macrophytes_site_waterdepth_m	LognormalTrunc	rel	0.2	0	Inf
+A_macrophytes_site_slope_percent	LognormalTrunc	rel	0.2	0	Inf
+A_macrophytes_site_coarsegravel_percent	NormalTrunc	abs	10	0	100
+A_macrophytes_site_shading_percent	NormalTrunc	abs	10	0	100

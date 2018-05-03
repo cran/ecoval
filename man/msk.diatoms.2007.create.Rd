@@ -59,7 +59,7 @@ Environmental Modelling and Software 22, 188-201, 2007.
 Huerlimann J., Niederhauser P. 
 Methoden zur Untersuchung und Beurteilung der Fliessgewaesser. Kieselalgen Stufe F (flaechendeckend).
 Umwelt-Vollzug Nr. 0740. Bundesamt fuer Umwelt, Bern. 130 S., 2007
-\url{http://www.bafu.admin.ch/publikationen/publikation/00077/index.html?lang=de}.
+\url{http://www.bafu.admin.ch/uv-0740-d}.
 }
 
 \seealso{

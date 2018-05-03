@@ -59,7 +59,7 @@ Environmental Modelling and Software 22, 188-201, 2007.
 Binderheim E., Goeggel W.
 Methoden zur Untersuchung und Beurteilung der Fliessgewaesser. Aeusserer Aspekt. 
 Umwelt-Vollzug Nr. 0701. Bundesamt fuer Umwelt, Bern. 43 S. 2007.
-\url{http://www.bafu.admin.ch/publikationen/publikation/00038/index.html?lang=de}
+\url{http://www.bafu.admin.ch/uv-0701-d}
 }
 
 \seealso{

@@ -11,6 +11,18 @@ export("msk.nutrients.2010.create")
 export("msk.diatoms.2007.create")
 export("msk.invertebrates.2010.create")
 export("msk.fish.2004.create")
+export("msk.macrophytes.2017.create")
+export("msk.macrophytes.2017.addminbonusmalus")
+export("msk.macrophytes.2017.read.compile.evaluate")
+export("msk.macrophytes.2017.calc.types")
+export("msk.macrophytes.2017.doc.site")
+export("msk.macrophytes.2017.doc.typology")
+export("msk.macrophytes.2017.doc.vegetation")
+export("msk.macrophytes.2017.doc.valuation")
+export("msk.macrophytes.2017.plot.typedef")
+export("msk.macrophytes.2017.plot.types.scheme")
+export("msk.macrophytes.2017.plot.types.grfo")
+export("msk.macrophytes.2017.plot.hierarchy")
 
 export("val.pesticides.create")
 export("val.micropoll.create")
@@ -30,8 +42,19 @@ export("ecoval.plotsymbols")
 
 import(utility)
 import(rivernet)
+import(jpeg)
 
-importFrom("utils", "read.table")
-importFrom("graphics", "plot","lines","points","abline","polygon","text")
-importFrom("stats", "approx")
-
+importFrom("utils",
+           "read.table","write.table","read.csv")
+importFrom("graphics",
+           "plot","lines","points","abline","polygon","text","arrows",
+           "layout","par","rasterImage","rect","xinch","yinch",
+           "barplot")
+importFrom("stats",
+           "approx", "na.omit",
+           "dunif","runif",
+           "dnorm","pnorm","qnorm","rnorm",
+           "dlnorm","plnorm","qlnorm","rlnorm",
+           "spline")
+importFrom("grDevices",
+           "grey","pdf","dev.off","rgb")

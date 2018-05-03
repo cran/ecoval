@@ -1,19 +1,19 @@
-\name{msk.hydrol.2011.create}
+\name{msk.macrophytes.2017.create}
 
-\alias{msk.hydrol.2011.create}
+\alias{msk.macrophytes.2017.create}
 
 \title{
-Creates a Value Function for River Hydrology
+Creates a Value Function for River Macrophytes
 }
 
 \description{
-Creates a value function for river hydrology based on the Swiss modular concept for stream assessment, level I (Regional survey) from 2011.
+Creates a value function for river macrophytes based on the Swiss modular concept for stream assessment 2017.
 }
 
 \usage{
-msk.hydrol.2011.create(language     = "English",
-                       dictionaries = NA,
-                       col          = "black")
+msk.macrophytes.2017.create(language     = "English",
+                            dictionaries = NA,
+                            col          = "black")
 }
 
 \arguments{
@@ -32,6 +32,10 @@ Color of bounding boxes in objectives hierarchy.
 
 \value{
 The function returns the value function as a class utility.
+}
+
+\author{
+Christian Michel <christian.michel@eawag.ch> and Peter Reichert <peter.reichert@eawag.ch>
 }
 
 \references{
@@ -56,20 +60,30 @@ Concepts of decision support for river rehabilitation,
 Environmental Modelling and Software 22, 188-201, 2007.
 \url{http://dx.doi.org/10.1016/j.envsoft.2005.07.017}\cr\cr
 \url{http://www.modul-stufen-konzept.ch}\cr\cr
-Pfaundler M.,Duebendorfer,C, Zysset, A.
-Methoden zur Untersuchung und Beurteilung der Fliessgewaesser. Hydrologie - Abflussregime Stufe F (flaechendeckend).
-Bundesamt fuer Umwelt, Bern. Umwelt-Vollzug Nr. 1107: 113 S, 2011.
-\url{http://www.bafu.admin.ch/uv-1107-d}
+Kaenel, B., Michel, C., Reichert, P.
+Methoden zur Untersuchung und Beurteilung der Fliessgewaesser in der Schweiz: Makrophyten. 
+Bundesamt fuer Umwelt, Wald und Landschaft, BUWAL, Bern. 2017.
+\url{http://www.modul-stufen-konzept.ch}
 }
 
 \seealso{
+\code{\link{msk.macrophytes.2017.read.compile.evaluate}},\cr
+\code{\link{msk.macrophytes.2017.calc.types}},\cr
+\code{\link{msk.macrophytes.2017.doc.site}},\cr
+\code{\link{msk.macrophytes.2017.doc.typology}},\cr
+\code{\link{msk.macrophytes.2017.doc.vegetation}},\cr
+\code{\link{msk.macrophytes.2017.doc.valuation}},\cr
+\code{\link{msk.macrophytes.2017.plot.typedef}},\cr
+\code{\link{msk.macrophytes.2017.plot.types.scheme}},\cr
+\code{\link{msk.macrophytes.2017.plot.types.grfo}},\cr
+\code{\link{msk.macrophytes.2017.plot.hierarchy}},\cr\cr
 \code{\link[utility:utility-package]{utility}}.
 }
 
 \examples{
-hydrol <- msk.hydrol.2011.create()
-plot(hydrol)
-hydrol.german <- msk.hydrol.2011.create("Deutsch")
-plot(hydrol.german)
+macrophytes <- msk.macrophytes.2017.create()
+plot(macrophytes,two.lines=TRUE)
+macrophytes.german <- msk.macrophytes.2017.create("Deutsch")
+plot(macrophytes.german,two.lines=TRUE)
 }
 

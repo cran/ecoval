@@ -59,7 +59,7 @@ Environmental Modelling and Software 22, 188-201, 2007.
 Schager, E., Peter, A.
 Methoden zur Untersuchung und Beurteilung der Fliessgewaesser, Fische Stufe F (flaechendeckend).
 Mitteilungenn zum Gewaesserschutz Nr. 44. Bundesamt fuer Umwelt, Wald und Landschaft, BUWAL, Bern, 2004.
-\url{http://www.bafu.admin.ch/publikationen/publikation/00592/index.html?lang=de}
+\url{https://www.bafu.admin.ch/bafu/de/home/themen/wasser/publikationen-studien/publikationen-wasser/methoden-fliessgewaesser-fische-stufe-f.html}
 }
 
 \seealso{

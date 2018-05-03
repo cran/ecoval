@@ -1,37 +1,37 @@
-\name{msk.hydrol.2011.create}
+\name{msk.macrophytes.2017.plot.hierarchy}
 
-\alias{msk.hydrol.2011.create}
+\alias{msk.macrophytes.2017.plot.hierarchy}
 
 \title{
-Creates a Value Function for River Hydrology
+Function to plot the objectives hierarchy of the macrophyte assessment colored according the valuation.
 }
 
 \description{
-Creates a value function for river hydrology based on the Swiss modular concept for stream assessment, level I (Regional survey) from 2011.
+Function to plot the objectives hierarchy of the macrophyte assessment colored according the valuation.
 }
 
 \usage{
-msk.hydrol.2011.create(language     = "English",
-                       dictionaries = NA,
-                       col          = "black")
+msk.macrophytes.2017.plot.hierarchy(res,i,final=TRUE,...)
 }
 
 \arguments{
-  \item{language}{
-Language to be used to denote nodes, attributes and attribute levels.
-Must be a column name of the table provided by the second argument.
+  \item{res}{
+results as provided by one of the functions \code{\link{msk.macrophytes.2017.calc.types}} 
+or \code{\link{msk.macrophytes.2017.read.compile.evaluate}}.
 }
-  \item{dictionaries}{
-Matrix of dictionaries with the languages provided by the column names and the original words provided as the row names.
-If dictionary is NA, the default dictionary \code{ecoval.dictionaries.default} is loaded.
+  \item{i}{
+row index of site to be plotted.
 }
-  \item{col}{
-Color of bounding boxes in objectives hierarchy.
+  \item{final}{
+logical variable indicating whether to plot the final valuation or the valuation before plausibilization.
+}
+  \item{...}{
+additional arguments are passed to the function \code{\link{plot}}.
 }
 }
 
 \value{
-The function returns the value function as a class utility.
+.
 }
 
 \references{
@@ -56,20 +56,15 @@ Concepts of decision support for river rehabilitation,
 Environmental Modelling and Software 22, 188-201, 2007.
 \url{http://dx.doi.org/10.1016/j.envsoft.2005.07.017}\cr\cr
 \url{http://www.modul-stufen-konzept.ch}\cr\cr
-Pfaundler M.,Duebendorfer,C, Zysset, A.
-Methoden zur Untersuchung und Beurteilung der Fliessgewaesser. Hydrologie - Abflussregime Stufe F (flaechendeckend).
-Bundesamt fuer Umwelt, Bern. Umwelt-Vollzug Nr. 1107: 113 S, 2011.
-\url{http://www.bafu.admin.ch/uv-1107-d}
+Kaenel, B., Michel, C., Reichert, P.
+Methoden zur Untersuchung und Beurteilung der Fliessgewaesser in der Schweiz: Makrophyten. 
+Bundesamt fuer Umwelt, Wald und Landschaft, BUWAL, Bern. 2017.
+\url{http://www.modul-stufen-konzept.ch}
 }
 
 \seealso{
+\code{\link{msk.macrophytes.2017.create}},
 \code{\link[utility:utility-package]{utility}}.
 }
 
-\examples{
-hydrol <- msk.hydrol.2011.create()
-plot(hydrol)
-hydrol.german <- msk.hydrol.2011.create("Deutsch")
-plot(hydrol.german)
-}
 
