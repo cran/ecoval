@@ -1647,8 +1647,8 @@ msk.macrophytes.2017.doc.valuation <- function(res,row.no) {
     
     
     # WINDOW 5 - Valuation plotted as value hierachy
-    if( !final.id ) main.text <- paste("Flusstyp: ", river.type, " (Orig.)", sep = "")
-    if(  final.id ) main.text <- paste("Flusstyp: ", river.type, " (Final.)", sep = "")
+    if( !final.id ) main.text <- paste("Flusstyp: ", ifelse(is.na(river.type),"",river.type), " (Orig.)", sep = "")
+    if(  final.id ) main.text <- paste("Flusstyp: ", ifelse(is.na(river.type),"",river.type), " (Final.)", sep = "")
     
     msk.macrophytes.2017.plot.hierarchy(res, row.no, final = final.id,
                                         cex.main = 1.25, cex.nodes = 0.8,

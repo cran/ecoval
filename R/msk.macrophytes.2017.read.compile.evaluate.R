@@ -355,62 +355,68 @@ msk.macrophytes.2017.read.compile.evaluate <- function(file.site,
   res$val.types.decreasingprob <- rep("",nrow(res$val.types))
   for ( i in 1:nrow(res$val.types) )
   {
-    ind <- order(res$types.val.probs[i,],decreasing=TRUE)
-    val.types <- cbind(res$val.types,rep(NA,nrow(res$val.types)),rep(NA,nrow(res$val.types)))
-    colnames(val.types)[(ncol(val.types)-1):ncol(val.types)] <- c(ecoval.translate("L_macrophytes_rivertype_class_poorveg",dict),
-                                                                  ecoval.translate("L_macrophytes_rivertype_class_large",dict))
-    res$val.types.decreasingprob[i] <- paste(paste(colnames(res$types.val.probs)[ind],
-                                                   round(val.types[i,colnames(res$types.val.probs)[ind]],2),
-                                                   100*round(res$types.val.probs[i,ind],2),sep="_"),
-                                             collapse=" | ")
+    if ( !anyNA(res$types.val.probs[i,]) )
+    {
+      ind <- order(res$types.val.probs[i,],decreasing=TRUE)
+      val.types <- cbind(res$val.types,rep(NA,nrow(res$val.types)),rep(NA,nrow(res$val.types)))
+      colnames(val.types)[(ncol(val.types)-1):ncol(val.types)] <- c(ecoval.translate("L_macrophytes_rivertype_class_poorveg",dict),
+                                                                    ecoval.translate("L_macrophytes_rivertype_class_large",dict))
+      res$val.types.decreasingprob[i] <- paste(paste(colnames(res$types.val.probs)[ind],
+                                                     round(val.types[i,colnames(res$types.val.probs)[ind]],2),
+                                                     100*round(res$types.val.probs[i,ind],2),sep="_"),
+                                               collapse=" | ")
+    }
   }
   
   # sort for decreasing valuation, for probability >= 0.1:
   
   res$val.types.decreasingval <- rep("",nrow(res$val.types))
-  for ( i in 1:nrow(res$val.types) )
+  for ( i in 1:nrow(res$types.val.probs) )
   {
-    ind <- order(res$val.types[i,],decreasing=TRUE)
-    Pge10 <- res$types.val.probs[i,colnames(res$val.types)[ind]] >= 0.1
-    if ( sum(Pge10) > 0 )
+    if ( !anyNA(res$types.val.probs[i,]) )
     {
-      res$val.types.decreasingval[i] <- paste(paste(colnames(res$val.types)[ind[Pge10]],
-                                                    round(res$val.types[i,ind[Pge10]],2),
-                                                    100*round(res$types.val.probs[i,colnames(res$val.types)[ind[Pge10]]],2),sep="_"),
-                                              collapse=" | ")
-    }
-    if ( res$types.val.probs[i,ecoval.translate("L_macrophytes_rivertype_class_poorveg",dict)] >= 0.1 )
-    {
-      if (  res$val.types.decreasingval[i] == "" )
+      ind <- order(res$val.types[i,],decreasing=TRUE)
+      Pge10 <- res$types.val.probs[i,colnames(res$val.types)[ind]] >= 0.1
+      if ( sum(Pge10) > 0 )
       {
-        res$val.types.decreasingval[i] <- paste(ecoval.translate("L_macrophytes_rivertype_class_poorveg",dict),
-                                                100*round(res$types.val.probs[i,ecoval.translate("L_macrophytes_rivertype_class_poorveg",dict)],2),
-                                                sep="__")
+        res$val.types.decreasingval[i] <- paste(paste(colnames(res$val.types)[ind[Pge10]],
+                                                      round(res$val.types[i,ind[Pge10]],2),
+                                                      100*round(res$types.val.probs[i,colnames(res$val.types)[ind[Pge10]]],2),sep="_"),
+                                                collapse=" | ")
       }
-      else
+      if ( res$types.val.probs[i,ecoval.translate("L_macrophytes_rivertype_class_poorveg",dict)] >= 0.1 )
       {
-        res$val.types.decreasingval[i] <- paste(res$val.types.decreasingval[i],
-                                                paste(ecoval.translate("L_macrophytes_rivertype_class_poorveg",dict),
-                                                      100*round(res$types.val.probs[i,ecoval.translate("L_macrophytes_rivertype_class_poorveg",dict)],2),
-                                                      sep="__"),
-                                                sep=" | ")
+        if (  res$val.types.decreasingval[i] == "" )
+        {
+          res$val.types.decreasingval[i] <- paste(ecoval.translate("L_macrophytes_rivertype_class_poorveg",dict),
+                                                  100*round(res$types.val.probs[i,ecoval.translate("L_macrophytes_rivertype_class_poorveg",dict)],2),
+                                                  sep="__")
+        }
+        else
+        {
+          res$val.types.decreasingval[i] <- paste(res$val.types.decreasingval[i],
+                                                  paste(ecoval.translate("L_macrophytes_rivertype_class_poorveg",dict),
+                                                        100*round(res$types.val.probs[i,ecoval.translate("L_macrophytes_rivertype_class_poorveg",dict)],2),
+                                                        sep="__"),
+                                                  sep=" | ")
+        }
       }
-    }
-    if ( res$types.val.probs[i,ecoval.translate("L_macrophytes_rivertype_class_large",dict)] >= 0.1 )
-    {
-      if (  res$val.types.decreasingval[i] == "" )
+      if ( res$types.val.probs[i,ecoval.translate("L_macrophytes_rivertype_class_large",dict)] >= 0.1 )
       {
-        res$val.types.decreasingval[i] <- paste(ecoval.translate("L_macrophytes_rivertype_class_large",dict),
-                                                100*round(res$types.val.probs[i,ecoval.translate("L_macrophytes_rivertype_class_large",dict)],2),
-                                                sep="__")
-      }
-      else
-      {
-        res$val.types.decreasingval[i] <- paste(res$val.types.decreasingval[i],
-                                                paste(ecoval.translate("L_macrophytes_rivertype_class_large",dict),
-                                                      100*round(res$types.val.probs[i,ecoval.translate("L_macrophytes_rivertype_class_large",dict)],2),
-                                                      sep="__"),
-                                                sep=" | ")
+        if (  res$val.types.decreasingval[i] == "" )
+        {
+          res$val.types.decreasingval[i] <- paste(ecoval.translate("L_macrophytes_rivertype_class_large",dict),
+                                                  100*round(res$types.val.probs[i,ecoval.translate("L_macrophytes_rivertype_class_large",dict)],2),
+                                                  sep="__")
+        }
+        else
+        {
+          res$val.types.decreasingval[i] <- paste(res$val.types.decreasingval[i],
+                                                  paste(ecoval.translate("L_macrophytes_rivertype_class_large",dict),
+                                                        100*round(res$types.val.probs[i,ecoval.translate("L_macrophytes_rivertype_class_large",dict)],2),
+                                                        sep="__"),
+                                                  sep=" | ")
+        }
       }
     }
   }

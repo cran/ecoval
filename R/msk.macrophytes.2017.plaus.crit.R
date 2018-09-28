@@ -13,6 +13,8 @@ msk.macrophytes.2017.plaus.crit <- function(res,
   
   n <- length(res$types.val.obs)
   
+  rows.available <- !apply(cbind(res$types.probs,res$types.val.obs),1,anyNA)
+  
   subm      <- c(ecoval.translate("L_macrophytes_rivertype_class_smallsubmerged",dict),
                  ecoval.translate("L_macrophytes_rivertype_class_mediumsubmerged",dict),
                  ecoval.translate("L_macrophytes_rivertype_class_largesubmerged",dict),
@@ -29,49 +31,56 @@ msk.macrophytes.2017.plaus.crit <- function(res,
   # set up plausibilization criteria:
   # =================================
   
+  char.grfo.missing               <- rep(NA,n)
+  type.scheme.not.max.prob        <- rep(NA,n)
+  type.max.prob.not.best          <- rep(NA,n)
+  abs.cover.low                   <- rep(NA,n)
+  prob.poorveg.high               <- rep(NA,n)
+  low.cover.and.prob.poorveg.high <- rep(NA,n)
+  high.helo.aquat.moss.river      <- rep(NA,n)
+  moos.mainly.on.art.subst        <- rep(NA,n)
+  subs.poor.for.moss              <- rep(NA,n)
+  high.cover.moss.poorveg         <- rep(NA,n)
+  better.val.other.type           <- rep(NA,n)
+  
   # R1: characteristic growth form missing:
   # ---------------------------------------
   
-  char.grfo.missing <- rep(NA,n)
-  
-  char.grfo.missing[res$types.val.obs %in% subm              & res$attrib.species[,ecoval.translate("A_macrophytes_taxa_aquatic_richness_count",dict)] == 0] <- 1
+  char.grfo.missing[res$types.val.obs %in% subm              & res$attrib.species[,ecoval.translate("A_macrophytes_taxa_aquatic_richness_count",dict)]    == 0] <- 1
   char.grfo.missing[res$types.val.obs %in% c(helo,helo.moss) & res$attrib.species[,ecoval.translate("A_macrophytes_taxa_helophytes_richness_count",dict)] == 0] <- 1
   char.grfo.missing[res$types.val.obs %in% c(moss,helo.moss) & res$attrib.species[,ecoval.translate("A_macrophytes_taxa_bryophytes_richness_count",dict)] == 0] <- 1
   
   # R2: type not highest probability:
   # ---------------------------------
   
-  type.scheme.not.max.prob <- rep(NA,n)
-  
-  type.scheme.not.max.prob[res$types.scheme.maxprob != res$types.scheme.obs] <- 1
+  type.scheme.not.max.prob[rows.available & res$types.scheme.maxprob != res$types.scheme.obs] <- 1
   
   # R3: type with highest probability not best:
   # -------------------------------------------
   
-  type.max.prob.not.best <- rep(NA,n)
-  
   types <- colnames(res$val.types)
   for ( i in 1:n )
   {
-    if ( res$types.val.obs[i] != ecoval.translate("L_macrophytes_rivertype_class_poorveg",dict) &
-         res$types.val.obs[i] != ecoval.translate("L_macrophytes_rivertype_class_large",dict) )
+    if ( rows.available[i] )
     {
-      type.prob.max    <- types[which.max(res$types.val.probs[i,types])]
-      if ( !is.na(res$val.types[i,type.prob.max]) )
+      if ( res$types.val.obs[i] != ecoval.translate("L_macrophytes_rivertype_class_poorveg",dict) &
+           res$types.val.obs[i] != ecoval.translate("L_macrophytes_rivertype_class_large",dict) )
       {
-        types.prob.ge.10 <- types[which(res$types.val.probs[i,types] >= 0.1)]
-        if ( length(types.prob.ge.10) > 0 )
+        type.prob.max    <- types[which.max(res$types.val.probs[i,types])]
+        if ( !is.na(res$val.types[i,type.prob.max]) )
         {
-          if ( max(res$val.types[i,types.prob.ge.10]) > res$val.types[i,type.prob.max] ) type.max.prob.not.best[i] <- 1
+          types.prob.ge.10 <- types[which(res$types.val.probs[i,types] >= 0.1)]
+          if ( length(types.prob.ge.10) > 0 )
+          {
+            if ( max(res$val.types[i,types.prob.ge.10]) > res$val.types[i,type.prob.max] ) type.max.prob.not.best[i] <- 1
+          }
         }
       }
     }
   }
-
+  
   # R4: absolute coverage low:
   # --------------------------
-  
-  abs.cover.low <- rep(NA,n)
   
   abs.cover.low[res$types.val.obs %in% c(subm,helo,helo.moss) &
                 res$data.site[,ecoval.translate("A_macrophytes_site_shading_percent",dict)] <= 50  &
@@ -79,8 +88,6 @@ msk.macrophytes.2017.plaus.crit <- function(res,
   
   # R5: prob poorveg high:
   # ----------------------
-  
-  prob.poorveg.high <- rep(NA,n)
   
   prob.poorveg.high[res$types.scheme.obs==ecoval.translate("L_macrophytes_rivertype_class_smallsubmerged",dict) &
                     res$types.scheme.probs[,ecoval.translate("L_macrophytes_rivertype_class_poorveg",dict)] > 0.1] <- 1
@@ -117,8 +124,6 @@ msk.macrophytes.2017.plaus.crit <- function(res,
   
   # R6: absolute cover low and prob poorveg high:
   # ---------------------------------------------
-  
-  low.cover.and.prob.poorveg.high <- rep(NA,n)
   
   low.cover.and.prob.poorveg.high[res$types.scheme.obs==ecoval.translate("L_macrophytes_rivertype_class_smallsubmerged",dict) &
                                   res$attrib.species[,ecoval.translate("A_macrophytes_allmacrophytes_abscover_percent",dict)] < 10 &
@@ -170,8 +175,6 @@ msk.macrophytes.2017.plaus.crit <- function(res,
   # R7: absolute cover of helophytes and aquatic forms high for moss or poorveg river:
   # ----------------------------------------------------------------------------------
   
-  high.helo.aquat.moss.river <- rep(NA,n)
-  
   high.helo.aquat.moss.river[res$types.val.obs %in% moss &
                              res$attrib.species[,ecoval.translate("A_macrophytes_taxa_aquatic_abscover_percent",dict)] +
                              res$attrib.species[,ecoval.translate("A_macrophytes_taxa_helophytes_abscover_percent",dict)] > 10] <- 1
@@ -183,15 +186,11 @@ msk.macrophytes.2017.plaus.crit <- function(res,
   # R8: moss mainly on artificial substrate:
   # ----------------------------------------
                              
-  moos.mainly.on.art.subst <- rep(NA,n)
-  
   moos.mainly.on.art.subst[res$types.val.obs %in% c(helo.moss,moss) &
                            res$attrib.species[,ecoval.translate("A_macrophytes_taxa_bryophytes_artificialsubstrate_relcover_percent",dict)] >= 80] <- 1
   
   # R9: substrate poor for moss:
   # ----------------------------
-  
-  subs.poor.for.moss <- rep(NA,n)
   
   if ( !is.na(match(ecoval.translate("A_macrophytes_site_substratestability_class",dict),colnames(res$data.site))) )
   {
@@ -213,15 +212,11 @@ msk.macrophytes.2017.plaus.crit <- function(res,
   # R10: high cover moss in poor vegetation river:
   # ----------------------------------------------
                      
-  high.cover.moss.poorveg <- rep(NA,n)
-  
   high.cover.moss.poorveg[res$types.val.obs == ecoval.translate("L_macrophytes_rivertype_class_poorveg",dict) &
                           res$attrib.species[,ecoval.translate("A_macrophytes_taxa_bryophytes_abscover_percent",dict)] > 10] <- 1 
   
   # R11: better valuation in other type of same discharge class:
   # ------------------------------------------------------------
-  
-  better.val.other.type <- rep(NA,n)
   
   better.val.other.type[res$types.val.obs %in% c(ecoval.translate("L_macrophytes_rivertype_class_smallhelophytebryophyte",dict),
                                                  ecoval.translate("L_macrophytes_rivertype_class_smallbryophyte",dict)) &
@@ -273,10 +268,17 @@ msk.macrophytes.2017.plaus.crit <- function(res,
   # set up type change suggestions:
   # ===============================
   
+  small.submerged.without.aquatic.grfo <- rep("",n)
+  change.macrophyte.high.cover         <- rep("",n)
+  change.macrophyte.medium.cover       <- rep("",n)
+  change.moss.high.cover               <- rep("",n)
+  other.base.type                      <- rep("",n)
+  other.discharge.class                <- rep("",n)
+  change.poorveg                       <- rep("",n)
+  change.better.valuation              <- rep("",n)
+  
   # U1: change KS to KH due to missing aquatic forms:
   # -------------------------------------------------
-  
-  small.submerged.without.aquatic.grfo <- rep("",n)
   
   ind <- res$types.val.obs == ecoval.translate("L_macrophytes_rivertype_class_smallsubmerged",dict) &
          res$attrib.species[,ecoval.translate("A_macrophytes_taxa_aquatic_richness_count",dict)] == 0
@@ -284,8 +286,6 @@ msk.macrophytes.2017.plaus.crit <- function(res,
 
   # U2: change to macrophyte river due to high coverage:
   # ----------------------------------------------------
-  
-  change.macrophyte.high.cover <- rep("",n)
   
   ind <- which(res$types.val.obs == ecoval.translate("L_macrophytes_rivertype_class_poorveg",dict) &
                  res$attrib.species[,ecoval.translate("A_macrophytes_taxa_aquatic_abscover_percent",dict)] +
@@ -311,8 +311,6 @@ msk.macrophytes.2017.plaus.crit <- function(res,
   
   # U3: change to macrophyte river due to medium coverage:
   # ------------------------------------------------------
-  
-  change.macrophyte.medium.cover <- rep("",n)
   
   ind <- which(res$types.val.obs == ecoval.translate("L_macrophytes_rivertype_class_poorveg",dict) &
                  res$attrib.species[,ecoval.translate("A_macrophytes_taxa_aquatic_abscover_percent",dict)] +
@@ -344,8 +342,6 @@ msk.macrophytes.2017.plaus.crit <- function(res,
   # U4: change to moss river due to high coverage:
   # ----------------------------------------------
   
-  change.moss.high.cover <- rep("",n)
-  
   ind <- which(res$types.val.obs == ecoval.translate("L_macrophytes_rivertype_class_poorveg",dict) &
                  res$attrib.species[,ecoval.translate("A_macrophytes_taxa_bryophytes_abscover_percent",dict)] > 10 &
                  res$attrib.species[,ecoval.translate("A_macrophytes_taxa_bryophytes_artificialsubstrate_relcover_percent",dict)] < 80)
@@ -368,8 +364,6 @@ msk.macrophytes.2017.plaus.crit <- function(res,
   
   # V1: change to other base type for transition type:
   # --------------------------------------------------
-  
-  other.base.type <- rep("",n)
   
   ind.trans <- which(res$types.scheme.obs == ecoval.translate("L_macrophytes_rivertype_class_smallsubmergedhelophyte",dict))
   if ( length(ind.trans) > 0 )
@@ -443,8 +437,6 @@ msk.macrophytes.2017.plaus.crit <- function(res,
   
   # V2: change to other discharge class:
   # ------------------------------------
-  
-  other.discharge.class <- rep("",n)
   
   ind.subm <- which(res$types.val.obs %in% subm)
   if ( length(ind.subm) > 0 )
@@ -528,8 +520,6 @@ msk.macrophytes.2017.plaus.crit <- function(res,
   # V3: change to poor vegetation due to low coverage:
   # --------------------------------------------------
   
-  change.poorveg <- rep("",n)
-  
   # submerse and helophyte rivers:
   
   change.poorveg[res$types.scheme.obs %in% c(ecoval.translate("L_macrophytes_rivertype_class_smallsubmerged",dict),
@@ -597,8 +587,6 @@ msk.macrophytes.2017.plaus.crit <- function(res,
 
   # V4: change to river type of same discharge class with better valuation:
   # -----------------------------------------------------------------------
-  
-  change.better.valuation <- rep("",n)
   
   ind1 <- res$types.val.obs %in% c(ecoval.translate("L_macrophytes_rivertype_class_smallhelophytebryophyte",dict),
                                    ecoval.translate("L_macrophytes_rivertype_class_smallbryophyte",dict)) &

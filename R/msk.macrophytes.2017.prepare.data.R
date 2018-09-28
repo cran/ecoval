@@ -1115,19 +1115,20 @@ msk.macrophytes.2017.calc.attrib <- function(data.site,
         spec.assign <- unique(na.omit(data.select.richness[,"spec_select"]))
         
         if( length(spec.assign) > 0 ) {
+          
           for ( k in 1:length(spec.assign) ) {
             spec.assign.1 <- match(spec.assign[k], data.select.richness[,ecoval.translate("A_macrophytes_species_number_msk",dict)])
             
             if( !is.na(spec.assign.1) ) {
               dg.abs <- sum(data.select.richness[spec.assign.1,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)],
-                            data.select.richness[data.select.richness[,"spec_select"] %in% spec.assign,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)])
+                            data.select.richness[match(spec.assign[k],data.select.richness[,"spec_select"]),ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)])
               dg.rel <- sum(data.select.richness[spec.assign.1,"Rel_Deckung"],
-                            data.select.richness[data.select.richness[,"spec_select"] %in% spec.assign,"Rel_Deckung"])
+                            data.select.richness[match(spec.assign[k],data.select.richness[,"spec_select"]),"Rel_Deckung"])
               
               data.select.richness[spec.assign.1,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)] <- dg.abs
               data.select.richness[spec.assign.1,"Rel_Deckung"] <- dg.rel
               
-              data.select.richness <- data.select.richness[data.select.richness[,"spec_select"] %in% spec.assign == FALSE,]
+              data.select.richness <- data.select.richness[-match(spec.assign[k],data.select.richness[,"spec_select"]),]
             }
           }
         }

@@ -13,10 +13,10 @@ Procedures for the Ecological Assessment of Surface Waters
 \tabular{ll}{
 Package: \tab ecoval\cr
 Type: \tab Package\cr
-Version: \tab 1.2\cr
-Date: \tab 2018-05-03\cr
+Version: \tab 1.2.1\cr
+Date: \tab 2018-09-27\cr
 License: \tab GPL-3\cr
-Depends: \tab utility\cr
+Depends: \tab utility, rivernet, jpeg\cr
 }
 }
 
@@ -54,7 +54,7 @@ Node names, attribute names and identifiers for attribute levels (if not numeric
 
 \author{
 Nele Schuwirth <nele.schuwirth@eawag.ch> and Peter Reichert <peter.reichert@eawag.ch> 
-  with contributions by Simone Langhans
+  with contributions by Simone Langhans and Christian Michel
 
 Maintainer: Nele Schuwirth <nele.schuwirth@eawag.ch>
 }

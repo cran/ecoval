@@ -3,6 +3,22 @@ Change history of ecoval package
 ================================
 
 
+Changes version 1.2 (03.05.2018) -> version 1.2.1 (27.09.2018)
+==============================================================
+
+PR:     minor modification to msk.morphol.1998 to allow for NA in bed
+        modification and bank modification material (in particular relevant
+        if there is no modification; otherwise assuming the worse material)
+
+CM:     minor correction to the function msk.macrophytes.2017.calc.attrib
+        to correctly calculate number of taxa in case of submers/emergent species.
+        
+PR:     msk.macrophytes.2017.read.compile.evaluate: eliminated program crash
+        in case of missing data required for calculating macrophytes river types. 
+		
+PR:     dictionary to msk.morphol.1998.create: "Eindohlung" corrected to "Eindolung"
+
+
 Changes version 1.1 (19.01.2017) -> version 1.2 (03.05.2018)
 ============================================================
 
@@ -19,7 +35,7 @@ PR/CM:  module for macrophyte assessment of rivers implemented:
           msk.macrophytes.2017.plot.types.grfo
           msk.macrophytes.2017.plot.hierarchy
           
-PR:     continous formulations for river bed and bank in msk.morphol.1998 removed.
+PR:     continuous formulations for river bed and bank in msk.morphol.1998 removed.
           
 PR:     ranges of definition of nutrient assessments in msk.nutrients.2010 adapted,
         for 1d extrapolation, extended to constant extrapolation

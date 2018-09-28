@@ -1,60 +1,65 @@
 msk.macrophytes.2017.sample <- function(dist,par,sampsize)
 {
+  samp <- rep(NA,sampsize)
   if ( dist == "Delta" | dist == "delta" )
   {
     # delta distribution; parameter is mean:
-    samp <- rep(par[1],sampsize)
-    return(samp)
+    if ( !is.na(par[1]) ) samp <- rep(par[1],sampsize)
   }
   if ( dist == "Normal" | dist == "normal" )
   {
     # normal distribution; parameters are mean and sd:
-    samp <- rnorm(sampsize,mean=par[1],sd=par[2])
-    return(samp)
+    if ( !anyNA(par[1:2]) ) samp <- rnorm(sampsize,mean=par[1],sd=par[2])
   }
   if ( dist == "Lognormal" | dist == "lognormal" )
   {
     # lognormal distribution; parameters are mean and sd:
-    if ( par[2] == 0 )
+    if ( !anyNA(par[1:2]) )
     {
-      samp <- rep(par[1],sampsize)
+      if ( par[2] == 0 )
+      {
+        samp <- rep(par[1],sampsize)
+      }
+      else
+      {
+        sdlog   <- sqrt(log(1+par[2]^2/par[1]^2))
+        meanlog <- log(par[1]) - 0.5*sdlog^2
+        samp    <- rlnorm(sampsize,meanlog=meanlog,sdlog=sdlog)
+      }
     }
-    else
-    {
-      sdlog   <- sqrt(log(1+par[2]^2/par[1]^2))
-      meanlog <- log(par[1]) - 0.5*sdlog^2
-      samp    <- rlnorm(sampsize,meanlog=meanlog,sdlog=sdlog)
-    }
-    return(samp)
   }
   if ( dist == "NormalTrunc" | dist == "normaltrunc" )
   {
     # truncated normal distribution; parameters are mean, sd, min and max
     # of untruncated normal distribution
-    cdf.min <- pnorm(par[3],mean=par[1],sd=par[2])
-    cdf.max <- pnorm(par[4],mean=par[1],sd=par[2])
-    samp <- qnorm(runif(sampsize,min=cdf.min,max=cdf.max),mean=par[1],sd=par[2])
-    return(samp)
+    if ( !anyNA(par[1:4]) )
+    {
+      cdf.min <- pnorm(par[3],mean=par[1],sd=par[2])
+      cdf.max <- pnorm(par[4],mean=par[1],sd=par[2])
+      samp <- qnorm(runif(sampsize,min=cdf.min,max=cdf.max),mean=par[1],sd=par[2])
+    }
   }
   if ( dist == "LognormalTrunc" | dist == "lognormaltrunc" )
   {
     # truncated lognormal distribution; parameters are mean, sd, min and max
     # of untruncated lognormal distribution
-    if ( par[2] == 0 )
+    if ( !anyNA(par[1:4]) )
     {
-      samp <- rep(par[1],sampsize)
+      if ( par[2] == 0 )
+      {
+        samp <- rep(par[1],sampsize)
+      }
+      else
+      {
+        sdlog   <- sqrt(log(1+par[2]^2/par[1]^2))
+        meanlog <- log(par[1]) - 0.5*sdlog^2
+        cdf.min <- plnorm(par[3],meanlog=meanlog,sdlog=sdlog)
+        cdf.max <- plnorm(par[4],meanlog=meanlog,sdlog=sdlog)
+        samp <- qlnorm(runif(sampsize,min=cdf.min,max=cdf.max),meanlog=meanlog,sdlog=sdlog)
+      }
     }
-    else
-    {
-      sdlog   <- sqrt(log(1+par[2]^2/par[1]^2))
-      meanlog <- log(par[1]) - 0.5*sdlog^2
-      cdf.min <- plnorm(par[3],meanlog=meanlog,sdlog=sdlog)
-      cdf.max <- plnorm(par[4],meanlog=meanlog,sdlog=sdlog)
-      samp <- qlnorm(runif(sampsize,min=cdf.min,max=cdf.max),meanlog=meanlog,sdlog=sdlog)
-    }
-    return(samp)
   }
-  return(rep(NA,sampsize))
+  return(samp)
 }
 
 
@@ -230,24 +235,31 @@ msk.macrophytes.2017.calc.types <- function(attrib,
     rownames(comb.probs) <- rownames(attrib)
     for ( i in 1:nrow(attrib) ) 
     {
-      attrib.i.sample <- matrix(NA,nrow=sampsize,ncol=length(var.names))
-      colnames(attrib.i.sample) <- var.names
-      attrib.i.sample[1,] <- as.numeric(attrib[i,var.names])
-      for ( j in 1:length(var.names) )
+      if ( anyNA(attrib[i,var.names]) )
       {
-        par <- as.numeric(DefObsUnc[j,4:ncol(DefObsUnc)])
-        par <- c(attrib.i.sample[1,j],par)
-        if ( DefObsUnc[j,3] == "rel" ) par[2] <- par[2]*par[1]
-        attrib.i.sample[2:sampsize,j] <- 
-          msk.macrophytes.2017.sample(DefObsUnc[j,2],par,sampsize-1)
+        comb.probs[i,] <- rep(NA,nrow(types))
       }
-      comb <- 
-        msk.macrophytes.2017.get.comb(thresholds.indices,
-                                      thresholds.offsets,
-                                      thresholds.sample,
-                                      attrib.i.sample)
-      ind <- unique(comb)
-      for ( j in 1:length(ind) ) comb.probs[i,ind[j]] <- comb.probs[i,ind[j]] + sum(comb==ind[j])
+      else
+      {
+        attrib.i.sample <- matrix(NA,nrow=sampsize,ncol=length(var.names))
+        colnames(attrib.i.sample) <- var.names
+        attrib.i.sample[1,] <- as.numeric(attrib[i,var.names])
+        for ( j in 1:length(var.names) )
+        {
+          par <- as.numeric(DefObsUnc[j,4:ncol(DefObsUnc)])
+          par <- c(attrib.i.sample[1,j],par)
+          if ( DefObsUnc[j,3] == "rel" ) par[2] <- par[2]*par[1]
+          attrib.i.sample[2:sampsize,j] <- 
+            msk.macrophytes.2017.sample(DefObsUnc[j,2],par,sampsize-1)
+        }
+        comb <- 
+          msk.macrophytes.2017.get.comb(thresholds.indices,
+                                        thresholds.offsets,
+                                        thresholds.sample,
+                                        attrib.i.sample)
+        ind <- unique(comb)
+        for ( j in 1:length(ind) ) comb.probs[i,ind[j]] <- comb.probs[i,ind[j]] + sum(comb==ind[j])
+      }
     }
     comb.probs <- comb.probs/sampsize
     
@@ -324,7 +336,7 @@ msk.macrophytes.2017.calc.types <- function(attrib,
       }
     }
     
-    # calculated probabilities for type scheme field indices:
+    # calculate probabilities for type scheme field indices:
     
     fields.names <- sort(unique(fields))
     fields.probs <- matrix(NA,ncol=length(fields.names),nrow=nrow(attrib))
@@ -367,12 +379,36 @@ msk.macrophytes.2017.calc.types <- function(attrib,
     
     # calculate types of maximum probability:
     
-    types.maxprob <- colnames(types.probs)[apply(types.probs,1,which.max)]
+    rows.available <- !apply(types.probs,1,anyNA)
+    types.maxprob <- rep(NA,nrow(attrib))
+    if ( sum(rows.available) > 0 ) 
+    {
+      if ( sum(rows.available) > 1 )
+      {
+        types.maxprob[rows.available] <- colnames(types.probs)[apply(types.probs[rows.available,],1,which.max)]
+      }
+      else
+      {
+        types.maxprob[rows.available] <- colnames(types.probs)[which.max(types.probs[rows.available,])]
+      }
+    }
     names(types.maxprob) <- rownames(attrib)
     
     # calculate valuation types of maximum probability:
     
-    types.val.maxprob <- colnames(types.val.probs)[apply(types.val.probs,1,which.max)]
+    rows.available <- !apply(types.val.probs,1,anyNA)
+    types.val.maxprob <- rep(NA,nrow(attrib))
+    if ( sum(rows.available) > 0 )
+    {
+      if ( sum(rows.available) > 1 )
+      {
+        types.val.maxprob[rows.available] <- colnames(types.val.probs)[apply(types.val.probs[rows.available,],1,which.max)]
+      }
+      else
+      {
+        types.val.maxprob[rows.available] <- colnames(types.val.probs)[which.max(types.val.probs[rows.available,])]
+      }
+    }
     names(types.val.maxprob) <- rownames(attrib)
     
     # extend output:
@@ -461,9 +497,9 @@ msk.macrophytes.2017.plot.types.scheme <- function(res.calc.types,i,cex=1,...)
       prob <- res$types.fields.probs[site,paste(i,j,sep="")]
       polygon(x=c(x[j],x[j+1],x[j+1],x[j],x[j]),
               y=c(y[i],y[i],y[i+1],y[i+1],y[i]),
-              col=grey(1-0.5*prob))  # grey between 0 and 0.5 to keep the text readable
+              col=ifelse(is.na(prob),"white",grey(1-0.5*prob)))  # grey between 0.5 and 1.0 to keep the text readable
       types <- unique(res$typedef$types[,ecoval.translate("A_macrophytes_rivertypescheme_class",dict)][res$typedef$fields==paste(i,j,sep="")])
-      types <- c(types,paste(100*round(prob,3),"%"))
+      types <- c(types,paste(ifelse(is.na(prob),"",100*round(prob,3)),"%"))
       text(x=0.5*(x[j]+x[j+1]),
            y=0.5*(y[i]+y[i+1]) + 0.5*(y[i]-y[i+1])/length(types) * (((length(types):1)-1)-0.5*(length(types)-1)),
            labels=types,adj=c(0.5,0.5),cex=cex)

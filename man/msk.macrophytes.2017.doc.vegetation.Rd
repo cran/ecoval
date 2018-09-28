@@ -3,11 +3,11 @@
 \alias{msk.macrophytes.2017.doc.vegetation}
 
 \title{
-Function to write site documentation.
+Function to write documentation of vegetation at a given site.
 }
 
 \description{
-Function to write site documentation.
+Function to write documentation of vegetation at a given site.
 }
 
 \usage{
@@ -16,15 +16,11 @@ msk.macrophytes.2017.doc.vegetation(res,row.no)
 
 \arguments{
   \item{res}{
-.
+results as provided by the functions \code{\link{msk.macrophytes.2017.read.compile.evaluate}}.
 }
   \item{row.no}{
-.
+row index of site to be plotted.
 }
-}
-
-\value{
-.
 }
 
 \references{
@@ -48,11 +44,12 @@ Reichert, P., Borsuk, M., Hostmann, M., Schweizer, S., Sporri, C., Tockner, K. a
 Concepts of decision support for river rehabilitation,
 Environmental Modelling and Software 22, 188-201, 2007.
 \url{http://dx.doi.org/10.1016/j.envsoft.2005.07.017}\cr\cr
-\url{http://www.modul-stufen-konzept.ch}\cr\cr
 Kaenel, B., Michel, C., Reichert, P.
-Methoden zur Untersuchung und Beurteilung der Fliessgewaesser in der Schweiz: Makrophyten. 
-Bundesamt fuer Umwelt, Wald und Landschaft, BUWAL, Bern. 2017.
-\url{http://www.modul-stufen-konzept.ch}
+Methoden zur Untersuchung und Beurteilung der Fliessgewaesser. Makrophyten - Stufe F (flaechendeckend) und Stufe S (systembezogen). 
+Entwurf. 
+Bundesamt fuer Umwelt, Bern. 119 S. 2017.
+\url{http://www.modul-stufen-konzept.ch/fg/module/wasserpflanzen/index}\cr\cr
+\url{http://www.modul-stufen-konzept.ch}\cr\cr
 }
 
 \seealso{

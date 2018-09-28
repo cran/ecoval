@@ -151,14 +151,16 @@ msk.morphol.1998.create <- function(language     = "English",
                        ecoval.translate("L_morphol_bedmod_type_class_other2",dict),
                        ecoval.translate("L_morphol_bedmod_type_class_other3",dict),
                        ecoval.translate("L_morphol_bedmod_type_class_other4",dict),
-                       ecoval.translate("L_morphol_bedmod_type_class_other5",dict)))
+                       ecoval.translate("L_morphol_bedmod_type_class_other5",dict),
+                       NA))
   colnames(comb) <- ecoval.translate("A_morphol_bedmod_type_class",dict)
   bedmod <-
     utility.endnode.cond.create(
       name.node     = ecoval.translate("N_morphol_bedmod",dict),
       attrib.levels = comb,
       nodes         = list(bedmod_riprap,bedmod_riprap,bedmod_riprap,bedmod_riprap,bedmod_riprap,
-                           bedmod_other,bedmod_other,bedmod_other,bedmod_other,bedmod_other),
+                           bedmod_other,bedmod_other,bedmod_other,bedmod_other,bedmod_other,
+                           bedmod_other),
       required      = TRUE,
       utility       = FALSE,
       col           = col)
@@ -283,7 +285,8 @@ msk.morphol.1998.create <- function(language     = "English",
                        ecoval.translate("L_morphol_bankmod_perm_class_imperm2",dict),
                        ecoval.translate("L_morphol_bankmod_perm_class_imperm3",dict),
                        ecoval.translate("L_morphol_bankmod_perm_class_imperm4",dict),
-                       ecoval.translate("L_morphol_bankmod_perm_class_imperm5",dict)))
+                       ecoval.translate("L_morphol_bankmod_perm_class_imperm5",dict),
+                       NA))
   colnames(comb) <- ecoval.translate("A_morphol_bankmod_perm_left_class",dict)
   bankmod_left <-
     utility.endnode.cond.create(
@@ -294,6 +297,7 @@ msk.morphol.1998.create <- function(language     = "English",
                            bankmod_left_perm,
                            bankmod_left_perm,
                            bankmod_left_perm,
+                           bankmod_left_imperm,
                            bankmod_left_imperm,
                            bankmod_left_imperm,
                            bankmod_left_imperm,
@@ -314,7 +318,8 @@ msk.morphol.1998.create <- function(language     = "English",
                        ecoval.translate("L_morphol_bankmod_perm_class_imperm2",dict),
                        ecoval.translate("L_morphol_bankmod_perm_class_imperm3",dict),
                        ecoval.translate("L_morphol_bankmod_perm_class_imperm4",dict),
-                       ecoval.translate("L_morphol_bankmod_perm_class_imperm5",dict)))
+                       ecoval.translate("L_morphol_bankmod_perm_class_imperm5",dict),
+                       NA))
   colnames(comb) <- ecoval.translate("A_morphol_bankmod_perm_right_class",dict)
   bankmod_right <-
     utility.endnode.cond.create(
@@ -325,6 +330,7 @@ msk.morphol.1998.create <- function(language     = "English",
                            bankmod_right_perm,
                            bankmod_right_perm,
                            bankmod_right_perm,
+                           bankmod_right_imperm,
                            bankmod_right_imperm,
                            bankmod_right_imperm,
                            bankmod_right_imperm,

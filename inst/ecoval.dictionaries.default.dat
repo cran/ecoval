@@ -6,7 +6,7 @@ N_chem		chemical state	chemical state	Chem. Zust.	Chem. Zust.	Chem. Zust.	Chem. 
 N_biol		biological state	biological state	Biol. Zust.	Biol. Zust.	Biol. Zust.	Biol. Zust.	Biol. Zust.	
 									
 N_morphol		morphology	morphology	Oekomorph.	Oekomorph.	Oekomorph.	Oekomorph.	Oekomorph.	
-N_morphol_coverage		coverage	coverage	Eindohlung	Eindohlung	Eindohlung	Eindohlung	Eindohlung	
+N_morphol_coverage		coverage	coverage	Eindolung	Eindolung	Eindolung	Eindolung	Eindolung	
 N_morphol_uncovered		uncovered	uncovered	Offener Fluss	Offener Fluss	Offener Fluss	Offener Fluss	Offener Fluss	
 N_morphol_widthvar		width variability	width variability	Breitenvariabilitaet	Breitenvariabilitaet	Breitenvariabilitaet	Breitenvariabilitaet	Breitenvariabilitaet	
 N_morphol_bedmod		bed modification	bed modification	Sohlenverbauung	Sohlenverbauung	Sohlenverbauung	Sohlenverbauung	Sohlenverbauung	
