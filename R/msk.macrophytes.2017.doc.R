@@ -69,7 +69,8 @@ msk.macrophytes.2017.doc.site <- function(res,row.no,pic.folder)
   if(  !is.na(match("types.scheme.obs",names(res))) ) {
     type.scheme.orig <- res$types.scheme.obs[row.no]
 
-    type.scheme.orig <- paste(ifelse(is.na(type.scheme.orig), "",type.scheme.orig),"(Orig.)")
+    type.scheme.orig <- paste(ifelse(is.na(type.scheme.orig),"",type.scheme.orig),
+                              paste("(",ecoval.translate("R_macrophytes_doc_typeorig",dict),")",sep=""))
     
   }
   
@@ -77,7 +78,8 @@ msk.macrophytes.2017.doc.site <- function(res,row.no,pic.folder)
   type.scheme.final <- ""
   if(  !is.na(match("types.scheme.final",names(res))) ) {
     type.scheme.final <- res$types.scheme.final[row.no]
-    type.scheme.final <- paste(ifelse(is.na(type.scheme.final), "",type.scheme.final),"(Plaus.)")
+    type.scheme.final <- paste(ifelse(is.na(type.scheme.final), "",type.scheme.final),
+                               paste("(",ecoval.translate("R_macrophytes_doc_typeplaus",dict),")",sep=""))
   }
   
   # original valuation type
@@ -93,11 +95,12 @@ msk.macrophytes.2017.doc.site <- function(res,row.no,pic.folder)
       }
       
       if( !is.na(match(type.val.orig, moss.types)) ) {
-        assess.orig <- res$val[row.no,paste(ecoval.translate("N_macrophytes_goodstate",dict),"MB")]
+        assess.orig <- res$val[row.no,paste(ecoval.translate("N_macrophytes_goodstate",dict),ecoval.translate("N_macrophytes_bryophytesriver",dict))]
       }
     }
     
-    type.val.orig <- paste(ifelse(is.na(type.val.orig), "",type.val.orig),"(Orig.)")
+    type.val.orig <- paste(ifelse(is.na(type.val.orig), "",type.val.orig),
+                           paste("(",ecoval.translate("R_macrophytes_doc_typeorig",dict),")",sep=""))
     
   }
   
@@ -114,11 +117,12 @@ msk.macrophytes.2017.doc.site <- function(res,row.no,pic.folder)
       }
       
       if( !is.na(match(type.val.final, moss.types)) ) {
-        assess.final <- res$val.final[row.no,paste(ecoval.translate("N_macrophytes_goodstate",dict),"MB")]
+        assess.final <- res$val.final[row.no,paste(ecoval.translate("N_macrophytes_goodstate",dict),ecoval.translate("N_macrophytes_bryophytesriver",dict))]
       }
     }
     
-    type.val.final <- paste(ifelse(is.na(type.val.final), "",type.val.final),"(Plaus.)")
+    type.val.final <- paste(ifelse(is.na(type.val.final), "",type.val.final),
+                            paste("(",ecoval.translate("R_macrophytes_doc_typeplaus",dict),")",sep=""))
   }
   
   
@@ -129,7 +133,10 @@ msk.macrophytes.2017.doc.site <- function(res,row.no,pic.folder)
   # NA is returned for plotting
   get.value <- function(data.plot, row.no, colname) {
     value.plot <- NA
-    if ( row.no >= 1 & row.no <= nrow(data.plot) & colname != "" & sum(colname == colnames(data.plot)) != 0 ) value.plot <- data.plot[row.no,colname]
+    if ( length(row.no)>0 & length(colname)>0 )
+    {
+      if ( row.no >= 1 & row.no <= nrow(data.plot) & colname != "" & sum(colname == colnames(data.plot)) != 0 ) value.plot <- data.plot[row.no,colname]
+    }
     return(value.plot)
   }
   
@@ -167,7 +174,7 @@ msk.macrophytes.2017.doc.site <- function(res,row.no,pic.folder)
   
   ## HEADER
   plot(0, 0, axes = axis.info, type="n", xaxs="i", yaxs="i", xlim=c(0,10), ylim=c(0,10))
-  text(x = 0, y = 5, labels =  "Modul Makrophyten - Charakterisierung Standort", font = 2, cex = cex.title, pos=4)
+  text(x = 0, y = 5, labels = ecoval.translate("R_macrophytes_doc_site",dict), font = 2, cex = cex.title, pos=4)
   abline(h = 3)
   
   ## WINDOW 2 - Basic information of sampling event as header in grey box
@@ -175,15 +182,15 @@ msk.macrophytes.2017.doc.site <- function(res,row.no,pic.folder)
   rect(0,0.5,10,9.5, col = "grey85", border = NA)
   
   # Line 1
-  text(x = 0, y = 7.5,   labels =  "Stellen-Code:", cex = cex.text, pos=4, font=2)
+  text(x = 0, y = 7.5,   labels =  paste(ecoval.translate("R_macrophytes_doc_codesite",dict),":",sep=""), cex = cex.text, pos=4, font=2)
   value.plot <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_siteid",dict))
   text(x = 1.4, y = 7.5, labels =  ifelse(is.na(value.plot), "", value.plot), cex = cex.text, pos=4)
   
-  text(x = 2.7, y = 7.5, labels =  "Kanton:", cex = cex.text, pos=4, font = 2)
+  text(x = 2.7, y = 7.5, labels =  paste(ecoval.translate("R_macrophytes_doc_canton",dict),":",sep=""), cex = cex.text, pos=4, font = 2)
   value.plot <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_canton",dict))
   text(x = 4, y = 7.5,   labels = ifelse(is.na(value.plot), "", value.plot), cex = cex.text, pos=4)
   
-  text(x = 6.5, y = 7.5,   labels =  "Koordinaten:", cex = cex.text, pos=4, font = 2)
+  text(x = 6.5, y = 7.5,   labels =  paste(ecoval.translate("R_macrophytes_doc_coordinates",dict),":",sep=""), cex = cex.text, pos=4, font = 2)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_coordinatex_swissgrid",dict))
   value.plot1 <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_coordinatey_swissgrid",dict))
   text(x = 8.3, y = 7.5, labels =  paste(ifelse(is.na(value.plot), "", value.plot),
@@ -191,93 +198,93 @@ msk.macrophytes.2017.doc.site <- function(res,row.no,pic.folder)
        cex = cex.text, pos=4)
   
   # Line 2
-  text(x = 0, y = 5,   labels =  "Gewaesser:", cex = cex.text, pos=4, font=2)
+  text(x = 0, y = 5,   labels =  paste(ecoval.translate("R_macrophytes_doc_river",dict),":",sep=""), cex = cex.text, pos=4, font=2)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_waterbody",dict))
   text(x = 1.4, y = 5, labels = ifelse(is.na(value.plot), "", value.plot), cex = cex.text, pos=4)
   
-  text(x = 2.7, y = 5, labels =  "Stelle:", cex = cex.text, pos=4, font = 2)
+  text(x = 2.7, y = 5, labels =  paste(ecoval.translate("R_macrophytes_doc_location",dict),":",sep=""), cex = cex.text, pos=4, font = 2)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_location",dict))
   text(x = 4, y = 5,   labels =  ifelse(is.na(value.plot), "", value.plot), cex = cex.text, pos=4)
 
   # Line 3
-  text(x = 0, y = 2.5,   labels =  "Datum:", cex = cex.text, pos=4, font=2)
+  text(x = 0, y = 2.5,   labels =  paste(ecoval.translate("R_macrophytes_doc_samplingdate",dict),":",sep=""), cex = cex.text, pos=4, font=2)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_samplingdate",dict))
   text(x = 1.4, y = 2.5, labels = ifelse(is.na(value.plot), "", value.plot), cex = cex.text, pos=4)
   
-  text(x = 2.7, y = 2.5, labels =  "BearbeiterIn:", cex = cex.text, pos=4, font = 2)
+  text(x = 2.7, y = 2.5, labels =  paste(ecoval.translate("R_macrophytes_doc_observer",dict),":",sep=""), cex = cex.text, pos=4, font = 2)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_operator",dict))
   text(x = 4, y = 2.5,   labels =  ifelse(is.na(value.plot), "", value.plot), cex = cex.text, pos=4)
   
-  text(x = 6.5, y = 2.5,   labels =  "Abschnittslaenge:", cex = cex.text, pos=4, font = 2)
+  text(x = 6.5, y = 2.5,   labels =  paste(ecoval.translate("R_macrophytes_doc_sectionlength",dict),":",sep=""), cex = cex.text, pos=4, font = 2)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_lengthsection_m",dict))
   text(x = 8.3, y = 2.5, labels =  ifelse(is.na(value.plot), "", paste(value.plot, "m")), cex = cex.text, pos=4)
   
   ## WINDOW 3 - Site parameters
   plot(0, 0, axes = axis.info, type="n", xaxs="i", yaxs="i", xlim=c(0,5), ylim=c(0,10))
-  text(x = 0, y = 9, labels =  "Standortparameter", col = "dodgerblue", cex = cex.title, pos=4, font=2)
+  text(x = 0, y = 9, labels =  ecoval.translate("R_macrophytes_doc_siteparameters",dict), col = "dodgerblue", cex = cex.title, pos=4, font=2)
   
   # typology parameters
   x.start <- 0.1
   y.pos <- 8.25 - 0.5 * seq(0,20,1)
   x.pos <- 2.2
   
-  text(x = x.start, y = y.pos[1], labels = "Abfluss:", font = 2, cex = cex.text, pos=4)
+  text(x = x.start, y = y.pos[1], labels = paste(ecoval.translate("R_macrophytes_doc_discharge",dict),":",sep=""), font = 2, cex = cex.text, pos=4)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_discharge_lpers",dict))
   text(x = x.pos,   y = y.pos[1], labels = ifelse(is.na(value.plot), "", paste(round(value.plot,0), "l/s")), font = 2, cex = cex.text, pos=4)
   
-  text(x = x.start+0.1, y = y.pos[2], labels = "Quelle Abfluss:", col = "grey60", cex = cex.text, pos=4)
+  text(x = x.start+0.1, y = y.pos[2], labels = paste(ecoval.translate("R_macrophytes_doc_dischargesource",dict),":",sep=""), col = "grey60", cex = cex.text, pos=4)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_discharge_source",dict))
   text(x = x.pos,       y = y.pos[2], labels = ifelse(is.na(value.plot), "", value.plot), col = "grey60", cex = cex.text, pos=4)
   
-  text(x = x.start, y = y.pos[3], labels = "Gefaelle:", font = 2, cex = cex.text, pos=4)
+  text(x = x.start, y = y.pos[3], labels = paste(ecoval.translate("R_macrophytes_doc_slope",dict),":",sep=""), font = 2, cex = cex.text, pos=4)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_slope_percent",dict))
   text(x = x.pos,   y = y.pos[3], labels = ifelse(is.na(value.plot), "", paste(round(value.plot,2), "%")), font = 2, cex = cex.text, pos=4)
   
-  text(x = x.start+0.1, y = y.pos[4], labels = "Quelle Gefaelle:", col = "grey60", cex = cex.text, pos=4)
+  text(x = x.start+0.1, y = y.pos[4], labels = paste(ecoval.translate("R_macrophytes_doc_slopesource",dict),":",sep=""), col = "grey60", cex = cex.text, pos=4)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_slope_source",dict))
   text(x = x.pos,       y = y.pos[4], labels = ifelse(is.na(value.plot), "", value.plot), col = "grey60", cex = cex.text, pos=4)
   
-  text(x = x.start, y = y.pos[5], labels = "Mittlere Tiefe:", font = 2, cex = cex.text, pos=4)
+  text(x = x.start, y = y.pos[5], labels = paste(ecoval.translate("R_macrophytes_doc_meandepth",dict),":",sep=""), font = 2, cex = cex.text, pos=4)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_waterdepth_m",dict))
   text(x = x.pos,   y = y.pos[5], labels = ifelse(is.na(value.plot), "", paste(round(value.plot,1), "m")), font = 2, cex = cex.text, pos=4)
   
-  text(x = x.start, y = y.pos[6], labels = "Steinanteil", font = 2, cex = cex.text, pos=4)
+  text(x = x.start, y = y.pos[6], labels = paste(ecoval.translate("R_macrophytes_doc_fractstones",dict),":",sep=""), font = 2, cex = cex.text, pos=4)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_coarsegravel_percent",dict))
   text(x = x.pos,   y = y.pos[6], labels = ifelse(is.na(value.plot), "", paste(round(value.plot,1), "%")), font = 2, cex = cex.text, pos=4)
   
-  text(x = x.start, y = y.pos[7], labels = "Beschattung:", font = 2, cex = cex.text, pos=4)
+  text(x = x.start, y = y.pos[7], labels = paste(ecoval.translate("R_macrophytes_doc_shading",dict),":",sep=""), font = 2, cex = cex.text, pos=4)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_shading_percent",dict))
   text(x = x.pos,  y = y.pos[7], labels = ifelse(is.na(value.plot), "", paste(round(value.plot,1), "%")), font = 2, cex = cex.text, pos=4)
   
   # additional parameters recorded in the field
-  text(x = x.start, y = y.pos[9], labels =  "Hoehe ue.M.:", cex = cex.text, pos=4)
+  text(x = x.start, y = y.pos[9], labels =  paste(ecoval.translate("R_macrophytes_doc_elevation",dict),":",sep=""), cex = cex.text, pos=4)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_elevation_m_asl",dict))
   text(x = x.pos,   y = y.pos[9], labels = ifelse(is.na(value.plot), "", paste(round(value.plot,1), "m")),
        cex = cex.text, pos=4)
   
-  text(x = x.start, y = y.pos[10], labels =  "Sohlenbreite:", cex = cex.text, pos=4)
+  text(x = x.start, y = y.pos[10], labels = paste(ecoval.translate("R_macrophytes_doc_bedwidth",dict),":",sep=""), cex = cex.text, pos=4)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_morphol_riverbed_width_m",dict))
   text(x = x.pos, y = y.pos[10], labels =  ifelse(is.na(value.plot), "", paste(round(value.plot,1), "m")),
        cex = cex.text, pos=4)
   
-  text(x = x.start, y = y.pos[11], labels =  "Benetzte Breite:", cex = cex.text, pos=4)
+  text(x = x.start, y = y.pos[11], labels = paste(ecoval.translate("R_macrophytes_doc_wettedwidth",dict),":",sep=""), cex = cex.text, pos=4)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_wettedwidth_m",dict))
   text(x = x.pos,   y = y.pos[11], labels =  ifelse(is.na(value.plot), "", paste(round(value.plot,1), "m")), cex = cex.text, pos=4)
   
   # additional facultative parameters (e.g. from swiss river typology)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_riverorder",dict))
-  text(x = x.start, y = y.pos[13], labels =  "Flussordnung:", cex = cex.text, pos=4)
+  text(x = x.start, y = y.pos[13], labels =  paste(ecoval.translate("R_macrophytes_doc_streamorder",dict),":",sep=""), cex = cex.text, pos=4)
   text(x = x.pos,   y = y.pos[13], labels = ifelse(is.na(value.plot), "", value.plot), cex = cex.text, pos=4)
   
-  text(x = x.start, y = y.pos[14], labels =  "Regimetyp:", cex = cex.text, pos=4)
+  text(x = x.start, y = y.pos[14], labels =  paste(ecoval.translate("R_macrophytes_doc_flowregimetype",dict),":",sep=""), cex = cex.text, pos=4)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_regimetype",dict))
   text(x = x.pos,   y = y.pos[14], labels =  ifelse(is.na(value.plot), "", value.plot), cex = cex.text, pos=4)
   
-  text(x = x.start, y = y.pos[15], labels =  "Biogeo. Region:", cex = cex.text, pos=4)
+  text(x = x.start, y = y.pos[15], labels =  paste(ecoval.translate("R_macrophytes_doc_biogeographicregion",dict),":",sep=""), cex = cex.text, pos=4)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_biogeographicregion",dict))
   text(x = x.pos,   y = y.pos[15], labels =  ifelse(is.na(value.plot), "", value.plot), cex = cex.text, pos=4)
   
-  text(x = x.start, y = y.pos[16], labels =  "Geologie:", cex = cex.text, pos=4)
+  text(x = x.start, y = y.pos[16], labels =  paste(ecoval.translate("R_macrophytes_doc_geology",dict),":",sep=""), cex = cex.text, pos=4)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_geology",dict))
   text(x = x.pos,   y = y.pos[16], labels =  ifelse(is.na(value.plot), "", value.plot), cex = cex.text, pos=4)
   
@@ -288,7 +295,7 @@ msk.macrophytes.2017.doc.site <- function(res,row.no,pic.folder)
   plot(0, 0, axes = axis.info, type="n", xaxs="i", yaxs="i", xlim=c(0,5), ylim=c(0,10))
   
   # Add scheme river-types
-  text(x = 0.1, y = 8.70, labels = "Typ-Schema:", cex = cex.text, font = 2, pos=4)
+  text(x = 0.1, y = 8.70, labels = paste(ecoval.translate("R_macrophytes_doc_typescheme",dict),":",sep=""), cex = cex.text, font = 2, pos=4)
   
   if ( !is.na(type.scheme.orig) & nchar(type.scheme.orig) > 0 ) # check "nchar" kann evtl. noch entfernt werden!
   {
@@ -308,7 +315,7 @@ msk.macrophytes.2017.doc.site <- function(res,row.no,pic.folder)
   # Add valuation types
   if ( !is.na(type.val.orig) & nchar(type.val.orig) > 0 ) # check "nchar" kann evtl. noch entfernt werden!
   {
-    text(x = 0.1, y = 8.25, labels = "Typ-Bewert.:", font = 2, cex = cex.text, pos=4)
+    text(x = 0.1, y = 8.25, labels = paste(ecoval.translate("R_macrophytes_doc_typevaluation",dict),":",sep=""), font = 2, cex = cex.text, pos=4)
     char.ext <- 0.092
     
     if ( !is.na(type.val.final) & nchar(type.val.final) > 0 )
@@ -356,23 +363,20 @@ msk.macrophytes.2017.doc.site <- function(res,row.no,pic.folder)
 
     if(aspect > 1) {
       rasterImage(pic,0.15,7.75-yinch(3.8/aspect),0.2+xinch(3.8),7.9)
-      text(x = 0.1, y = 7.5-yinch(3.8/aspect), labels =  paste("Bilddatei:", ifelse(is.na(value.plot), "", value.plot)),
+      text(x = 0.1, y = 7.5-yinch(3.8/aspect), labels =  paste(paste(ecoval.translate("R_macrophytes_doc_filepicture",dict),":",sep=""), ifelse(is.na(value.plot), "", value.plot)),
            cex = 0.9, col = "darkgrey", pos=4)
     }
     
     if(aspect <= 1) {
       rasterImage(pic,0.15,7.75-yinch(3),0.2+xinch(3*aspect),7.9)
-      text(x = 0.1, y = 7.5-yinch(3.8/aspect), labels =  paste("Bilddatei:", ifelse(is.na(value.plot), "", value.plot)),
+      text(x = 0.1, y = 7.5-yinch(3.8/aspect), labels =  paste(paste(ecoval.translate("R_macrophytes_doc_filepicture",dict),":",sep=""), ifelse(is.na(value.plot), "", value.plot)),
            cex = 0.9, col = "darkgrey", pos=4)
     }
   } else {
-    text(x = 0.1, y = 4.125, labels = "* Bild fehlt *", col = "grey60", cex = cex.title, pos=4)
+    text(x = 0.1, y = 4.125, labels = paste("*",ecoval.translate("R_macrophytes_doc_picturemissing",dict),"*"), col = "grey60", cex = cex.title, pos=4)
   }
   
- 
-  
-  
-  
+
   ## WINDOW 5 - Ecomorphology, Appearance and additional information on catchment area and hydrology
   
   # General coordinates for plotting in this window
@@ -385,150 +389,290 @@ msk.macrophytes.2017.doc.site <- function(res,row.no,pic.folder)
   plot(0, 0, axes = axis.info, type="n", xaxs="i", yaxs="i", xlim=c(0,10),ylim=c(0,10))
   
   # Additional site information
-  text(x = 0, 9.25, labels =  "Ergaenzende Standortdaten", col = "dodgerblue", cex = cex.title, font = 2, pos=4)
+  text(x = 0, 9.25, labels = ecoval.translate("R_macrophytes_doc_complementarysiteparameters",dict), col = "dodgerblue", cex = cex.title, font = 2, pos=4)
   
-  text(x = x.start,   y = y.pos[1], labels = "Abfluss hydrometrisch", font = 2,  cex = cex.text, pos=4)
+  text(x = x.start,   y = y.pos[1], labels = ecoval.translate("R_macrophytes_doc_dischargehydrom",dict), font = 2,  cex = cex.text, pos=4)
   
-  text(x = x.start,   y = y.pos[2], labels = "Mittelwert", cex = cex.text, pos=4)
+  text(x = x.start,   y = y.pos[2], labels = paste(ecoval.translate("R_macrophytes_doc_dischargehydrom_avg",dict),":",sep=""), cex = cex.text, pos=4)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_discharge_hydrometricavg_lpers",dict))
   text(x = x.pos,     y = y.pos[2], labels = ifelse(is.na(value.plot), "", paste(round(value.plot,0),"l/s")), cex = cex.text, pos=4)
   
-  text(x = x.start,   y = y.pos[3], labels = "Tageswert", cex = cex.text, pos=4)
+  text(x = x.start,   y = y.pos[3], labels = paste(ecoval.translate("R_macrophytes_doc_dischargehydrom_day",dict),":",sep=""), cex = cex.text, pos=4)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_discharge_hydrometricday_lpers",dict))
   text(x = x.pos,     y = y.pos[3], labels = ifelse(is.na(value.plot), "", paste(round(value.plot,0), "l/s")),cex = cex.text, pos=4)
   
-  text(x = x.start+(x.pos*2.5), y = y.pos[1], labels = "Wassertiefe", font = 2,  cex = cex.text, pos=4)
+  text(x = x.start+(x.pos*2.5), y = y.pos[1], labels = ecoval.translate("R_macrophytes_doc_waterdepth",dict), font = 2,  cex = cex.text, pos=4)
   
-  text(x = x.start+(x.pos*2.5), y = y.pos[2], labels = "Mittel Tag", cex = cex.text, pos=4)
+  text(x = x.start+(x.pos*2.5), y = y.pos[2], labels = paste(ecoval.translate("R_macrophytes_doc_waterdepth_daymean",dict),":",sep=""), cex = cex.text, pos=4)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_waterdepth_dayavg_m",dict))
   text(x = x.start+(x.pos*3.2), y = y.pos[2], labels = ifelse(is.na(value.plot), "", paste(round(value.plot,1), "m")),cex = cex.text, pos=4)
   
-  text(x = x.start+(x.pos*2.5), y = y.pos[3], labels = "Max. Tag", cex = cex.text, pos=4)
+  text(x = x.start+(x.pos*2.5), y = y.pos[3], labels = paste(ecoval.translate("R_macrophytes_doc_waterdepth_daymax",dict),":",sep=""), cex = cex.text, pos=4)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_waterdepth_daymax_m",dict))
   text(x = x.start+(x.pos*3.2), y = y.pos[3], labels = ifelse(is.na(value.plot), "", paste(round(value.plot,1), "m")),cex = cex.text, pos=4)
   
   # Substratstabilitaet
-  class.names <- c("","Unbeweglich","Begrenzt beweglich","Beweglich")
-  text(x = x.start,   y = y.pos[4]-para.small, labels = "Substratstabilitaet:", font = 2, cex = cex.text, pos=4)
+  class.names <- c("",
+                   ecoval.translate("R_macrophytes_doc_substratestability_immobile",dict),
+                   ecoval.translate("R_macrophytes_doc_substratestability_slightlymobile",dict),
+                   ecoval.translate("R_macrophytes_doc_substratestability_mobile",dict))
+  text(x = x.start,   y = y.pos[4]-para.small, labels = paste(ecoval.translate("R_macrophytes_doc_substratestability",dict),":",sep=""), font = 2, cex = cex.text, pos=4)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_substratestability_class",dict))
   text(x = x.pos,     y = y.pos[4]-para.small, labels = class.names[ifelse(is.na(value.plot), 0, value.plot)+1], cex = cex.text, pos=4)
   
   # Stroemung
-  text(x = x.start+(x.pos*2.5), y = y.pos[4]-para.small, labels = "Stroemung:", font = 2, cex = cex.text, pos=4)
+  text(x = x.start+(x.pos*2.5), y = y.pos[4]-para.small, labels = paste(ecoval.translate("R_macrophytes_doc_velocity",dict),":",sep=""), font = 2, cex = cex.text, pos=4)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_flowvelocity_mpers",dict))
   text(x = x.start+(x.pos*3.2), y = y.pos[4]-para.small, labels = ifelse(is.na(value.plot), "", paste(round(value.plot,2), "m/s")),cex = cex.text, pos=4)
   
   
   # Ecomorphology
-  text(x = 0, y = y.pos[6]-3*para.small, labels =  "Oekomorphologie", col = "dodgerblue", cex = cex.title, font = 2, pos=4)
+  text(x = 0, y = y.pos[6]-3*para.small, labels =  ecoval.translate("R_macrophytes_doc_ecomorphology",dict), col = "dodgerblue", cex = cex.title, font = 2, pos=4)
   
   # General ecomorphological state (MSK Oek F)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("N_morphol",dict))
   class <- calc.class(value.plot, classes = c(1,1,1,2,2,2,3,3,4,4))
   value.plot <- ifelse(is.na(value.plot), "", value.plot)
-  text(x = x.start, y = y.pos[7]-4*para.small, labels = "Oekom. zustand:", cex = cex.text, font = 2, pos=4)
+  text(x = x.start, y = y.pos[7]-4*para.small, labels = paste(ecoval.translate("R_macrophytes_doc_ecomorphologicalstate",dict),":",sep=""), cex = cex.text, font = 2, pos=4)
   rect(x.pos,y.pos[7]-4*para.small-0.16,x.pos+2.5,y.pos[7]-4*para.small+0.23, col = msk.colors[-3][class+1], border = NA)
-  text(x = x.pos,   y = y.pos[7]-4*para.small, labels = c("","IV naturfern/kuenstlich","III  stark beeintraechtigt","II wenig beeintraechtigt","I natuerlich/naturnah")[class+1],
+  text(x = x.pos,   y = y.pos[7]-4*para.small, 
+       labels = c("",
+                  ecoval.translate("R_macrophytes_doc_ecomorphology_IV_artificial",dict),
+                  ecoval.translate("R_macrophytes_doc_ecomorphology_III_stronglydegraded",dict),
+                  ecoval.translate("R_macrophytes_doc_ecomorphology_II_slightlydegraded",dict),
+                  ecoval.translate("R_macrophytes_doc_ecomorphology_I_natural",dict))[class+1],
        font = 2, cex = cex.text, pos=4)
   
   # Define vector with modification classes for plotting
-  class.names.oekf <- c("", "ausgepraegt", "eingeschraenkt","keine")
+  class.names.oekf <- c("",
+                        ecoval.translate("R_macrophytes_doc_variability_strong",dict),
+                        ecoval.translate("R_macrophytes_doc_variability_limited",dict),
+                        ecoval.translate("R_macrophytes_doc_variability_none",dict))
+  names(class.names.oekf) <- c("0",
+                               ecoval.translate("L_morphol_widthvar_class_high",dict),
+                               ecoval.translate("L_morphol_widthvar_class_moderate",dict),
+                               ecoval.translate("L_morphol_widthvar_class_none",dict))
   
-  text(x = x.start, y = y.pos[8]-4*para.small, labels = "Breitenvariabilitaet:", cex = cex.text, pos=4)
-  value.plot  <- get.value(data.site,row.no,ecoval.translate("A_morphol_widthvar_class",dict))
-  text(x = x.pos,   y = y.pos[8]-4*para.small, labels = class.names.oekf[value.plot+1], cex = cex.text, pos=4)
+  text(x = x.start, y = y.pos[8]-4*para.small, labels = paste(ecoval.translate("R_macrophytes_doc_widthvariability",dict),":",sep=""), cex = cex.text, pos=4)
+  value.plot  <- as.character(get.value(data.site,row.no,ecoval.translate("A_morphol_widthvar_class",dict)))
+  text(x = x.pos,   y = y.pos[8]-4*para.small, labels = class.names.oekf[ifelse(is.na(value.plot), "0", value.plot)], cex = cex.text, pos=4)
   
-  text(x = x.start, y = y.pos[9]-4*para.small, labels = "Tiefenvariabilitaet:", cex = cex.text, pos=4)
-  value.plot  <- get.value(data.site,row.no,ecoval.translate("A_morphol_depthvar_class",dict))
-  text(x = x.pos,   y = y.pos[9]-4*para.small, labels = class.names.oekf[ifelse(is.na(value.plot), 0, value.plot)+1], cex = cex.text, pos=4)
+  text(x = x.start, y = y.pos[9]-4*para.small, labels = paste(ecoval.translate("R_macrophytes_doc_depthvariability",dict),":",sep=""), cex = cex.text, pos=4)
+  value.plot  <- as.character(get.value(data.site,row.no,ecoval.translate("A_morphol_depthvar_class",dict)))
+  text(x = x.pos,   y = y.pos[9]-4*para.small, labels = class.names.oekf[ifelse(is.na(value.plot), "0", value.plot)], cex = cex.text, pos=4)
   
   # Appearance (MSK Aeusserer Aspekt F)
-  text(x = x.pos*2.5, y = y.pos[6]-3*para.small, labels =  "Aeusserer Aspekt", col = "dodgerblue", cex = cex.title, font = 2, pos=4)
+  text(x = x.pos*2.5, y = y.pos[6]-3*para.small, labels = ecoval.translate("R_macrophytes_doc_physappearance",dict), col = "dodgerblue", cex = cex.title, font = 2, pos=4)
   
-  class.names.colm <- c("", "Keine", "Leicht/Mittel","Stark")
-  text(x = x.start+(x.pos*2.5), y = y.pos[7]-4*para.small,   labels = "Kolmation:", cex = cex.text, pos=4)
+  class.names.colm <- c("",
+                        ecoval.translate("R_macrophytes_doc_physappearance_clogging_none",dict),
+                        ecoval.translate("R_macrophytes_doc_physappearance_clogging_intermediate",dict),
+                        ecoval.translate("R_macrophytes_doc_physappearance_clogging_strong",dict))
+  text(x = x.start+(x.pos*2.5), y = y.pos[7]-4*para.small,   labels = paste(ecoval.translate("R_macrophytes_doc_physappearance_clogging",dict),":",sep=""), cex = cex.text, pos=4)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_clogging_class",dict))
   text(x = x.start+(x.pos*3.2),   y = y.pos[7]-4*para.small, labels = class.names.colm[ifelse(is.na(value.plot), 0, value.plot)+1], cex = cex.text, pos=4)
   
-  class.names.turb <- c("", "Keine/Vereinzelt", "Wenig", "Mittel/Viel")
-  text(x = x.start+(x.pos*2.5), y = y.pos[8]-4*para.small,   labels = "Truebung", cex = cex.text, pos=4)
+  class.names.turb <- c("",
+                        ecoval.translate("R_macrophytes_doc_physappearance_turbidity_none",dict),
+                        ecoval.translate("R_macrophytes_doc_physappearance_turbidity_intermediate",dict),
+                        ecoval.translate("R_macrophytes_doc_physappearance_turbidity_strong",dict))
+  text(x = x.start+(x.pos*2.5), y = y.pos[8]-4*para.small,   labels = paste(ecoval.translate("R_macrophytes_doc_physappearance_turbidity",dict),":",sep=""), cex = cex.text, pos=4)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_turbidity_class",dict))
   text(x = x.start+(x.pos*3.2), y = y.pos[8]-4*para.small, labels = class.names.turb[ifelse(is.na(value.plot), 0, value.plot)+1], cex = cex.text, pos=4)
   
   # General modifications (MSK Oek F)
   
-  text(x = x.start,    y = y.pos[10]-5*para.small, labels = "Verbauungen", font = 2,  cex = cex.text, pos=4)
-  text(x = x.pos,      y = y.pos[10]-5*para.small, labels = "Grad", font = 2, cex = cex.text, pos=4)
-  text(x = x.pos*2.25, y = y.pos[10]-5*para.small, labels = "Art", font = 2, cex = cex.text, pos=4)
-  
+  text(x = x.start,    y = y.pos[10]-5*para.small, labels = ecoval.translate("R_macrophytes_doc_construction",dict), font = 2,  cex = cex.text, pos=4)
+  text(x = x.pos,      y = y.pos[10]-5*para.small, labels = ecoval.translate("R_macrophytes_doc_construction_degree",dict), font = 2, cex = cex.text, pos=4)
+  text(x = x.pos*2.25, y = y.pos[10]-5*para.small, labels = ecoval.translate("R_macrophytes_doc_construction_type",dict), font = 2, cex = cex.text, pos=4)
+
   # Define vectors with modification classes and materials for plotting
-  class.names.bedbank <- c("","Keine","Punktuell (<10%)","Maessig (10-30%)","Groessere (30-60%)","ueberwiegend (>60%)","Vollstaendig (100%)")
-  mat.names.bed <- c("","Schuettung/Raubett","Holz","Betongittersteine","Undurchlaessig/Beton","Andere/dicht")
-  mat.names.bank <- c("","Lebendverbau","Natursteine locker","Holz","Betongittersteine","Natursteine dicht","Mauer","Andere/undurchlaessig")
+  class.names.bed     <- c("",
+                           "",
+                           ecoval.translate("R_macrophytes_doc_construction_bedfract_0",dict),
+                           ecoval.translate("R_macrophytes_doc_construction_bedfract_0to10",dict),
+                           ecoval.translate("R_macrophytes_doc_construction_bedfract_10to30",dict),
+                           ecoval.translate("R_macrophytes_doc_construction_bedfract_30to60",dict),
+                           ecoval.translate("R_macrophytes_doc_construction_bedfract_30to100",dict),
+                           ecoval.translate("R_macrophytes_doc_construction_bedfract_60to100",dict),
+                           ecoval.translate("R_macrophytes_doc_construction_bedfract_100",dict))
+  names(class.names.bed) <- c("0",
+                              "00",
+                              ecoval.translate("L_morphol_bedmod_fract_class_0",dict),
+                              ecoval.translate("L_morphol_bedmod_fract_class_0to10",dict),
+                              ecoval.translate("L_morphol_bedmod_fract_class_10to30",dict),
+                              ecoval.translate("L_morphol_bedmod_fract_class_30to60",dict),
+                              ecoval.translate("L_morphol_bedmod_fract_class_30to100",dict),
+                              ecoval.translate("L_morphol_bedmod_fract_class_60to100",dict),
+                              ecoval.translate("L_morphol_bedmod_fract_class_100",dict))
+  if ( "0" %in% names(class.names.bed)[-1] ) class.names.bed <- class.names.bed[-1] # "0" is interpreted as NA unless it is a specific code
+  class.names.bank    <- c("",
+                           "",
+                           ecoval.translate("R_macrophytes_doc_construction_bankfract_0",dict),
+                           ecoval.translate("R_macrophytes_doc_construction_bankfract_0to10",dict),
+                           ecoval.translate("R_macrophytes_doc_construction_bankfract_10to30",dict),
+                           ecoval.translate("R_macrophytes_doc_construction_bankfract_30to60",dict),
+                           ecoval.translate("R_macrophytes_doc_construction_bankfract_60to100",dict),
+                           ecoval.translate("R_macrophytes_doc_construction_bankfract_100",dict))
+  names(class.names.bank) <- c("0",
+                               "00",
+                               ecoval.translate("L_morphol_bankmod_fract_class_0",dict),
+                               ecoval.translate("L_morphol_bankmod_fract_class_0to10",dict),
+                               ecoval.translate("L_morphol_bankmod_fract_class_10to30",dict),
+                               ecoval.translate("L_morphol_bankmod_fract_class_30to60",dict),
+                               ecoval.translate("L_morphol_bankmod_fract_class_60to100",dict),
+                               ecoval.translate("L_morphol_bankmod_fract_class_100",dict))
+  if ( names(class.names.bank)[1] %in% names(class.names.bank)[-1] ) class.names.bank <- class.names.bank[-1] # "0" is interpreted as NA unless it is a specific code
+  mat.names.bed <- c("",
+                     ecoval.translate("R_macrophytes_doc_construction_bedmat_riprap1",dict),
+                     ecoval.translate("R_macrophytes_doc_construction_bedmat_riprap2",dict),
+                     ecoval.translate("R_macrophytes_doc_construction_bedmat_riprap3",dict),
+                     ecoval.translate("R_macrophytes_doc_construction_bedmat_riprap4",dict),
+                     ecoval.translate("R_macrophytes_doc_construction_bedmat_riprap5",dict),
+                     ecoval.translate("R_macrophytes_doc_construction_bedmat_other1",dict),
+                     ecoval.translate("R_macrophytes_doc_construction_bedmat_other2",dict),
+                     ecoval.translate("R_macrophytes_doc_construction_bedmat_other3",dict),
+                     ecoval.translate("R_macrophytes_doc_construction_bedmat_other4",dict),
+                     ecoval.translate("R_macrophytes_doc_construction_bedmat_other5",dict))
+  names(mat.names.bed) <- c("0",
+                            ecoval.translate("L_morphol_bedmod_type_class_riprap1",dict),
+                            ecoval.translate("L_morphol_bedmod_type_class_riprap2",dict),
+                            ecoval.translate("L_morphol_bedmod_type_class_riprap3",dict),
+                            ecoval.translate("L_morphol_bedmod_type_class_riprap4",dict),
+                            ecoval.translate("L_morphol_bedmod_type_class_riprap5",dict),
+                            ecoval.translate("L_morphol_bedmod_type_class_other1",dict),
+                            ecoval.translate("L_morphol_bedmod_type_class_other2",dict),
+                            ecoval.translate("L_morphol_bedmod_type_class_other3",dict),
+                            ecoval.translate("L_morphol_bedmod_type_class_other4",dict),
+                            ecoval.translate("L_morphol_bedmod_type_class_other5",dict))
+  mat.names.bank <- c("",
+                     ecoval.translate("R_macrophytes_doc_construction_bankmat_perm1",dict),
+                     ecoval.translate("R_macrophytes_doc_construction_bankmat_perm2",dict),
+                     ecoval.translate("R_macrophytes_doc_construction_bankmat_perm3",dict),
+                     ecoval.translate("R_macrophytes_doc_construction_bankmat_perm4",dict),
+                     ecoval.translate("R_macrophytes_doc_construction_bankmat_perm5",dict),
+                     ecoval.translate("R_macrophytes_doc_construction_bankmat_imperm1",dict),
+                     ecoval.translate("R_macrophytes_doc_construction_bankmat_imperm2",dict),
+                     ecoval.translate("R_macrophytes_doc_construction_bankmat_imperm3",dict),
+                     ecoval.translate("R_macrophytes_doc_construction_bankmat_imperm4",dict),
+                     ecoval.translate("R_macrophytes_doc_construction_bankmat_imperm5",dict))
+  names(mat.names.bank) <- c("0",
+                            ecoval.translate("L_morphol_bankmod_perm_class_perm1",dict),
+                            ecoval.translate("L_morphol_bankmod_perm_class_perm2",dict),
+                            ecoval.translate("L_morphol_bankmod_perm_class_perm3",dict),
+                            ecoval.translate("L_morphol_bankmod_perm_class_perm4",dict),
+                            ecoval.translate("L_morphol_bankmod_perm_class_perm5",dict),
+                            ecoval.translate("L_morphol_bankmod_perm_class_imperm1",dict),
+                            ecoval.translate("L_morphol_bankmod_perm_class_imperm2",dict),
+                            ecoval.translate("L_morphol_bankmod_perm_class_imperm3",dict),
+                            ecoval.translate("L_morphol_bankmod_perm_class_imperm4",dict),
+                            ecoval.translate("L_morphol_bankmod_perm_class_imperm5",dict))
   
-  text(x = x.start,    y = y.pos[11]-5*para.small, labels = "Sohle", cex = cex.text, pos=4)
-  value.plot  <- get.value(data.site,row.no,ecoval.translate("A_morphol_bedmod_fract_class",dict))
-  text(x = x.pos,      y = y.pos[11]-5*para.small, labels = class.names.bedbank[ifelse(is.na(value.plot), 0, value.plot)+1], cex = cex.text, pos=4)
-  value.plot  <- get.value(data.site,row.no,ecoval.translate("A_morphol_bedmod_type_class",dict))
-  text(x = x.pos*2.25, y = y.pos[11]-5*para.small, labels = mat.names.bed[ifelse(is.na(value.plot), 0, value.plot)+1], cex = cex.text, pos=4)
-  
-  text(x = x.start,    y = y.pos[12]-5*para.small, labels = "Boeschung, links", cex = cex.text, pos=4)
-  value.plot  <- get.value(data.site,row.no,ecoval.translate("A_morphol_bankmod_fract_left_class",dict))
-  text(x = x.pos,      y = y.pos[12]-5*para.small, labels = class.names.bedbank[ifelse(is.na(value.plot), 0, value.plot)+1], cex = cex.text, pos=4)
-  value.plot  <- get.value(data.site,row.no,ecoval.translate("A_morphol_bankmod_perm_left_class",dict))
-  text(x = x.pos*2.25, y = y.pos[12]-5*para.small, labels = mat.names.bank[ifelse(is.na(value.plot), 0, value.plot)+1], cex = cex.text, pos=4)
-  
-  text(x = x.start,    y = y.pos[13]-5*para.small, labels = "Boeschung, rechts", cex = cex.text, pos=4)
-  value.plot  <- get.value(data.site,row.no,ecoval.translate("A_morphol_bankmod_fract_right_class",dict))
-  text(x = x.pos,      y = y.pos[13]-5*para.small, labels = class.names.bedbank[ifelse(is.na(value.plot), 0, value.plot)+1], cex = cex.text, pos=4)
-  value.plot  <- get.value(data.site,row.no,ecoval.translate("A_morphol_bankmod_perm_right_class",dict))
-  text(x = x.pos*2.25, y = y.pos[13]-5*para.small, labels = mat.names.bank[ifelse(is.na(value.plot), 0, value.plot)+1], cex = cex.text, pos=4) #PARA
-  
+  text(x = x.start,    y = y.pos[11]-5*para.small, labels = ecoval.translate("R_macrophytes_doc_construction_bed",dict), cex = cex.text, pos=4)
+  value.plot  <- as.character(get.value(data.site,row.no,ecoval.translate("A_morphol_bedmod_fract_class",dict)))
+  text(x = x.pos,      y = y.pos[11]-5*para.small, labels = class.names.bed[ifelse(is.na(value.plot), "00", value.plot)], cex = cex.text, pos=4)
+  value.plot  <- as.character(get.value(data.site,row.no,ecoval.translate("A_morphol_bedmod_type_class",dict)))
+  text(x = x.pos*2.25, y = y.pos[11]-5*para.small, labels = mat.names.bed[ifelse(is.na(value.plot), "0", value.plot)], cex = cex.text, pos=4)
+
+  text(x = x.start,    y = y.pos[12]-5*para.small, labels = paste(ecoval.translate("R_macrophytes_doc_construction_bank",dict),", ",ecoval.translate("R_macrophytes_doc_construction_left",dict),sep=""), cex = cex.text, pos=4)
+  value.plot  <- as.character(get.value(data.site,row.no,ecoval.translate("A_morphol_bankmod_fract_left_class",dict)))
+  text(x = x.pos,      y = y.pos[12]-5*para.small, labels = class.names.bank[ifelse(is.na(value.plot), "00", value.plot)], cex = cex.text, pos=4)
+  value.plot  <- as.character(get.value(data.site,row.no,ecoval.translate("A_morphol_bankmod_perm_left_class",dict)))
+  text(x = x.pos*2.25, y = y.pos[12]-5*para.small, labels = mat.names.bank[ifelse(is.na(value.plot), "0", value.plot)], cex = cex.text, pos=4)
+
+  text(x = x.start,    y = y.pos[13]-5*para.small, labels = paste(ecoval.translate("R_macrophytes_doc_construction_bank",dict),", ",ecoval.translate("R_macrophytes_doc_construction_right",dict),sep=""), cex = cex.text, pos=4)
+  value.plot  <- as.character(get.value(data.site,row.no,ecoval.translate("A_morphol_bankmod_fract_right_class",dict)))
+  text(x = x.pos,      y = y.pos[13]-5*para.small, labels = class.names.bank[ifelse(is.na(value.plot), "00", value.plot)], cex = cex.text, pos=4)
+  value.plot  <- as.character(get.value(data.site,row.no,ecoval.translate("A_morphol_bankmod_perm_right_class",dict)))
+  text(x = x.pos*2.25, y = y.pos[13]-5*para.small, labels = mat.names.bank[ifelse(is.na(value.plot), "0", value.plot)], cex = cex.text, pos=4) #PARA
+
   # Riparian width and surrounding area
-  
+
   # Define vector with names of surrounding area for plotting
-  riparian.names <- c("","Roehricht, Ried", "Wald", "Bestockt + ext.Wiese", "Monotone Hochstaudenflur",
-                      "Ext.Wiese, unbestockt", "Alleeaehnliche Bestockung", "Vegetationslos/kuenstlich", "Kies, Geroell, Fels", "Andere")
+  riparian.names.long <- c("",
+                      ecoval.translate("R_macrophytes_doc_riparian_natural_gravel",dict),
+                      ecoval.translate("R_macrophytes_doc_riparian_natural_reeds",dict),
+                      ecoval.translate("R_macrophytes_doc_riparian_natural_forest",dict),
+                      ecoval.translate("R_macrophytes_doc_riparian_natural_treesshrub",dict),
+                      ecoval.translate("R_macrophytes_doc_riparian_seminatural_perennials",dict),
+                      ecoval.translate("R_macrophytes_doc_riparian_seminatural_meadow",dict),
+                      ecoval.translate("R_macrophytes_doc_riparian_seminatural_alley",dict),
+                      ecoval.translate("R_macrophytes_doc_riparian_artificial",dict))
+  names(riparian.names.long) <- c("00",
+                             ecoval.translate("L_morphol_riparzone_vegmat_class_gravel",dict),
+                             ecoval.translate("L_morphol_riparzone_vegmat_class_reeds",dict),
+                             ecoval.translate("L_morphol_riparzone_vegmat_class_forest",dict),
+                             ecoval.translate("L_morphol_riparzone_vegmat_class_treesshrub",dict),
+                             ecoval.translate("L_morphol_riparzone_vegmat_class_perennials",dict),
+                             ecoval.translate("L_morphol_riparzone_vegmat_class_meadow",dict),
+                             ecoval.translate("L_morphol_riparzone_vegmat_class_alley",dict),
+                             ecoval.translate("L_morphol_riparzone_vegmat_class_artificial",dict))
+  riparian.names.short <- c("",
+                           ecoval.translate("R_macrophytes_doc_riparian_natural",dict),
+                           ecoval.translate("R_macrophytes_doc_riparian_seminatural",dict),
+                           ecoval.translate("R_macrophytes_doc_riparian_artificial",dict))
+  names(riparian.names.short) <- c("00",
+                                  ecoval.translate("L_morphol_riparzone_veg_class_natural",dict),
+                                  ecoval.translate("L_morphol_riparzone_veg_class_seminatural",dict),
+                                  ecoval.translate("L_morphol_riparzone_veg_class_artificial",dict))
   
-  surarea.names <- c("","Mischwald","Nadelwald","Laubwald","Fettwiese, Acker, Weide",
-                     "Magerwiese, Hochstauden","Roehricht, Riedwiesen","Auen","Siedlungsgebiet","Anderes")
-  
-  text(x = x.start,    y = y.pos[14]-6*para.small, labels = "Uferbereich", font = 2,  cex = cex.text, pos=4)
-  text(x = x.pos,      y = y.pos[14]-6*para.small, labels = "Links", font = 2, cex = cex.text, pos=4)
-  text(x = x.pos*2.25, y = y.pos[14]-6*para.small, labels = "Rechts", font = 2, cex = cex.text, pos=4)
-  
-  text(x = x.start,    y = y.pos[15]-6*para.small, labels = "Breite", cex = cex.text, pos=4)
+  surarea.names <- c("",
+                     ecoval.translate("R_macrophytes_doc_surrounding_mixedforest",dict),
+                     ecoval.translate("R_macrophytes_doc_surrounding_coniferforest",dict),
+                     ecoval.translate("R_macrophytes_doc_surrounding_broadleafforest",dict),
+                     ecoval.translate("R_macrophytes_doc_surrounding_fertilizedmeadow",dict),
+                     ecoval.translate("R_macrophytes_doc_surrounding_poorgrassland",dict),
+                     ecoval.translate("R_macrophytes_doc_surrounding_reeds",dict),
+                     ecoval.translate("R_macrophytes_doc_surrounding_wetlands",dict),
+                     ecoval.translate("R_macrophytes_doc_surrounding_urban",dict),
+                     ecoval.translate("R_macrophytes_doc_surrounding_others",dict))
+
+  text(x = x.start,    y = y.pos[14]-6*para.small, labels = ecoval.translate("R_macrophytes_doc_riparian",dict), font = 2,  cex = cex.text, pos=4)
+  text(x = x.pos,      y = y.pos[14]-6*para.small, labels = ecoval.translate("R_macrophytes_doc_riparian_left",dict), font = 2, cex = cex.text, pos=4)
+  text(x = x.pos*2.25, y = y.pos[14]-6*para.small, labels = ecoval.translate("R_macrophytes_doc_riparian_right",dict), font = 2, cex = cex.text, pos=4)
+
+  text(x = x.start,    y = y.pos[15]-6*para.small, labels = ecoval.translate("R_macrophytes_doc_riparian_width",dict), cex = cex.text, pos=4)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_morphol_riparzone_width_left_m",dict))
   text(x = x.pos,      y = y.pos[15]-6*para.small, labels = ifelse(is.na(value.plot), "", paste(value.plot,"m")), cex = cex.text, pos=4)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_morphol_riparzone_width_right_m",dict))
   text(x = x.pos*2.25, y = y.pos[15]-6*para.small, labels = ifelse(is.na(value.plot), "", paste(value.plot,"m")), cex = cex.text, pos=4)
-  
-  text(x = x.start,    y = y.pos[16]-6*para.small, labels = "Beschaffenheit", cex = cex.text, pos=4)
-  value.plot  <- get.value(data.site,row.no,ecoval.translate("A_morphol_riparzone_vegmat_left_class",dict))
-  text(x = x.pos,      y = y.pos[16]-6*para.small, labels = riparian.names[ifelse(is.na(value.plot), 0, value.plot)+1], cex = cex.text, pos=4)
-  value.plot  <- get.value(data.site,row.no,ecoval.translate("A_morphol_riparzone_vegmat_right_class",dict))
-  text(x = x.pos*2.25, y = y.pos[16]-6*para.small, labels = riparian.names[ifelse(is.na(value.plot), 0, value.plot)+1], cex = cex.text, pos=4)
-  
-  text(x = x.start,    y = y.pos[17]-6*para.small, labels = "Umland", cex = cex.text, pos=4)
+
+  text(x = x.start,    y = y.pos[16]-6*para.small, labels = ecoval.translate("R_macrophytes_doc_riparian_texture",dict), cex = cex.text, pos=4)
+  if ( ecoval.translate("A_morphol_riparzone_vegmat_left_class",dict) %in% colnames(data.site) )
+  {
+    value.plot  <- as.character(get.value(data.site,row.no,ecoval.translate("A_morphol_riparzone_vegmat_left_class",dict)))
+    text(x = x.pos,      y = y.pos[16]-6*para.small, labels = riparian.names.long[ifelse(is.na(value.plot), "00", value.plot)], cex = cex.text, pos=4)
+    value.plot  <- as.character(get.value(data.site,row.no,ecoval.translate("A_morphol_riparzone_vegmat_right_class",dict)))
+    text(x = x.pos*2.25, y = y.pos[16]-6*para.small, labels = riparian.names.long[ifelse(is.na(value.plot), "00", value.plot)], cex = cex.text, pos=4)
+  }
+  else
+  {
+    value.plot  <- as.character(get.value(data.site,row.no,ecoval.translate("A_morphol_riparzone_veg_left_class",dict)))
+    text(x = x.pos,      y = y.pos[16]-6*para.small, labels = riparian.names.short[ifelse(is.na(value.plot), "00", value.plot)], cex = cex.text, pos=4)
+    value.plot  <- as.character(get.value(data.site,row.no,ecoval.translate("A_morphol_riparzone_veg_right_class",dict)))
+    text(x = x.pos*2.25, y = y.pos[16]-6*para.small, labels = riparian.names.short[ifelse(is.na(value.plot), "00", value.plot)], cex = cex.text, pos=4)
+  }
+
+  text(x = x.start,    y = y.pos[17]-6*para.small, labels = ecoval.translate("R_macrophytes_doc_surrounding",dict), cex = cex.text, pos=4)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_morphol_surarea_mat_left_class",dict))
   text(x = x.pos,      y = y.pos[17]-6*para.small, labels = surarea.names[ifelse(is.na(value.plot), 0, value.plot)+1], cex = cex.text, pos=4)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_morphol_surarea_mat_right_class",dict))
   text(x = x.pos*2.25, y = y.pos[17]-6*para.small, labels = surarea.names[ifelse(is.na(value.plot), 0, value.plot)+1], cex = cex.text, pos=4)
   
   # Catchment area
-  text(x = 0, y.pos[19]-8*para.small, labels =  "Flaechenanteile Landnutzungen im Einzugsgebiet ", col = "dodgerblue",
+  text(x = 0, y.pos[19]-8*para.small, labels =  ecoval.translate("R_macrophytes_doc_areafractions",dict), col = "dodgerblue",
        cex = cex.title, font = 2, pos=4)
   
-  text(x = x.start,   y = y.pos[20]-9*para.small, labels = "Landwirtschaft", cex = cex.text, pos=4)
+  text(x = x.start,   y = y.pos[20]-9*para.small, labels = ecoval.translate("R_macrophytes_doc_areafraction_rural",dict), cex = cex.text, pos=4)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_catchment_agricultureall_percent",dict))
   text(x = x.pos*1.5, y = y.pos[20]-9*para.small, labels = ifelse(is.na(value.plot), "", paste(round(value.plot,0),"%")),cex = cex.text, pos=4)
   
-  text(x = x.start,   y = y.pos[21]-9*para.small, labels = "Siedlung", cex = cex.text, pos=4)
+  text(x = x.start,   y = y.pos[21]-9*para.small, labels = ecoval.translate("R_macrophytes_doc_areafraction_urban",dict), cex = cex.text, pos=4)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_catchment_urban_percent",dict))
   text(x = x.pos*1.5, y = y.pos[21]-9*para.small, labels = ifelse(is.na(value.plot), "", paste(round(value.plot,0), "%")),
        cex = cex.text, pos=4)
   
-  text(x = x.start,   y = y.pos[22]-9*para.small, labels = "Wald", cex = cex.text, pos=4)
+  text(x = x.start,   y = y.pos[22]-9*para.small, labels = ecoval.translate("R_macrophytes_doc_areafraction_forest",dict), cex = cex.text, pos=4)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_catchment_forest_percent",dict))
   text(x = x.pos*1.5, y = y.pos[22]-9*para.small, labels = ifelse(is.na(value.plot), "", paste(round(value.plot,0), "%")),cex = cex.text, pos=4)
 
@@ -566,7 +710,10 @@ msk.macrophytes.2017.doc.typology <- function(res, row.no) {
   # NA is returned for plotting
   get.value <- function(data.plot, row.no, colname) {
     value.plot <- NA
-    if ( row.no >= 1 & row.no <= nrow(data.plot) & colname != "" & sum(colname == colnames(data.plot)) != 0 ) value.plot <- data.plot[row.no,colname]
+    if ( length(row.no)>0 & length(colname)>0 )
+    {
+      if ( row.no >= 1 & row.no <= nrow(data.plot) & colname != "" & sum(colname == colnames(data.plot)) != 0 ) value.plot <- data.plot[row.no,colname]
+    }
     return(value.plot)
   }
   
@@ -596,7 +743,7 @@ msk.macrophytes.2017.doc.typology <- function(res, row.no) {
   
   ## HEADER
   plot(0, 0, axes = axis.info, type="n", xaxs="i", yaxs="i", xlim=c(0,10), ylim=c(0,10))
-  text(x = 0, y = 5, labels =  "Modul Makrophyten - Typisierung", font = 2, cex = cex.title, pos=4)
+  text(x = 0, y = 5, labels = ecoval.translate("R_macrophytes_doc_typology",dict), font = 2, cex = cex.title, pos=4)
   abline(h = 3)
   
   ## WINDOW 2 - Basic information of sampling event as header in grey box
@@ -604,46 +751,46 @@ msk.macrophytes.2017.doc.typology <- function(res, row.no) {
   rect(0,0.5,10,9.5, col = "grey85", border = NA)
   
   # Line 1
-  text(x = 0, y = 7.5,   labels =  "Stellen-Code:", cex = cex.text, pos=4, font=2)
+  text(x = 0, y = 7.5,   labels =  paste(ecoval.translate("R_macrophytes_doc_codesite",dict),":",sep=""), cex = cex.text, pos=4, font=2)
   value.plot <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_siteid",dict))
   text(x = 1.4, y = 7.5, labels =  ifelse(is.na(value.plot), "", value.plot), cex = cex.text, pos=4)
   
-  text(x = 2.7, y = 7.5, labels =  "Kanton:", cex = cex.text, pos=4, font = 2)
+  text(x = 2.7, y = 7.5, labels =  paste(ecoval.translate("R_macrophytes_doc_canton",dict),":",sep=""), cex = cex.text, pos=4, font = 2)
   value.plot <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_canton",dict))
   text(x = 4, y = 7.5,   labels = ifelse(is.na(value.plot), "", value.plot), cex = cex.text, pos=4)
   
-  text(x = 6.5, y = 7.5,   labels =  "Koordinaten:", cex = cex.text, pos=4, font = 2)
+  text(x = 6.5, y = 7.5,   labels =  paste(ecoval.translate("R_macrophytes_doc_coordinates",dict),":",sep=""), cex = cex.text, pos=4, font = 2)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_coordinatex_swissgrid",dict))
   value.plot1 <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_coordinatey_swissgrid",dict))
   text(x = 8.3, y = 7.5, labels =  paste(ifelse(is.na(value.plot), "", value.plot),
                                          ifelse(is.na(value.plot1), "", value.plot1), sep = " / "),cex = cex.text, pos=4)
   
   # Line 2
-  text(x = 0, y = 5,   labels =  "Gewaesser:", cex = cex.text, pos=4, font=2)
+  text(x = 0, y = 5,   labels =  paste(ecoval.translate("R_macrophytes_doc_river",dict),":",sep=""), cex = cex.text, pos=4, font=2)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_waterbody",dict))
   text(x = 1.4, y = 5, labels = ifelse(is.na(value.plot), "", value.plot), cex = cex.text, pos=4)
   
-  text(x = 2.7, y = 5, labels =  "Stelle:", cex = cex.text, pos=4, font = 2)
+  text(x = 2.7, y = 5, labels =  paste(ecoval.translate("R_macrophytes_doc_location",dict),":",sep=""), cex = cex.text, pos=4, font = 2)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_location",dict))
   text(x = 4, y = 5,   labels =  ifelse(is.na(value.plot), "", value.plot), cex = cex.text, pos=4)
   
   # Line 3
-  text(x = 0, y = 2.5,   labels =  "Datum:", cex = cex.text, pos=4, font=2)
+  text(x = 0, y = 2.5,   labels =  paste(ecoval.translate("R_macrophytes_doc_samplingdate",dict),":",sep=""), cex = cex.text, pos=4, font=2)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_samplingdate",dict))
   text(x = 1.4, y = 2.5, labels = ifelse(is.na(value.plot), "", value.plot), cex = cex.text, pos=4)
   
-  text(x = 2.7, y = 2.5, labels =  "BearbeiterIn:", cex = cex.text, pos=4, font = 2)
+  text(x = 2.7, y = 2.5, labels =  paste(ecoval.translate("R_macrophytes_doc_observer",dict),":",sep=""), cex = cex.text, pos=4, font = 2)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_operator",dict))
   text(x = 4, y = 2.5,   labels =  ifelse(is.na(value.plot), "", value.plot), cex = cex.text, pos=4)
   
-  text(x = 6.5, y = 2.5,   labels =  "Abschnittslaenge:", cex = cex.text, pos=4, font = 2)
+  text(x = 6.5, y = 2.5,   labels =  paste(ecoval.translate("R_macrophytes_doc_sectionlength",dict),":",sep=""), cex = cex.text, pos=4, font = 2)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_lengthsection_m",dict))
   text(x = 8.3, y = 2.5, labels =  ifelse(is.na(value.plot), "", paste(value.plot, "m")), cex = cex.text, pos=4)
   
   
   ## WINDOW 3 - Probabilities of river types
   plot(0, 0, axes = axis.info, type="n", xaxs="i", yaxs="i", xlim=c(0,5), ylim=c(0,10))
-  text(x = 0, y = 9, labels =  "Wahrscheinlichkeiten", col = "dodgerblue", cex = cex.title, pos=4, font=2)
+  text(x = 0, y = 9, labels =  ecoval.translate("R_macrophytes_doc_typology_probabilities",dict), col = "dodgerblue", cex = cex.title, pos=4, font=2)
   
   # Set plot parameters for this window
   x.start <- 0.1
@@ -652,12 +799,12 @@ msk.macrophytes.2017.doc.typology <- function(res, row.no) {
   x.pos <- 2.2
   
   # Section Header: River type probabilities
-  text(x = 0, y = y.pos[1]+0.15, labels =  "Vegetations-Flusstypen", cex = cex.title, pos=4, font=2)
+  text(x = 0, y = y.pos[1]+0.15, labels =  ecoval.translate("R_macrophytes_doc_typology_types",dict), cex = cex.title, pos=4, font=2)
   
   # Column headers
-  text(x = x.start,   y = y.pos[2], labels = "Flusstyp" , cex = cex.text, pos=4, font = 2)
-  text(x = x.pos*0.7, y = y.pos[2], labels = "Schema" , cex = cex.text, pos=4, font = 2)
-  text(x = x.pos*1.2, y = y.pos[2], labels = "Modifiziert", cex = cex.text, pos=4, font = 2)
+  text(x = x.start,   y = y.pos[2], labels = ecoval.translate("R_macrophytes_doc_typology_type",dict) , cex = cex.text, pos=4, font = 2)
+  text(x = x.pos*0.7, y = y.pos[2], labels = ecoval.translate("R_macrophytes_doc_typology_scheme",dict) , cex = cex.text, pos=4, font = 2)
+  text(x = x.pos*1.2, y = y.pos[2], labels = ecoval.translate("R_macrophytes_doc_typology_modified",dict), cex = cex.text, pos=4, font = 2)
   
   # Kleiner Submersenbach KS
   text(x = x.start,   y = y.pos[3], labels = ecoval.translate("L_macrophytes_rivertype_class_smallsubmerged",dict),
@@ -700,7 +847,7 @@ msk.macrophytes.2017.doc.typology <- function(res, row.no) {
        cex = cex.text, pos=4)
   
   # Kleiner Submersen - Helophyten Uebergangstyp
-  text(x = x.start,   y = y.pos[7]-para.small, labels = "KS-KH",
+  text(x = x.start,   y = y.pos[7]-para.small, labels = ecoval.translate("L_macrophytes_rivertype_class_smallsubmergedhelophyte",dict),
        cex = cex.text, pos=4)
   value.plot  <- get.value(probs.scheme,row.no,ecoval.translate("L_macrophytes_rivertype_class_smallsubmergedhelophyte",dict))
   text(x = x.pos*0.7, y = y.pos[7]-para.small, labels = ifelse(is.na(value.plot), "",paste(round(100*value.plot,1), "%")),
@@ -708,7 +855,7 @@ msk.macrophytes.2017.doc.typology <- function(res, row.no) {
   arrows(x0 = x.pos*1.15, y0 = y.pos[7]-para.small, x1 = x.pos*1.3, y1 = y.pos[6]-1.2*para.small, length = 0.08)
   
   # Mittlerer Submersen - Helophyten Uebergangstyp
-  text(x = x.start,   y = y.pos[8]-para.small, labels = "MS-MH",
+  text(x = x.start,   y = y.pos[8]-para.small, labels = ecoval.translate("L_macrophytes_rivertype_class_mediumsubmergedhelophyte",dict),
        cex = cex.text, pos=4)
   value.plot  <- get.value(probs.scheme,row.no,ecoval.translate("L_macrophytes_rivertype_class_mediumsubmergedhelophyte",dict))
   text(x = x.pos*0.7, y = y.pos[8]-para.small, labels = ifelse(is.na(value.plot), "",paste(round(100*value.plot,1), "%")),
@@ -807,7 +954,7 @@ msk.macrophytes.2017.doc.typology <- function(res, row.no) {
   
   ## WINDOW 4 - Header for barplot with growthform type probabilities
   plot(0, 0, axes = axis.info, type="n", xaxs="i", yaxs="i", xlim=c(0,5), ylim=c(0,10))
-  text(x = 0, y = 4.6, labels =  "Wuchsformengruppen", cex = cex.title, pos=4, font=2)
+  text(x = 0, y = 4.6, labels =  ecoval.translate("R_macrophytes_doc_typology_growthformgroups",dict), cex = cex.title, pos=4, font=2)
 
   ## WINDOW 5 - Apply function to create barplot
   par(mai = c(0.3,0.5,0.2,0.2))
@@ -820,7 +967,7 @@ msk.macrophytes.2017.doc.typology <- function(res, row.no) {
   ## WINDOW 6 - Header for typology scheme with probabilities with shading
   par(mai = c(0,0,0,0))
   plot(0, 0, axes = axis.info, type="n", xaxs="i", yaxs="i", xlim=c(0,5), ylim=c(0,10))
-  text(x = 0, y = 2, labels = "Zusammenfassung Wahrscheinlichkeiten Vegetations-Flusstypen", col = "dodgerblue",
+  text(x = 0, y = 2, labels = ecoval.translate("R_macrophytes_doc_typology_summary",dict), col = "dodgerblue",
        cex = cex.title, pos=4, font=2)
   
   ## WINDOW 7 - Typology scheme matrix with probabilities of river types
@@ -837,7 +984,7 @@ msk.macrophytes.2017.doc.typology <- function(res, row.no) {
 }
 
 # Function for vegetation information A4 PDF
-# ========================================
+# ==========================================
 
 msk.macrophytes.2017.doc.vegetation <- function(res, row.no) {
   
@@ -847,7 +994,7 @@ msk.macrophytes.2017.doc.vegetation <- function(res, row.no) {
   
   # get taxalist:
   
-  taxalist.dat <- ecoval::msk.macrophytes.2017_ListTaxa
+  taxalist.dat <- res$taxalist
   
   # check data availability and extract data for plotting
   if( is.na(match("data.site", names(res))) )       return()
@@ -863,7 +1010,10 @@ msk.macrophytes.2017.doc.vegetation <- function(res, row.no) {
   # NA is returned for plotting
   get.value <- function(data.plot, row.no, colname) {
     value.plot <- NA
-    if ( row.no >= 1 & row.no <= nrow(data.plot) & colname != "" & sum(colname == colnames(data.plot)) != 0 ) value.plot <- data.plot[row.no,colname]
+    if ( length(row.no)>0 & length(colname)>0 )
+    {
+      if ( row.no >= 1 & row.no <= nrow(data.plot) & colname != "" & sum(colname == colnames(data.plot)) != 0 ) value.plot <- data.plot[row.no,colname]
+    }
     return(value.plot)
   }
   
@@ -896,19 +1046,19 @@ msk.macrophytes.2017.doc.vegetation <- function(res, row.no) {
       row.id <- match(data.species[k,ecoval.translate("A_macrophytes_species_number_msk",dict)],
                       taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk",dict)])
       
-      if( !is.na(taxalist.dat[row.id,"Artinfo_Naturschutz"]) ) {
+      if( !is.na(taxalist.dat[row.id,ecoval.translate("A_macrophytes_taxalist_conservationinfo",dict)]) ) {
         data.species[k,"Artinfo"] <- taxalist.dat[row.id,ecoval.translate("A_macrophytes_taxalist_conservationinfo",dict)]
       }
       
-      if( !is.na(taxalist.dat[row.id,"Leitwert_MSK"]) ) {
+      if( !is.na(taxalist.dat[row.id,ecoval.translate("A_macrophytes_taxalist_indexspecies",dict)]) ) {
         data.species[k,"Leitwert"] <- taxalist.dat[row.id,ecoval.translate("A_macrophytes_taxalist_indexspecies",dict)]
       }
       
-      if( !is.na(taxalist.dat[row.id,"Zielwert_Prioritaet_MSK"]) ) {
+      if( !is.na(taxalist.dat[row.id,ecoval.translate("A_macrophytes_taxalist_priorityspecies",dict)]) ) {
         data.species[k,"Prioritaet"] <- taxalist.dat[row.id,ecoval.translate("A_macrophytes_taxalist_priorityspecies",dict)]
       }
       
-      if( !is.na(taxalist.dat[row.id,"Rote_Liste_CH"]) ) {
+      if( !is.na(taxalist.dat[row.id,ecoval.translate("A_macrophytes_taxalist_redliststatuts",dict)]) ) {
         data.species[k,"Rote.Liste"] <- taxalist.dat[row.id,ecoval.translate("A_macrophytes_taxalist_redliststatuts",dict)]
       }
     }
@@ -940,7 +1090,7 @@ msk.macrophytes.2017.doc.vegetation <- function(res, row.no) {
   par(mai = c(0,0,0,0))
   ## HEADER
   plot(0, 0, axes = axis.info, type="n", xaxs="i", yaxs="i", xlim=c(0,10), ylim=c(0,10))
-  text(x = 0, y = 5, labels =  "Modul Makrophyten - Charakterisierung Vegetation", font = 2, cex = cex.title, pos=4)
+  text(x = 0, y = 5, labels = ecoval.translate("R_macrophytes_doc_vegetation",dict), font = 2, cex = cex.title, pos=4)
   abline(h = 3)
   
   ## WINDOW 2 - Basic information of sampling event as header in grey box
@@ -948,15 +1098,15 @@ msk.macrophytes.2017.doc.vegetation <- function(res, row.no) {
   rect(0,0.5,10,9.5, col = "grey85", border = NA)
   
   # Line 1
-  text(x = 0, y = 7.5,   labels =  "Stellen-Code:", cex = cex.text, pos=4, font=2)
+  text(x = 0, y = 7.5,   labels =  paste(ecoval.translate("R_macrophytes_doc_codesite",dict),":",sep=""), cex = cex.text, pos=4, font=2)
   value.plot <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_siteid",dict))
   text(x = 1.4, y = 7.5, labels =  ifelse(is.na(value.plot), "", value.plot), cex = cex.text, pos=4)
   
-  text(x = 2.7, y = 7.5, labels =  "Kanton:", cex = cex.text, pos=4, font = 2)
+  text(x = 2.7, y = 7.5, labels =  paste(ecoval.translate("R_macrophytes_doc_canton",dict),":",sep=""), cex = cex.text, pos=4, font = 2)
   value.plot <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_canton",dict))
   text(x = 4, y = 7.5,   labels = ifelse(is.na(value.plot), "", value.plot), cex = cex.text, pos=4)
   
-  text(x = 6.5, y = 7.5,   labels =  "Koordinaten:", cex = cex.text, pos=4, font = 2)
+  text(x = 6.5, y = 7.5,   labels =  paste(ecoval.translate("R_macrophytes_doc_coordinates",dict),":",sep=""), cex = cex.text, pos=4, font = 2)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_coordinatex_swissgrid",dict))
   value.plot1 <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_coordinatey_swissgrid",dict))
   text(x = 8.3, y = 7.5, labels =  paste(ifelse(is.na(value.plot), "", value.plot),
@@ -964,24 +1114,24 @@ msk.macrophytes.2017.doc.vegetation <- function(res, row.no) {
        cex = cex.text, pos=4)
   
   # Line 2
-  text(x = 0, y = 5,   labels =  "Gewaesser:", cex = cex.text, pos=4, font=2)
+  text(x = 0, y = 5,   labels =  paste(ecoval.translate("R_macrophytes_doc_river",dict),":",sep=""), cex = cex.text, pos=4, font=2)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_waterbody",dict))
   text(x = 1.4, y = 5, labels = ifelse(is.na(value.plot), "", value.plot), cex = cex.text, pos=4)
   
-  text(x = 2.7, y = 5, labels =  "Stelle:", cex = cex.text, pos=4, font = 2)
+  text(x = 2.7, y = 5, labels =  paste(ecoval.translate("R_macrophytes_doc_location",dict),":",sep=""), cex = cex.text, pos=4, font = 2)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_location",dict))
   text(x = 4, y = 5,   labels =  ifelse(is.na(value.plot), "", value.plot), cex = cex.text, pos=4)
   
   # Line 3
-  text(x = 0, y = 2.5,   labels =  "Datum:", cex = cex.text, pos=4, font=2)
+  text(x = 0, y = 2.5,   labels =  paste(ecoval.translate("R_macrophytes_doc_samplingdate",dict),":",sep=""), cex = cex.text, pos=4, font=2)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_samplingdate",dict))
   text(x = 1.4, y = 2.5, labels = ifelse(is.na(value.plot), "", value.plot), cex = cex.text, pos=4)
   
-  text(x = 2.7, y = 2.5, labels =  "BearbeiterIn:", cex = cex.text, pos=4, font = 2)
+  text(x = 2.7, y = 2.5, labels =  paste(ecoval.translate("R_macrophytes_doc_observer",dict),":",sep=""), cex = cex.text, pos=4, font = 2)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_operator",dict))
   text(x = 4, y = 2.5,   labels =  ifelse(is.na(value.plot), "", value.plot), cex = cex.text, pos=4)
   
-  text(x = 6.5, y = 2.5,   labels =  "Abschnittslaenge:", cex = cex.text, pos=4, font = 2)
+  text(x = 6.5, y = 2.5,   labels =  paste(ecoval.translate("R_macrophytes_doc_sectionlength",dict),":",sep=""), cex = cex.text, pos=4, font = 2)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_lengthsection_m",dict))
   text(x = 8.3, y = 2.5, labels =  ifelse(is.na(value.plot), "", paste(value.plot, "m")), cex = cex.text, pos=4)
   
@@ -995,12 +1145,12 @@ msk.macrophytes.2017.doc.vegetation <- function(res, row.no) {
   
   # Vegetation attributes
   plot(0, 0, axes = axis.info, type="n", xaxs="i", yaxs="i", xlim=c(0,10),ylim=c(0,10))
-  text(x = 0, y = 9, labels =  "Vegetationsparameter", col = "dodgerblue", cex = cex.title, font = 2, pos=4)
+  text(x = 0, y = 9, labels =  ecoval.translate("R_macrophytes_doc_vegetation_attributes",dict), col = "dodgerblue", cex = cex.title, font = 2, pos=4)
   
   # If no species data is available a comment is added to the fact-sheet, else normal fact-sheet wih species attributes 
   # and taxa-list is written
   if ( nrow(data.species) == 0 ) {
-    text(x = 0,   y = y.pos[2], labels = "Keine Vegetationsdaten", cex = cex.text, font = 2, pos=4)
+    text(x = 0,   y = y.pos[2], labels = ecoval.translate("R_macrophytes_doc_vegetation_nodata",dict), cex = cex.text, font = 2, pos=4)
     
     plot(0, 0, axes = axis.info, type="n", xaxs="i", yaxs="i", xlim=c(0,10),ylim=c(0,10))
     text(x = 0, y = 9.32, labels =  "Artenliste", col = "dodgerblue", cex = cex.title, font = 2, pos=4)
@@ -1008,14 +1158,14 @@ msk.macrophytes.2017.doc.vegetation <- function(res, row.no) {
   } else {
     
     # General Headers
-    text(x = x.pos,     y = y.pos[1], labels = "Anzahl", cex = cex.text, font = 2, pos=4)
-    text(x = x.pos*1.5, y = y.pos[1], labels = "Deckung [%]", cex = cex.text, font = 2, pos=4)
-    text(x = x.pos*2.5, y = y.pos[1], labels = "Anteil [%]", cex = cex.text, font = 2, pos=4)
+    text(x = x.pos,     y = y.pos[1], labels = ecoval.translate("R_macrophytes_doc_vegetation_number",dict), cex = cex.text, font = 2, pos=4)
+    text(x = x.pos*1.5, y = y.pos[1], labels = paste(ecoval.translate("R_macrophytes_doc_vegetation_coverage",dict),"[%]"), cex = cex.text, font = 2, pos=4)
+    text(x = x.pos*2.5, y = y.pos[1], labels = paste(ecoval.translate("R_macrophytes_doc_vegetation_areafraction",dict),"[%]"), cex = cex.text, font = 2, pos=4)
     
     # add macrophyte attribute information
     
     # All macrophytes
-    text(x = 0,   y = y.pos[2], labels = "Makrophyten", cex = cex.text, font = 2, pos=4)
+    text(x = 0,   y = y.pos[2], labels = ecoval.translate("R_macrophytes_doc_vegetation_macrophytes",dict), cex = cex.text, font = 2, pos=4)
     value.plot  <- get.value(data.attrib,row.no,ecoval.translate("A_macrophytes_taxa_all_richness_count",dict))
     text(x = x.pos,     y = y.pos[2], labels = ifelse(is.na(value.plot), "", value.plot), cex = cex.text, pos=4)
     
@@ -1026,7 +1176,7 @@ msk.macrophytes.2017.doc.vegetation <- function(res, row.no) {
     text(x = x.pos*2.5, y = y.pos[2], labels = ifelse(is.na(value.plot), "", round(value.plot,1)), cex = cex.text, pos=4)
     
     # aquatic species
-    text(x = x.start,   y = y.pos[3], labels = "Aquatische", cex = cex.text, pos=4)
+    text(x = x.start,   y = y.pos[3], labels = ecoval.translate("R_macrophytes_doc_vegetation_aquatic",dict), cex = cex.text, pos=4)
     
     value.plot  <- get.value(data.attrib,row.no,ecoval.translate("A_macrophytes_taxa_aquatic_richness_count",dict))
     text(x = x.pos,     y = y.pos[3], labels = ifelse(is.na(value.plot), "", value.plot), cex = cex.text, pos=4)
@@ -1038,7 +1188,7 @@ msk.macrophytes.2017.doc.vegetation <- function(res, row.no) {
     text(x = x.pos*2.5, y = y.pos[3], labels = ifelse(is.na(value.plot), "", round(value.plot,1)), cex = cex.text, pos=4)
     
     # helophyte species
-    text(x = x.start,   y = y.pos[4], labels = "Helophyten", cex = cex.text, pos=4)
+    text(x = x.start,   y = y.pos[4], labels = ecoval.translate("R_macrophytes_doc_vegetation_helphytes",dict), cex = cex.text, pos=4)
     
     value.plot  <- get.value(data.attrib,row.no,ecoval.translate("A_macrophytes_taxa_helophytes_richness_count",dict))
     text(x = x.pos,     y = y.pos[4], labels = ifelse(is.na(value.plot), "", value.plot), cex = cex.text, pos=4)
@@ -1050,7 +1200,7 @@ msk.macrophytes.2017.doc.vegetation <- function(res, row.no) {
     text(x = x.pos*2.5, y = y.pos[4], labels = ifelse(is.na(value.plot), "", round(value.plot,1)), cex = cex.text, pos=4)
     
     # bryophyte species
-    text(x = x.start,   y = y.pos[5], labels = "Moose", cex = cex.text, pos=4)
+    text(x = x.start,   y = y.pos[5], labels = ecoval.translate("R_macrophytes_doc_vegetation_bryophytes",dict), cex = cex.text, pos=4)
     
     value.plot  <- get.value(data.attrib,row.no,ecoval.translate("A_macrophytes_taxa_bryophytes_richness_count",dict))
     text(x = x.pos,     y = y.pos[5], labels = ifelse(is.na(value.plot), "", value.plot), cex = cex.text, pos=4)
@@ -1064,7 +1214,7 @@ msk.macrophytes.2017.doc.vegetation <- function(res, row.no) {
                                                       paste(round(value.plot,1), " (Adj.: ", round(value.plot1,1), ")", sep = "")), cex = cex.text, pos=4)
     
     # proportion bryophytes on artificial substrate
-    text(x = x.start+0.1,   y = y.pos[6], labels = "Anteil kuenstlich", col = "grey60", cex = cex.text, pos=4)
+    text(x = x.start+0.1,   y = y.pos[6], labels = ecoval.translate("R_macrophytes_doc_vegetation_fractionartificial",dict), col = "grey60", cex = cex.text, pos=4)
     
     value.plot  <- get.value(data.attrib,row.no,ecoval.translate("A_macrophytes_taxa_bryophytes_artificialsubstrate_relcover_percent",dict))
     text(x = x.pos*2.5, y = y.pos[6], labels = ifelse(is.na(value.plot), "", round(value.plot,1)), col = "grey60", cex = cex.text, pos=4)
@@ -1072,19 +1222,19 @@ msk.macrophytes.2017.doc.vegetation <- function(res, row.no) {
     # add growthform attribute information
     
     # all macrophytes
-    text(x = 0,         y = y.pos[7]-para.small, labels = "Wuchsformen", font = 2, cex = cex.text, pos=4)
+    text(x = 0,         y = y.pos[7]-para.small, labels = ecoval.translate("R_macrophytes_doc_vegetation_growthforms",dict), font = 2, cex = cex.text, pos=4)
     
     value.plot  <- get.value(data.attrib,row.no,ecoval.translate("A_macrophytes_growthform_all_richness_count",dict))
     text(x = x.pos, y = y.pos[7]-para.small, labels = ifelse(is.na(value.plot), "", value.plot), cex = cex.text, pos=4)
     
     # aquatic growthforms
-    text(x = x.start,   y = y.pos[8]-para.small, labels = "Aquatische", cex = cex.text, pos=4)
+    text(x = x.start,   y = y.pos[8]-para.small, labels = ecoval.translate("R_macrophytes_doc_vegetation_aquatic",dict), cex = cex.text, pos=4)
     
     value.plot  <- get.value(data.attrib,row.no,ecoval.translate("A_macrophytes_growthform_aquatic_richness_count",dict))
     text(x = x.pos, y = y.pos[8]-para.small, labels = ifelse(is.na(value.plot), "", value.plot), cex = cex.text, pos=4)
     
     # helophytic growthforms
-    text(x = x.start,   y = y.pos[9]-para.small, labels = "Helophyten", cex = cex.text, pos=4)
+    text(x = x.start,   y = y.pos[9]-para.small, labels = ecoval.translate("R_macrophytes_doc_vegetation_helphytes",dict), cex = cex.text, pos=4)
     
     value.plot  <- get.value(data.attrib,row.no,ecoval.translate("A_macrophytes_growthform_helophytes_richness_count",dict))
     text(x = x.pos, y = y.pos[9]-para.small, labels = ifelse(is.na(value.plot), "", value.plot), cex = cex.text, pos=4)
@@ -1092,7 +1242,7 @@ msk.macrophytes.2017.doc.vegetation <- function(res, row.no) {
     # add filamentous algae and neophyte information
     
     # filamentous algae
-    text(x = 0,         y = y.pos[10]-2*para.small, labels = "Faedige Algen", cex = cex.text, font = 2, pos=4)
+    text(x = 0,         y = y.pos[10]-2*para.small, labels = ecoval.translate("R_macrophytes_doc_vegetation_algae",dict), cex = cex.text, font = 2, pos=4)
     
     value.plot  <- get.value(data.attrib,row.no,ecoval.translate("A_macrophytes_filamentousgreenalgae_abscover_percent",dict))
     text(x = x.pos*1.5, y = y.pos[10]-2*para.small, labels = ifelse(is.na(value.plot), "", round(value.plot,1)), cex = cex.text, pos=4)
@@ -1101,7 +1251,7 @@ msk.macrophytes.2017.doc.vegetation <- function(res, row.no) {
     text(x = x.pos*2.5, y = y.pos[10]-2*para.small, labels = ifelse(is.na(value.plot), "", round(value.plot,1)), cex = cex.text, pos=4)
     
     # neophytes
-    text(x = 0,         y = y.pos[11]-2*para.small, labels = "Neophyten", cex = cex.text, font = 2, pos=4)
+    text(x = 0,         y = y.pos[11]-2*para.small, labels = ecoval.translate("R_macrophytes_doc_vegetation_neophytes",dict), cex = cex.text, font = 2, pos=4)
     
     value.plot  <- get.value(data.attrib,row.no,ecoval.translate("A_macrophytes_taxa_neophytes_richness_count",dict))
     text(x = x.pos, y = y.pos[11]-2*para.small, labels = ifelse(is.na(value.plot), "", value.plot), cex = cex.text, pos=4)
@@ -1112,10 +1262,10 @@ msk.macrophytes.2017.doc.vegetation <- function(res, row.no) {
     # add species quality and conservation status information
     
     # guidance species "Leitarten"
-    text(x = 0,         y = y.pos[12]-3*para.small, labels = "Leitarten", cex = cex.text, font = 2, pos=4)
+    text(x = 0,         y = y.pos[12]-3*para.small, labels = ecoval.translate("R_macrophytes_doc_vegetation_indexspecies",dict), cex = cex.text, font = 2, pos=4)
     
     # higher macrophytes
-    text(x = x.start,   y = y.pos[13]-3*para.small, labels = "Makrophyten", cex = cex.text, pos=4)
+    text(x = x.start,   y = y.pos[13]-3*para.small, labels = ecoval.translate("R_macrophytes_doc_vegetation_macrophytes",dict), cex = cex.text, pos=4)
     
     value.plot  <- get.value(data.attrib,row.no,ecoval.translate("A_macrophytes_indexspeciesmac1_count",dict))
     value.plot1 <- get.value(data.attrib,row.no,ecoval.translate("A_macrophytes_indexspeciesmac2_count",dict))
@@ -1126,11 +1276,12 @@ msk.macrophytes.2017.doc.vegetation <- function(res, row.no) {
     text(x = x.pos,       y = y.pos[13]-3*para.small, cex = cex.text, pos=4,
          labels = ifelse(is.na(value.plot) | is.na(value.plot1) | is.na(value.plot2), "",
                          paste(ifelse(is.na(n.leit),"",n.leit),
-                               " (LW1: ", value.plot, "; LW2: ", value.plot1, "; LW3: ", value.plot2,")"))
-    )
+                               " (",ecoval.translate("R_macrophytes_doc_vegetation_indexvalue",dict),"1: ", value.plot, 
+                               "; ",ecoval.translate("R_macrophytes_doc_vegetation_indexvalue",dict),"2: ", value.plot1, 
+                               "; ",ecoval.translate("R_macrophytes_doc_vegetation_indexvalue",dict),"3: ", value.plot2,")",sep="")))
     
-    # bryophytes
-    text(x = x.start,   y = y.pos[14]-3*para.small, labels = "Moose", cex = cex.text, pos=4)
+    # bryophytes 
+    text(x = x.start,   y = y.pos[14]-3*para.small, labels = ecoval.translate("R_macrophytes_doc_vegetation_bryophytes",dict), cex = cex.text, pos=4)
     
     value.plot  <- get.value(data.attrib,row.no,ecoval.translate("A_macrophytes_indexspeciesbry1_count",dict))
     value.plot1 <- get.value(data.attrib,row.no,ecoval.translate("A_macrophytes_indexspeciesbry2_count",dict))
@@ -1141,11 +1292,12 @@ msk.macrophytes.2017.doc.vegetation <- function(res, row.no) {
     text(x = x.pos,       y = y.pos[14]-3*para.small, cex = cex.text, pos=4,
          labels = ifelse(is.na(value.plot) | is.na(value.plot1) | is.na(value.plot2), "",
                          paste(ifelse(is.na(n.leit),"",n.leit),
-                               " (LW1: ", value.plot, "; LW2: ", value.plot1, "; LW3: ", value.plot2,")"))
-    )
+                               " (",ecoval.translate("R_macrophytes_doc_vegetation_indexvalue",dict),"1: ", value.plot, 
+                               "; ",ecoval.translate("R_macrophytes_doc_vegetation_indexvalue",dict),"2: ", value.plot1, 
+                               "; ",ecoval.translate("R_macrophytes_doc_vegetation_indexvalue",dict),"3: ", value.plot2,")",sep="")))
     
     # priority of species "Prioritaet"
-    text(x = 0,   y = y.pos[15]-4*para.small, labels = "Prioritaere Arten", font = 2, cex = cex.text, pos=4)
+    text(x = 0,   y = y.pos[15]-4*para.small, labels = ecoval.translate("R_macrophytes_doc_vegetation_priorityspecies",dict), font = 2, cex = cex.text, pos=4)
     
     value.plot  <- get.value(data.attrib,row.no,ecoval.translate("A_macrophytes_priorityspecies1_count",dict))
     value.plot1 <- get.value(data.attrib,row.no,ecoval.translate("A_macrophytes_priorityspecies2_count",dict))
@@ -1157,8 +1309,10 @@ msk.macrophytes.2017.doc.vegetation <- function(res, row.no) {
     text(x = x.pos, y = y.pos[15]-4*para.small, cex = cex.text, pos=4,
          labels = ifelse(is.na(value.plot) | is.na(value.plot1) | is.na(value.plot2) | is.na(value.plot3),"",
                          paste(ifelse(is.na(n.prio),"",n.prio),
-                               " (PR1: ", value.plot, "; PR2: ", value.plot1,"; PR3: ", value.plot2, "; PR4: ", value.plot3,")"))
-    )
+                               " (",ecoval.translate("R_macrophytes_doc_vegetation_priorityvalue",dict),"1: ", value.plot, 
+                               "; ",ecoval.translate("R_macrophytes_doc_vegetation_priorityvalue",dict),"2: ", value.plot1,
+                               "; ",ecoval.translate("R_macrophytes_doc_vegetation_priorityvalue",dict),"3: ", value.plot2, 
+                               "; ",ecoval.translate("R_macrophytes_doc_vegetation_priorityvalue",dict),"4: ", value.plot3,")",sep="")))
     
     
     ## WINDOW 4 - Species list with information for each taxon
@@ -1171,27 +1325,30 @@ msk.macrophytes.2017.doc.vegetation <- function(res, row.no) {
     
     # Species list
     plot(0, 0, axes = axis.info, type="n", xaxs="i", yaxs="i", xlim=c(0,10),ylim=c(0,10))
-    text(x = 0, y = 9.32, labels =  "Artenliste", col = "dodgerblue", cex = cex.title, font = 2, pos=4)
+    text(x = 0, y = 9.32, labels =  ecoval.translate("R_macrophytes_doc_vegetation_listoftaxa",dict), col = "dodgerblue", cex = cex.title, font = 2, pos=4)
     
     # General Headers
-    text(x = x.pos*1.8, y = y.pos[1], labels = "Wuchsform", cex = cex.text, font = 2, pos=4)
-    text(x = x.pos*2.4, y = y.pos[1], labels = "Deckung [%]", cex = cex.text, font = 2, pos=4)
-    text(x = x.pos*3.0, y = y.pos[1], labels = "Anteil [%]", cex = cex.text, font = 2, pos=4)
-    text(x = x.pos*3.6, y = y.pos[1], labels = "Info", cex = cex.text, font = 2, pos=4)
-    text(x = x.pos*3.8, y = y.pos[1], labels = "LW", cex = cex.text, font = 2, pos=4)
-    text(x = x.pos*4.0, y = y.pos[1], labels = "ZW", cex = cex.text, font = 2, pos=4)
-    text(x = x.pos*4.2, y = y.pos[1], labels = "RL", cex = cex.text, font = 2, pos=4)
+    text(x = x.pos*1.8, y = y.pos[1], labels = ecoval.translate("R_macrophytes_doc_vegetation_growthform",dict), cex = cex.text, font = 2, pos=4)
+    text(x = x.pos*2.4, y = y.pos[1], labels = paste(ecoval.translate("R_macrophytes_doc_vegetation_coverage",dict),"[%]"), cex = cex.text, font = 2, pos=4)
+    text(x = x.pos*3.0, y = y.pos[1], labels = paste(ecoval.translate("R_macrophytes_doc_vegetation_areafraction",dict),"[%]"), cex = cex.text, font = 2, pos=4)
+    text(x = x.pos*3.6, y = y.pos[1], labels = ecoval.translate("R_macrophytes_doc_vegetation_speciesinfo",dict), cex = cex.text, font = 2, pos=4)
+    text(x = x.pos*3.8, y = y.pos[1], labels = ecoval.translate("R_macrophytes_doc_vegetation_indexvalue",dict), cex = cex.text, font = 2, pos=4)
+    text(x = x.pos*4.0, y = y.pos[1], labels = ecoval.translate("R_macrophytes_doc_vegetation_priorityvalue",dict), cex = cex.text, font = 2, pos=4)
+    text(x = x.pos*4.2, y = y.pos[1], labels = ecoval.translate("R_macrophytes_doc_vegetation_redliststatus",dict), cex = cex.text, font = 2, pos=4)
     
     # Species according to growthform groups
     grfo.info <- c(ecoval.translate("L_macrophytes_taxalist_growthform_assess_aquatic",dict),
                    ecoval.translate("L_macrophytes_taxalist_growthform_assess_helophyte",dict),
                    ecoval.translate("L_macrophytes_taxalist_growthform_assess_bryophyte",dict))
+    grfo.info.lab <- c(ecoval.translate("R_macrophytes_doc_vegetation_aquatic",dict),
+                       ecoval.translate("R_macrophytes_doc_vegetation_helphytes",dict),
+                       ecoval.translate("R_macrophytes_doc_vegetation_bryophytes",dict))
     plot.index <- 2
     plot.fact <- 0
     
     for ( k in 1:3 ) {
       dat.plot <- data.species[data.species[,ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)] == grfo.info[k],]
-      text(x = 0,   y = y.pos[plot.index]-plot.fact*para.small, labels = grfo.info[k], cex = cex.text, font = 2, pos=4)
+      text(x = 0,   y = y.pos[plot.index]-plot.fact*para.small, labels = grfo.info.lab[k], cex = cex.text, font = 2, pos=4)
       plot.index <- plot.index+1
       
       if( k < 3 ) {
@@ -1201,7 +1358,7 @@ msk.macrophytes.2017.doc.vegetation <- function(res, row.no) {
             text(x = x.start,   y = y.pos[plot.index]-plot.fact*para.small, labels = ifelse(is.na(value.plot), "", value.plot),
                  cex = cex.text, pos=4)
             
-            value.plot  <- get.value(dat.plot,j,ecoval.translate("Wuchsform_CH_Kurz",dict))
+            value.plot  <- get.value(dat.plot,j,ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict))
             text(x = x.pos*1.9, y = y.pos[plot.index]-plot.fact*para.small, labels = ifelse(is.na(value.plot), "", value.plot),
                  cex = cex.text, pos=4)
             
@@ -1240,12 +1397,21 @@ msk.macrophytes.2017.doc.vegetation <- function(res, row.no) {
       
       if( k == 3 ) {
         if( nrow(dat.plot) > 0 ) {
+          value.plot <- get.value(dat.plot,
+                                  which(dat.plot[,ecoval.translate("A_macrophytes_species_number_msk",dict)] == 50000001),
+                                  ecoval.translate("A_macrophytes_species_absolutecover_percent",dict))
           text(x = x.pos*2.4,   y = y.pos[plot.index-1]-plot.fact*para.small,
-               labels = round(dat.plot[dat.plot[,ecoval.translate("A_macrophytes_species_number_msk",dict)] == 50000001,
-                                       ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)],1),
+               labels = ifelse(is.na(value.plot),"",round(value.plot,1)),
+               # labels = round(dat.plot[dat.plot[,ecoval.translate("A_macrophytes_species_number_msk",dict)] == 50000001,
+               #                         ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)],1),
                cex = cex.text, pos=4)
+          value.plot <- get.value(dat.plot,
+                                  which(dat.plot[,ecoval.translate("A_macrophytes_species_number_msk",dict)] == 50000001),
+                                  "DG.Rel")
           text(x = x.pos*3.0,   y = y.pos[plot.index-1]-plot.fact*para.small,
-               labels = round(dat.plot[dat.plot[,ecoval.translate("A_macrophytes_species_number_msk",dict)] == 50000001,"DG.Rel"],1),
+               labels = ifelse(is.na(value.plot),"",round(value.plot,1)),
+               # labels = round(dat.plot[dat.plot[,ecoval.translate("A_macrophytes_species_number_msk",dict)] == 50000001,
+               #                         "DG.Rel"],1),
                cex = cex.text, pos=4)
           
           dat.plot <- dat.plot[dat.plot[,ecoval.translate("A_macrophytes_species_number_msk",dict)] != 50000001,]
@@ -1255,7 +1421,7 @@ msk.macrophytes.2017.doc.vegetation <- function(res, row.no) {
             text(x = x.start,   y = y.pos[plot.index]-plot.fact*para.small, labels = ifelse(is.na(value.plot), "", value.plot),
                  cex = cex.text, pos=4)
             
-            value.plot  <- get.value(dat.plot,j,ecoval.translate("Wuchsform_CH_Kurz",dict))
+            value.plot  <- get.value(dat.plot,j,ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict))
             text(x = x.pos*1.9, y = y.pos[plot.index]-plot.fact*para.small, labels = ifelse(is.na(value.plot), "", value.plot),
                  cex = cex.text, pos=4)
             
@@ -1304,7 +1470,10 @@ msk.macrophytes.2017.doc.valuation <- function(res,row.no) {
   # define functions for plotting
   get.value <- function(data.plot, row.no, colname) {
     value.plot <- NA
-    if ( row.no >= 1 & row.no <= nrow(data.plot) & colname != "" & sum(colname == colnames(data.plot)) != 0 ) value.plot <- data.plot[row.no,colname]
+    if ( length(row.no)>0 & length(colname)>0 )
+    {
+      if ( row.no >= 1 & row.no <= nrow(data.plot) & colname != "" & sum(colname == colnames(data.plot)) != 0 ) value.plot <- data.plot[row.no,colname]
+    }
     return(value.plot)
   }
   
@@ -1331,12 +1500,12 @@ msk.macrophytes.2017.doc.valuation <- function(res,row.no) {
     
     if( plot.version == "orig" ) {
       data.val <- res$val
-      header.text <- "Bewertung / Original"
+      #header.text <- "Bewertung / Original"
       river.type <- res$types.val.obs[row.no] 
       final.id <- FALSE
     } else {
       data.val <- res$val.final
-      header.text <- "Bewertung / Plausibilisiert"
+      #header.text <- "Bewertung / Plausibilisiert"
       river.type <- res$types.val.final[row.no]
       final.id <- TRUE
     }
@@ -1378,7 +1547,7 @@ msk.macrophytes.2017.doc.valuation <- function(res,row.no) {
     
     ## HEADER
     plot(0, 0, axes = axis.info, type="n", xaxs="i", yaxs="i", xlim=c(0,10), ylim=c(0,10))
-    text(x = 0, y = 5, labels =  "Modul Makrophyten - Bewertung", font = 2, cex = cex.title, pos=4)
+    text(x = 0, y = 5, labels = ecoval.translate("R_macrophytes_doc_valuation",dict), font = 2, cex = cex.title, pos=4)
     abline(h = 3)
     
     ## WINDOW 2 - Basic information of sampling event as header in grey box
@@ -1386,15 +1555,15 @@ msk.macrophytes.2017.doc.valuation <- function(res,row.no) {
     rect(0,0.5,10,9.5, col = "grey85", border = NA)
     
     # Line 1
-    text(x = 0, y = 7.5,   labels =  "Stellen-Code:", cex = cex.text, pos=4, font=2)
+    text(x = 0, y = 7.5,   labels =  paste(ecoval.translate("R_macrophytes_doc_codesite",dict),":",sep=""), cex = cex.text, pos=4, font=2)
     value.plot <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_siteid",dict))
     text(x = 1.4, y = 7.5, labels =  ifelse(is.na(value.plot), "", value.plot), cex = cex.text, pos=4)
     
-    text(x = 2.7, y = 7.5, labels =  "Kanton:", cex = cex.text, pos=4, font = 2)
+    text(x = 2.7, y = 7.5, labels =  paste(ecoval.translate("R_macrophytes_doc_canton",dict),":",sep=""), cex = cex.text, pos=4, font = 2)
     value.plot <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_canton",dict))
     text(x = 4, y = 7.5,   labels = ifelse(is.na(value.plot), "", value.plot), cex = cex.text, pos=4)
     
-    text(x = 6.5, y = 7.5,   labels =  "Koordinaten:", cex = cex.text, pos=4, font = 2)
+    text(x = 6.5, y = 7.5,   labels =  paste(ecoval.translate("R_macrophytes_doc_coordinates",dict),":",sep=""), cex = cex.text, pos=4, font = 2)
     value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_coordinatex_swissgrid",dict))
     value.plot1 <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_coordinatey_swissgrid",dict))
     text(x = 8.3, y = 7.5, labels =  paste(ifelse(is.na(value.plot), "", value.plot),
@@ -1402,24 +1571,24 @@ msk.macrophytes.2017.doc.valuation <- function(res,row.no) {
          cex = cex.text, pos=4)
     
     # Line 2
-    text(x = 0, y = 5,   labels =  "Gewaesser:", cex = cex.text, pos=4, font=2)
+    text(x = 0, y = 5,   labels =  paste(ecoval.translate("R_macrophytes_doc_river",dict),":",sep=""), cex = cex.text, pos=4, font=2)
     value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_waterbody",dict))
     text(x = 1.4, y = 5, labels = ifelse(is.na(value.plot), "", value.plot), cex = cex.text, pos=4)
     
-    text(x = 2.7, y = 5, labels =  "Stelle:", cex = cex.text, pos=4, font = 2)
+    text(x = 2.7, y = 5, labels =  paste(ecoval.translate("R_macrophytes_doc_location",dict),":",sep=""), cex = cex.text, pos=4, font = 2)
     value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_location",dict))
     text(x = 4, y = 5,   labels =  ifelse(is.na(value.plot), "", value.plot), cex = cex.text, pos=4)
     
     # Line 3
-    text(x = 0, y = 2.5,   labels =  "Datum:", cex = cex.text, pos=4, font=2)
+    text(x = 0, y = 2.5,   labels =  paste(ecoval.translate("R_macrophytes_doc_samplingdate",dict),":",sep=""), cex = cex.text, pos=4, font=2)
     value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_samplingdate",dict))
     text(x = 1.4, y = 2.5, labels = ifelse(is.na(value.plot), "", value.plot), cex = cex.text, pos=4)
     
-    text(x = 2.7, y = 2.5, labels =  "BearbeiterIn:", cex = cex.text, pos=4, font = 2)
+    text(x = 2.7, y = 2.5, labels =  paste(ecoval.translate("R_macrophytes_doc_observer",dict),":",sep=""), cex = cex.text, pos=4, font = 2)
     value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_operator",dict))
     text(x = 4, y = 2.5,   labels =  ifelse(is.na(value.plot), "", value.plot), cex = cex.text, pos=4)
     
-    text(x = 6.5, y = 2.5,   labels =  "Abschnittslaenge:", cex = cex.text, pos=4, font = 2)
+    text(x = 6.5, y = 2.5,   labels =  paste(ecoval.translate("R_macrophytes_doc_sectionlength",dict),":",sep=""), cex = cex.text, pos=4, font = 2)
     value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_lengthsection_m",dict))
     text(x = 8.3, y = 2.5, labels =  ifelse(is.na(value.plot), "", paste(value.plot, "m")), cex = cex.text, pos=4)
     
@@ -1437,10 +1606,10 @@ msk.macrophytes.2017.doc.valuation <- function(res,row.no) {
     
     # Valuation of assessment goals
     plot(0, 0, axes = axis.info, type="n", xaxs="i", yaxs="i", xlim=c(0,10),ylim=c(0,10))
-    text(x = 0, y = 9, labels =  "Bewertung der Vegetation", col = "dodgerblue", cex = cex.title, font = 2, pos=4)
+    text(x = 0, y = 9, labels =  ecoval.translate("R_macrophytes_doc_valuationobjectives",dict), col = "dodgerblue", cex = cex.title, font = 2, pos=4)
     
     # Overall assessment
-    text(x = 0,         y = y.pos[1], labels = "Guter oekol. Zustand Makrophyten", cex = cex.text, font = 2, pos=4)
+    text(x = 0,         y = y.pos[1], labels = ecoval.translate("N_macrophytes_goodstate",dict), cex = cex.text, font = 2, pos=4)
     node.header <- ifelse(!moss,ecoval.translate("N_macrophytes_goodstate",dict),
                           paste(ecoval.translate("N_macrophytes_goodstate",dict),
                                 ecoval.translate("N_macrophytes_bryophytesriver",dict)))
@@ -1449,7 +1618,7 @@ msk.macrophytes.2017.doc.valuation <- function(res,row.no) {
     rect(x.pos*1.6,y.pos[1]-0.17,x.pos*1.6+0.6,y.pos[1]+0.24, col = msk.colors[val.col+1], border = NA)
     text(x = x.pos*1.6, y = y.pos[1], labels = ifelse(is.na(value.plot), "", round(value.plot,2)), cex = cex.text, pos=4)
     
-    text(x = x.pos*2.3, y = y.pos[1], labels = "Typgerechte Gemeinschaft", cex = cex.text, font = 2, pos=4)
+    text(x = x.pos*2.3, y = y.pos[1], labels = ecoval.translate("N_macrophytes_typicalcommunity",dict), cex = cex.text, font = 2, pos=4)
     node.header <- ifelse(!moss,ecoval.translate("N_macrophytes_typicalcommunity",dict),
                           paste(ecoval.translate("N_macrophytes_typicalcommunity",dict),
                                 ecoval.translate("N_macrophytes_bryophytesriver",dict)))
@@ -1461,7 +1630,7 @@ msk.macrophytes.2017.doc.valuation <- function(res,row.no) {
     # Individual assessment goals
     
     # Diversity
-    text(x = 0,         y = y.pos[2]-para.small, labels = "Typgerechte Diversitaet", cex = cex.text, font = 2, pos=4)
+    text(x = 0,         y = y.pos[2]-para.small, labels = ecoval.translate("N_macrophytes_typicaldiversity",dict), cex = cex.text, font = 2, pos=4)
     node.header <- ifelse(!moss,ecoval.translate("N_macrophytes_typicaldiversity",dict),
                           paste(ecoval.translate("N_macrophytes_typicaldiversity",dict),
                                 ecoval.translate("N_macrophytes_bryophytesriver",dict)))
@@ -1471,7 +1640,7 @@ msk.macrophytes.2017.doc.valuation <- function(res,row.no) {
     text(x = x.pos*1.6, y = y.pos[2]-para.small, labels = ifelse(is.na(value.plot), "", round(value.plot,2)), cex = cex.text, pos=4)
     
     # Species
-    text(x = x.start,   y = y.pos[3]-2*para.small, labels = "Viele Arten", cex = cex.text, pos=4)
+    text(x = x.start,   y = y.pos[3]-2*para.small, labels = ecoval.translate("N_macrophytes_manytaxa",dict), cex = cex.text, pos=4)
     node.header <- ifelse(!moss,ecoval.translate("N_macrophytes_manytaxa",dict),
                           paste(ecoval.translate("N_macrophytes_manytaxa",dict),
                                 ecoval.translate("N_macrophytes_bryophytesriver",dict)))
@@ -1480,19 +1649,19 @@ msk.macrophytes.2017.doc.valuation <- function(res,row.no) {
     rect(x.pos*1.6,y.pos[3]-2*para.small-0.17,x.pos*1.6+0.6,y.pos[3]-2*para.small+0.24, col = msk.colors[val.col+1], border = NA)
     text(x = x.pos*1.6, y = y.pos[3]-2*para.small, labels = ifelse(is.na(value.plot), "", round(value.plot,2)), cex = cex.text, pos=4)
     
-    text(x = x.start,   y = y.pos[4]-2*para.small, labels = "Viele Arten Aquatische", cex = cex.text, pos=4)
+    text(x = x.start,   y = y.pos[4]-2*para.small, labels = ecoval.translate("N_macrophytes_manyaquatic",dict), cex = cex.text, pos=4)
     value.plot <- get.value(data.val,row.no,ecoval.translate("N_macrophytes_manyaquatic",dict))
     val.col  <- calc.class(value.plot, classes = c(1,1,2,2,3,3,4,4,5,5))
     rect(x.pos*1.6,y.pos[4]-2*para.small-0.17,x.pos*1.6+0.6,y.pos[4]-2*para.small+0.24, col = msk.colors[val.col+1], border = NA)
     text(x = x.pos*1.6, y = y.pos[4]-2*para.small, labels = ifelse(is.na(value.plot), "", round(value.plot,2)), cex = cex.text, pos=4)
     
-    text(x = x.start,   y = y.pos[5]-2*para.small, labels = "Viele Arten Helophyten", cex = cex.text, pos=4)
+    text(x = x.start,   y = y.pos[5]-2*para.small, labels = ecoval.translate("N_macrophytes_manyhelophytes",dict), cex = cex.text, pos=4)
     value.plot <- get.value(data.val,row.no,ecoval.translate("N_macrophytes_manyhelophytes",dict))
     val.col  <- calc.class(value.plot, classes = c(1,1,2,2,3,3,4,4,5,5))
     rect(x.pos*1.6,y.pos[5]-2*para.small-0.17,x.pos*1.6+0.6,y.pos[5]-2*para.small+0.24, col = msk.colors[val.col+1], border = NA)
     text(x = x.pos*1.6, y = y.pos[5]-2*para.small, labels = ifelse(is.na(value.plot), "", round(value.plot,2)), cex = cex.text, pos=4)
     
-    text(x = x.start,   y = y.pos[6]-2*para.small, labels = "Viele Arten Moose", cex = cex.text, pos=4)
+    text(x = x.start,   y = y.pos[6]-2*para.small, labels = ecoval.translate("N_macrophytes_manybryophytes",dict), cex = cex.text, pos=4)
     node.header <- ifelse(!moss,ecoval.translate("N_macrophytes_manybryophytes",dict),
                           paste(ecoval.translate("N_macrophytes_manybryophytes",dict),
                                 ecoval.translate("N_macrophytes_bryophytesriver",dict)))
@@ -1503,26 +1672,26 @@ msk.macrophytes.2017.doc.valuation <- function(res,row.no) {
     
     
     # Growthforms
-    text(x = x.start,   y = y.pos[7]-3*para.small, labels = "Viele Wuchsformen", cex = cex.text, pos=4)
+    text(x = x.start,   y = y.pos[7]-3*para.small, labels = ecoval.translate("N_macrophytes_manygrowthforms",dict), cex = cex.text, pos=4)
     value.plot <- get.value(data.val,row.no,ecoval.translate("N_macrophytes_manygrowthforms",dict)) # Mac
     val.col  <- calc.class(value.plot, classes = c(1,1,2,2,3,3,4,4,5,5))
     rect(x.pos*1.6,y.pos[7]-3*para.small-0.17,x.pos*1.6+0.6,y.pos[7]-3*para.small+0.24, col = msk.colors[val.col+1], border = NA)
     text(x = x.pos*1.6, y = y.pos[7]-3*para.small, labels = ifelse(is.na(value.plot), "", round(value.plot,2)), cex = cex.text, pos=4)
     
-    text(x = x.start,   y = y.pos[8]-3*para.small, labels = "Viele aquatische Wuchsformen", cex = cex.text, pos=4)
+    text(x = x.start,   y = y.pos[8]-3*para.small, labels = ecoval.translate("N_macrophytes_manygrowthformsaquatic",dict), cex = cex.text, pos=4)
     value.plot <- get.value(data.val,row.no,ecoval.translate("N_macrophytes_manygrowthformsaquatic",dict)) # Mac
     val.col  <- calc.class(value.plot, classes = c(1,1,2,2,3,3,4,4,5,5))
     rect(x.pos*1.6,y.pos[8]-3*para.small-0.17,x.pos*1.6+0.6,y.pos[8]-3*para.small+0.24, col = msk.colors[val.col+1], border = NA)
     text(x = x.pos*1.6, y = y.pos[8]-3*para.small, labels = ifelse(is.na(value.plot), "", round(value.plot,2)), cex = cex.text, pos=4)
     
-    text(x = x.start,   y = y.pos[9]-3*para.small, labels = "Viele helophytische Wuchsformen", cex = cex.text, pos=4)
+    text(x = x.start,   y = y.pos[9]-3*para.small, labels = ecoval.translate("N_macrophytes_manygrowthformshelophytes",dict), cex = cex.text, pos=4)
     value.plot <- get.value(data.val,row.no,ecoval.translate("N_macrophytes_manygrowthformshelophytes",dict)) # Mac
     val.col  <- calc.class(value.plot, classes = c(1,1,2,2,3,3,4,4,5,5))
     rect(x.pos*1.6,y.pos[9]-3*para.small-0.17,x.pos*1.6+0.6,y.pos[9]-3*para.small+0.24, col = msk.colors[val.col+1], border = NA)
     text(x = x.pos*1.6, y = y.pos[9]-3*para.small, labels = ifelse(is.na(value.plot), "", round(value.plot,2)), cex = cex.text, pos=4)
     
     # Community composition
-    text(x = x.pos*2.3, y = y.pos[2]-para.small, labels = "Typgerechte Zusammensetzung", cex = cex.text, font = 2, pos=4)
+    text(x = x.pos*2.3, y = y.pos[2]-para.small, labels = ecoval.translate("N_macrophytes_typicalcomposition",dict), cex = cex.text, font = 2, pos=4)
     node.header <- ifelse(!moss,ecoval.translate("N_macrophytes_typicalcomposition",dict),
                           paste(ecoval.translate("N_macrophytes_typicalcomposition",dict),
                                 ecoval.translate("N_macrophytes_bryophytesriver",dict)))
@@ -1532,7 +1701,7 @@ msk.macrophytes.2017.doc.valuation <- function(res,row.no) {
     text(x = x.start+x.pos*4.0, y = y.pos[2]-para.small, labels = ifelse(is.na(value.plot), "", round(value.plot,2)), cex = cex.text, pos=4)
     
     # Algae and Neophytes
-    text(x = x.start+x.pos*2.3, y = y.pos[3]-2*para.small, labels = "Geringer Anteil Algen", cex = cex.text, pos=4)
+    text(x = x.start+x.pos*2.3, y = y.pos[3]-2*para.small, labels = ecoval.translate("N_macrophytes_fractalgae",dict), cex = cex.text, pos=4)
     node.header <- ifelse(!moss,ecoval.translate("N_macrophytes_fractalgae",dict),
                           paste(ecoval.translate("N_macrophytes_fractalgae",dict),
                                 ecoval.translate("N_macrophytes_bryophytesriver",dict)))
@@ -1541,7 +1710,7 @@ msk.macrophytes.2017.doc.valuation <- function(res,row.no) {
     rect(x.start+x.pos*4.0,y.pos[3]-2*para.small-0.17,x.start+x.pos*4.0+0.6,y.pos[3]-2*para.small+0.24, col = msk.colors[val.col+1], border = NA)
     text(x = x.start+x.pos*4.0, y = y.pos[3]-2*para.small, labels = ifelse(is.na(value.plot), "", round(value.plot,2)), cex = cex.text, pos=4)
     
-    text(x = x.start+x.pos*2.3, y = y.pos[4]-2*para.small, labels = "Keine Neophyten", cex = cex.text, pos=4)
+    text(x = x.start+x.pos*2.3, y = y.pos[4]-2*para.small, labels = ecoval.translate("N_macrophytes_neophytes",dict), cex = cex.text, pos=4)
     node.header <- ifelse(!moss,ecoval.translate("N_macrophytes_neophytes",dict),
                           paste(ecoval.translate("N_macrophytes_neophytes",dict),
                                 ecoval.translate("N_macrophytes_bryophytesriver",dict)))
@@ -1551,19 +1720,19 @@ msk.macrophytes.2017.doc.valuation <- function(res,row.no) {
     text(x = x.start+x.pos*4.0, y = y.pos[4]-2*para.small, labels = ifelse(is.na(value.plot), "", round(value.plot,2)), cex = cex.text, pos=4)
     
     # Macrophytes
-    text(x = x.start+x.pos*2.3, y = y.pos[5]-3*para.small, labels = "Typger. Anteil aquat. Makrophyten", cex = cex.text, pos=4)
+    text(x = x.start+x.pos*2.3, y = y.pos[5]-3*para.small, labels = ecoval.translate("N_macrophytes_fractaquatic",dict), cex = cex.text, pos=4)
     value.plot <- get.value(data.val,row.no,ecoval.translate("N_macrophytes_fractaquatic",dict)) # Mac
     val.col  <- calc.class(value.plot, classes = c(1,1,2,2,3,3,4,4,5,5))
     rect(x.start+x.pos*4.0,y.pos[5]-3*para.small-0.17,x.start+x.pos*4.0+0.6,y.pos[5]-3*para.small+0.24, col = msk.colors[val.col+1], border = NA)
     text(x = x.start+x.pos*4.0, y = y.pos[5]-3*para.small, labels = ifelse(is.na(value.plot), "", round(value.plot,2)), cex = cex.text, pos=4)
     
-    text(x = x.start+x.pos*2.3, y = y.pos[6]-3*para.small, labels = "Typger. Anteil Helophyten", cex = cex.text, pos=4)
+    text(x = x.start+x.pos*2.3, y = y.pos[6]-3*para.small, labels = ecoval.translate("N_macrophytes_fracthelophytes",dict), cex = cex.text, pos=4)
     value.plot <- get.value(data.val,row.no,ecoval.translate("N_macrophytes_fracthelophytes",dict)) # Mac
     val.col  <- calc.class(value.plot, classes = c(1,1,2,2,3,3,4,4,5,5))
     rect(x.start+x.pos*4.0,y.pos[6]-3*para.small-0.17,x.start+x.pos*4.0+0.6,y.pos[6]-3*para.small+0.24, col = msk.colors[val.col+1], border = NA)
     text(x = x.start+x.pos*4.0, y = y.pos[6]-3*para.small, labels = ifelse(is.na(value.plot), "", round(value.plot,2)), cex = cex.text, pos=4)
     
-    text(x = x.start+x.pos*2.3, y = y.pos[7]-3*para.small, labels = "Typger. Anteil Moose adj.", cex = cex.text, pos=4)
+    text(x = x.start+x.pos*2.3, y = y.pos[7]-3*para.small, labels = ecoval.translate("N_macrophytes_fractbryophytesadj",dict), cex = cex.text, pos=4)
     node.header <- ifelse(!moss,ecoval.translate("N_macrophytes_fractbryophytesadj",dict),
                           paste(ecoval.translate("N_macrophytes_fractbryophytesadj",dict),
                                 ecoval.translate("N_macrophytes_bryophytesriver",dict)))
@@ -1573,7 +1742,7 @@ msk.macrophytes.2017.doc.valuation <- function(res,row.no) {
     text(x = x.start+x.pos*4.0, y = y.pos[7]-3*para.small, labels = ifelse(is.na(value.plot), "", round(value.plot,2)), cex = cex.text, pos=4)
     
     # Dominance structure
-    text(x = x.start+x.pos*2.3, y = y.pos[8]-4*para.small, labels = "Typger. Dominanz", cex = cex.text, pos=4)
+    text(x = x.start+x.pos*2.3, y = y.pos[8]-4*para.small, labels = ecoval.translate("N_macrophytes_dominance",dict), cex = cex.text, pos=4)
     value.plot <- get.value(data.val,row.no,ecoval.translate("N_macrophytes_dominance",dict))
     val.col  <- calc.class(value.plot, classes = c(1,1,2,2,3,3,4,4,5,5))
     rect(x.start+x.pos*4.0,y.pos[8]-4*para.small-0.17,x.start+x.pos*4.0+0.6,y.pos[8]-4*para.small+0.24, col = msk.colors[val.col+1], border = NA)
@@ -1581,19 +1750,19 @@ msk.macrophytes.2017.doc.valuation <- function(res,row.no) {
     
     
     # Biomass / Absolute cover
-    text(x = 0,         y = y.pos[10]-5*para.small, labels = "Typgerechte Deckung", font = 2, cex = cex.text, pos=4)
+    text(x = 0,         y = y.pos[10]-5*para.small, labels = ecoval.translate("N_macrophytes_typicalcover",dict), font = 2, cex = cex.text, pos=4)
     value.plot <- get.value(data.val,row.no,ecoval.translate("N_macrophytes_typicalcover",dict))
     val.col  <- calc.class(value.plot, classes = c(1,1,2,2,3,3,4,4,5,5))
     rect(x.pos*1.6,y.pos[10]-5*para.small-0.17,x.pos*1.6+0.6,y.pos[10]-5*para.small+0.24, col = msk.colors[val.col+1], border = NA)
     text(x = x.pos*1.6, y = y.pos[10]-5*para.small, labels = ifelse(is.na(value.plot), "", round(value.plot,2)), cex = cex.text, pos=4)
     
-    text(x = x.start,   y = y.pos[11]-6*para.small, labels = "Typger. Deckung Makrophyten", cex = cex.text, pos=4)
+    text(x = x.start,   y = y.pos[11]-6*para.small, labels = ecoval.translate("N_macrophytes_cover",dict), cex = cex.text, pos=4)
     value.plot <- get.value(data.val,row.no,ecoval.translate("N_macrophytes_cover",dict))
     val.col  <- calc.class(value.plot, classes = c(1,1,2,2,3,3,4,4,5,5))
     rect(x.pos*1.6,y.pos[11]-6*para.small-0.17,x.pos*1.6+0.6,y.pos[11]-6*para.small+0.24, col = msk.colors[val.col+1], border = NA)
     text(x = x.pos*1.6, y = y.pos[11]-6*para.small, labels = ifelse(is.na(value.plot), "", round(value.plot,2)), cex = cex.text, pos=4)
     
-    text(x = x.start,   y = y.pos[12]-6*para.small, labels = "Geringe Deckung Algen", cex = cex.text, pos=4)
+    text(x = x.start,   y = y.pos[12]-6*para.small, labels = ecoval.translate("N_macrophytes_coveralgae",dict), cex = cex.text, pos=4)
     node.header <- ifelse(!moss,ecoval.translate("N_macrophytes_coveralgae",dict),
                           paste(ecoval.translate("N_macrophytes_coveralgae",dict),
                                 ecoval.translate("N_macrophytes_bryophytesriver",dict)))
@@ -1603,7 +1772,7 @@ msk.macrophytes.2017.doc.valuation <- function(res,row.no) {
     text(x = x.pos*1.6, y = y.pos[12]-6*para.small, labels = ifelse(is.na(value.plot), "", round(value.plot,2)), cex = cex.text, pos=4)
     
     # Species quality
-    text(x = x.pos*2.3,         y = y.pos[10]-5*para.small, labels = "Hohe Qualitaet Arten", font = 2, cex = cex.text, pos=4)
+    text(x = x.pos*2.3,         y = y.pos[10]-5*para.small, labels = ecoval.translate("N_macrophytes_highqualitytaxa",dict), font = 2, cex = cex.text, pos=4)
     node.header <- ifelse(!moss,ecoval.translate("N_macrophytes_highqualitytaxa",dict),
                           paste(ecoval.translate("N_macrophytes_highqualitytaxa",dict),
                                 ecoval.translate("N_macrophytes_bryophytesriver",dict)))
@@ -1612,7 +1781,7 @@ msk.macrophytes.2017.doc.valuation <- function(res,row.no) {
     rect(x.start+x.pos*4.0,y.pos[10]-5*para.small-0.17,x.start+x.pos*4.0+0.6,y.pos[10]-5*para.small+0.24, col = msk.colors[val.col+1], border = NA)
     text(x = x.start+x.pos*4.0, y = y.pos[10]-5*para.small, labels = ifelse(is.na(value.plot), "", round(value.plot,2)), cex = cex.text, pos=4)
     
-    text(x = x.start+x.pos*2.3, y = y.pos[11]-6*para.small, labels = "Hoher Wert Leitarten Makrophyten", cex = cex.text, pos=4)
+    text(x = x.start+x.pos*2.3, y = y.pos[11]-6*para.small, labels = ecoval.translate("N_macrophytes_indexspeciesmac",dict), cex = cex.text, pos=4)
     node.header <- ifelse(!moss,ecoval.translate("N_macrophytes_indexspeciesmac",dict),
                           paste(ecoval.translate("N_macrophytes_indexspeciesmac",dict),
                                 ecoval.translate("N_macrophytes_bryophytesriver",dict)))
@@ -1621,7 +1790,7 @@ msk.macrophytes.2017.doc.valuation <- function(res,row.no) {
     rect(x.start+x.pos*4.0,y.pos[11]-6*para.small-0.17,x.start+x.pos*4.0+0.6,y.pos[11]-6*para.small+0.24, col = msk.colors[val.col+1], border = NA)
     text(x = x.start+x.pos*4.0, y = y.pos[11]-6*para.small, labels = ifelse(is.na(value.plot), "", round(value.plot,2)), cex = cex.text, pos=4)
     
-    text(x = x.start+x.pos*2.3, y = y.pos[12]-6*para.small, labels = "Hoher Wert Leitarten Moose", cex = cex.text, pos=4)
+    text(x = x.start+x.pos*2.3, y = y.pos[12]-6*para.small, labels = ecoval.translate("N_macrophytes_indexspeciesbry",dict), cex = cex.text, pos=4)
     node.header <- ifelse(!moss,ecoval.translate("N_macrophytes_indexspeciesbry",dict),
                           paste(ecoval.translate("N_macrophytes_indexspeciesbry",dict),
                                 ecoval.translate("N_macrophytes_bryophytesriver",dict)))
@@ -1630,7 +1799,7 @@ msk.macrophytes.2017.doc.valuation <- function(res,row.no) {
     rect(x.start+x.pos*4.0,y.pos[12]-6*para.small-0.17,x.start+x.pos*4.0+0.6,y.pos[12]-6*para.small+0.24, col = msk.colors[val.col+1], border = NA)
     text(x = x.start+x.pos*4.0, y = y.pos[12]-6*para.small, labels = ifelse(is.na(value.plot), "", round(value.plot,2)), cex = cex.text, pos=4)
     
-    text(x = x.start+x.pos*2.3, y = y.pos[13]-7*para.small, labels = "Hohe Prioritaet Arten", cex = cex.text, pos=4)
+    text(x = x.start+x.pos*2.3, y = y.pos[13]-7*para.small, labels = ecoval.translate("N_macrophytes_priorityspecies",dict), cex = cex.text, pos=4)
     node.header <- ifelse(!moss,ecoval.translate("N_macrophytes_priorityspecies",dict),
                           paste(ecoval.translate("N_macrophytes_priorityspecies",dict),
                                 ecoval.translate("N_macrophytes_bryophytesriver",dict)))
@@ -1642,13 +1811,13 @@ msk.macrophytes.2017.doc.valuation <- function(res,row.no) {
     ## WINDOW 4 - Header for Value function plot
     par(mai = c(0,0,0,0))
     plot(0, 0, axes = axis.info, type="n", xaxs="i", yaxs="i", xlim=c(0,5), ylim=c(0,10))
-    text(x = 0, y = 3, labels = "Zielhierachie der Bewertung", col = "dodgerblue",
+    text(x = 0, y = 3, labels = ecoval.translate("R_macrophytes_doc_valuationhierarchy",dict), col = "dodgerblue",
          cex = cex.title, pos=4, font=2)
     
     
     # WINDOW 5 - Valuation plotted as value hierachy
-    if( !final.id ) main.text <- paste("Flusstyp: ", ifelse(is.na(river.type),"",river.type), " (Orig.)", sep = "")
-    if(  final.id ) main.text <- paste("Flusstyp: ", ifelse(is.na(river.type),"",river.type), " (Final.)", sep = "")
+    if( !final.id ) main.text <- paste(ecoval.translate("R_macrophytes_doc_rivertype",dict),": ", ifelse(is.na(river.type),"",river.type), " (",ecoval.translate("R_macrophytes_doc_typeorig",dict),")", sep = "")
+    if(  final.id ) main.text <- paste(ecoval.translate("R_macrophytes_doc_rivertype",dict),": ", ifelse(is.na(river.type),"",river.type), " (",ecoval.translate("R_macrophytes_doc_typefinal",dict),")", sep = "")
     
     msk.macrophytes.2017.plot.hierarchy(res, row.no, final = final.id,
                                         cex.main = 1.25, cex.nodes = 0.8,

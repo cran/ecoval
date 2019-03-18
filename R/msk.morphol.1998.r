@@ -505,26 +505,82 @@ msk.morphol.1998.create <- function(language     = "English",
                         ecoval.translate("L_morphol_riparzone_veg_class_seminatural",dict),
                         ecoval.translate("L_morphol_riparzone_veg_class_artificial",dict)))
   colnames(comb) <- ecoval.translate("A_morphol_riparzone_veg_left_class",dict)
-  riparzone_left_veg <-
+  riparzone_left_veg3 <-
     utility.endnode.discrete.create(
-      name.node     = ecoval.translate("N_morphol_riparzone_left_veg",dict),
+      name.node     = ecoval.translate("N_morphol_riparzone_left_veg3",dict),
       attrib.levels = comb,
       u             = c(pnt2val(0),pnt2val(1.5),pnt2val(3)),
       required      = FALSE,
       utility       = FALSE,
       col           = col)
   
+  comb <-  data.frame(c(ecoval.translate("L_morphol_riparzone_vegmat_class_gravel",dict),
+                        ecoval.translate("L_morphol_riparzone_vegmat_class_reeds",dict),
+                        ecoval.translate("L_morphol_riparzone_vegmat_class_forest",dict),
+                        ecoval.translate("L_morphol_riparzone_vegmat_class_treesshrub",dict),
+                        ecoval.translate("L_morphol_riparzone_vegmat_class_perennials",dict),
+                        ecoval.translate("L_morphol_riparzone_vegmat_class_meadow",dict),
+                        ecoval.translate("L_morphol_riparzone_vegmat_class_alley",dict),
+                        ecoval.translate("L_morphol_riparzone_vegmat_class_artificial",dict)))
+  colnames(comb) <- ecoval.translate("A_morphol_riparzone_vegmat_left_class",dict)
+  riparzone_left_veg8 <-
+    utility.endnode.discrete.create(
+      name.node     = ecoval.translate("N_morphol_riparzone_left_veg8",dict),
+      attrib.levels = comb,
+      u             = c(pnt2val(0),pnt2val(0),pnt2val(0),pnt2val(0),
+                        pnt2val(1.5),pnt2val(1.5),pnt2val(1.5),
+                        pnt2val(3)),
+      required      = FALSE,
+      utility       = FALSE,
+      col           = col)
+  
+  riparzone_left_veg <-
+    utility.endnode.firstavail.create(
+      name.node     = ecoval.translate("N_morphol_riparzone_left_veg",dict),
+      nodes         = list(riparzone_left_veg8,riparzone_left_veg3),
+      required      = FALSE,
+      utility       = FALSE,
+      col           = col)
+
   # Uferbereichsvegetation right:
   
   comb <-  data.frame(c(ecoval.translate("L_morphol_riparzone_veg_class_natural",dict),
                         ecoval.translate("L_morphol_riparzone_veg_class_seminatural",dict),
                         ecoval.translate("L_morphol_riparzone_veg_class_artificial",dict)))
   colnames(comb) <- ecoval.translate("A_morphol_riparzone_veg_right_class",dict)
-  riparzone_right_veg <-
+  riparzone_right_veg3 <-
     utility.endnode.discrete.create(
-      name.node     = ecoval.translate("N_morphol_riparzone_right_veg",dict),
+      name.node     = ecoval.translate("N_morphol_riparzone_right_veg3",dict),
       attrib.levels = comb,
       u             = c(pnt2val(0),pnt2val(1.5),pnt2val(3)),
+      required      = FALSE,
+      utility       = FALSE,
+      col           = col)
+  
+  comb <-  data.frame(c(ecoval.translate("L_morphol_riparzone_vegmat_class_gravel",dict),
+                        ecoval.translate("L_morphol_riparzone_vegmat_class_reeds",dict),
+                        ecoval.translate("L_morphol_riparzone_vegmat_class_forest",dict),
+                        ecoval.translate("L_morphol_riparzone_vegmat_class_treesshrub",dict),
+                        ecoval.translate("L_morphol_riparzone_vegmat_class_perennials",dict),
+                        ecoval.translate("L_morphol_riparzone_vegmat_class_meadow",dict),
+                        ecoval.translate("L_morphol_riparzone_vegmat_class_alley",dict),
+                        ecoval.translate("L_morphol_riparzone_vegmat_class_artificial",dict)))
+  colnames(comb) <- ecoval.translate("A_morphol_riparzone_vegmat_right_class",dict)
+  riparzone_right_veg8 <-
+    utility.endnode.discrete.create(
+      name.node     = ecoval.translate("N_morphol_riparzone_right_veg8",dict),
+      attrib.levels = comb,
+      u             = c(pnt2val(0),pnt2val(0),pnt2val(0),pnt2val(0),
+                        pnt2val(1.5),pnt2val(1.5),pnt2val(1.5),
+                        pnt2val(3)),
+      required      = FALSE,
+      utility       = FALSE,
+      col           = col)
+  
+  riparzone_right_veg <-
+    utility.endnode.firstavail.create(
+      name.node     = ecoval.translate("N_morphol_riparzone_right_veg",dict),
+      nodes         = list(riparzone_right_veg8,riparzone_right_veg3),
       required      = FALSE,
       utility       = FALSE,
       col           = col)

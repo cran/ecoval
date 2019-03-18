@@ -40,16 +40,18 @@ msk.macrophytes.2017.compile.sitedat <- function(data.site,
   site.quality <- matrix(NA, nrow = 0, ncol = 5)
   colnames(site.quality) <- c(ecoval.translate("A_macrophytes_site_siteid",dict),
                               ecoval.translate("A_macrophytes_site_samplingdate",dict),
-                              "Parameter", "Meldung", "Typ_Meldung")
+                              ecoval.translate("R_macrophytes_error_parameter",dict),
+                              ecoval.translate("R_macrophytes_error_message",dict),
+                              ecoval.translate("R_macrophytes_error_type",dict))
   
   # check if all required columns are contained in data.site
   req.colnames <- c(ecoval.translate("A_macrophytes_site_siteid",dict),
                     ecoval.translate("A_macrophytes_site_samplingdate",dict),
-                    ecoval.translate("A_macrophytes_site_canton",dict),
+                    #ecoval.translate("A_macrophytes_site_canton",dict),
                     ecoval.translate("A_macrophytes_site_discharge_lpers",dict),
-                    ecoval.translate("A_macrophytes_site_discharge_source",dict),
+                    #ecoval.translate("A_macrophytes_site_discharge_source",dict),
                     ecoval.translate("A_macrophytes_site_slope_percent",dict),
-                    ecoval.translate("A_macrophytes_site_slope_source",dict),
+                    #ecoval.translate("A_macrophytes_site_slope_source",dict),
                     ecoval.translate("A_macrophytes_site_waterdepth_m",dict),
                     ecoval.translate("A_macrophytes_site_shading_percent",dict),
                     ecoval.translate("A_macrophytes_site_substrate_above40_percent", dict),
@@ -66,14 +68,14 @@ msk.macrophytes.2017.compile.sitedat <- function(data.site,
   if ( anyNA(ind.req) )
     {
     site.quality <- rbind(site.quality,
-                          c("Standortparameter, Datensatz","","Datenspalten",
-                            paste("Standortparameter muessen folgende Spalten enthalten:",
+                          c("","","",
+                            paste(paste(ecoval.translate("R_macrophytes_error_sitescolmissing", dict),":",sep=""),
                                   paste(req.colnames[is.na(ind.req)],collapse=", ")),
-                            "Fehler"))
+                            ecoval.translate("R_macrophytes_error_error", dict)))
     
     # ERGAENZT: Complement "site.quality" data.frame with data-set information
-    site.quality <- cbind(site.quality, rep("Standortdaten", nrow(site.quality)))
-    colnames(site.quality)[ncol(site.quality)] <- "Datensatz"
+    site.quality <- cbind(site.quality, rep(ecoval.translate("R_macrophytes_error_sitedate", dict), nrow(site.quality)))
+    colnames(site.quality)[ncol(site.quality)] <- ecoval.translate("R_macrophytes_error_dataset", dict)
     
     # Return results
     return(list(data.site = NA,
@@ -97,29 +99,29 @@ msk.macrophytes.2017.compile.sitedat <- function(data.site,
                                           ecoval.translate("A_macrophytes_site_samplingdate",dict)],
                                 rep(ecoval.translate("A_macrophytes_site_siteid",dict),
                                     sum(is.na(data.site[,ecoval.translate("A_macrophytes_site_siteid",dict)]))),
-                                rep("Eintrag ergaenzen",
+                                rep(ecoval.translate("R_macrophytes_error_incompleterecord",dict),
                                     sum(is.na(data.site[,ecoval.translate("A_macrophytes_site_siteid",dict)]))),
-                                rep("Fehler",
+                                rep(ecoval.translate("R_macrophytes_error_error", dict),
                                     sum(is.na(data.site[,ecoval.translate("A_macrophytes_site_siteid",dict)]))))
       colnames(quality.out) <- colnames(site.quality)
       site.quality <- rbind(site.quality, quality.out)
     }
     
     # CANTON
-    if ( sum( is.na(data.site[,ecoval.translate("A_macrophytes_site_canton",dict)]) ) > 0 ) {
-      quality.out <- cbind(data.site[is.na(data.site[,ecoval.translate("A_macrophytes_site_canton",dict)]),
-                                          ecoval.translate("A_macrophytes_site_siteid",dict)],
-                                data.site[is.na(data.site[,ecoval.translate("A_macrophytes_site_canton",dict)]),
-                                          ecoval.translate("A_macrophytes_site_samplingdate",dict)],
-                                rep(ecoval.translate("A_macrophytes_site_canton",dict),
-                                    sum(is.na(data.site[,ecoval.translate("A_macrophytes_site_canton",dict)]))),
-                                rep("Eintrag ergaenzen",
-                                    sum(is.na(data.site[,ecoval.translate("A_macrophytes_site_canton",dict)]))),
-                                rep("Warnung",
-                                    sum(is.na(data.site[,ecoval.translate("A_macrophytes_site_canton",dict)]))))
-      colnames(quality.out) <- colnames(site.quality)
-      site.quality <- rbind(site.quality, quality.out)
-    }
+    # if ( sum( is.na(data.site[,ecoval.translate("A_macrophytes_site_canton",dict)]) ) > 0 ) {
+    #   quality.out <- cbind(data.site[is.na(data.site[,ecoval.translate("A_macrophytes_site_canton",dict)]),
+    #                                       ecoval.translate("A_macrophytes_site_siteid",dict)],
+    #                             data.site[is.na(data.site[,ecoval.translate("A_macrophytes_site_canton",dict)]),
+    #                                       ecoval.translate("A_macrophytes_site_samplingdate",dict)],
+    #                             rep(ecoval.translate("A_macrophytes_site_canton",dict),
+    #                                 sum(is.na(data.site[,ecoval.translate("A_macrophytes_site_canton",dict)]))),
+    #                             rep(ecoval.translate("R_macrophytes_error_incompleterecord",dict),
+    #                                 sum(is.na(data.site[,ecoval.translate("A_macrophytes_site_canton",dict)]))),
+    #                             rep(ecoval.translate("R_macrophytes_error_warning",dict),
+    #                                 sum(is.na(data.site[,ecoval.translate("A_macrophytes_site_canton",dict)]))))
+    #   colnames(quality.out) <- colnames(site.quality)
+    #   site.quality <- rbind(site.quality, quality.out)
+    # }
     
     # DATE
     if ( sum( is.na(data.site[,ecoval.translate("A_macrophytes_site_samplingdate",dict)]) ) > 0 ) {
@@ -129,9 +131,9 @@ msk.macrophytes.2017.compile.sitedat <- function(data.site,
                                           ecoval.translate("A_macrophytes_site_samplingdate",dict)],
                                 rep(ecoval.translate("A_macrophytes_site_samplingdate",dict),
                                     sum(is.na(data.site[,ecoval.translate("A_macrophytes_site_samplingdate",dict)]))),
-                                rep("Eintrag ergaenzen",
+                                rep(ecoval.translate("R_macrophytes_error_incompleterecord",dict),
                                     sum(is.na(data.site[,ecoval.translate("A_macrophytes_site_samplingdate",dict)]))),
-                                rep("Fehler",
+                                rep(ecoval.translate("R_macrophytes_error_error", dict),
                                     sum(is.na(data.site[,ecoval.translate("A_macrophytes_site_samplingdate",dict)]))))
       colnames(quality.out) <- colnames(site.quality)
       site.quality <- rbind(site.quality, quality.out)
@@ -149,28 +151,28 @@ msk.macrophytes.2017.compile.sitedat <- function(data.site,
                                           ecoval.translate("A_macrophytes_site_samplingdate",dict)],
                                 rep(ecoval.translate("A_macrophytes_site_discharge_lpers",dict),
                                     sum(is.na(data.site[,ecoval.translate("A_macrophytes_site_discharge_lpers",dict)]))),
-                                rep("Wert ergaenzen",
+                                rep(ecoval.translate("R_macrophytes_error_completevalue",dict),
                                     sum(is.na(data.site[,ecoval.translate("A_macrophytes_site_discharge_lpers",dict)]))),
-                                rep("Fehler",
+                                rep(ecoval.translate("R_macrophytes_error_error", dict),
                                     sum(is.na(data.site[,ecoval.translate("A_macrophytes_site_discharge_lpers",dict)]))))
       colnames(quality.out) <- colnames(site.quality)
       site.quality <- rbind(site.quality, quality.out)
     }
     
-    if( sum( is.na(data.site[,ecoval.translate("A_macrophytes_site_discharge_source",dict)]) ) > 0 ) {
-      quality.out <- cbind(data.site[is.na(data.site[,ecoval.translate("A_macrophytes_site_discharge_source",dict)]),
-                                          ecoval.translate("A_macrophytes_site_siteid",dict)],
-                                data.site[is.na(data.site[,ecoval.translate("A_macrophytes_site_discharge_source",dict)]),
-                                          ecoval.translate("A_macrophytes_site_samplingdate",dict)],
-                                rep(ecoval.translate("A_macrophytes_site_discharge_source",dict),
-                                    sum(is.na(data.site[,ecoval.translate("A_macrophytes_site_discharge_source",dict)]))),
-                                rep("Quelle Wert ergaenzen",
-                                    sum(is.na(data.site[,ecoval.translate("A_macrophytes_site_discharge_source",dict)]))),
-                                rep("Warnung",
-                                    sum(is.na(data.site[,ecoval.translate("A_macrophytes_site_discharge_source",dict)]))))
-      colnames(quality.out) <- colnames(site.quality)
-      site.quality <- rbind(site.quality, quality.out)
-    }
+    # if( sum( is.na(data.site[,ecoval.translate("A_macrophytes_site_discharge_source",dict)]) ) > 0 ) {
+    #   quality.out <- cbind(data.site[is.na(data.site[,ecoval.translate("A_macrophytes_site_discharge_source",dict)]),
+    #                                       ecoval.translate("A_macrophytes_site_siteid",dict)],
+    #                             data.site[is.na(data.site[,ecoval.translate("A_macrophytes_site_discharge_source",dict)]),
+    #                                       ecoval.translate("A_macrophytes_site_samplingdate",dict)],
+    #                             rep(ecoval.translate("A_macrophytes_site_discharge_source",dict),
+    #                                 sum(is.na(data.site[,ecoval.translate("A_macrophytes_site_discharge_source",dict)]))),
+    #                             rep(ecoval.translate("R_macrophytes_error_completesourceofvalue",dict),
+    #                                 sum(is.na(data.site[,ecoval.translate("A_macrophytes_site_discharge_source",dict)]))),
+    #                             rep(ecoval.translate("R_macrophytes_error_warning",dict),
+    #                                 sum(is.na(data.site[,ecoval.translate("A_macrophytes_site_discharge_source",dict)]))))
+    #   colnames(quality.out) <- colnames(site.quality)
+    #   site.quality <- rbind(site.quality, quality.out)
+    # }
     
     # SLOPE
     if( sum( is.na(data.site[,ecoval.translate("A_macrophytes_site_slope_percent",dict)]) ) > 0 ) {
@@ -180,39 +182,39 @@ msk.macrophytes.2017.compile.sitedat <- function(data.site,
                                           ecoval.translate("A_macrophytes_site_samplingdate",dict)],
                                 rep(ecoval.translate("A_macrophytes_site_slope_percent",dict),
                                     sum(is.na(data.site[,ecoval.translate("A_macrophytes_site_slope_percent",dict)]))),
-                                rep("Wert ergaenzen",
+                                rep(ecoval.translate("R_macrophytes_error_completevalue",dict),
                                     sum(is.na(data.site[,ecoval.translate("A_macrophytes_site_slope_percent",dict)]))),
-                                rep("Fehler",
+                                rep(ecoval.translate("R_macrophytes_error_error", dict),
                                     sum(is.na(data.site[,ecoval.translate("A_macrophytes_site_slope_percent",dict)]))))
       colnames(quality.out) <- colnames(site.quality)
       site.quality <- rbind(site.quality, quality.out)
     }
     
-    if( sum( is.na(data.site[,ecoval.translate("A_macrophytes_site_slope_source",dict)]) ) > 0 ) {
-      quality.out <- cbind(data.site[is.na(data.site[,ecoval.translate("A_macrophytes_site_slope_source",dict)]),
-                                          ecoval.translate("A_macrophytes_site_siteid",dict)],
-                                data.site[is.na(data.site[,ecoval.translate("A_macrophytes_site_slope_source",dict)]),
-                                          ecoval.translate("A_macrophytes_site_samplingdate",dict)],
-                                rep(ecoval.translate("A_macrophytes_site_slope_source",dict),
-                                    sum(is.na(data.site[,ecoval.translate("A_macrophytes_site_slope_source",dict)]))),
-                                rep("Quelle Wert ergaenzen",
-                                    sum(is.na(data.site[,ecoval.translate("A_macrophytes_site_slope_source",dict)]))),
-                                rep("Warnung",
-                                    sum(is.na(data.site[,ecoval.translate("A_macrophytes_site_slope_source",dict)]))))
-      colnames(quality.out) <- colnames(site.quality)
-      site.quality <- rbind(site.quality, quality.out)
-    }
+    # if( sum( is.na(data.site[,ecoval.translate("A_macrophytes_site_slope_source",dict)]) ) > 0 ) {
+    #   quality.out <- cbind(data.site[is.na(data.site[,ecoval.translate("A_macrophytes_site_slope_source",dict)]),
+    #                                       ecoval.translate("A_macrophytes_site_siteid",dict)],
+    #                             data.site[is.na(data.site[,ecoval.translate("A_macrophytes_site_slope_source",dict)]),
+    #                                       ecoval.translate("A_macrophytes_site_samplingdate",dict)],
+    #                             rep(ecoval.translate("A_macrophytes_site_slope_source",dict),
+    #                                 sum(is.na(data.site[,ecoval.translate("A_macrophytes_site_slope_source",dict)]))),
+    #                             rep(ecoval.translate("R_macrophytes_error_completesourceofvalue",dict),
+    #                                 sum(is.na(data.site[,ecoval.translate("A_macrophytes_site_slope_source",dict)]))),
+    #                             rep(ecoval.translate("R_macrophytes_error_warning",dict),
+    #                                 sum(is.na(data.site[,ecoval.translate("A_macrophytes_site_slope_source",dict)]))))
+    #   colnames(quality.out) <- colnames(site.quality)
+    #   site.quality <- rbind(site.quality, quality.out)
+    # }
     
-    if( sum( data.site[,ecoval.translate("A_macrophytes_site_slope_percent",dict)] < 0 ) > 0 ) {
+    if( sum( data.site[,ecoval.translate("A_macrophytes_site_slope_percent",dict)] < 0 , na.rm=T) > 0 ) {
       quality.out <- cbind(data.site[data.site[,ecoval.translate("A_macrophytes_site_slope_percent",dict)] < 0,
                                           ecoval.translate("A_macrophytes_site_siteid",dict)],
                                 data.site[data.site[,ecoval.translate("A_macrophytes_site_slope_percent",dict)] < 0,
                                           ecoval.translate("A_macrophytes_site_samplingdate",dict)],
                                 rep(ecoval.translate("A_macrophytes_site_slope_percent",dict),
                                     sum(data.site[,ecoval.translate("A_macrophytes_site_slope_percent",dict)] < 0)),
-                                rep("Wert < 0% korrigieren",
+                                rep(ecoval.translate("R_macrophytes_error_valuelt0percent", dict),
                                     sum(data.site[,ecoval.translate("A_macrophytes_site_slope_percent",dict)] < 0)),
-                                rep("Fehler",
+                                rep(ecoval.translate("R_macrophytes_error_error", dict),
                                     sum(data.site[,ecoval.translate("A_macrophytes_site_slope_percent",dict)] < 0)))
       colnames(quality.out) <- colnames(site.quality)
       site.quality <- rbind(site.quality, quality.out)
@@ -226,39 +228,39 @@ msk.macrophytes.2017.compile.sitedat <- function(data.site,
                                           ecoval.translate("A_macrophytes_site_samplingdate",dict)],
                                 rep(ecoval.translate("A_macrophytes_site_waterdepth_m",dict),
                                     sum(is.na(data.site[,ecoval.translate("A_macrophytes_site_waterdepth_m",dict)]))),
-                                rep("Wert ergaenzen",
+                                rep(ecoval.translate("R_macrophytes_error_completevalue", dict),
                                     sum(is.na(data.site[,ecoval.translate("A_macrophytes_site_waterdepth_m",dict)]))),
-                                rep("Fehler",
+                                rep(ecoval.translate("R_macrophytes_error_error", dict),
                                     sum(is.na(data.site[,ecoval.translate("A_macrophytes_site_waterdepth_m",dict)]))))
       colnames(quality.out) <- colnames(site.quality)
       site.quality <- rbind(site.quality, quality.out)
     }
     
-    if( sum( data.site[,ecoval.translate("A_macrophytes_site_waterdepth_m",dict)] < 0 ) > 0 ) {
+    if( sum( data.site[,ecoval.translate("A_macrophytes_site_waterdepth_m",dict)] < 0 , na.rm=T) > 0 ) {
       quality.out <- cbind(data.site[data.site[,ecoval.translate("A_macrophytes_site_waterdepth_m",dict)] < 0,
                                           ecoval.translate("A_macrophytes_site_siteid",dict)],
                                 data.site[data.site[,ecoval.translate("A_macrophytes_site_waterdepth_m",dict)] < 0,
                                           ecoval.translate("A_macrophytes_site_samplingdate",dict)],
                                 rep(ecoval.translate("A_macrophytes_site_waterdepth_m",dict),
                                     sum(data.site[,ecoval.translate("A_macrophytes_site_waterdepth_m",dict)] < 0)),
-                                rep("Wert < 0m korrigieren",
+                                rep(ecoval.translate("R_macrophytes_error_valuelt0m", dict),
                                     sum(data.site[,ecoval.translate("A_macrophytes_site_waterdepth_m",dict)] < 0)),
-                                rep("Fehler",
+                                rep(ecoval.translate("R_macrophytes_error_error", dict),
                                     sum(data.site[,ecoval.translate("A_macrophytes_site_waterdepth_m",dict)] < 0)))
       colnames(quality.out) <- colnames(site.quality)
       site.quality <- rbind(site.quality, quality.out)
     }
     
-    if( sum( data.site[,ecoval.translate("A_macrophytes_site_waterdepth_m",dict)] > 2 ) > 0 ) {
+    if( sum( data.site[,ecoval.translate("A_macrophytes_site_waterdepth_m",dict)] > 2 , na.rm=T) > 0 ) {
       quality.out <- cbind(data.site[data.site[,ecoval.translate("A_macrophytes_site_waterdepth_m",dict)] > 2,
                                           ecoval.translate("A_macrophytes_site_siteid",dict)],
                                 data.site[data.site[,ecoval.translate("A_macrophytes_site_waterdepth_m",dict)] > 2,
                                           ecoval.translate("A_macrophytes_site_samplingdate",dict)],
                                 rep(ecoval.translate("A_macrophytes_site_waterdepth_m",dict),
                                     sum(data.site[,ecoval.translate("A_macrophytes_site_waterdepth_m",dict)] > 2)),
-                                rep("Wert > 2m ueberpruefen",
+                                rep(ecoval.translate("R_macrophytes_error_valuegt2m",dict),
                                     sum(data.site[,ecoval.translate("A_macrophytes_site_waterdepth_m",dict)] > 2)),
-                                rep("Warnung",
+                                rep(ecoval.translate("R_macrophytes_error_warning",dict),
                                     sum(data.site[,ecoval.translate("A_macrophytes_site_waterdepth_m",dict)] > 2)))
       colnames(quality.out) <- colnames(site.quality)
       site.quality <- rbind(site.quality, quality.out)
@@ -272,39 +274,39 @@ msk.macrophytes.2017.compile.sitedat <- function(data.site,
                                           ecoval.translate("A_macrophytes_site_samplingdate",dict)],
                                 rep(ecoval.translate("A_macrophytes_site_shading_percent",dict),
                                     sum(is.na(data.site[,ecoval.translate("A_macrophytes_site_shading_percent",dict)]))),
-                                rep("Wert ergaenzen",
+                                rep(ecoval.translate("R_macrophytes_error_completevalue", dict),
                                     sum(is.na(data.site[,ecoval.translate("A_macrophytes_site_shading_percent",dict)]))),
-                                rep("Fehler",
+                                rep(ecoval.translate("R_macrophytes_error_error", dict),
                                     sum(is.na(data.site[,ecoval.translate("A_macrophytes_site_shading_percent",dict)]))))
       colnames(quality.out) <- colnames(site.quality)
       site.quality <- rbind(site.quality, quality.out)
     }
     
-    if( sum( data.site[,ecoval.translate("A_macrophytes_site_shading_percent",dict)] < 0 ) > 0 ) {
+    if( sum( data.site[,ecoval.translate("A_macrophytes_site_shading_percent",dict)] < 0 , na.rm=T) > 0 ) {
       quality.out <- cbind(data.site[data.site[,ecoval.translate("A_macrophytes_site_shading_percent",dict)] < 0,
                                           ecoval.translate("A_macrophytes_site_siteid",dict)],
                                 data.site[data.site[,ecoval.translate("A_macrophytes_site_shading_percent",dict)] < 0,
                                           ecoval.translate("A_macrophytes_site_samplingdate",dict)],
                                 rep(ecoval.translate("A_macrophytes_site_shading_percent",dict),
                                     sum(data.site[,ecoval.translate("A_macrophytes_site_shading_percent",dict)] < 0)),
-                                rep("Wert < 0% korrigieren",
+                                rep(ecoval.translate("R_macrophytes_error_valuelt0percent", dict),
                                     sum(data.site[,ecoval.translate("A_macrophytes_site_shading_percent",dict)] < 0)),
-                                rep("Fehler",
+                                rep(ecoval.translate("R_macrophytes_error_error", dict),
                                     sum(data.site[,ecoval.translate("A_macrophytes_site_shading_percent",dict)] < 0)))
       colnames(quality.out) <- colnames(site.quality)
       site.quality <- rbind(site.quality, quality.out)
     }
     
-    if( sum( data.site[,ecoval.translate("A_macrophytes_site_shading_percent",dict)] > 100 ) > 0 ) {
+    if( sum( data.site[,ecoval.translate("A_macrophytes_site_shading_percent",dict)] > 100 , na.rm=T) > 0 ) {
       quality.out <- cbind(data.site[data.site[,ecoval.translate("A_macrophytes_site_shading_percent",dict)] > 100,
                                           ecoval.translate("A_macrophytes_site_siteid",dict)],
                                 data.site[data.site[,ecoval.translate("A_macrophytes_site_shading_percent",dict)] > 100,
                                           ecoval.translate("A_macrophytes_site_samplingdate",dict)],
                                 rep(ecoval.translate("A_macrophytes_site_shading_percent",dict),
                                     sum(data.site[,ecoval.translate("A_macrophytes_site_shading_percent",dict)] > 100)),
-                                rep("Wert > 100% korrigieren",
+                                rep(ecoval.translate("R_macrophytes_error_valuegt100percent", dict),
                                     sum(data.site[,ecoval.translate("A_macrophytes_site_shading_percent",dict)] > 100)),
-                                rep("Fehler",
+                                rep(ecoval.translate("R_macrophytes_error_error", dict),
                                     sum(data.site[,ecoval.translate("A_macrophytes_site_shading_percent",dict)] > 100)))
       colnames(quality.out) <- colnames(site.quality)
       site.quality <- rbind(site.quality, quality.out)
@@ -325,26 +327,26 @@ msk.macrophytes.2017.compile.sitedat <- function(data.site,
     # Check substrate size-class data
     sum.substrat <- rowSums(data.site[, colnames(data.site) %in% header.substrat], na.rm = T)
     
-    if( sum(sum.substrat == 0) > 0) {
+    if( sum(sum.substrat == 0, na.rm=T) > 0) {
       quality.out <- cbind(data.site[sum.substrat == 0,
                                           ecoval.translate("A_macrophytes_site_siteid",dict)],
                                 data.site[sum.substrat == 0,
                                           ecoval.translate("A_macrophytes_site_samplingdate",dict)],
-                                rep("Substrat", sum(sum.substrat == 0)),
-                                rep("Daten fehlen", sum(sum.substrat == 0)),
-                                rep("Fehler",sum(sum.substrat == 0)))
+                                rep(ecoval.translate("R_macrophytes_error_substrate", dict), sum(sum.substrat == 0)),
+                                rep(ecoval.translate("R_macrophytes_error_missingdata", dict), sum(sum.substrat == 0)),
+                                rep(ecoval.translate("R_macrophytes_error_error", dict),sum(sum.substrat == 0)))
       colnames(quality.out) <- colnames(site.quality)
       site.quality <- rbind(site.quality, quality.out)
     }
     
-    if( sum(abs(sum.substrat - 100) > 0.9) ) {
+    if( abs(sum.substrat - 100) > 0.9 ) {
       quality.out <- cbind(data.site[abs(sum.substrat - 100) > 0.9,
                                           ecoval.translate("A_macrophytes_site_siteid",dict)],
                                 data.site[abs(sum.substrat - 100) > 0.9,
                                           ecoval.translate("A_macrophytes_site_samplingdate",dict)],
-                                rep("Substrat", sum(abs(sum.substrat - 100) > 0.9)),
-                                rep("Summe Werte nicht 100%, bitte korrigieren", sum(abs(sum.substrat - 100) > 0.9)),
-                                rep("Fehler", sum(abs(sum.substrat - 100) > 0.9)))
+                                rep(ecoval.translate("R_macrophytes_error_substrate", dict), sum(abs(sum.substrat - 100) > 0.9)),
+                                rep(ecoval.translate("R_macrophytes_error_sumnot100%", dict), sum(abs(sum.substrat - 100) > 0.9)),
+                                rep(ecoval.translate("R_macrophytes_error_error", dict), sum(abs(sum.substrat - 100) > 0.9)))
       colnames(quality.out) <- colnames(site.quality)
       site.quality <- rbind(site.quality, quality.out)
     }
@@ -390,8 +392,8 @@ msk.macrophytes.2017.compile.sitedat <- function(data.site,
       }
     }
     # ERGAENZT: Complement "site.quality" data.frame with data-set information
-    site.quality <- cbind(site.quality, rep("Standortdaten", nrow(site.quality)))
-    colnames(site.quality)[ncol(site.quality)] <- "Datensatz"
+    site.quality <- cbind(site.quality, rep(ecoval.translate("R_macrophytes_error_sitedate", dict), nrow(site.quality)))
+    colnames(site.quality)[ncol(site.quality)] <- ecoval.translate("R_macrophytes_error_dataset", dict)
     
     # Return results
     return(list(data.site = data.site, site.quality = site.quality))
@@ -416,12 +418,23 @@ msk.macrophytes.2017.compile.speciesdat <- function (data.species,
   # get taxa list:
   
   taxalist.dat <- ecoval::msk.macrophytes.2017_ListTaxa
+  for ( j in 1:ncol(taxalist.dat) ) colnames(taxalist.dat)[j] <- ecoval.translate(colnames(taxalist.dat)[j],dict)
+  col.gf <- match(ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict),colnames(taxalist.dat))
+  if ( !is.na(col.gf) ) for ( i in 1:nrow(taxalist.dat) ) taxalist.dat[i,col.gf] <- ecoval.translate(taxalist.dat[i,col.gf],dict)
+  col.es <- match(ecoval.translate("A_macrophytes_taxalist_growthform_assess_twoforms_grfo",dict),colnames(taxalist.dat))
+  if ( !is.na(col.es) ) for ( i in 1:nrow(taxalist.dat) ) taxalist.dat[i,col.es] <- ifelse(is.na(taxalist.dat[i,col.es]),NA,ecoval.translate(taxalist.dat[i,col.es],dict))
+  col.trait <- match(ecoval.translate("A_macrophytes_taxalist_determination_trait",dict),colnames(taxalist.dat))
+  if ( !is.na(col.trait) ) for ( i in 1:nrow(taxalist.dat) ) taxalist.dat[i,col.trait] <- ifelse(is.na(taxalist.dat[i,col.trait]),NA,ecoval.translate(taxalist.dat[i,col.trait],dict))
+  col.cons <- match(ecoval.translate("A_macrophytes_taxalist_conservationinfo",dict),colnames(taxalist.dat))
+  if ( !is.na(col.cons) ) for ( i in 1:nrow(taxalist.dat) ) taxalist.dat[i,col.cons] <- ifelse(is.na(taxalist.dat[i,col.cons]),NA,ecoval.translate(taxalist.dat[i,col.cons],dict))
   
   # Create data.frame to collect information on quality checks
   species.quality <- matrix(NA, nrow = 0, ncol = 5)
   colnames(species.quality) <- c(ecoval.translate("A_macrophytes_site_siteid",dict),
                                  ecoval.translate("A_macrophytes_site_samplingdate",dict),
-                                 "Parameter", "Meldung", "Typ_Meldung")
+                                 ecoval.translate("R_macrophytes_error_parameter",dict),
+                                 ecoval.translate("R_macrophytes_error_message",dict),
+                                 ecoval.translate("R_macrophytes_error_type",dict))
   
   # check if all required columns are contained in data.species
   req.colnames <- c(ecoval.translate("A_macrophytes_site_siteid",dict),
@@ -429,6 +442,7 @@ msk.macrophytes.2017.compile.speciesdat <- function (data.species,
                     ecoval.translate("A_macrophytes_species_number_msk",dict),
                     ecoval.translate("A_macrophytes_species_name_latin",dict),
                     ecoval.translate("A_macrophytes_species_absolutecover_percent",dict),
+                    ecoval.translate("A_macrophytes_species_artificialsubstrate_relcover_percent",dict),
                     ecoval.translate("A_macrophytes_species_determinationuncertainty",dict),
                     ecoval.translate("A_macrophytes_species_phenology_blossom",dict),
                     ecoval.translate("A_macrophytes_species_phenology_fruits",dict))
@@ -436,18 +450,19 @@ msk.macrophytes.2017.compile.speciesdat <- function (data.species,
   if ( anyNA(ind.req) )
   {
     species.quality <- rbind(species.quality,
-                             c("Artdaten, Spalten","","Datenspalten",
-                               paste("Artdaten muessen folgende Spalten enthalten:",
+                             c("","","",
+                               paste(paste(ecoval.translate("R_macrophytes_error_speciescolmissing", dict),":",sep=""),
                                      paste(req.colnames[is.na(ind.req)],collapse=", ")),
-                               "Fehler"))
+                               ecoval.translate("R_macrophytes_error_error", dict)))
     # Complement "species.quality" data.frame with data-set information
-    species.quality <- cbind(species.quality, rep("Artdaten", nrow(species.quality)))
-    colnames(species.quality)[ncol(species.quality)] <- "Datensatz"
+    species.quality <- cbind(species.quality, rep(ecoval.translate("R_macrophytes_error_speciesdata", dict), nrow(species.quality)))
+    colnames(species.quality)[ncol(species.quality)] <- ecoval.translate("R_macrophytes_error_dataset", dict)
     
     # Return list with generared outputs
     return(list(species.assess       = NA, 
                 species.removed      = NA, 
-                species.quality      = species.quality))
+                species.quality      = species.quality, 
+                taxalist             = taxalist.dat))
     
   } else {
     
@@ -483,8 +498,8 @@ msk.macrophytes.2017.compile.speciesdat <- function (data.species,
       
       quality.out <- cbind(t(sapply(quality.out , split.last.underline)))
       quality.out <- cbind(quality.out, rep(ecoval.translate("A_macrophytes_site_siteid",dict), nrow(quality.out)))
-      quality.out <- cbind(quality.out, rep("Eintrag ergaenzen", nrow(quality.out)))
-      quality.out <- cbind(quality.out, rep("Fehler", nrow(quality.out)))
+      quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_completevalue", dict), nrow(quality.out)))
+      quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_error", dict), nrow(quality.out)))
       #quality.out[quality.out == "NA"] <- NA
       colnames(quality.out) <- colnames(species.quality)
       species.quality <- rbind(species.quality, quality.out)
@@ -497,8 +512,8 @@ msk.macrophytes.2017.compile.speciesdat <- function (data.species,
       quality.out <- cbind(t(sapply(quality.out , split.last.underline)))
       
       quality.out <- cbind(quality.out, rep(ecoval.translate("A_macrophytes_site_samplingdate",dict), nrow(quality.out)))
-      quality.out <- cbind(quality.out, rep("Eintrag ergaenzen", nrow(quality.out)))
-      quality.out <- cbind(quality.out, rep("Fehler", nrow(quality.out)))
+      quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_completevalue", dict), nrow(quality.out)))
+      quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_error", dict), nrow(quality.out)))
       #quality.out[quality.out == "NA"] <- NA
       colnames(quality.out) <- colnames(species.quality)
       species.quality <- rbind(species.quality, quality.out)
@@ -511,8 +526,8 @@ msk.macrophytes.2017.compile.speciesdat <- function (data.species,
       quality.out <- cbind(t(sapply(quality.out , split.last.underline)))
       
       quality.out <- cbind(quality.out, rep(ecoval.translate("A_macrophytes_species_number_msk",dict), nrow(quality.out)))
-      quality.out <- cbind(quality.out, rep("Eintrag ergaenzen", nrow(quality.out)))
-      quality.out <- cbind(quality.out, rep("Fehler", nrow(quality.out)))
+      quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_completevalue", dict), nrow(quality.out)))
+      quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_error", dict), nrow(quality.out)))
       #quality.out[quality.out == "NA"] <- NA
       colnames(quality.out) <- colnames(species.quality)
       species.quality <- rbind(species.quality, quality.out)
@@ -531,8 +546,8 @@ msk.macrophytes.2017.compile.speciesdat <- function (data.species,
       quality.out <- cbind(t(sapply(quality.out , split.last.underline)))
       
       quality.out <- cbind(quality.out, rep(ecoval.translate("A_macrophytes_species_absolutecover_percent",dict), nrow(quality.out)))
-      quality.out <- cbind(quality.out, rep("Eintrag ergaenzen", nrow(quality.out)))
-      quality.out <- cbind(quality.out, rep("Fehler", nrow(quality.out)))
+      quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_completevalue", dict), nrow(quality.out)))
+      quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_error", dict), nrow(quality.out)))
       #quality.out[quality.out == "NA"] <- NA
       colnames(quality.out) <- colnames(species.quality)
       species.quality <- rbind(species.quality, quality.out)
@@ -545,8 +560,8 @@ msk.macrophytes.2017.compile.speciesdat <- function (data.species,
       quality.out <- cbind(t(sapply(quality.out, split.last.underline)), row.names = NULL)
       
       quality.out <- cbind(quality.out, rep(ecoval.translate("A_macrophytes_species_absolutecover_percent",dict), nrow(quality.out)))
-      quality.out <- cbind(quality.out, rep("Wert 0% korrigieren", nrow(quality.out)))
-      quality.out <- cbind(quality.out, rep("Fehler", nrow(quality.out)))
+      quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_value0percent", dict), nrow(quality.out)))
+      quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_error", dict), nrow(quality.out)))
       #quality.out[quality.out == "NA"] <- NA
       colnames(quality.out) <- colnames(species.quality)
       species.quality <- rbind(species.quality, quality.out)
@@ -561,8 +576,8 @@ msk.macrophytes.2017.compile.speciesdat <- function (data.species,
       quality.out <- cbind(t(sapply(quality.out , split.last.underline)))
       
       quality.out <- cbind(quality.out, rep(ecoval.translate("A_macrophytes_species_absolutecover_percent",dict), nrow(quality.out)))
-      quality.out <- cbind(quality.out, rep("Wert < 0% korrigieren", nrow(quality.out)))
-      quality.out <- cbind(quality.out, rep("Fehler", nrow(quality.out)))
+      quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_valuelt0percent", dict), nrow(quality.out)))
+      quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_error", dict), nrow(quality.out)))
       #quality.out[quality.out == "NA"] <- NA
       colnames(quality.out) <- colnames(species.quality)
       species.quality <- rbind(species.quality, quality.out)
@@ -575,8 +590,8 @@ msk.macrophytes.2017.compile.speciesdat <- function (data.species,
       quality.out <- cbind(t(sapply(quality.out , split.last.underline)))
       
       quality.out <- cbind(quality.out, rep(ecoval.translate("A_macrophytes_species_absolutecover_percent",dict), nrow(quality.out)))
-      quality.out <- cbind(quality.out, rep("Wert > 100% korrigieren", nrow(quality.out)))
-      quality.out <- cbind(quality.out, rep("Fehler", nrow(quality.out)))
+      quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_valuegt100percent", dict), nrow(quality.out)))
+      quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_error", dict), nrow(quality.out)))
       quality.out[quality.out == "NA"] <- NA
       colnames(quality.out) <- colnames(species.quality)
       species.quality <- rbind(species.quality, quality.out)
@@ -615,8 +630,8 @@ msk.macrophytes.2017.compile.speciesdat <- function (data.species,
       quality.out <- cbind(t(sapply(quality.out , split.last.underline)))
       
       quality.out <- cbind(quality.out, rep(ecoval.translate("A_macrophytes_species_absolutecover_percent",dict), nrow(quality.out)))
-      quality.out <- cbind(quality.out, rep("Summe Abs. Deckung > 100%, bitte korrigieren", nrow(quality.out)))
-      quality.out <- cbind(quality.out, rep("Fehler", nrow(quality.out)))
+      quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_sumabscoveragegt100%", dict), nrow(quality.out)))
+      quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_error", dict), nrow(quality.out)))
       colnames(quality.out) <- colnames(species.quality)
       species.quality <- rbind(species.quality, quality.out)
     }
@@ -630,8 +645,8 @@ msk.macrophytes.2017.compile.speciesdat <- function (data.species,
         quality.out <- cbind(t(sapply(quality.out , split.last.underline)))
         
         quality.out <- cbind(quality.out, rep(ecoval.translate("A_macrophytes_species_determinationuncertainty",dict), nrow(quality.out)))
-        quality.out <- cbind(quality.out, rep("Eintrag ergaenzen", nrow(quality.out)))
-        quality.out <- cbind(quality.out, rep("Fehler", nrow(quality.out)))
+        quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_completevalue", dict), nrow(quality.out)))
+        quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_error", dict), nrow(quality.out)))
         #quality.out[quality.out == "NA"] <- NA
         colnames(quality.out) <- colnames(species.quality)
         species.quality <- rbind(species.quality, quality.out)
@@ -843,7 +858,7 @@ msk.macrophytes.2017.compile.speciesdat <- function (data.species,
                               ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)] <- -999
             
             
-            data.species.select <- rbind(data.species.select[data.species.select[,"WF_assess"] != "Moose",],
+            data.species.select <- rbind(data.species.select[data.species.select[,"WF_assess"] != ecoval.translate("L_macrophytes_taxalist_growthform_assess_bryophyte",dict),],
                                          data.species.bryo, stringsAsFactors = FALSE)
             
           } else {
@@ -857,7 +872,7 @@ msk.macrophytes.2017.compile.speciesdat <- function (data.species,
         # Check if site only contains taxon bryophyta after limiting taxa to taxalist, if yes bryophyta is removed
         if( nrow(data.species.bryo) == 1 ) {
           if ( data.species.bryo[1,ecoval.translate("A_macrophytes_species_number_msk",dict)] == 50000001 ) {
-            data.species.select <- data.species.select[data.species.select[,"WF_assess"] != "Moose",]
+            data.species.select <- data.species.select[data.species.select[,"WF_assess"] != ecoval.translate("L_macrophytes_taxalist_growthform_assess_bryophyte",dict),]
           } else {
             collect.bryophyta.missing <- c(collect.bryophyta.missing, assessment.unique[i])
           }
@@ -866,7 +881,7 @@ msk.macrophytes.2017.compile.speciesdat <- function (data.species,
       
       
       # Combine all taxa representing filamentous green algae in one row
-      data.species.algae <- data.species.select[data.species.select[,"WF_assess"] == "Algen",]
+      data.species.algae <- data.species.select[data.species.select[,"WF_assess"] == ecoval.translate("L_macrophytes_taxalist_growthform_assess_algae",dict),]
       
       if( nrow(data.species.algae) > 0 ) {
         sum.algae <- sum(data.species.algae[,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)])
@@ -881,9 +896,9 @@ msk.macrophytes.2017.compile.speciesdat <- function (data.species,
         data.species.algae[1,ecoval.translate("A_macrophytes_species_name_latin",dict)] <- "faedige Gruenalge"
         data.species.algae[1,ecoval.translate("A_macrophytes_species_absolutecover_percent", dict)] <- sum.algae
         data.species.algae[1,"WF_short"]  <- "FaedAlg"
-        data.species.algae[1,"WF_assess"] <- "Algen"
+        data.species.algae[1,"WF_assess"] <- ecoval.translate("L_macrophytes_taxalist_growthform_assess_algae",dict)
         
-        data.species.select <- rbind(data.species.select[data.species.select[,"WF_assess"] != "Algen",],
+        data.species.select <- rbind(data.species.select[data.species.select[,"WF_assess"] != ecoval.translate("L_macrophytes_taxalist_growthform_assess_algae",dict),],
                                      data.species.algae, stringsAsFactors = FALSE)
       }
       
@@ -894,9 +909,9 @@ msk.macrophytes.2017.compile.speciesdat <- function (data.species,
       quality.out <- cbind(t(sapply(collect.bryophyta.covabs.missing , split.last.underline)),
                                 rep(ecoval.translate("A_macrophytes_species_number_msk",dict),
                                     length(collect.bryophyta.covabs.missing)),
-                                rep("Absolute Deckung Bryophyta fehlt",
+                                rep(ecoval.translate("R_macrophytes_error_abscoveragebrymissing", dict),
                                     length(collect.bryophyta.covabs.missing)),
-                                rep("Fehler",
+                                rep(ecoval.translate("R_macrophytes_error_error", dict),
                                     length(collect.bryophyta.covabs.missing)))
       colnames(quality.out) <- colnames(species.quality)
       species.quality <- rbind(species.quality, quality.out)
@@ -906,9 +921,9 @@ msk.macrophytes.2017.compile.speciesdat <- function (data.species,
       quality.out <- cbind(t(sapply(collect.bryophyta.missing , split.last.underline)),
                                 rep(ecoval.translate("A_macrophytes_species_number_msk",dict),
                                     length(collect.bryophyta.missing)),
-                                rep("Taxon Bryophyta fehlt, bitte ergaenzen",
+                                rep(ecoval.translate("R_macrophytes_error_taxonbrymissing", dict),
                                     length(collect.bryophyta.missing)),
-                                rep("Fehler",
+                                rep(ecoval.translate("R_macrophytes_error_error", dict),
                                     length(collect.bryophyta.missing)))
       colnames(quality.out) <- colnames(species.quality)
       species.quality <- rbind(species.quality, quality.out)
@@ -954,8 +969,8 @@ msk.macrophytes.2017.compile.speciesdat <- function (data.species,
     colnames(data.species.assess)[match("WF_assess", colnames(data.species.assess))]  <- ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)
     
     # Combine all data containing removed species, either due to taxalist or insufficient determination, in one data.frame
-    data.species.removed[,"Grund_Bereinigung"] <- rep("Qualitaet Bestimmung unzureichend", nrow(data.species.removed))
-    species.not.taxalist[,"Grund_Bereinigung"] <- rep("Nicht auf Taxaliste", nrow(species.not.taxalist))
+    data.species.removed[,ecoval.translate("A_macrophytes_species_reason_elimination",dict)] <- rep(ecoval.translate("A_macrophytes_species_reason_insufficientquality",dict), nrow(data.species.removed))
+    species.not.taxalist[,ecoval.translate("A_macrophytes_species_reason_elimination",dict)] <- rep(ecoval.translate("A_macrophytes_species_reason_notontaxalist",dict), nrow(species.not.taxalist))
     
     # Remove additional columns in data.species.removed introduced during data perparation after reductioh to species not on taxalist
     data.species.removed <- data.species.removed[,colnames(data.species.removed) %in% colnames(species.not.taxalist)]
@@ -964,13 +979,14 @@ msk.macrophytes.2017.compile.speciesdat <- function (data.species,
     data.species.removed <- rbind(data.species.removed, species.not.taxalist, stringsAsFactors = FALSE)
     
     # Complement "species.quality" data.frame with data-set information
-    species.quality <- cbind(species.quality, rep("Artdaten", nrow(species.quality)))
-    colnames(species.quality)[ncol(species.quality)] <- "Datensatz"
+    species.quality <- cbind(species.quality, rep(ecoval.translate("R_macrophytes_error_speciesdata", dict), nrow(species.quality)))
+    colnames(species.quality)[ncol(species.quality)] <- ecoval.translate("R_macrophytes_error_dataset", dict)
     
     # Return list with generared outputs
     return(list(species.assess       = data.species.assess, 
                 species.removed      = data.species.removed, 
-                species.quality      = species.quality))
+                species.quality      = species.quality, 
+                taxalist             = taxalist.dat))
     
     
   }
@@ -994,6 +1010,15 @@ msk.macrophytes.2017.calc.attrib <- function(data.site,
   # get taxa list:
   
   taxalist.dat <- ecoval::msk.macrophytes.2017_ListTaxa
+  for ( j in 1:ncol(taxalist.dat) ) colnames(taxalist.dat)[j] <- ecoval.translate(colnames(taxalist.dat)[j],dict)
+  col.gf <- match(ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict),colnames(taxalist.dat))
+  if ( !is.na(col.gf) ) for ( i in 1:nrow(taxalist.dat) ) taxalist.dat[i,col.gf] <- ecoval.translate(taxalist.dat[i,col.gf],dict)
+  col.es <- match(ecoval.translate("A_macrophytes_taxalist_growthform_assess_twoforms_grfo",dict),colnames(taxalist.dat))
+  if ( !is.na(col.es) ) for ( i in 1:nrow(taxalist.dat) ) taxalist.dat[i,col.es] <- ifelse(is.na(taxalist.dat[i,col.es]),NA,ecoval.translate(taxalist.dat[i,col.es],dict))
+  col.trait <- match(ecoval.translate("A_macrophytes_taxalist_determination_trait",dict),colnames(taxalist.dat))
+  if ( !is.na(col.trait) ) for ( i in 1:nrow(taxalist.dat) ) taxalist.dat[i,col.trait] <- ifelse(is.na(taxalist.dat[i,col.trait]),NA,ecoval.translate(taxalist.dat[i,col.trait],dict))
+  col.cons <- match(ecoval.translate("A_macrophytes_taxalist_conservationinfo",dict),colnames(taxalist.dat))
+  if ( !is.na(col.cons) ) for ( i in 1:nrow(taxalist.dat) ) taxalist.dat[i,col.cons] <- ifelse(is.na(taxalist.dat[i,col.cons]),NA,ecoval.translate(taxalist.dat[i,col.cons],dict))
   
   # Create data.frame to collect calculated attributes
   attrib.names <- c(ecoval.translate("A_macrophytes_taxa_all_richness_count",dict),
@@ -1165,10 +1190,10 @@ msk.macrophytes.2017.calc.attrib <- function(data.site,
       attrib.dat[i, ecoval.translate("A_macrophytes_growthform_all_richness_count",dict)]         <- length(na.omit(unique(dat.makro[dat.makro[,ecoval.translate("A_macrophytes_species_number_msk",dict)] != 50000001,
                                                                                                                                      ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)]))) #ATTRIBUT
       
-      attrib.dat[i, ecoval.translate("A_macrophytes_growthform_helophytes_richness_count",dict)]  <- length(na.omit(unique(dat.makro[dat.makro$Wuchsform_Bewertung == ecoval.translate("L_macrophytes_taxalist_growthform_assess_helophyte",dict),
+      attrib.dat[i, ecoval.translate("A_macrophytes_growthform_helophytes_richness_count",dict)]  <- length(na.omit(unique(dat.makro[dat.makro[,ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)] == ecoval.translate("L_macrophytes_taxalist_growthform_assess_helophyte",dict),
                                                                                                                                      ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)]))) #ATTRIBUT
       
-      attrib.dat[i, ecoval.translate("A_macrophytes_growthform_aquatic_richness_count",dict)]     <- length(na.omit(unique(dat.makro[dat.makro$Wuchsform_Bewertung == ecoval.translate("L_macrophytes_taxalist_growthform_assess_aquatic",dict),
+      attrib.dat[i, ecoval.translate("A_macrophytes_growthform_aquatic_richness_count",dict)]     <- length(na.omit(unique(dat.makro[dat.makro[,ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)] == ecoval.translate("L_macrophytes_taxalist_growthform_assess_aquatic",dict),
                                                                                                                                      ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)]))) #ATTRIBUT
       ## COMMUNITY COMPOSITION
       
@@ -1230,25 +1255,25 @@ msk.macrophytes.2017.calc.attrib <- function(data.site,
       
       # ABSOLUTE COVER BY GROWTHFORMS, i.e. AQUATIC, HELOPHYTES, and BRYOPHYTES
       attrib.dat[i, ecoval.translate("A_macrophytes_taxa_aquatic_abscover_percent",dict)] <- sum(data.select[data.select[, ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)] == ecoval.translate("L_macrophytes_taxalist_growthform_assess_aquatic",dict),
-                                                                                                             "Abs_Deckung"], na.rm = T)
+                                                                                                             ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)], na.rm = T)
       if ( I(attrib.dat[i, ecoval.translate("A_macrophytes_taxa_aquatic_abscover_percent",dict)] - 100) > 0 & I(attrib.dat[i, ecoval.translate("A_macrophytes_taxa_aquatic_abscover_percent",dict)] - 100) < 0.01 ) {
         attrib.dat[i, ecoval.translate("A_macrophytes_taxa_aquatic_abscover_percent",dict)] <- 100
       }
       
       attrib.dat[i, ecoval.translate("A_macrophytes_taxa_helophytes_abscover_percent",dict)] <- sum(data.select[data.select[, ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)] == ecoval.translate("L_macrophytes_taxalist_growthform_assess_helophyte",dict),
-                                                                                                                "Abs_Deckung"], na.rm = T)
+                                                                                                                ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)], na.rm = T)
       if ( I(attrib.dat[i, ecoval.translate("A_macrophytes_taxa_helophytes_abscover_percent",dict)] - 100) > 0 & I(attrib.dat[i, ecoval.translate("A_macrophytes_taxa_helophytes_abscover_percent",dict)] - 100) < 0.01 ) {
         attrib.dat[i, ecoval.translate("A_macrophytes_taxa_helophytes_abscover_percent",dict)] <- 100
       }
       
       attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_abscover_percent",dict)] <- sum(data.select[data.select[, ecoval.translate("A_macrophytes_species_number_msk",dict)] == 50000001,
-                                                                                                                "Abs_Deckung"], na.rm = T)
+                                                                                                                ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)], na.rm = T)
       if ( I(attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_abscover_percent",dict)] - 100) > 0 & I(attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_abscover_percent",dict)] - 100) < 0.01 ) {
         attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_abscover_percent",dict)] <- 100
       }
       
       attrib.dat[i, ecoval.translate("A_macrophytes_filamentousgreenalgae_abscover_percent",dict)] <- sum(data.select[data.select[, ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)] == ecoval.translate("L_macrophytes_taxalist_growthform_assess_algae",dict),
-                                                                                                                      "Abs_Deckung"]) #ATTRIBUT
+                                                                                                                      ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)]) #ATTRIBUT
       if ( I(attrib.dat[i, ecoval.translate("A_macrophytes_filamentousgreenalgae_abscover_percent",dict)] - 100) > 0 & I(attrib.dat[i, ecoval.translate("A_macrophytes_filamentousgreenalgae_abscover_percent",dict)] - 100) < 0.01 ) {
         attrib.dat[i, ecoval.translate("A_macrophytes_filamentousgreenalgae_abscover_percent",dict)] <- 100
       }

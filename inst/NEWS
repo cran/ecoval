@@ -3,6 +3,24 @@ Change history of ecoval package
 ================================
 
 
+Changes version 1.2.1 (27.09.2018) -> version 1.2.2 (xx.xx.2019)
+================================================================
+
+PR:     error handling in msk.macrophytes.2017.read.compile.evaluate improved
+
+PR:     msk.morphol.1998.create: riparian zone evaluation complemented by a finer
+        data resolution in 8 rather than in only 3 classes (still only with 3 
+        different value outcomes)
+
+PR:     lake.morphol.2016.create: attribute levels added to dictionary
+
+PR:     default values of the arguments attrib.names and col.names of the function
+        lake.morphol.2016.read.attrib set to NA; this results in values taken from
+        the dictionary
+
+PR:     French and English translations implemented for macrophyte assessment
+
+
 Changes version 1.2 (03.05.2018) -> version 1.2.1 (27.09.2018)
 ==============================================================
 

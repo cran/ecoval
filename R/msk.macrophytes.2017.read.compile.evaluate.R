@@ -73,7 +73,7 @@ msk.macrophytes.2017.read.compile.evaluate <- function(file.site,
   # get dictionary:
   
   dict <- ecoval.dict(language,dictionaries)
-  
+
   # read and compile data
   # ---------------------
 
@@ -85,52 +85,10 @@ msk.macrophytes.2017.read.compile.evaluate <- function(file.site,
                         stringsAsFactors = FALSE,
                         sep = sep.in)
   
-  # convert ZH riparian zone coding:
-  
-  conv.ZH2BAFU <- c(NA,1,1,1,2,2,2,3,1,NA)
-  
-  ind.ZH <- match(ecoval.translate("A_morphol_riparzone_vegmat_left_class",dict),colnames(data.site))
-  if ( !is.na(ind.ZH) )
-  {
-    ind.CH <- match(ecoval.translate("A_morphol_riparzone_veg_left_class",dict),colnames(data.site))
-    if ( is.na(ind.CH) )
-    {
-      data.tmp <- data.frame(data.site[,1:ind.ZH],rep(NA,nrow(data.site)))
-      if ( ncol(data.site) > ind.ZH ) data.tmp <- data.frame(data.tmp,data.site[,(ind.ZH+1):ncol(data.site)])
-      colnames <- c(colnames(data.site)[1:ind.ZH],ecoval.translate("A_morphol_riparzone_veg_left_class",dict))
-      if ( ncol(data.site) > ind.ZH ) colnames <- c(colnames,colnames(data.site)[(ind.ZH+1):ncol(data.site)])
-      data.site <- data.tmp
-      colnames(data.site) <- colnames
-      val.ZH <- data.site[,ecoval.translate("A_morphol_riparzone_vegmat_left_class",dict)]
-      val.ZH <- ifelse(val.ZH>=0&val.ZH<=9,val.ZH,NA)
-      data.site[,ecoval.translate("A_morphol_riparzone_veg_left_class",dict)] <- 
-        ifelse(!is.na(data.site[,ecoval.translate("A_morphol_riparzone_veg_left_class",dict)]),
-               data.site[,ecoval.translate("A_morphol_riparzone_veg_left_class",dict)],
-               ifelse(!is.na(val.ZH),conv.ZH2BAFU[val.ZH+1],NA))
-    }
-  }
-  ind.ZH <- match(ecoval.translate("A_morphol_riparzone_vegmat_right_class",dict),colnames(data.site))
-  if ( !is.na(ind.ZH) )
-  {
-    ind.CH <- match(ecoval.translate("A_morphol_riparzone_veg_right_class",dict),colnames(data.site))
-    if ( is.na(ind.CH) )
-    {
-      data.tmp <- data.frame(data.site[,1:ind.ZH],rep(NA,nrow(data.site)))
-      if ( ncol(data.site) > ind.ZH ) data.tmp <- data.frame(data.tmp,data.site[,(ind.ZH+1):ncol(data.site)])
-      colnames <- c(colnames(data.site)[1:ind.ZH],ecoval.translate("A_morphol_riparzone_veg_right_class",dict))
-      if ( ncol(data.site) > ind.ZH ) colnames <- c(colnames,colnames(data.site)[(ind.ZH+1):ncol(data.site)])
-      data.site <- data.tmp
-      colnames(data.site) <- colnames
-      val.ZH <- data.site[,ecoval.translate("A_morphol_riparzone_vegmat_right_class",dict)]
-      val.ZH <- ifelse(val.ZH>=0&val.ZH<=9,val.ZH,NA)
-      data.site[,ecoval.translate("A_morphol_riparzone_veg_right_class",dict)] <- 
-        ifelse(!is.na(data.site[,ecoval.translate("A_morphol_riparzone_veg_right_class",dict)]),
-               data.site[,ecoval.translate("A_morphol_riparzone_veg_right_class",dict)],
-               ifelse(!is.na(val.ZH),conv.ZH2BAFU[val.ZH+1],NA))
-    }
-  }
   morphol <- msk.morphol.1998.create(language,dictionaries)
-  data.site <- data.frame(data.site,evaluate(morphol,data.site))
+  val.morphol <- evaluate(morphol,data.site)
+  colnames(val.morphol) <- gsub(" ","_",colnames(val.morphol))
+  data.site <- data.frame(data.site,val.morphol,stringsAsFactors=FALSE)
   
   res.site  <- msk.macrophytes.2017.compile.sitedat(data.site,language,dictionaries)  
   res <- append(res,res.site)
@@ -198,7 +156,9 @@ msk.macrophytes.2017.read.compile.evaluate <- function(file.site,
                                  na.strings = c("",NA),
                                  stringsAsFactors = FALSE,
                                  sep = sep.in)
-      req.colnames <- c(ecoval.translate("A_macrophytes_rivertypescheme_plaus_class",dict),
+      req.colnames <- c(ecoval.translate("A_macrophytes_site_siteid",dict),
+                        ecoval.translate("A_macrophytes_site_samplingdate",dict),
+                        ecoval.translate("A_macrophytes_rivertypescheme_plaus_class",dict),
                         ecoval.translate("A_macrophytes_rivertypeval_plaus_class",dict),
                         paste(ecoval.translate("A_macrophytes_rivertype_plaus_class",dict),ecoval.translate("R_macrophytes_comment",dict),sep="_"),
                         ecoval.translate("R_macrophytes_plaus_changetype_suggestions",dict),
@@ -220,12 +180,17 @@ msk.macrophytes.2017.read.compile.evaluate <- function(file.site,
       {
         msg <- rbind(msg,
                      c("","","",
-                       paste("Die Plausibilisierungsdatei braucht die Spalten:",
+                       paste(paste(ecoval.translate("R_macrophytes_error_plauscolmissing",dict),":",sep=""),
                              paste(req.colnames[is.na(ind.req)],collapse=", ")),
-                       "Fehler",""))
+                       ecoval.translate("R_macrophytes_error_error",dict),""))
       }
       else
       {
+        # match sample ids:
+        rownames(data.typeplaus) <- paste(data.typeplaus[,ecoval.translate("A_macrophytes_site_siteid",dict)],
+                                          data.typeplaus[,ecoval.translate("A_macrophytes_site_samplingdate",dict)],
+                                          sep="_")
+        data.typeplaus <- data.typeplaus[res$data.site[,ecoval.translate("A_macrophytes_site_sampleid",dict)],]
         res$types.plaus=data.typeplaus[,req.colnames]
       }
     }
@@ -425,6 +390,7 @@ msk.macrophytes.2017.read.compile.evaluate <- function(file.site,
   # -------------------
   
   val <- val.compact.table(res$val,language=language,dictionaries=dictionaries)
+  colnames(val) <- gsub(" ","_",colnames(val))
   colnames(val) <- paste(ecoval.translate("R_macrophytes_value_obs",dict),colnames(val),sep="_")
   val.types <- res$val.types
   colnames(val.types) <- paste(ecoval.translate("R_macrophytes_value_types",dict),colnames(val.types),sep="_")
@@ -454,7 +420,7 @@ msk.macrophytes.2017.read.compile.evaluate <- function(file.site,
 
   if ( !is.na(match("types.plaus",names(res))) )
   {
-    res$plaus.crit[,req.colnames] <- res$types.plaus[,req.colnames]
+    res$plaus.crit[,req.colnames[-c(1,2)]] <- res$types.plaus[,req.colnames[-c(1,2)]]
     types.scheme.plaus <- res$types.plaus[,ecoval.translate("A_macrophytes_rivertypescheme_plaus_class",dict)]
     types.val.plaus <- res$types.plaus[,ecoval.translate("A_macrophytes_rivertypeval_plaus_class",dict)]
     res$types.scheme.final <- ifelse(is.na(types.scheme.plaus),res$types.scheme.obs,types.scheme.plaus)
@@ -488,15 +454,23 @@ msk.macrophytes.2017.read.compile.evaluate <- function(file.site,
   if ( !is.na(file.res) )
   {
     output <- data.frame(res.table,res$plaus.crit)
-    if ( !is.na(match("types.plaus",names(res))) )
+    if ( is.na(match("types.plaus",names(res))) )
+    {
+      attrib <- data.frame(res$types.val.obs,res$attrib.species)     # attributes for future evaluation; observed river type
+    }
+    else
     {
       val.final <- val.compact.table(res$val.final,language=language,dictionaries=dictionaries)
+      colnames(val.final) <- gsub(" ","_",colnames(val.final))
       colnames(val.final) <- paste(ecoval.translate("R_macrophytes_value_final",dict),colnames(val.final),sep="_")
-      output <- data.frame(output,res$types.scheme.final,res$types.val.final,val.final)
+      output <- data.frame(output,res$types.scheme.final,res$types.val.final,val.final,stringsAsFactors=FALSE)
       ind.start <- ncol(output)-ncol(val.final)-1
       colnames(output)[ind.start+0:1] <- c(ecoval.translate("A_macrophytes_rivertypescheme_final_class",dict),
                                            ecoval.translate("A_macrophytes_rivertypeval_final_class",dict))
+      attrib <- data.frame(res$types.val.final,res$attrib.species)   # attributes for future evaluation; final river type
     }
+    colnames(attrib)[1] <- ecoval.translate("A_macrophytes_rivertype_class",dict)
+    output <- data.frame(output,attrib,stringsAsFactors=FALSE)
     write.table(output,
                 file      = file.res,
                 sep       = sep.out,

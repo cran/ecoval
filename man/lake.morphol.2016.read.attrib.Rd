@@ -12,10 +12,10 @@ Reads individual attributes with different segmentation and combines them to a d
 
 \usage{
 lake.morphol.2016.read.attrib(directory    = ".",
-                              attrib.names = c("E01","E02","B02","B01","C06","C01",
-                                               "C02","C03","C04","C05","D01","D02"),
-                              col.names    = c("Von","Bis","Code","ID_Uferlinie",
-                                               "Bemerkungen"))
+                              language     = "English",
+                              dictionaries = NA,
+                              attrib.names = NA,
+                              col.names    = NA)
 }
 
 \arguments{
@@ -26,8 +26,17 @@ The file names must start with the attribute names as given by the argument \cod
 The file format must be comma-separated text with the first row containing the headers as specified by the argument \code{col.names} and subsequent rows the corresponding data.
 The files may contain additional columns that will be ignored.
 }
+  \item{language}{
+Language to be used to denote nodes, attributes and attribute levels.
+Must be a column name of the table provided by the second argument.
+}
+  \item{dictionaries}{
+Matrix of dictionaries with the languages provided by the column names and the original words provided as the row names.
+If dictionary is NA, the default dictionary \code{ecoval.dictionaries.default} is loaded.
+}
   \item{attrib.names}{
-(optional) Names of the attributes. These should match the names required by the dictionary used in \code{\link{lake.morphol.2016.create}}.
+(optional) Names of the attributes. These should match first characters of the names of the files that provide the corresponding data.
+NA indicates that the attribute names are taken from the dictionary. Order of the names is E01, E02, B02, B01, C06, C01, C02, C03, C04, C05, D01, D02.
 }
   \item{col.names}{
 (optional) Names of the columns to be read from the individual attribute files. 
@@ -35,6 +44,7 @@ The first three elements must be present and represent the columns containing th
 The fourth element represents an optional id to distinguish different lakes or shoreline measures (for the same id, the lenght measure used to characterize start and end of a reach must be unique). This element can be missing or NA; both indicates a unique lenght measure across all records.
 Further column names can be provided and are interpreted as comments. 
 These are merged to a single string when compiling the output data frame.
+\code{col.names = NA} indicates that the names form the dictionary are used.
 }
 }
 

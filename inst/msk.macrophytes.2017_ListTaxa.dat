@@ -1,401 +1,401 @@
-ArtNr_MSK_WF	Artbezeichnung_Taxaliste_CH	Artname_Lateinisch	Sammeltaxa	Sammeltaxa_Zuweisung	emers_submers	emers_submers_bewertung	Wuchsform_CH	Wuchsform_CH_Kurz	Wuchsform_Bewertung	Artinfo_Naturschutz	Leitwert_MSK	Zielwert_Prioritaet_MSK	Rote_Liste_CH	Bestimmbarkeit	PhaenZust_Merkmal	PhaenZust_Merkmal_Code
-5100	Acorus calamus L.	Acorus calamus L.					Magnomonocotyle	Mmono	Helophyten	N				2		
-9300	Agrostis stolonifera L. 	Agrostis stolonifera L.		30000104			Parvograminoide	Pgra	Helophyten	L	1			2		
-21600	Aldrovanda vesiculosa L.	Aldrovanda vesiculosa L.					Ceratophyllide	Cer	Aquatische	Z		3	EN	2		
-21700	Alisma gramineum Lej. 	Alisma gramineum Lej.		30000008			Vallisneride	Vall	Aquatische	Z		3	EN	2		
-21800	Alisma lanceolatum With.	Alisma lanceolatum With.		30000008			Sagittaride	Sag	Helophyten	Z		3	EN	3	Blueten	1
-21900	Alisma plantago-aquatica L.	Alisma plantago-aquatica L.		30000008			Sagittaride	Sag	Helophyten	L	2			2		
-30000080	Alisma lanceolatum oder A. plantago-aquatica (emers) 	Alisma lanceolatum oder A. plantago-aquatica	1	30000008	emers		Sagittaride	Sag	Helophyten	L	2			2		
-30000081	Alisma lanceolatum oder A. plantago-aquatica (submers) 	Alisma lanceolatum oder A. plantago-aquatica	1	30000008	submers	30000080	Sagittaride	Vall	Aquatische	L	2			2		
-30000008	Alisma sp. (submers)	Alisma sp.	1		submers		Vallisneride	Vall	Aquatische	L	2			2		
-38500	Apium nodiflorum (L.) Lag.	Apium nodiflorum (L.) Lag.					Herbide	Herb	Helophyten	Z		2	CR	2		
-38600	Apium repens (Jacq.) Lag.	Apium repens (Jacq.) Lag.					Herbide	Herb	Helophyten	Z		2	CR	2		
-43800	Arenaria gothica Fr.	Arenaria gothica Fr.					Herbide	Herb	Helophyten	Z		1	CR	2		
-57750	Azolla filiculoides Lam. 	Azolla filiculoides Lam.		30000082			Lemnide	Lem	Aquatische	N				4		
-20000001	Azolla mexicana C. Presl 	Azolla mexicana C. Presl		30000082			Lemnide	Lem	Aquatische	N				4		
-30000082	Azolla sp.	Azolla sp.	1				Lemnide	Lem	Aquatische	N				2		
-57800	Baldellia ranunculoides (L.) Parl. 	Baldellia ranunculoides (L.) Parl.		30000008			Sagittaride	Sag	Helophyten	Z		1	CR	2		
-60000001	Berula erecta (Huds.) Coville (emers)	Berula erecta (Huds.) Coville			emers		Herbide	Herb	Helophyten	L	2			2		
-60000002	Berula erecta (Huds.) Coville (submers)	Berula erecta (Huds.) Coville			submers	60000001	Herbide	Herb	Aquatische	L	2			2		
-62900	Bolboschoenus maritimus (L.) Palla 	Bolboschoenus maritimus (L.) Palla		30000085			Magnocyperiden	Mcyp	Helophyten	Z		2	CR	3	Blueten und Fruechte	4
-60000003	Butomus umbellatus L. (emers)	Butomus umbellatus L.			emers		Magnomonocotyle	Mmono	Helophyten	Z		4	VU	1		
-60000004	Butomus umbellatus L. (submers)	Butomus umbellatus L.			submers	60000003	Vallisneride	Vall	Aquatische	Z		4	VU	2		
-73000	Callitriche cophocarpa Sendtn.	Callitriche cophocarpa Sendtn.		30000001			Peplide	Pep	Aquatische	Z		4	VU	3	Fruechte	2
-73100	Callitriche hamulata W. D. J. Koch	Callitriche hamulata W. D. J. Koch		30000001			Peplide	Pep	Aquatische	L	3			3	Fruechte	2
-73200	Callitriche obtusangula Le Gall 	Callitriche obtusangula Le Gall		30000001			Peplide	Pep	Aquatische	Z		2	CR	3	Fruechte	2
-73300	Callitriche palustris L. 	Callitriche palustris L.		30000001			Peplide	Pep	Aquatische	L	2			3	Fruechte	2
-73400	Callitriche platycarpa Kütz.	Callitriche platycarpa Kütz.		30000001			Peplide	Pep	Aquatische	Z		4	VU	3	Fruechte	2
-73500	Callitriche stagnalis Scop.	Callitriche stagnalis Scop.		30000001			Peplide	Pep	Aquatische	L	2			3	Fruechte	2
-30000001	Callitriche sp.	Callitriche sp.	1				Peplide	Pep	Aquatische	L	2			1		
-78300	Cardamine amara L. s.l.	Cardamine amara L. s.l.		30000098			Herbide	Herb	Helophyten	L	1			3	Blueten oder Fruechte	3
-82850	Carex acuta L. 	Carex acuta L.		30000083			Magnocyperiden	Mcyp	Helophyten	L	2			3	Blueten oder Fruechte	3
-83000	Carex acutiformis Ehrh.	Carex acutiformis Ehrh.		30000083			Magnocyperiden	Mcyp	Helophyten	L	2			3	Blueten oder Fruechte	3
-86800	Carex elata All. 	Carex elata All.		30000084			Magnocyperiden	Mcyp	Helophyten	L	2			3	Blueten oder Fruechte	3
-92900	Carex pseudocyperus L. 	Carex pseudocyperus L.		30000084			Magnocyperiden	Mcyp	Helophyten	Z		4	VU	3	Blueten oder Fruechte	3
-93500	Carex riparia Curtis 	Carex riparia Curtis		30000083			Magnocyperiden	Mcyp	Helophyten	L	2			3	Blueten oder Fruechte	3
-93700	Carex rostrata Stokes	Carex rostrata Stokes		30000085			Magnocyperiden	Mcyp	Helophyten	L	2			3	Blueten oder Fruechte	3
-95300	Carex vesicaria L. 	Carex vesicaria L.		30000083			Magnocyperiden	Mcyp	Helophyten	L	3			3	Blueten oder Fruechte	3
-95500	Carex vulpina L. 	Carex vulpina L.		30000084			Magnocyperiden	Mcyp	Helophyten	Z		3	EN	3	Blueten oder Fruechte	3
-30000083	"Carex 1 (grosse breitblaettrige Auslaeufer-Sauergraeser, Blattbreite 7-20 mm; C. acuta, C. acutiformis, C. riparia, C. versicaria, S. sylvaticus)"	Carex 1	1				Magnocyperiden	Mcyp	Helophyten	L	1			1		
-30000084	"Carex 2 (grosse knickrandige Horst-Sauergraeser, Blattbreite 5-10 mm; C. elata, C. pseudocyperus , C. vulpina)"	Carex 2	1				Magnocyperiden	Mcyp	Helophyten	L	2			1		
-30000085	"Carex 3 (grosse mittelbreite Auslaeufer-Sauergraeser, Blattbreite 4-8 mm ; B. maritimus, C. rostrata, E. latifolium)"	Carex 3	1				Magnocyperiden	Mcyp	Helophyten	L	2			1		
-97300	Catabrosa aquatica (L.) P. Beauv.	Catabrosa aquatica (L.) P. Beauv.		30000104			Parvograminoide	Pgra	Helophyten	Z		4	VU	2		
-105500	Ceratophyllum demersum L.	Ceratophyllum demersum L.					Ceratophyllide	Cer	Aquatische	L	2			2		
-105600	Ceratophyllum submersum L.	Ceratophyllum submersum L.					Ceratophyllide	Cer	Aquatische	Z		3	EN	2		
-113300	Cicuta virosa L.	Cicuta virosa L.					Herbide	Herb	Helophyten	Z		3	EN	2		
-20000004	Crassula aquatica (L.) Schoenl. 	Crassula aquatica (L.) Schoenl.		30000086			Parvopotamide	Ppot	Aquatische	N				3	Blueten 	1
-122060	Crassula helmsii (Kirk) Cockayne 	Crassula helmsii (Kirk) Cockayne		30000086			Parvopotamide	Ppot	Aquatische	N				3	Blueten	1
-30000086	Crassula sp.	Crassula sp.	1				Parvopotamide	Ppot	Aquatische	N				2		
-134800	Deschampsia cespitosa (L.) P. Beauv.	Deschampsia cespitosa (L.) P. Beauv.					Parvograminoide	Pgra	Helophyten					2		
-144700	Elatine hexandra (Lapierre) DC. 	Elatine hexandra (Lapierre) DC.		30000087			Parvopotamide	Ppot	Aquatische	Z		2	CR	3	Blueten	1
-144800	Elatine hydropiper L. 	Elatine hydropiper L.		30000087			Parvopotamide	Ppot	Aquatische	Z		2	CR	3	Blueten	1
-30000087	Elatine sp.	Elatine sp.	1				Parvopotamide	Ppot	Aquatische	Z		2	CR	2		
-145000	Eleocharis acicularis (L.) Roem. & Schult. 	Eleocharis acicularis (L.) Roem. & Schult.		30000089			Parvocyperiden	Pcyp	Helophyten	Z		4	VU	2	Fruechte	2
-145200	Eleocharis austriaca Hayek 	Eleocharis austriaca Hayek		30000088			Parvocyperiden	Pcyp	Helophyten	L	3			3	Fruechte	2
-145400	Eleocharis mamillata H. Lindb.	Eleocharis mamillata H. Lindb.		30000088			Parvocyperiden	Pcyp	Helophyten	Z		4	VU	3	Fruechte	2
-145700	Eleocharis palustris (L.) Roem. & Schult. 	Eleocharis palustris (L.) Roem. & Schult.		30000088			Parvocyperiden	Pcyp	Helophyten	L	2			3	Fruechte	2
-145705	Eleocharis palustris aggr. (Eleocharis palustris oder  E. mammilata)	Eleocharis palustris aggr.	1	30000088			Parvocyperiden	Pcyp	Helophyten	L	2			3	Fruechte	2
-146000	Eleocharis uniglumis (Link) Schult. 	Eleocharis uniglumis (Link) Schult.		30000089			Parvocyperiden	Pcyp	Helophyten	Z		4	VU	3	Blueten oder Fruechte	3
-30000088	Eleocharis 1 (Eleocharis austriaca oder E. palustris oder E. mammilata)	Eleocharis 1	1				Parvocyperiden	Pcyp	Helophyten	L	2			2		
-30000089	Eleocharis sp.	Eleocharis sp.	1				Parvocyperiden	Pcyp	Helophyten	L	2			2		
-146200	Elodea canadensis Michx. 	Elodea canadensis Michx.		30000024			Elodeide	Elo	Aquatische	N				2		
-146300	Elodea densa (Planch.) Casp. 	Elodea densa (Planch.) Casp.		30000024			Elodeide	Elo	Aquatische	N				2		
-146400	Elodea nuttallii (Planch.) H. St. John	Elodea nuttallii (Planch.) H. St. John		30000024			Elodeide	Elo	Aquatische	N				2		
-30000024	Elodea sp. (inkl. unsichere Bestimmung Lagarosiphon)	Elodea sp.	1				Elodeide	Elo	Aquatische	N				2		
-149100	Epilobium roseum Schreb.	Epilobium roseum Schreb.					Herbide	Herb	Helophyten	L	2			2		
-150700	Equisetum fluviatile L.	Equisetum fluviatile L.					Equisetide	Equ	Helophyten	L	2			2		
-151100	Equisetum palustre L.	Equisetum palustre L.					Equisetide	Equ	Helophyten	L	2			2		
-151700	Equisetum x trachyodon A. Braun	Equisetum x trachyodon A. Braun					Equisetide	Equ	Helophyten	Z		4	VU	2		
-155400	Eriophorum latifolium Hoppe	Eriophorum latifolium Hoppe		30000085			Magnocyperiden	Mcyp	Helophyten	L	2			3	Blueten oder Fruechte	3
-191500	Glyceria fluitans (L.) R. Br. 	Glyceria fluitans (L.) R. Br.		30000090			Parvograminoide	Pgra	Helophyten	L	1			3	Blueten	1
-191600	Glyceria maxima (Hartm.) Holmb.	Glyceria maxima (Hartm.) Holmb.					Magnomonocotyle	Mmono	Helophyten	Z		4	VU	1		
-191700	Glyceria notata Chevall. 	Glyceria notata Chevall.		30000090			Parvograminoide	Pgra	Helophyten	L	1			3	Blueten	1
-30000090	Glyceria fluitans oder notata  	Glyceria fluitans oder notata	1	30000104			Parvograminoide	Pgra	Helophyten	L	1			2		
-193100	Groenlandia densa (L.) Fourr.	Groenlandia densa (L.) Fourr.					Parvopotamide	Ppot	Aquatische	L	2			1		
-206600	Hippuris vulgaris L.	Hippuris vulgaris L.					Elodeide	Elo	Aquatische	L	3			1		
-208600	Hottonia palustris L.	Hottonia palustris L.					Myriophyllide	Myr	Aquatische	Z		3	EN	2		
-209300	Hydrocharis morsus-ranae L.	Hydrocharis morsus-ranae L.					Hydrocharide	Hyd	Aquatische	Z		3	EN	2		
-215500	Iris pseudacorus L.	Iris pseudacorus L.					Magnomonocotyle	Mmono	Helophyten	L	1			1		
-216500	Isoetes echinospora Durieu 	Isoetes echinospora Durieu		30000091			Isoetide	Iso	Aquatische	Z		2	CR	2		
-216600	Isoetes lacustris L. 	Isoetes lacustris L.		30000091			Isoetide	Iso	Aquatische	Z		3	VU	2		
-30000091	Isoetes sp.	Isoetes sp.	1				Isoetide	Iso	Aquatische	Z		3	VU	2		
-218300	Juncus bulbosus L.	Juncus bulbosus L.					Isoetide	Iso	Aquatische	Z		3	EN	2		
-217600	Juncus acutiflorus Hoffm. 	Juncus acutiflorus Hoffm.		30000092			Juncide	Jun	Helophyten	L	3			3	Blueten	1
-217700	Juncus alpinoarticulatus Chaix 	Juncus alpinoarticulatus Chaix		30000092			Juncide	Jun	Helophyten	L	2			3	Blueten	1
-218100	Juncus articulatus L.	Juncus articulatus L.		30000092			Juncide	Jun	Helophyten	L	1			3	Blueten	1
-219800	Juncus subnodulosus Schrank	Juncus subnodulosus Schrank		30000092			Juncide	Jun	Helophyten	L	3			3	Blueten	1
-30000092	Juncus sp. (acutiflorus, articulatus, alpinoarticulatus, subnodulosus)	Juncus sp.	1				Juncide	Jun	Helophyten	L	1			2		
-225100	Lagarosiphon major (Ridl.) Moss	Lagarosiphon major (Ridl.) Moss		30000024			Parvopotamide	Ppot	Aquatische	N				2		
-231800	Leersia oryzoides (L.) Sw. 	Leersia oryzoides (L.) Sw.		30000104			Parvograminoide	Pgra	Helophyten	Z		4	VU	2		
-232200	Lemna gibba L. 	Lemna gibba L.		30000093			Lemnide	Lem	Aquatische	Z		2	CR	2		
-232300	Lemna minor L. 	Lemna minor L.		30000093			Lemnide	Lem	Aquatische	L	1			2		
-232410	Lemna minuta Humb. & al. 	Lemna minuta Humb. & al.		30000093			Lemnide	Lem	Aquatische	N				2		
-232500	Lemna trisulca L.	Lemna trisulca L.					Ricciellide	Ric	Aquatische	L	3			1		
-232550	Lemna turionifera	Lemna turionifera Landolt		30000093			Lemnide	Lem	Aquatische					2		
-30000093	Lemna gibba oder minor oder minuta oder turionifera	Lemna gibba oder minor oder minuta oder turionifera	1				Lemnide	Lem	Aquatische					1		
-242400	Littorella uniflora (L.) Asch.	Littorella uniflora (L.) Asch.					Isoetide	Iso	Aquatische	Z		3	EN	2		
-245250	Ludwigia grandiflora (Michx.) Greuter & Burdet	Ludwigia grandiflora (Michx.) Greuter & Burdet					Peplide	Pep	Aquatische	N				1		
-250900	Lycopus europaeus L.	Lycopus europaeus L.					Herbide	Herb	Helophyten	L	2			2		
-251700	Lysimachia thyrsiflora L.	Lysimachia thyrsiflora L.					Herbide	Herb	Helophyten	Z		4	VU	1		
-253900	Marsilea quadrifolia L.	Marsilea quadrifolia L.					Magnonymphaeide	Mnym	Aquatische	Z		2	CR	1		
-258000	Mentha aquatica L.	Mentha aquatica L.					Herbide	Herb	Helophyten	L	1			3	Blueten	1
-259900	Mimulus guttatus DC. 	Mimulus guttatus DC.		30000094			Herbide	Herb	Helophyten	N				3	Blueten	1
-259950	Mimulus luteus L. 	Mimulus luteus L.		30000094			Herbide	Herb	Helophyten	N				3	Blueten	1
-260000	Mimulus moschatus Lindl. 	Mimulus moschatus Lindl.		30000094			Herbide	Herb	Helophyten	N				3	Blueten	1
-30000094	Mimulus sp.	Mimulus sp.	1				Herbide	Herb	Helophyten	N				2		
-266000	Myosotis cespitosa Schultz 	Myosotis cespitosa Schultz		30000095			Herbide	Herb	Helophyten	Z		4	VU	3	Blueten	1
-266400	Myosotis nemorosa Besser	Myosotis nemorosa		30000095			Herbide	Herb	Helophyten	L	2			3	Blueten	1
-266800	Myosotis scorpioides L. = M. palustris 	Myosotis scorpioides L.		30000095			Herbide	Herb	Helophyten	L	1			3	Blueten	1
-266700	Myosotis rehsteineri Wartm. 	Myosotis rehsteineri Wartm.		30000095			Herbide	Herb	Helophyten	Z		1	EN	2	Blueten	1
-30000095	Myosotis cespitosa oder scorpioides = palustris oder nemorosa oder rehsteineri	Myosotis cespitosa oder scorpioides = palustris oder nemorosa oder rehsteineri	1				Herbide	Herb	Helophyten	L	1			2	Blueten	1
-267600	Myriophyllum alterniflorum DC.	Myriophyllum alterniflorum DC.					Myriophyllide	Myr	Aquatische	Z		3	EN	2		
-267650	Myriophyllum aquaticum (Vell.) Verdc.	Myriophyllum aquaticum (Vell.) Verdc.					Myriophyllide	Myr	Aquatische	N				1		
-267700	Myriophyllum heterophyllum Michx.	Myriophyllum heterophyllum Michx.					Myriophyllide	Myr	Aquatische	N				2		
-267800	Myriophyllum spicatum L.	Myriophyllum spicatum L.		30000096			Myriophyllide	Myr	Aquatische	L	2			2		
-267900	Myriophyllum verticillatum L. 	Myriophyllum verticillatum L.		30000096			Myriophyllide	Myr	Aquatische	L	3			2		
-30000096	Myriophyllum spicatum oder verticillatum	Myriophyllum spicatum oder verticillatum	1				Myriophyllide	Myr	Aquatische	L	2			2		
-268200	Najas flexilis (Willd.) Rostk. & W. L. E. Schmidt 	Najas flexilis (Willd.) Rostk. & W. L. E. Schmidt		30000097			Parvopotamide	Ppot	Aquatische	Z		2	RE	2		
-268400	Najas marina L.	Najas marina L.		30000097			Parvopotamide	Ppot	Aquatische	L	2			2		
-268500	Najas minor All.	Najas minor All.		30000097			Parvopotamide	Ppot	Aquatische	Z		3	EN	2		
-30000097	Najas sp.	Najas sp.	1				Parvopotamide	Ppot	Aquatische	L	2			2		
-269800	Nasturtium microphyllum (Boenn.) Rchb. 	Nasturtium microphyllum (Boenn.) Rchb.		30000098			Herbide	Herb	Helophyten	Z		3	EN	3	Fruechte	2
-269900	Nasturtium officinale R. Br. 	Nasturtium officinale R. Br.		30000098			Herbide	Herb	Helophyten	L	2			3	Fruechte	2
-30000098	Nasturtium sp. oder Cardamine amara (emers)	Nasturtium sp. oder Cardamine amara	1		emers		Herbide	Herb	Helophyten	L	1			2		
-30000099	Nasturtium sp. oder Cardamine amara (submers)	Nasturtium sp. oder Cardamine amara	1		submers	30000098	Herbide	Herb	Aquatische	L	1			2		
-272300	Nuphar lutea (L.) Sm. 	Nuphar lutea (L.) Sm.		30000100			Magnonymphaeide	Mnym	Aquatische	L	2			2		
-272400	Nuphar pumila (Timm) DC. 	Nuphar pumila (Timm) DC.		30000100			Magnonymphaeide	Mnym	Aquatische	Z		1	EN	2		
-30000100	Nuphar sp.	Nuphar sp.	1				Magnonymphaeide	Mnym	Aquatische	L	2			2		
-272500	Nymphaea alba L. 	Nymphaea alba L.		30000101			Magnonymphaeide	Mnym	Aquatische	L	2			3	Blueten	1
-30000101	Nymphaea sp.	Nymphaea sp.	1				Magnonymphaeide	Mnym	Aquatische	L	2			2		
-272700	Nymphoides peltata (S. G. Gmel.) Kuntze	Nymphoides peltata (S. G. Gmel.) Kuntze					Magnonymphaeide	Mnym	Aquatische	L	2			1		
-60000005	Oenanthe aquatica (L.) Poir. 	Oenanthe aquatica (L.) Poir.		30000102	emers		Herbide	Herb	Helophyten	Z		3	EN	3	Blueten oder Fruechte	3
-60000006	Oenanthe aquatica (L.) Poir. 	Oenanthe aquatica (L.) Poir.		30000103	submers	60000005	Myriophyllide	Myr	Aquatische	Z		3	EN	3	Blueten oder Fruechte	3
-60000007	Oenanthe fistulosa L.	Oenanthe fistulosa L.		30000102	emers		Herbide	Herb	Helophyten	Z		3	EN	3	Blueten oder Fruechte	3
-60000008	Oenanthe fistulosa L. 	Oenanthe fistulosa L.		30000103	submers	60000007	Myriophyllide	Myr	Aquatische	Z		3	EN	3	Blueten oder Fruechte	3
-30000102	Oenanthe sp. (emers)	Oenanthe sp.	1		emers		Herbide	Herb	Helophyten	Z		3	EN	2		
-30000103	Oenanthe sp. (submers)	Oenanthe sp.	1		submers	30000102	Myriophyllide	Myr	Aquatische	Z		3	EN	2		
-297900	Phalaris arundinacea L.	Phalaris arundinacea L.					Magnomonocotyle	Mmono	Helophyten	L	1			1		
-300300	Phragmites australis (Cav.) Steud.	Phragmites australis (Cav.) Steud.					Magnomonocotyle	Mmono	Helophyten	L	1			1		
-303600	Pilularia globulifera L.	Pilularia globulifera L.					Isoetide	Iso	Aquatische	Z		2	CR	2		
-310600	Poa palustris L. 	Poa palustris L.		30000104			Parvograminoide	Pgra	Helophyten	L	2			2		
-30000104	Poaceae mit schwimmenden Ausläufern (A. stolonifera, C. aquatica, L. oryzoides, P. palustris)	Poaceae mit schwimmenden Ausläufern	1				Parvograminoide	Pgra	Helophyten	L	1			2		
-314000	Polygonum amphibium L.	Polygonum amphibium L.					Magnonymphaeide	Mnym	Aquatische	L	2			2		
-317000	Pontederia cordata L.	Pontederia cordata L.					Sagittaride	Sag	Helophyten	N				1		
-318000	Potamogeton acutifolius Link 	Potamogeton acutifolius Link		30000105			Parvopotamide	Ppot	Aquatische	Z		2	CR	2		
-318100	Potamogeton alpinus Balb. 	Potamogeton alpinus Balb.		30000108			Magnopotamide	Mpot	Aquatische	L	3			2		
-318200	Potamogeton berchtoldii Fieber 	Potamogeton berchtoldii Fieber		30000107			Parvopotamide	Ppot	Aquatische	L	1			2		
-318300	Potamogeton coloratus Hornem. (Potamogeton 4)	Potamogeton coloratus Hornem.		30000108			Magnopotamide	Mpot	Aquatische	Z		3	EN	2		
-318500	Potamogeton crispus L. 	Potamogeton crispus L.		30000109			Parvopotamide	Ppot	Aquatische	L	2			2		
-318700	Potamogeton filiformis Pers. 	Potamogeton filiformis Pers.		30000106			Parvopotamide	Ppot	Aquatische	Z		4	VU	2		
-318800	Potamogeton friesii Rupr. 	Potamogeton friesii Rupr.		30000105			Parvopotamide	Ppot	Aquatische	Z		3	EN	2		
-318900	Potamogeton gramineus L. 	Potamogeton gramineus L.		30000108			Magnopotamide	Mpot	Aquatische	Z		4	VU	2		
-319000	Potamogeton helveticus (G. Fisch.) W. Koch 	Potamogeton helveticus (G. Fisch.) W. Koch		30000106			Parvopotamide	Ppot	Aquatische	Z		3	EN	2		
-319100	Potamogeton lucens L. 	Potamogeton lucens L.		30000109			Magnopotamide	Mpot	Aquatische	L	2			1		
-319200	Potamogeton natans L. 	Potamogeton natans L.		30000108			Magnonymphaeide	Mnym	Aquatische	L	2			2		
-319300	Potamogeton nodosus Poir. 	Potamogeton nodosus Poir.		30000108			Magnonymphaeide	Mnym	Aquatische	Z		4	VU	2		
-319500	Potamogeton obtusifolius Mert. & W. D. J. Koch 	Potamogeton obtusifolius Mert. & W. D. J. Koch		30000105			Parvopotamide	Ppot	Aquatische	Z		3	EN	2		
-319700	Potamogeton pectinatus L. 	Potamogeton pectinatus L.		30000106			Parvopotamide	Ppot	Aquatische	L	1			2		
-319800	Potamogeton perfoliatus L.	Potamogeton perfoliatus L.		30000109			Magnopotamide	Mpot	Aquatische	L	2			1		
-320000	Potamogeton polygonifolius Pourr. 	Potamogeton polygonifolius Pourr.		30000108			Magnopotamide	Mpot	Aquatische	Z		3	EN	2		
-320100	Potamogeton praelongus Wulfen 	Potamogeton praelongus Wulfen		30000109			Magnopotamide	Mpot	Aquatische	Z		1	EN	2		
-320200	Potamogeton pusillus L.	Potamogeton pusillus L.		30000107			Parvopotamide	Ppot	Aquatische	Z		4	VU	2		
-320400	Potamogeton trichoides Cham. & Schltdl. 	Potamogeton trichoides Cham. & Schltdl.		30000107			Parvopotamide	Ppot	Aquatische	Z		3	EN	2		
-320500	Potamogeton x angustifolius Bercht. & J. Presl (= P. gramineus x P. lucens) 	Potamogeton x angustifolius Bercht. & J. Presl		30000108			Magnopotamide	Mpot	Aquatische	Z		4	VU	2		
-40000001	Potamogeton x cognatus Asch. & Graebn. (= P. perfoliatus x P. praelongus) 	Potamogeton x cognatus Asch. & Graebn.		30000109			Magnopotamide	Mpot	Aquatische	H				2		
-40000002	Potamogeton x cooperi (Fryer) Fryer (= P. crispus x P. perfoliatus) 	Potamogeton x cooperi (Fryer) Fryer		30000109			Magnopotamide	Mpot	Aquatische	H				2		
-40000003	Potamogeton x fluitans Roth (= P. lucens x P. natans) 	Potamogeton x fluitans Roth		30000107			Magnopotamide	Mpot	Aquatische	H				2		
-40000004	Potamogeton x nericius Hagstr. (= P. alpinus x P. gramineus) 	Potamogeton x nericius Hagstr.		30000108			Magnopotamide	Mpot	Aquatische	H				2		
-40000005	Potamogeton x nerviger Wolfg. (= P. alpinus x P. lucens) 	Potamogeton x nerviger Wolfg.		30000109			Magnopotamide	Mpot	Aquatische	H				2		
-320600	Potamogeton x nitens Weber (= P. gramineus x P. perfoliatus) 	Potamogeton x nitens Weber		30000109			Magnopotamide	Mpot	Aquatische	Z		4	VU	2		
-40000006	Potamogeton x olivaceus Baagoee ex G. Fisch. (= P. crispus x P. alpinus) 	Potamogeton x olivaceus Baagoee ex G. Fisch.		30000109			Magnopotamide	Mpot	Aquatische	H				2		
-320550	Potamogeton x decipiens Nolte ex W.D.J.Koch (= P. lucens x P. perfoliatus) 	Potamogeton x decipiens Nolte ex W.D.J.Koch		30000109			Magnopotamide	Mpot	Aquatische	Z		4	VU	2		
-40000008	Potamogeton x schreberi G. Fisch. (= P. natans x P. nodosus) 	Potamogeton x schreberi G. Fisch.		30000108			Magnonymphaeide	Mnym	Aquatische	H				2		
-40000009	Potamogeton x sparganifolius Laest. ex Fr. (= P. gramineus x P. natans) 	Potamogeton x sparganifolius Laest. ex Fr.		30000108			Magnonymphaeide	Mnym	Aquatische	H				2		
-40000010	Potamogeton x spathulatus Schrad. ex W. D. J. Koch & Ziz (= P. alpinus x P. polygonifolius) 	Potamogeton x spathulatus Schrad. ex W. D. J. Koch & Ziz		30000108			Magnopotamide	Mpot	Aquatische	H				2		
-40000011	Potamogeton x suecicus K. Richt. (= P. filiformis x P. pectinatus) 	Potamogeton x suecicus K. Richt.		30000106			Parvopotamide	Ppot	Aquatische	H				2		
-40000012	Potamogeton x undulatus Wolfg. (= P. crispus x P. praelongus)	Potamogeton x undulatus Wolfg.		30000109			Magnopotamide	Mpot	Aquatische	H				2		
-40000013	Potamogeton x variifolius Thore (= P. natans x P. berchtoldii) 	Potamogeton x variifolius Thore		30000108			Magnonymphaeide	Mnym	Aquatische	H				2		
-40000014	Potamogeton x lintonii Fryer (= P. crispus x P. friesii) (Potamogeton 5)	Potamogeton x lintonii Fryer		30000109			Parvopotamide	Ppot	Aquatische	H				2		
-30000105	Potamogeton 1 (schmalbae�ttrig > 2mm breit, Blaetter bandfoermig (Querschnitt flach))	Potamogeton 1	1				Parvopotamide	Ppot	Aquatische					2		
-30000106	Potamogeton 2 (schmalblaettrig, Blätter im Querschnitt rundlich)	Potamogeton 2	1				Parvopotamide	Ppot	Aquatische					2		
-30000107	Potamogeton 3 (sehr schmalblaettrig < 3mm breit, Blaetter bandfoermig (Querschnitt flach))	Potamogeton 3	1				Parvopotamide	Ppot	Aquatische	L	1			2		
-30000108	Potamogeton 4 (mit Unterwasserblaettern und (oft) Schwimmblaettern)	Potamogeton 4	1				Magnonymphaeide	Mnym	Aquatische					2		
-30000109	Potamogeton 5 (nur mit breiten, durchscheinenden Unterwasserblaettern)	Potamogeton 5	1				Magnopotamide	Mpot	Aquatische					2		
-336900	Ranunculus aquatilis L. 	Ranunculus aquatilis L.		337000			Batrachide	Bat	Aquatische	Z		4	VU	2		
-338000	Ranunculus circinatus Sibth.	Ranunculus circinatus Sibth.					Myriophyllide	Myr	Aquatische	Z		4	VU	2		
-338500	Ranunculus fluitans Lam.	Ranunculus fluitans Lam.					Myriophyllide	Myr	Aquatische	L	2			2		
-339400	Ranunculus lingua L.	Ranunculus lingua L.					Herbide	Herb	Helophyten	Z		4	VU	1		
-340000	Ranunculus peltatus Schrank 	Ranunculus peltatus Schrank		337000			Myriophyllide	Myr	Aquatische	Z		3	EN	2		
-340100	Ranunculus penicillatus (Dumort.) Bab. 	Ranunculus penicillatus (Dumort.) Bab.		337000			Myriophyllide	Myr	Aquatische	Z		4	VU	2		
-341000	Ranunculus reptans L.	Ranunculus reptans L.					Herbide	Herb	Helophyten	Z		1	EN	2		
-341100	Ranunculus rionii Lagger 	Ranunculus rionii Lagger		341895			Myriophyllide	Myr	Aquatische	Z		2	CR	4		
-341895	Ranunculus trichophyllus Chaix s.l. 	Ranunculus trichophyllus Chaix s.l.		30000110			Myriophyllide	Myr	Aquatische	L	2			3	Blueten	1
-341900	Ranunculus trichophyllus Chaix s.str. 	Ranunculus trichophyllus Chaix s.str.		341895			Myriophyllide	Myr	Aquatische	L	3			4		
-342000	Ranunculus trichophyllus subsp. eradicatus (Laest.) C. D. K. Cook	Ranunculus trichophyllus subsp. eradicatus (Laest.) C. D. K. Cook		341895			Myriophyllide	Myr	Aquatische	L	2			4		
-337000	"Ranunculus aquatilis aggr. auct. helv.; mit fein zerteilten Tauchblaettern und Schwimmblaettern (R. aquatilis, R. peltatus, R. penicillatus)"	Ranunculus aquatilis aggr. auct. helv.	1				Myriophyllide	Myr	Aquatische	Z		4	VU	2		
-30000110	Ranunculus sp. 1 (mit feinen zerteilten Unterwasserblaettern, ohne Schwimmblaetter (R. aquatilis, R. peltatus, R. penicillatus, R. trichophyllus, R. rionii))	Ranunculus sp.	1				Myriophyllide	Myr	Aquatische	L	2			2		
-362500	Sagittaria latifolia Willd.	Sagittaria latifolia Willd.		30000111			Sagittaride	Sag	Helophyten	N				2		
-362700	Sagittaria sagittifolia L. 	Sagittaria sagittifolia L.		30000111			Sagittaride	Sag	Helophyten	Z		3	EN	3	Fruechte	2
-30000111	Sagittaria sp. (emers)	Sagittaria sp.	1		emers		Sagittaride	Sag	Helophyten					2		
-30000112	Sagittaria sp. (submers)	Sagittaria sp.	1		submers	30000111	Vallisneride	Vall	Aquatische					2		
-368100	Salvinia natans (L.) All.	Salvinia natans (L.) All.					Lemnide	Lem	Aquatische	N				1		
-378200	Schoenoplectus lacustris (L.) Palla 	Schoenoplectus lacustris (L.) Palla		30000114	emers		Magnocyperiden	Mcyp	Helophyten	L	2			2		
-378300	Schoenoplectus mucronatus (L.) Palla 	Schoenoplectus mucronatus (L.) Palla		30000113			Magnocyperiden	Mcyp	Helophyten	Z		4	VU	3	Blueten oder Fruechte	3
-378400	Schoenoplectus pungens (Vahl) Palla 	Schoenoplectus pungens (Vahl) Palla		30000113			Magnocyperiden	Mcyp	Helophyten	Z		2	CR	3	Blueten oder Fruechte	3
-378700	Schoenoplectus tabernaemontani (C. C. Gmel.) Palla 	Schoenoplectus tabernaemontani (C. C. Gmel.) Palla		30000114	emers		Magnocyperiden	Mcyp	Helophyten	L	2			2		
-378800	Schoenoplectus triqueter (L.) Palla 	Schoenoplectus triqueter (L.) Palla		30000113			Magnocyperiden	Mcyp	Helophyten	Z		2	CR	3	Blueten oder Fruechte	3
-30000113	Schoenoplectus kantig (S. mucronatus, S. pungens, S. triqueter)	Schoenoplectus kantig	1				Magnocyperiden	Mcyp	Helophyten	Z		4	VU	2		
-30000114	Schoenoplectus rund, emers (S. lacustris, S. tabernaemontani)	Schoenoplectus rund	1		emers		Magnocyperiden	Mcyp	Helophyten	L	2			2		
-30000125	Schoenoplectus rund, submers (S. lacustris, S. tabernaemontani)	Schoenoplectus rund	1		submers	30000114	Vallisneride	Vall	Aquatische	L	2			2		
-379700	Scirpus sylvaticus L.	Scirpus sylvaticus L.		30000083			Magnocyperiden	Mcyp	Helophyten	L	1			3	Blueten oder Fruechte	3
-381800	Scrophularia auriculata L.	Scrophularia auriculata L.					Herbide	Herb	Helophyten	Z		3	EN	2		
-382200	Scrophularia umbrosa Dumort.	Scrophularia umbrosa Dumort.					Herbide	Herb	Helophyten	L	2			2		
-60000009	Sium latifolium L. (emers)	Sium latifolium L.			emers		Herbide	Herb	Helophyten	Z		2	CR	2		
-60000010	Sium latifolium L. (submers)	Sium latifolium L.			submers	60000009	Myriophyllide	Myr	Aquatische	Z		2	CR	2		
-402900	Sparganium angustifolium Michx. 	Sparganium angustifolium Michx.		30000117			Vallisneride	Vall	Aquatische	Z		3	NT	2		
-60000011	Sparganium emersum Rehmann (emers) 	Sparganium emersum Rehmann		30000115	emers		Magnomonocotyle	Mmono	Helophyten	Z		4	VU	3	Blueten oder Fruechte	3
-60000012	Sparganium emersum Rehmann (submers) 	Sparganium emersum Rehmann		30000116	submers	60000011	Vallisneride	Vall	Aquatische	Z		4	VU	3	Blueten oder Fruechte	3
-60000013	Sparganium erectum L. s.l. (emers, wenn Unterarten nicht spezifiziert werden)	Sparganium erectum L. s.l.		30000115	emers		Magnomonocotyle	Mmono	Helophyten	L	2			3	Blueten oder Fruechte	3
-60000014	Sparganium erectum L. s.l. (submers, wenn Unterarten nicht spezifiziert werden)	Sparganium erectum L. s.l.		30000116	submers	60000013	Vallisneride	Vall	Aquatische	L	2			3	Blueten oder Fruechte	3
-60000015	Sparganium erectum L. s.str.	Sparganium erectum L. s.str.		60000013	emers		Magnomonocotyle	Mmono	Helophyten	L	2			4	Fruechte	2
-60000016	Sparganium erectum L. s.str. 	Sparganium erectum L. s.str.		60000014	submers	60000015	Vallisneride	Vall	Aquatische	L	2			4	Fruechte	2
-60000017	Sparganium erectum subsp. microcarpum (Neuman) Domin 	Sparganium erectum subsp. microcarpum (Neuman) Domin		60000013	emers		Magnomonocotyle	Mmono	Helophyten	Z		3	EN	4	Fruechte	2
-60000018	Sparganium erectum subsp. microcarpum (Neuman) Domin 	Sparganium erectum subsp. microcarpum (Neuman) Domin		60000014	submers	60000017	Vallisneride	Vall	Aquatische	Z		3	EN	4	Fruechte	2
-60000019	Sparganium erectum subsp. neglectum (Beeby) K. Richt. 	Sparganium erectum subsp. neglectum (Beeby) K. Richt.		60000013	emers		Magnomonocotyle	Mmono	Helophyten	L	2			4	Fruechte	2
-60000020	Sparganium erectum subsp. neglectum (Beeby) K. Richt.	Sparganium erectum subsp. neglectum (Beeby) K. Richt.		60000014	submers	60000019	Vallisneride	Vall	Aquatische	L	2			4	Fruechte	2
-403800	Sparganium natans L.	Sparganium natans L.		30000117			Vallisneride	Vall	Aquatische	Z		3	EN	2		
-30000115	Sparganium 1 (erectum oder emersum, emers) 	Sparganium 1	1		emers		Magnomonocotyle	Mmono	Helophyten	L	2			2		
-30000116	Sparganium 2 (erectum oder emersum, submers) 	Sparganium 2	1		submers	30000115	Vallisneride	Vall	Aquatische	L	2			2		
-30000117	Sparganium 3 (angustifolium, erectum, emersum, natans, submers)	Sparganium 3	1		submers	30000115	Vallisneride	Vall	Aquatische	L	2			2		
-405200	Spirodela polyrhiza (L.) Schleid.	Spirodela polyrhiza (L.) Schleid.					Lemnide	Lem	Aquatische	L	3			1		
-406400	Stachys palustris L.	Stachys palustris L.					Herbide	Herb	Helophyten	L	2			2		
-409700	Stratiotes aloides L.	Stratiotes aloides L.					Stratiotide	Str	Aquatische	N				1		
-432100	Typha angustifolia L.)	Typha angustifolia L.		30000073			Magnomonocotyle	Mmono	Helophyten	L	3			2		
-432200	Typha latifolia L. 	Typha latifolia L.		30000073			Magnomonocotyle	Mmono	Helophyten	L	1			2		
-432300	Typha minima Hoppe	Typha minima Hoppe		30000073			Magnomonocotyle	Mmono	Helophyten	Z		2	CR	2		
-432400	Typha shuttleworthii W. D. J. Koch & Sond. 	Typha shuttleworthii W. D. J. Koch & Sond.		30000073			Magnomonocotyle	Mmono	Helophyten	Z		3	EN	2		
-30000073	Typha sp. (angustifolia, latifolia, shuttleworthii, minima)	Typha sp.	1				Magnomonocotyle	Mmono	Helophyten	L	1			2		
-433600	Utricularia australis R. Br.	Utricularia australis R. Br.		30000118			Ceratophyllide	Cer	Aquatische	L	3			3	Blueten	1
-433700	Utricularia bremii Heer	Utricularia bremii Heer		30000119			Ceratophyllide	Cer	Aquatische	Z		1	CR	3	Blueten	1
-433800	Utricularia intermedia Hayne 	Utricularia intermedia Hayne		30000119			Ceratophyllide	Cer	Aquatische	Z		1	CR	3	Blueten	1
-433900	Utricularia minor L.	Utricularia minor L.		30000119			Ceratophyllide	Cer	Aquatische	Z		4	VU	3	Blueten	1
-434100	Utricularia ochroleuca R. W. Hartm. 	Utricularia ochroleuca R. W. Hartm.		30000119			Ceratophyllide	Cer	Aquatische	Z		1	CR	3	Blueten	1
-434150	Utricularia stygia G. Thor	Utricularia stygia G. Thor		30000119			Ceratophyllide	Cer	Aquatische	Z		2	CR	3	Blueten	1
-434200	Utricularia vulgaris L. 	Utricularia vulgaris L.		30000118			Ceratophyllide	Cer	Aquatische	Z		3	EN	3	Blueten	1
-30000118	Utricularia australis Gruppe (vulgaris oder australis)	Utricularia australis Gruppe	1				Ceratophyllide	Cer	Aquatische	L	3			2		
-30000119	Utricularia sp.	Utricularia sp.	1				Ceratophyllide	Cer	Aquatische	L	3			1		
-437700	Vallisneria spiralis L.	Vallisneria spiralis L.					Vallisneride	Vall	Aquatische	L	2			2		
-440500	Veronica anagallis-aquatica L. 	Veronica anagallis-aquatica L.		30000120			Herbide	Herb	Helophyten	L	2			3	Fruechte	2
-441000	Veronica beccabunga L.	Veronica beccabunga L.					Herbide	Herb	Helophyten	L	1			2		
-441300	Veronica catenata Pennell 	Veronica catenata Pennell		30000120			Herbide	Herb	Helophyten	Z		3	EN	3	Fruechte	2
-443300	Veronica scutellata L.	Veronica scutellata L.					Herbide	Herb	Helophyten	Z		4	VU	2		
-30000120	Veronica anagallis-aquatica oder catenata (emers)	Veronica anagallis-aquatica oder catenata	1		emers		Herbide	Herb	Helophyten	L	2			2		
-30000121	Veronica anagallis-aquatica oder catenata (submers)	Veronica anagallis-aquatica oder catenata	1		submers	30000120	Herbide	Herb	Aquatische	L	2			2		
-455700	Zannichellia palustris L.	Zannichellia palustris L.					Parvopotamide	Ppot	Aquatische	Z		4	VU	2		
-500200	Chara aspera Willd. 	Chara aspera Willd.		30000002			Charide	Cha	Aquatische	Z		3	VU	4		
-500600	Chara contraria Kuetz.	Chara contraria Kuetz.		30000002			Charide	Cha	Aquatische				LC	4		
-500700 	Chara crassicaulis Schleich. 	Chara crassicaulis Schleich.		30000002			Charide	Cha	Aquatische					4		
-500900	Chara denudata A. Braun	Chara denudata A. Braun		30000002			Charide	Cha	Aquatische					4		
-501000	Chara filiformis Hertzsch	Chara filiformis Hertzsch		30000002			Charide	Cha	Aquatische					4		
-501200	Chara globularis Thuill.	Chara globularis Thuill.		30000002			Charide	Cha	Aquatische					4		
-501300	Chara gymnophylla A. Braun	Chara gymnophylla A. Braun		30000002			Charide	Cha	Aquatische					4		
-501400	Chara hispida L. 	Chara hispida L.		30000002			Charide	Cha	Aquatische	Z		3	VU	4		
-501500 	Chara hispidula A. Braun 	Chara hispidula A. Braun		30000002			Charide	Cha	Aquatische					4		
-501700	Chara intermedia A. Braun	Chara intermedia A. Braun		30000002			Charide	Cha	Aquatische	Z		2	EN	4		
-502000	Chara polyacantha A. Braun 	Chara polyacantha A. Braun		30000002			Charide	Cha	Aquatische	Z		1	CR	4		
-502200	Chara strigosa A. Braun	Chara strigosa A. Braun		30000002			Charide	Cha	Aquatische	Z		1	EN	4		
-502300	Chara tenuispina A. Braun	Chara tenuispina A. Braun		30000002			Charide	Cha	Aquatische	Z		1	CR	4		
-502400	Chara tomentosa L.	Chara tomentosa L.		30000002			Charide	Cha	Aquatische	Z		3	VU	4		
-502450	Chara virgata Kuetz. 	Chara virgata Kuetz.		30000002			Charide	Cha	Aquatische	Z		3	VU	4		
-502500	"Chara vulgaris aggr. (Chara crassicaulis Schleich.; Chara gymnophylla A. Braun; Chara hispidula A. Braun; Chara vulgaris L.)"	Chara vulgaris aggr.		30000002			Charide	Cha	Aquatische					4		
-502600	Chara vulgaris L. 	Chara vulgaris L.		30000002			Charide	Cha	Aquatische	Z		3	VU	4		
-30000002	Chara sp. (alle Arten der Gattung Chara)	Chara sp.					Charide	Cha	Aquatische					2		
-50000010	Characeen (alle Arten der Gattung Chara, Nitella, Nitellopsis und Tolypella)	Characeen					Charide	Cha	Aquatische					1		
-503300	Nitella flexilis (L.) C. Agardh 	Nitella flexilis (L.) C. Agardh		30000004			Charide	Cha	Aquatische	Z		1	CR	4		
-503400	Nitella gracilis (Sm.) C. Agardh 	Nitella gracilis (Sm.) C. Agardh		30000004			Charide	Cha	Aquatische	Z		2	EN	4		
-503600	Nitella mucronata (A. Braun) Miq. 	Nitella mucronata (A. Braun) Miq.		30000004			Charide	Cha	Aquatische	Z		2	EN	4		
-503700	Nitella opaca (Bruzelius) C. Agardh 	Nitella opaca (Bruzelius) C. Agardh		30000004			Charide	Cha	Aquatische	Z		3	VU	4		
-503800	Nitella syncarpa (Thuill.) Chevall.	Nitella syncarpa (Thuill.) Chevall.		30000004			Charide	Cha	Aquatische	Z		2	EN	4		
-30000004	Nitella sp. (Nitella flexilis, gracilis, mucronata, opaca oder syncarpa)	Nitella sp.					Charide	Cha	Aquatische					2		
-504100	Nitellopsis obtusa (Desv.) J. Groves	Nitellopsis obtusa (Desv.) J. Groves					Charide	Cha	Aquatische	Z		4	NT	2		
-504200	Tolypella glomerata (Desv.) Leonh. 	Tolypella glomerata (Desv.) Leonh.		30000005			Charide	Cha	Aquatische	Z		2	EN	4		
-30000005	Tolypella sp. (alle Arten der Gattung Tolypella)	Tolypella sp.					Charide	Cha	Aquatische					2		
-10000024	Aneura pinguis (L.) Dumort.	Aneura pinguis (L.) Dumort.					Bryide	Bry	Moose	L	2			2		
-10000026	Anthelia julacea (L.) Dumort.	Anthelia julacea (L.) Dumort.					Bryide	Bry	Moose	Z		3	EN	3		
-10000069	Blasia pusilla L.	Blasia pusilla L.					Bryide	Bry	Moose	Z		4	VU	2		
-10000709	Blindia acuta (Hedw.) Bruch & Schimp.	Blindia acuta (Hedw.) Bruch & Schimp.					Bryide	Bry	Moose	L	2			2		
-10000746	Brachythecium rivulare Schimp.	Brachythecium rivulare Schimp.					Bryide	Bry	Moose	L	1			2		
-10000884	Bryum gemmiparum De Not.	Bryum gemmiparum De Not.					Bryide	Bry	Moose	Z		2	CR	2		
-10001019	Calliergonella cuspidata (Hedw.) Loeske	Calliergonella cuspidata (Hedw.) Loeske					Bryide	Bry	Moose	L	1			1		
-10001039	Campylium stellatum (Hedw.) Lange & C.E.O.Jensen subsp. stellatum	Campylium stellatum (Hedw.) Lange & C.E.O.Jensen subsp. stellatum					Bryide	Bry	Moose	L	1			2		
-10001063	Catoscopium nigritum (Hedw.) Brid.	Catoscopium nigritum (Hedw.) Brid.					Bryide	Bry	Moose	L	1		VU	2		
-10000123	Chiloscyphus pallescens (Hoffm.) Dumort. 	Chiloscyphus pallescens (Hoffm.) Dumort.		10000121			Bryide	Bry	Moose	L	2			3		
-10000121	Chiloscyphus polyanthos aggr. (C. pallescens oder C. polyanthos)	Chiloscyphus polyanthos aggr.	1				Bryide	Bry	Moose	L	2			2		
-10002709	Chiloscyphus polyanthos (L.) Corda 	Chiloscyphus polyanthos (L.) Corda		10000121			Bryide	Bry	Moose	L	2			3		
-10001073	Cinclidotus aquaticus (Hedw.) Bruch & Schimp.	Cinclidotus aquaticus (Hedw.) Bruch & Schimp.		30000122			Bryide	Bry	Moose	Z		2	EN	2		
-10001074	Cinclidotus danubicus Schiffn. & Baumgartner	Cinclidotus danubicus Schiffn. & Baumgartner		30000122			Bryide	Bry	Moose	L	3			2		
-10001075	Cinclidotus fontinaloides (Hedw.) P.Beauv. 	Cinclidotus fontinaloides (Hedw.) P.Beauv.		30000122			Bryide	Bry	Moose	L	2			2		
-10001079	Cinclidotus riparius (Brid.) Arn.	Cinclidotus riparius (Brid.) Arn.		30000122			Bryide	Bry	Moose	L	2			2		
-30000122	Cinclidotus sp. (C. aquaticus oder C. danubicus oder C. fontnaloides oder C. riparius)	Cinclidotus sp.	1				Bryide	Bry	Moose	L	2			1		
-10001099	Climacium dendroides (Hedw.) F.Weber & D.Mohr	Climacium dendroides (Hedw.) F.Weber & D.Mohr					Bryide	Bry	Moose	L	1			1		
-10003290	Conocephalum conicum (L.) Dumort.	Conocephalum conicum (L.) Dumort.					Bryide	Bry	Moose	L	1			2		
-10003293	Cratoneuron curvicaule (Jur.) G.Roth 	Cratoneuron curvicaule (Jur.) G.Roth		10001118			Bryide	Bry	Moose	L	2		DD	2		
-10001118	Cratoneuron filicinum aggr. (C. curvicaule oder C. filicinum)	Cratoneuron filicinum aggr.	1				Bryide	Bry	Moose	L	2			2		
-10003297	Cratoneuron filicinum (Hedw.) Spruce 	Cratoneuron filicinum (Hedw.) Spruce		10001118			Bryide	Bry	Moose	L	2			2		
-10003320	Dialytrichia mucronata (Brid.) Broth.	Dialytrichia mucronata (Brid.) Broth.					Bryide	Bry	Moose	Z		2	CR	2		
-10001161	Dichodontium flavescens (Dicks.) Lindb. 	Dichodontium flavescens (Dicks.) Lindb.		10001160			Bryide	Bry	Moose	L	1		NE	2		
-10001160	Dichodontium pellucidum aggr. (D. flavescens oder D. pellucidum)	Dichodontium pellucidum aggr.	1				Bryide	Bry	Moose	L	1			2		
-10003321	Dichodontium pellucidum (Hedw.) Schimp. 	Dichodontium pellucidum (Hedw.) Schimp.		10001160			Bryide	Bry	Moose	L	1			2		
-10001173	Diobelonella palustris (Dicks.) Ochyra	Diobelonella palustris (Dicks.) Ochyra					Bryide	Bry	Moose	L	2			2		
-10001259	Drepanocladus aduncus (Hedw.) Warnst.	Drepanocladus aduncus (Hedw.) Warnst.					Bryide	Bry	Moose	L	1			2		
-10003415	Fissidens crassipes Bruch & Schimp. subsp. crassipes	Fissidens crassipes Bruch & Schimp. subsp. crassipes					Bryide	Bry	Moose	L	1			2		
-10001717	Fissidens fontanus (Bach.Pyl.) Steud.	Fissidens fontanus (Bach.Pyl.) Steud.					Bryide	Bry	Moose	Z		4	VU	2		
-10001378	Fissidens grandifrons Brid.	Fissidens grandifrons Brid.					Bryide	Bry	Moose	Z		1	EN	2		
-10001382	Fissidens rivularis (Spruce) Schimp.	Fissidens rivularis (Spruce) Schimp.					Bryide	Bry	Moose	Z		4	VU	2		
-10001383	Fissidens rufulus Bruch & Schimp.	Fissidens rufulus Bruch & Schimp.					Bryide	Bry	Moose	Z		3	EN	2		
-10001401	Fontinalis antipyretica Hedw.	Fontinalis antipyretica Hedw.					Bryide	Bry	Moose	L	2			1		
-10001410	Fontinalis hypnoides C.Hartm.	Fontinalis hypnoides C.Hartm.					Bryide	Bry	Moose	Z		4	VU	2		
-10001412	Fontinalis squamosa Hedw.	Fontinalis squamosa Hedw.					Bryide	Bry	Moose	Z		4	VU	2		
-10001538	Hydrogrimmia mollis (Bruch & Schimp.) Loeske	Hydrogrimmia mollis (Bruch & Schimp.) Loeske					Bryide	Bry	Moose	L	3			3		
-10000505	Hygroamblystegium fluviatile (Hedw.) Loeske	Hygroamblystegium fluviatile (Hedw.) Loeske					Bryide	Bry	Moose	Z		4	VU	2		
-10000535	Hygroamblystegium tenax (Hedw.) Jenn.	Hygroamblystegium tenax (Hedw.) Jenn.					Bryide	Bry	Moose	L	2			2		
-10001540	Hygrohypnum alpestre (Hedw.) Loeske	Hygrohypnum alpestre (Hedw.) Loeske					Bryide	Bry	Moose	Z		4	VU	2		
-10001542	Hygrohypnum alpinum (Lindb.) Loeske 	Hygrohypnum alpinum (Lindb.) Loeske		30000123			Bryide	Bry	Moose	Z		2	EN	2		
-10001543	Hygrohypnum cochlearifolium (Venturi) Broth. 	Hygrohypnum cochlearifolium (Venturi) Broth.		30000123			Bryide	Bry	Moose	Z		1	CR	2		
-10001545	Hygrohypnum duriusculum (De Not.) D.W.Jamieson 	Hygrohypnum duriusculum (De Not.) D.W.Jamieson		30000123			Bryide	Bry	Moose	L	3		NT	2		
-10001547	Hygrohypnum eugyrium (Schimp.) Broth. 	Hygrohypnum eugyrium (Schimp.) Broth.		30000123			Bryide	Bry	Moose	Z		4	VU	2		
-10001549	Hygrohypnum luridum (Hedw.) Jenn. 	Hygrohypnum luridum (Hedw.) Jenn.		30000123			Bryide	Bry	Moose	L	1			2		
-10001553	Hygrohypnum molle (Hedw.) Loeske 	Hygrohypnum molle (Hedw.) Loeske		30000123			Bryide	Bry	Moose	Z		3	VU	2		
-10001554	Hygrohypnum norvegicum (Schimp.) J.J.Amann 	Hygrohypnum norvegicum (Schimp.) J.J.Amann		30000123			Bryide	Bry	Moose	Z		2	VU	2		
-10001556	Hygrohypnum ochraceum (Wilson) Loeske 	Hygrohypnum ochraceum (Wilson) Loeske		30000123			Bryide	Bry	Moose	Z		4	VU	2		
-10001557	Hygrohypnum smithii (Sw.) Broth. 	Hygrohypnum smithii (Sw.) Broth.		30000123			Bryide	Bry	Moose	Z		3	EN	2		
-10001559	Hygrohypnum styriacum (Limpr.) Broth. 	Hygrohypnum styriacum (Limpr.) Broth.		30000123			Bryide	Bry	Moose	Z		4	VU	2		
-30000123	Hygrohypnum sp.	Hygrohypnum sp.	1				Bryide	Bry	Moose	L	1			1		
-10004408	Hymenostylium recurvirostrum (Hedw.) Dixon	Hymenostylium recurvirostrum (Hedw.) Dixon					Bryide	Bry	Moose	L	1			2		
-10001572	Hyophila involuta (Hook.) A.Jaeger	Hyophila involuta (Hook.) A.Jaeger					Bryide	Bry	Moose	Z		4	VU	2		
-10000174	Jungermannia atrovirens Dumort.	Jungermannia atrovirens Dumort.					Bryide	Bry	Moose	L	1			3		
-10000179	Jungermannia borealis Damsh. & Vana	Jungermannia borealis Damsh. & Vana					Bryide	Bry	Moose	L	1		VU	3		
-10000187	Jungermannia exsertifolia subsp. cordifolia (Dumort.) Vana	Jungermannia exsertifolia subsp. cordifolia (Dumort.) Vana					Bryide	Bry	Moose	Z		4	VU	3		
-10000516	Leptodictyum riparium (Hedw.) Warnst.	Leptodictyum riparium (Hedw.) Warnst.					Bryide	Bry	Moose	L	1			2		
-10001672	Leskea polycarpa Hedw.	Leskea polycarpa Hedw.					Bryide	Bry	Moose	L	2			2		
-10003114	Lunularia cruciata (L.) Lindb. subsp. cruciata	Lunularia cruciata (L.) Lindb. subsp. cruciata					Bryide	Bry	Moose	L	1			2		
-10000290	Marchantia polymorpha L.	Marchantia polymorpha L.					Bryide	Bry	Moose	L	1			2		
-10003730	Marsupella emarginata subsp. aquatica (Lindenb.) Meyl.	Marsupella emarginata subsp. aquatica (Lindenb.) Meyl.					Bryide	Bry	Moose	L	3			2		
-10000305	Marsupella emarginata (Ehrh.) Dumort. subsp. emarginata	Marsupella emarginata (Ehrh.) Dumort. subsp. emarginata					Bryide	Bry	Moose	L	3			2		
-10000331	Nardia compressa (Hook.) Gray	Nardia compressa (Hook.) Gray					Bryide	Bry	Moose	L	3		NT	2		
-10001747	Orthotrichum cupulatum Brid.	Orthotrichum cupulatum Brid.					Bryide	Bry	Moose	L	1			2		
-10001109	Palustriella commutata aggr. (P. commutata oder P. falcata)	Palustriella commutata aggr.	1				Bryide	Bry	Moose	L	2			2		
-10003292	Palustriella commutata (Hedw.) Ochyra 	Palustriella commutata (Hedw.) Ochyra		10001109			Bryide	Bry	Moose	L	2			2		
-10001117	Palustriella decipiens (De Not.) Ochyra	Palustriella decipiens (De Not.) Ochyra					Bryide	Bry	Moose	L	2			2		
-10003295	Palustriella falcata (Brid.) Hedenaes 	Palustriella falcata (Brid.) Hedenaes		10001109			Bryide	Bry	Moose	L	2			2		
-10003824	Pellia endiviifolia (Dicks.) Dumort. subsp. Endiviifolia	Pellia endiviifolia (Dicks.) Dumort. subsp. endiviifolia		30000050			Bryide	Bry	Moose	L	1			2		
-10002671	Pellia epiphylla aggr. (P. epiphylla oder P. neesiana)	Pellia epiphylla aggr.	1				Bryide	Bry	Moose	L	1			2		
-10000355	Pellia epiphylla (L.) Corda subsp. epiphylla 	Pellia epiphylla (L.) Corda subsp. epiphylla		10002671			Bryide	Bry	Moose	L	1			2		
-10003826	Pellia neesiana (Gottsche) Limpr. subsp. neesiana 	Pellia neesiana (Gottsche) Limpr. subsp. neesiana		10002671			Bryide	Bry	Moose	L	1			2		
-30000050	Pellia sp.	Pellia sp.	1				Bryide	Bry	Moose	L	1			1		
-10001815	Philonotis caespitosa Jur. 	Philonotis caespitosa Jur.		30000124			Bryide	Bry	Moose	Z		4	VU	2		
-10001817	Philonotis calcarea (Bruch & Schimp.) Schimp. 	Philonotis calcarea (Bruch & Schimp.) Schimp.		30000124			Bryide	Bry	Moose	L	2			2		
-10001812	Philonotis capillaris Lindb.  	Philonotis capillaris Lindb.		30000124			Bryide	Bry	Moose	L	2			2		
-10003837	Philonotis fontana aggr. (P. fontana oder P. tomentella)	Philonotis fontana aggr.	1				Bryide	Bry	Moose	L	2			2		
-10001818	Philonotis fontana (Hedw.) Brid. 	Philonotis fontana (Hedw.) Brid.		10003837			Bryide	Bry	Moose	L	2			2		
-10001819	Philonotis marchica 	Philonotis marchica (Hedw.) Brid.		30000124			Bryide	Bry	Moose	Z		2	CR	2		
-10001821	Philonotis rigida Brid. 	Philonotis rigida Brid.		30000124			Bryide	Bry	Moose	Z		4	VU	2		
-10001822	Philonotis seriata Mitt. 	Philonotis seriata Mitt.		30000124			Bryide	Bry	Moose	L	2			2		
-10001823	Philonotis tomentella Molendo 	Philonotis tomentella Molendo		10003837			Bryide	Bry	Moose	L	2			2		
-30000124	Philonotis sp.	Philonotis sp.	1				Bryide	Bry	Moose	L	2			1		
-10000371	Porella cordaeana (Huebener) Moore	Porella cordaeana (Huebener) Moore					Bryide	Bry	Moose	Z		3	EN	2		
-10002076	Racomitrium aciculare (Hedw.) Brid.	Racomitrium aciculare (Hedw.) Brid.					Bryide	Bry	Moose	L	2			2		
-10002077	Racomitrium aquaticum (Schrad.) Brid.	Racomitrium aquaticum (Schrad.) Brid.					Bryide	Bry	Moose	L	2			2		
-10002124	Rhynchostegium riparioides (Hedw.) Cardot	Rhynchostegium riparioides (Hedw.) Cardot					Bryide	Bry	Moose	L	1			2		
-10002618	Riccia fluitans aggr. ( R. fluitans oder R. rhenana)	Riccia fluitans aggr.	1				Bryide	Bry	Moose	Z		4		1		
-10000417	Riccia fluitans L.	Riccia fluitans L.		10002618			Bryide	Bry	Moose	Z		4	VU	3		
-10000424	Riccia rhenana Muell.Frib.	Riccia rhenana Muell.Frib.		10002618			Bryide	Bry	Moose	Z		4	DD	3		
-10000429	Ricciocarpos natans (L.) Corda	Ricciocarpos natans (L.) Corda					Bryide	Bry	Moose	Z		4	VU	1		
-10000447	Scapania irrigua (Nees) Nees subsp. irrigua	Scapania irrigua (Nees) Nees subsp. irrigua					Bryide	Bry	Moose	L	1			3		
-10000455	Scapania paludicola Loeske & Muell.Frib.	Scapania paludicola Loeske & Muell.Frib.					Bryide	Bry	Moose	L	1			3		
-10000467	Scapania paludosa (Muell.Frib.) Muell.Frib. 	Scapania paludosa (Muell.Frib.) Muell.Frib.		10002621			Bryide	Bry	Moose	L	2			3		
-10004071	Scapania subalpina (Lindenb.) Dumort. 	Scapania subalpina (Lindenb.) Dumort.		10004076			Bryide	Bry	Moose	L	2			3		
-10002621	Scapania uliginosa aggr. (S. paludosa oder S. uliginosa)	Scapania uliginosa aggr.	1				Bryide	Bry	Moose	L	2			3		
-10000465	Scapania uliginosa (Lindenb.) Dumort. 	Scapania uliginosa (Lindenb.) Dumort.		10002621			Bryide	Bry	Moose	L	2			3		
-10004076	Scapania undulata aggr. (S. subalpina oder  S. undulata)	Scapania undulata aggr. (Scapania subalpina (Lindenb.) Dumort., Scapania undulata s. str.)	1				Bryide	Bry	Moose	L	2			3		
-10000469	Scapania undulata (L.) Dumort. 	Scapania undulata (L.) Dumort.		10004076			Bryide	Bry	Moose	L	2			3		
-10002143	Schistidium agassizii Sull. & Lesq.	Schistidium agassizii Sull. & Lesq.					Bryide	Bry	Moose	Z		4	VU	2		
-10004097	Schistidium platyphyllum (Mitt.) H.Perss. subsp. platyphyllum 	Schistidium platyphyllum (Mitt.) H.Perss. subsp. platyphyllum		10002163			Bryide	Bry	Moose	L	3			2		
-10002168	Schistidium rivulare (Brid.) Podp. 	Schistidium rivulare (Brid.) Podp.		10002163			Bryide	Bry	Moose	L	3			2		
-10002163	Schistidium rivulare aggr. (S. platyphyllum oder S. rivulare)	Schistidium rivulare aggr.	1				Bryide	Bry	Moose	L	3			2		
-10000739	Sciuro-Hypnum plumosum (Hedw.) Ignatov & Huttunen	Sciuro-Hypnum plumosum (Hedw.) Ignatov & Huttunen					Bryide	Bry	Moose	L	2			2		
-10000199	Solenostoma obovatum (Nees) C.Massal.	Solenostoma obovatum (Nees) C.Massal.					Bryide	Bry	Moose	L	1			3		
-10002316	Thamnobryum alopecurum (Hedw.) Gangulee	Thamnobryum alopecurum (Hedw.) Gangulee					Bryide	Bry	Moose	L	1			1		
-10004265	Tritomaria polita (Nees) Jorg. subsp. polita	Tritomaria polita (Nees) Jorg. subsp. polita					Bryide	Bry	Moose	L	2			2		
-50000001	Bryophyta	Bryophyta	1				Bryide	Bry	Moose					1		
-50000004	faedige Gruenalgen	faedige Gruenalgen	1				Faedige Alge	FaedAlg	Algen					1		
-30000017	Cladophora sp.	Cladophora sp.		50000004			Faedige Alge	FaedAlg	Algen					1		
-50000002	Cyanophyta	Cyanophyta		50000004			Faedige Alge	FaedAlg	Algen					1		
-30000020	Desmidium sp.	Desmidium sp.		50000004			Faedige Alge	FaedAlg	Algen					1		
-30000021	Diatoma sp.	Diatoma sp.		50000004			Faedige Alge	FaedAlg	Algen					1		
-30000030	Gloeocystis sp.	Gloeocystis sp.		50000004			Faedige Alge	FaedAlg	Algen					1		
-30000060	Rhizoclonium sp.	Rhizoclonium sp.		50000004			Faedige Alge	FaedAlg	Algen					1		
-30000069	Spirogyra sp.	Spirogyra sp.		50000004			Faedige Alge	FaedAlg	Algen					1		
-30000071	Tetraspora sp.	Tetraspora sp.		50000004			Faedige Alge	FaedAlg	Algen					1		
-30000074	Ulothrix sp.	Ulothrix sp.		50000004			Faedige Alge	FaedAlg	Algen					1		
-30000076	Vaucheria sp.	Vaucheria sp.		50000004			Faedige Alge	FaedAlg	Algen					1		
+A_macrophytes_species_number_msk	A_macrophytes_species_name_taxalistch	A_macrophytes_species_name_latin	A_macrophytes_taxalist_taxagroups	A_macrophytes_taxalist_taxagroups_assign	A_macrophytes_taxalist_growthform_assess_twoforms_grfo	A_macrophytes_taxalist_growthform_assess_twoforms_grfoval	A_macrophytes_taxalist_growthform	A_macrophytes_taxalist_growthform_abbrev	A_macrophytes_taxalist_growthform_assess	A_macrophytes_taxalist_conservationinfo	A_macrophytes_taxalist_indexspecies	A_macrophytes_taxalist_priorityspecies	A_macrophytes_taxalist_redliststatuts	A_macrophytes_taxalist_determination	A_macrophytes_taxalist_determination_trait	A_macrophytes_taxalist_phenology_trait
+5100	Acorus calamus L.	Acorus calamus L.					Magnomonocotyle	Mmono	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_neophyte				2		
+9300	Agrostis stolonifera L. 	Agrostis stolonifera L.		30000104			Parvograminoide	Pgra	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	1			2		
+21600	Aldrovanda vesiculosa L.	Aldrovanda vesiculosa L.					Ceratophyllide	Cer	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		3	EN	2		
+21700	Alisma gramineum Lej. 	Alisma gramineum Lej.		30000008			Vallisneride	Vall	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		3	EN	2		
+21800	Alisma lanceolatum With.	Alisma lanceolatum With.		30000008			Sagittaride	Sag	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_priority		3	EN	3	L_macrophytes_taxalist_determination_trait_flowers	1
+21900	Alisma plantago-aquatica L.	Alisma plantago-aquatica L.		30000008			Sagittaride	Sag	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	2			2		
+30000080	Alisma lanceolatum oder A. plantago-aquatica (emers) 	Alisma lanceolatum oder A. plantago-aquatica	1	30000008	L_macrophytes_taxalist_growthform_assess_twoforms_grfo_em		Sagittaride	Sag	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	2			2		
+30000081	Alisma lanceolatum oder A. plantago-aquatica (submers) 	Alisma lanceolatum oder A. plantago-aquatica	1	30000008	L_macrophytes_taxalist_growthform_assess_twoforms_grfo_sub	30000080	Sagittaride	Vall	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	2			2		
+30000008	Alisma sp. (submers)	Alisma sp.	1		L_macrophytes_taxalist_growthform_assess_twoforms_grfo_sub		Vallisneride	Vall	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	2			2		
+38500	Apium nodiflorum (L.) Lag.	Apium nodiflorum (L.) Lag.					Herbide	Herb	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_priority		2	CR	2		
+38600	Apium repens (Jacq.) Lag.	Apium repens (Jacq.) Lag.					Herbide	Herb	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_priority		2	CR	2		
+43800	Arenaria gothica Fr.	Arenaria gothica Fr.					Herbide	Herb	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_priority		1	CR	2		
+57750	Azolla filiculoides Lam. 	Azolla filiculoides Lam.		30000082			Lemnide	Lem	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_neophyte				4		
+20000001	Azolla mexicana C. Presl 	Azolla mexicana C. Presl		30000082			Lemnide	Lem	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_neophyte				4		
+30000082	Azolla sp.	Azolla sp.	1				Lemnide	Lem	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_neophyte				2		
+57800	Baldellia ranunculoides (L.) Parl. 	Baldellia ranunculoides (L.) Parl.		30000008			Sagittaride	Sag	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_priority		1	CR	2		
+60000001	Berula erecta (Huds.) Coville (emers)	Berula erecta (Huds.) Coville			L_macrophytes_taxalist_growthform_assess_twoforms_grfo_em		Herbide	Herb	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	2			2		
+60000002	Berula erecta (Huds.) Coville (submers)	Berula erecta (Huds.) Coville			L_macrophytes_taxalist_growthform_assess_twoforms_grfo_sub	60000001	Herbide	Herb	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	2			2		
+62900	Bolboschoenus maritimus (L.) Palla 	Bolboschoenus maritimus (L.) Palla		30000085			Magnocyperiden	Mcyp	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_priority		2	CR	3	L_macrophytes_taxalist_determination_trait_flowersandfruits	4
+60000003	Butomus umbellatus L. (emers)	Butomus umbellatus L.			L_macrophytes_taxalist_growthform_assess_twoforms_grfo_em		Magnomonocotyle	Mmono	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_priority		4	VU	1		
+60000004	Butomus umbellatus L. (submers)	Butomus umbellatus L.			L_macrophytes_taxalist_growthform_assess_twoforms_grfo_sub	60000003	Vallisneride	Vall	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		4	VU	2		
+73000	Callitriche cophocarpa Sendtn.	Callitriche cophocarpa Sendtn.		30000001			Peplide	Pep	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		4	VU	3	L_macrophytes_taxalist_determination_trait_fruits	2
+73100	Callitriche hamulata W. D. J. Koch	Callitriche hamulata W. D. J. Koch		30000001			Peplide	Pep	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	3			3	L_macrophytes_taxalist_determination_trait_fruits	2
+73200	Callitriche obtusangula Le Gall 	Callitriche obtusangula Le Gall		30000001			Peplide	Pep	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		2	CR	3	L_macrophytes_taxalist_determination_trait_fruits	2
+73300	Callitriche palustris L. 	Callitriche palustris L.		30000001			Peplide	Pep	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	2			3	L_macrophytes_taxalist_determination_trait_fruits	2
+73400	Callitriche platycarpa Kütz.	Callitriche platycarpa Kütz.		30000001			Peplide	Pep	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		4	VU	3	L_macrophytes_taxalist_determination_trait_fruits	2
+73500	Callitriche stagnalis Scop.	Callitriche stagnalis Scop.		30000001			Peplide	Pep	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	2			3	L_macrophytes_taxalist_determination_trait_fruits	2
+30000001	Callitriche sp.	Callitriche sp.	1				Peplide	Pep	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	2			1		
+78300	Cardamine amara L. s.l.	Cardamine amara L. s.l.		30000098			Herbide	Herb	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	1			3	L_macrophytes_taxalist_determination_trait_flowersorfruits	3
+82850	Carex acuta L. 	Carex acuta L.		30000083			Magnocyperiden	Mcyp	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	2			3	L_macrophytes_taxalist_determination_trait_flowersorfruits	3
+83000	Carex acutiformis Ehrh.	Carex acutiformis Ehrh.		30000083			Magnocyperiden	Mcyp	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	2			3	L_macrophytes_taxalist_determination_trait_flowersorfruits	3
+86800	Carex elata All. 	Carex elata All.		30000084			Magnocyperiden	Mcyp	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	2			3	L_macrophytes_taxalist_determination_trait_flowersorfruits	3
+92900	Carex pseudocyperus L. 	Carex pseudocyperus L.		30000084			Magnocyperiden	Mcyp	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_priority		4	VU	3	L_macrophytes_taxalist_determination_trait_flowersorfruits	3
+93500	Carex riparia Curtis 	Carex riparia Curtis		30000083			Magnocyperiden	Mcyp	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	2			3	L_macrophytes_taxalist_determination_trait_flowersorfruits	3
+93700	Carex rostrata Stokes	Carex rostrata Stokes		30000085			Magnocyperiden	Mcyp	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	2			3	L_macrophytes_taxalist_determination_trait_flowersorfruits	3
+95300	Carex vesicaria L. 	Carex vesicaria L.		30000083			Magnocyperiden	Mcyp	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	3			3	L_macrophytes_taxalist_determination_trait_flowersorfruits	3
+95500	Carex vulpina L. 	Carex vulpina L.		30000084			Magnocyperiden	Mcyp	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_priority		3	EN	3	L_macrophytes_taxalist_determination_trait_flowersorfruits	3
+30000083	"Carex 1 (grosse breitblaettrige Auslaeufer-Sauergraeser, Blattbreite 7-20 mm; C. acuta, C. acutiformis, C. riparia, C. versicaria, S. sylvaticus)"	Carex 1	1				Magnocyperiden	Mcyp	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	1			1		
+30000084	"Carex 2 (grosse knickrandige Horst-Sauergraeser, Blattbreite 5-10 mm; C. elata, C. pseudocyperus , C. vulpina)"	Carex 2	1				Magnocyperiden	Mcyp	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	2			1		
+30000085	"Carex 3 (grosse mittelbreite Auslaeufer-Sauergraeser, Blattbreite 4-8 mm ; B. maritimus, C. rostrata, E. latifolium)"	Carex 3	1				Magnocyperiden	Mcyp	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	2			1		
+97300	Catabrosa aquatica (L.) P. Beauv.	Catabrosa aquatica (L.) P. Beauv.		30000104			Parvograminoide	Pgra	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_priority		4	VU	2		
+105500	Ceratophyllum demersum L.	Ceratophyllum demersum L.					Ceratophyllide	Cer	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	2			2		
+105600	Ceratophyllum submersum L.	Ceratophyllum submersum L.					Ceratophyllide	Cer	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		3	EN	2		
+113300	Cicuta virosa L.	Cicuta virosa L.					Herbide	Herb	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_priority		3	EN	2		
+20000004	Crassula aquatica (L.) Schoenl. 	Crassula aquatica (L.) Schoenl.		30000086			Parvopotamide	Ppot	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_neophyte				3	L_macrophytes_taxalist_determination_trait_flowers	1
+122060	Crassula helmsii (Kirk) Cockayne 	Crassula helmsii (Kirk) Cockayne		30000086			Parvopotamide	Ppot	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_neophyte				3	L_macrophytes_taxalist_determination_trait_flowers	1
+30000086	Crassula sp.	Crassula sp.	1				Parvopotamide	Ppot	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_neophyte				2		
+134800	Deschampsia cespitosa (L.) P. Beauv.	Deschampsia cespitosa (L.) P. Beauv.					Parvograminoide	Pgra	L_macrophytes_taxalist_growthform_assess_helophyte					2		
+144700	Elatine hexandra (Lapierre) DC. 	Elatine hexandra (Lapierre) DC.		30000087			Parvopotamide	Ppot	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		2	CR	3	L_macrophytes_taxalist_determination_trait_flowers	1
+144800	Elatine hydropiper L. 	Elatine hydropiper L.		30000087			Parvopotamide	Ppot	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		2	CR	3	L_macrophytes_taxalist_determination_trait_flowers	1
+30000087	Elatine sp.	Elatine sp.	1				Parvopotamide	Ppot	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		2	CR	2		
+145000	Eleocharis acicularis (L.) Roem. & Schult. 	Eleocharis acicularis (L.) Roem. & Schult.		30000089			Parvocyperiden	Pcyp	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_priority		4	VU	2	L_macrophytes_taxalist_determination_trait_fruits	2
+145200	Eleocharis austriaca Hayek 	Eleocharis austriaca Hayek		30000088			Parvocyperiden	Pcyp	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	3			3	L_macrophytes_taxalist_determination_trait_fruits	2
+145400	Eleocharis mamillata H. Lindb.	Eleocharis mamillata H. Lindb.		30000088			Parvocyperiden	Pcyp	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_priority		4	VU	3	L_macrophytes_taxalist_determination_trait_fruits	2
+145700	Eleocharis palustris (L.) Roem. & Schult. 	Eleocharis palustris (L.) Roem. & Schult.		30000088			Parvocyperiden	Pcyp	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	2			3	L_macrophytes_taxalist_determination_trait_fruits	2
+145705	Eleocharis palustris aggr. (Eleocharis palustris oder  E. mammilata)	Eleocharis palustris aggr.	1	30000088			Parvocyperiden	Pcyp	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	2			3	L_macrophytes_taxalist_determination_trait_fruits	2
+146000	Eleocharis uniglumis (Link) Schult. 	Eleocharis uniglumis (Link) Schult.		30000089			Parvocyperiden	Pcyp	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_priority		4	VU	3	L_macrophytes_taxalist_determination_trait_flowersorfruits	3
+30000088	Eleocharis 1 (Eleocharis austriaca oder E. palustris oder E. mammilata)	Eleocharis 1	1				Parvocyperiden	Pcyp	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	2			2		
+30000089	Eleocharis sp.	Eleocharis sp.	1				Parvocyperiden	Pcyp	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	2			2		
+146200	Elodea canadensis Michx. 	Elodea canadensis Michx.		30000024			Elodeide	Elo	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_neophyte				2		
+146300	Elodea densa (Planch.) Casp. 	Elodea densa (Planch.) Casp.		30000024			Elodeide	Elo	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_neophyte				2		
+146400	Elodea nuttallii (Planch.) H. St. John	Elodea nuttallii (Planch.) H. St. John		30000024			Elodeide	Elo	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_neophyte				2		
+30000024	Elodea sp. (inkl. unsichere Bestimmung Lagarosiphon)	Elodea sp.	1				Elodeide	Elo	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_neophyte				2		
+149100	Epilobium roseum Schreb.	Epilobium roseum Schreb.					Herbide	Herb	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	2			2		
+150700	Equisetum fluviatile L.	Equisetum fluviatile L.					Equisetide	Equ	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	2			2		
+151100	Equisetum palustre L.	Equisetum palustre L.					Equisetide	Equ	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	2			2		
+151700	Equisetum x trachyodon A. Braun	Equisetum x trachyodon A. Braun					Equisetide	Equ	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_priority		4	VU	2		
+155400	Eriophorum latifolium Hoppe	Eriophorum latifolium Hoppe		30000085			Magnocyperiden	Mcyp	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	2			3	L_macrophytes_taxalist_determination_trait_flowersorfruits	3
+191500	Glyceria fluitans (L.) R. Br. 	Glyceria fluitans (L.) R. Br.		30000090			Parvograminoide	Pgra	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	1			3	L_macrophytes_taxalist_determination_trait_flowers	1
+191600	Glyceria maxima (Hartm.) Holmb.	Glyceria maxima (Hartm.) Holmb.					Magnomonocotyle	Mmono	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_priority		4	VU	1		
+191700	Glyceria notata Chevall. 	Glyceria notata Chevall.		30000090			Parvograminoide	Pgra	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	1			3	L_macrophytes_taxalist_determination_trait_flowers	1
+30000090	Glyceria fluitans oder notata  	Glyceria fluitans oder notata	1	30000104			Parvograminoide	Pgra	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	1			2		
+193100	Groenlandia densa (L.) Fourr.	Groenlandia densa (L.) Fourr.					Parvopotamide	Ppot	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	2			1		
+206600	Hippuris vulgaris L.	Hippuris vulgaris L.					Elodeide	Elo	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	3			1		
+208600	Hottonia palustris L.	Hottonia palustris L.					Myriophyllide	Myr	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		3	EN	2		
+209300	Hydrocharis morsus-ranae L.	Hydrocharis morsus-ranae L.					Hydrocharide	Hyd	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		3	EN	2		
+215500	Iris pseudacorus L.	Iris pseudacorus L.					Magnomonocotyle	Mmono	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	1			1		
+216500	Isoetes echinospora Durieu 	Isoetes echinospora Durieu		30000091			Isoetide	Iso	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		2	CR	2		
+216600	Isoetes lacustris L. 	Isoetes lacustris L.		30000091			Isoetide	Iso	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		3	VU	2		
+30000091	Isoetes sp.	Isoetes sp.	1				Isoetide	Iso	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		3	VU	2		
+218300	Juncus bulbosus L.	Juncus bulbosus L.					Isoetide	Iso	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		3	EN	2		
+217600	Juncus acutiflorus Hoffm. 	Juncus acutiflorus Hoffm.		30000092			Juncide	Jun	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	3			3	L_macrophytes_taxalist_determination_trait_flowers	1
+217700	Juncus alpinoarticulatus Chaix 	Juncus alpinoarticulatus Chaix		30000092			Juncide	Jun	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	2			3	L_macrophytes_taxalist_determination_trait_flowers	1
+218100	Juncus articulatus L.	Juncus articulatus L.		30000092			Juncide	Jun	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	1			3	L_macrophytes_taxalist_determination_trait_flowers	1
+219800	Juncus subnodulosus Schrank	Juncus subnodulosus Schrank		30000092			Juncide	Jun	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	3			3	L_macrophytes_taxalist_determination_trait_flowers	1
+30000092	Juncus sp. (acutiflorus, articulatus, alpinoarticulatus, subnodulosus)	Juncus sp.	1				Juncide	Jun	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	1			2		
+225100	Lagarosiphon major (Ridl.) Moss	Lagarosiphon major (Ridl.) Moss		30000024			Parvopotamide	Ppot	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_neophyte				2		
+231800	Leersia oryzoides (L.) Sw. 	Leersia oryzoides (L.) Sw.		30000104			Parvograminoide	Pgra	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_priority		4	VU	2		
+232200	Lemna gibba L. 	Lemna gibba L.		30000093			Lemnide	Lem	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		2	CR	2		
+232300	Lemna minor L. 	Lemna minor L.		30000093			Lemnide	Lem	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	1			2		
+232410	Lemna minuta Humb. & al. 	Lemna minuta Humb. & al.		30000093			Lemnide	Lem	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_neophyte				2		
+232500	Lemna trisulca L.	Lemna trisulca L.					Ricciellide	Ric	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	3			1		
+232550	Lemna turionifera	Lemna turionifera Landolt		30000093			Lemnide	Lem	L_macrophytes_taxalist_growthform_assess_aquatic					2		
+30000093	Lemna gibba oder minor oder minuta oder turionifera	Lemna gibba oder minor oder minuta oder turionifera	1				Lemnide	Lem	L_macrophytes_taxalist_growthform_assess_aquatic					1		
+242400	Littorella uniflora (L.) Asch.	Littorella uniflora (L.) Asch.					Isoetide	Iso	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		3	EN	2		
+245250	Ludwigia grandiflora (Michx.) Greuter & Burdet	Ludwigia grandiflora (Michx.) Greuter & Burdet					Peplide	Pep	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_neophyte				1		
+250900	Lycopus europaeus L.	Lycopus europaeus L.					Herbide	Herb	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	2			2		
+251700	Lysimachia thyrsiflora L.	Lysimachia thyrsiflora L.					Herbide	Herb	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_priority		4	VU	1		
+253900	Marsilea quadrifolia L.	Marsilea quadrifolia L.					Magnonymphaeide	Mnym	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		2	CR	1		
+258000	Mentha aquatica L.	Mentha aquatica L.					Herbide	Herb	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	1			3	L_macrophytes_taxalist_determination_trait_flowers	1
+259900	Mimulus guttatus DC. 	Mimulus guttatus DC.		30000094			Herbide	Herb	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_neophyte				3	L_macrophytes_taxalist_determination_trait_flowers	1
+259950	Mimulus luteus L. 	Mimulus luteus L.		30000094			Herbide	Herb	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_neophyte				3	L_macrophytes_taxalist_determination_trait_flowers	1
+260000	Mimulus moschatus Lindl. 	Mimulus moschatus Lindl.		30000094			Herbide	Herb	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_neophyte				3	L_macrophytes_taxalist_determination_trait_flowers	1
+30000094	Mimulus sp.	Mimulus sp.	1				Herbide	Herb	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_neophyte				2		
+266000	Myosotis cespitosa Schultz 	Myosotis cespitosa Schultz		30000095			Herbide	Herb	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_priority		4	VU	3	L_macrophytes_taxalist_determination_trait_flowers	1
+266400	Myosotis nemorosa Besser	Myosotis nemorosa		30000095			Herbide	Herb	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	2			3	L_macrophytes_taxalist_determination_trait_flowers	1
+266800	Myosotis scorpioides L. = M. palustris 	Myosotis scorpioides L.		30000095			Herbide	Herb	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	1			3	L_macrophytes_taxalist_determination_trait_flowers	1
+266700	Myosotis rehsteineri Wartm. 	Myosotis rehsteineri Wartm.		30000095			Herbide	Herb	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_priority		1	EN	2	L_macrophytes_taxalist_determination_trait_flowers	1
+30000095	Myosotis cespitosa oder scorpioides = palustris oder nemorosa oder rehsteineri	Myosotis cespitosa oder scorpioides = palustris oder nemorosa oder rehsteineri	1				Herbide	Herb	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	1			2	L_macrophytes_taxalist_determination_trait_flowers	1
+267600	Myriophyllum alterniflorum DC.	Myriophyllum alterniflorum DC.					Myriophyllide	Myr	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		3	EN	2		
+267650	Myriophyllum aquaticum (Vell.) Verdc.	Myriophyllum aquaticum (Vell.) Verdc.					Myriophyllide	Myr	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_neophyte				1		
+267700	Myriophyllum heterophyllum Michx.	Myriophyllum heterophyllum Michx.					Myriophyllide	Myr	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_neophyte				2		
+267800	Myriophyllum spicatum L.	Myriophyllum spicatum L.		30000096			Myriophyllide	Myr	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	2			2		
+267900	Myriophyllum verticillatum L. 	Myriophyllum verticillatum L.		30000096			Myriophyllide	Myr	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	3			2		
+30000096	Myriophyllum spicatum oder verticillatum	Myriophyllum spicatum oder verticillatum	1				Myriophyllide	Myr	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	2			2		
+268200	Najas flexilis (Willd.) Rostk. & W. L. E. Schmidt 	Najas flexilis (Willd.) Rostk. & W. L. E. Schmidt		30000097			Parvopotamide	Ppot	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		2	RE	2		
+268400	Najas marina L.	Najas marina L.		30000097			Parvopotamide	Ppot	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	2			2		
+268500	Najas minor All.	Najas minor All.		30000097			Parvopotamide	Ppot	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		3	EN	2		
+30000097	Najas sp.	Najas sp.	1				Parvopotamide	Ppot	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	2			2		
+269800	Nasturtium microphyllum (Boenn.) Rchb. 	Nasturtium microphyllum (Boenn.) Rchb.		30000098			Herbide	Herb	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_priority		3	EN	3	L_macrophytes_taxalist_determination_trait_fruits	2
+269900	Nasturtium officinale R. Br. 	Nasturtium officinale R. Br.		30000098			Herbide	Herb	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	2			3	L_macrophytes_taxalist_determination_trait_fruits	2
+30000098	Nasturtium sp. oder Cardamine amara (emers)	Nasturtium sp. oder Cardamine amara	1		L_macrophytes_taxalist_growthform_assess_twoforms_grfo_em		Herbide	Herb	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	1			2		
+30000099	Nasturtium sp. oder Cardamine amara (submers)	Nasturtium sp. oder Cardamine amara	1		L_macrophytes_taxalist_growthform_assess_twoforms_grfo_sub	30000098	Herbide	Herb	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	1			2		
+272300	Nuphar lutea (L.) Sm. 	Nuphar lutea (L.) Sm.		30000100			Magnonymphaeide	Mnym	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	2			2		
+272400	Nuphar pumila (Timm) DC. 	Nuphar pumila (Timm) DC.		30000100			Magnonymphaeide	Mnym	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		1	EN	2		
+30000100	Nuphar sp.	Nuphar sp.	1				Magnonymphaeide	Mnym	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	2			2		
+272500	Nymphaea alba L. 	Nymphaea alba L.		30000101			Magnonymphaeide	Mnym	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	2			3	L_macrophytes_taxalist_determination_trait_flowers	1
+30000101	Nymphaea sp.	Nymphaea sp.	1				Magnonymphaeide	Mnym	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	2			2		
+272700	Nymphoides peltata (S. G. Gmel.) Kuntze	Nymphoides peltata (S. G. Gmel.) Kuntze					Magnonymphaeide	Mnym	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	2			1		
+60000005	Oenanthe aquatica (L.) Poir. 	Oenanthe aquatica (L.) Poir.		30000102	L_macrophytes_taxalist_growthform_assess_twoforms_grfo_em		Herbide	Herb	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_priority		3	EN	3	L_macrophytes_taxalist_determination_trait_flowersorfruits	3
+60000006	Oenanthe aquatica (L.) Poir. 	Oenanthe aquatica (L.) Poir.		30000103	L_macrophytes_taxalist_growthform_assess_twoforms_grfo_sub	60000005	Myriophyllide	Myr	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		3	EN	3	L_macrophytes_taxalist_determination_trait_flowersorfruits	3
+60000007	Oenanthe fistulosa L.	Oenanthe fistulosa L.		30000102	L_macrophytes_taxalist_growthform_assess_twoforms_grfo_em		Herbide	Herb	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_priority		3	EN	3	L_macrophytes_taxalist_determination_trait_flowersorfruits	3
+60000008	Oenanthe fistulosa L. 	Oenanthe fistulosa L.		30000103	L_macrophytes_taxalist_growthform_assess_twoforms_grfo_sub	60000007	Myriophyllide	Myr	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		3	EN	3	L_macrophytes_taxalist_determination_trait_flowersorfruits	3
+30000102	Oenanthe sp. (emers)	Oenanthe sp.	1		L_macrophytes_taxalist_growthform_assess_twoforms_grfo_em		Herbide	Herb	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_priority		3	EN	2		
+30000103	Oenanthe sp. (submers)	Oenanthe sp.	1		L_macrophytes_taxalist_growthform_assess_twoforms_grfo_sub	30000102	Myriophyllide	Myr	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		3	EN	2		
+297900	Phalaris arundinacea L.	Phalaris arundinacea L.					Magnomonocotyle	Mmono	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	1			1		
+300300	Phragmites australis (Cav.) Steud.	Phragmites australis (Cav.) Steud.					Magnomonocotyle	Mmono	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	1			1		
+303600	Pilularia globulifera L.	Pilularia globulifera L.					Isoetide	Iso	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		2	CR	2		
+310600	Poa palustris L. 	Poa palustris L.		30000104			Parvograminoide	Pgra	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	2			2		
+30000104	Poaceae mit schwimmenden Ausläufern (A. stolonifera, C. aquatica, L. oryzoides, P. palustris)	Poaceae mit schwimmenden Ausläufern	1				Parvograminoide	Pgra	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	1			2		
+314000	Polygonum amphibium L.	Polygonum amphibium L.					Magnonymphaeide	Mnym	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	2			2		
+317000	Pontederia cordata L.	Pontederia cordata L.					Sagittaride	Sag	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_neophyte				1		
+318000	Potamogeton acutifolius Link 	Potamogeton acutifolius Link		30000105			Parvopotamide	Ppot	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		2	CR	2		
+318100	Potamogeton alpinus Balb. 	Potamogeton alpinus Balb.		30000108			Magnopotamide	Mpot	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	3			2		
+318200	Potamogeton berchtoldii Fieber 	Potamogeton berchtoldii Fieber		30000107			Parvopotamide	Ppot	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	1			2		
+318300	Potamogeton coloratus Hornem. (Potamogeton 4)	Potamogeton coloratus Hornem.		30000108			Magnopotamide	Mpot	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		3	EN	2		
+318500	Potamogeton crispus L. 	Potamogeton crispus L.		30000109			Parvopotamide	Ppot	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	2			2		
+318700	Potamogeton filiformis Pers. 	Potamogeton filiformis Pers.		30000106			Parvopotamide	Ppot	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		4	VU	2		
+318800	Potamogeton friesii Rupr. 	Potamogeton friesii Rupr.		30000105			Parvopotamide	Ppot	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		3	EN	2		
+318900	Potamogeton gramineus L. 	Potamogeton gramineus L.		30000108			Magnopotamide	Mpot	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		4	VU	2		
+319000	Potamogeton helveticus (G. Fisch.) W. Koch 	Potamogeton helveticus (G. Fisch.) W. Koch		30000106			Parvopotamide	Ppot	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		3	EN	2		
+319100	Potamogeton lucens L. 	Potamogeton lucens L.		30000109			Magnopotamide	Mpot	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	2			1		
+319200	Potamogeton natans L. 	Potamogeton natans L.		30000108			Magnonymphaeide	Mnym	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	2			2		
+319300	Potamogeton nodosus Poir. 	Potamogeton nodosus Poir.		30000108			Magnonymphaeide	Mnym	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		4	VU	2		
+319500	Potamogeton obtusifolius Mert. & W. D. J. Koch 	Potamogeton obtusifolius Mert. & W. D. J. Koch		30000105			Parvopotamide	Ppot	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		3	EN	2		
+319700	Potamogeton pectinatus L. 	Potamogeton pectinatus L.		30000106			Parvopotamide	Ppot	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	1			2		
+319800	Potamogeton perfoliatus L.	Potamogeton perfoliatus L.		30000109			Magnopotamide	Mpot	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	2			1		
+320000	Potamogeton polygonifolius Pourr. 	Potamogeton polygonifolius Pourr.		30000108			Magnopotamide	Mpot	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		3	EN	2		
+320100	Potamogeton praelongus Wulfen 	Potamogeton praelongus Wulfen		30000109			Magnopotamide	Mpot	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		1	EN	2		
+320200	Potamogeton pusillus L.	Potamogeton pusillus L.		30000107			Parvopotamide	Ppot	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		4	VU	2		
+320400	Potamogeton trichoides Cham. & Schltdl. 	Potamogeton trichoides Cham. & Schltdl.		30000107			Parvopotamide	Ppot	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		3	EN	2		
+320500	Potamogeton x angustifolius Bercht. & J. Presl (= P. gramineus x P. lucens) 	Potamogeton x angustifolius Bercht. & J. Presl		30000108			Magnopotamide	Mpot	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		4	VU	2		
+40000001	Potamogeton x cognatus Asch. & Graebn. (= P. perfoliatus x P. praelongus) 	Potamogeton x cognatus Asch. & Graebn.		30000109			Magnopotamide	Mpot	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_hybrid				2		
+40000002	Potamogeton x cooperi (Fryer) Fryer (= P. crispus x P. perfoliatus) 	Potamogeton x cooperi (Fryer) Fryer		30000109			Magnopotamide	Mpot	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_hybrid				2		
+40000003	Potamogeton x fluitans Roth (= P. lucens x P. natans) 	Potamogeton x fluitans Roth		30000107			Magnopotamide	Mpot	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_hybrid				2		
+40000004	Potamogeton x nericius Hagstr. (= P. alpinus x P. gramineus) 	Potamogeton x nericius Hagstr.		30000108			Magnopotamide	Mpot	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_hybrid				2		
+40000005	Potamogeton x nerviger Wolfg. (= P. alpinus x P. lucens) 	Potamogeton x nerviger Wolfg.		30000109			Magnopotamide	Mpot	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_hybrid				2		
+320600	Potamogeton x nitens Weber (= P. gramineus x P. perfoliatus) 	Potamogeton x nitens Weber		30000109			Magnopotamide	Mpot	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		4	VU	2		
+40000006	Potamogeton x olivaceus Baagoee ex G. Fisch. (= P. crispus x P. alpinus) 	Potamogeton x olivaceus Baagoee ex G. Fisch.		30000109			Magnopotamide	Mpot	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_hybrid				2		
+320550	Potamogeton x decipiens Nolte ex W.D.J.Koch (= P. lucens x P. perfoliatus) 	Potamogeton x decipiens Nolte ex W.D.J.Koch		30000109			Magnopotamide	Mpot	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		4	VU	2		
+40000008	Potamogeton x schreberi G. Fisch. (= P. natans x P. nodosus) 	Potamogeton x schreberi G. Fisch.		30000108			Magnonymphaeide	Mnym	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_hybrid				2		
+40000009	Potamogeton x sparganifolius Laest. ex Fr. (= P. gramineus x P. natans) 	Potamogeton x sparganifolius Laest. ex Fr.		30000108			Magnonymphaeide	Mnym	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_hybrid				2		
+40000010	Potamogeton x spathulatus Schrad. ex W. D. J. Koch & Ziz (= P. alpinus x P. polygonifolius) 	Potamogeton x spathulatus Schrad. ex W. D. J. Koch & Ziz		30000108			Magnopotamide	Mpot	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_hybrid				2		
+40000011	Potamogeton x suecicus K. Richt. (= P. filiformis x P. pectinatus) 	Potamogeton x suecicus K. Richt.		30000106			Parvopotamide	Ppot	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_hybrid				2		
+40000012	Potamogeton x undulatus Wolfg. (= P. crispus x P. praelongus)	Potamogeton x undulatus Wolfg.		30000109			Magnopotamide	Mpot	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_hybrid				2		
+40000013	Potamogeton x variifolius Thore (= P. natans x P. berchtoldii) 	Potamogeton x variifolius Thore		30000108			Magnonymphaeide	Mnym	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_hybrid				2		
+40000014	Potamogeton x lintonii Fryer (= P. crispus x P. friesii) (Potamogeton 5)	Potamogeton x lintonii Fryer		30000109			Parvopotamide	Ppot	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_hybrid				2		
+30000105	Potamogeton 1 (schmalbae�ttrig > 2mm breit, Blaetter bandfoermig (Querschnitt flach))	Potamogeton 1	1				Parvopotamide	Ppot	L_macrophytes_taxalist_growthform_assess_aquatic					2		
+30000106	Potamogeton 2 (schmalblaettrig, Blätter im Querschnitt rundlich)	Potamogeton 2	1				Parvopotamide	Ppot	L_macrophytes_taxalist_growthform_assess_aquatic					2		
+30000107	Potamogeton 3 (sehr schmalblaettrig < 3mm breit, Blaetter bandfoermig (Querschnitt flach))	Potamogeton 3	1				Parvopotamide	Ppot	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	1			2		
+30000108	Potamogeton 4 (mit Unterwasserblaettern und (oft) Schwimmblaettern)	Potamogeton 4	1				Magnonymphaeide	Mnym	L_macrophytes_taxalist_growthform_assess_aquatic					2		
+30000109	Potamogeton 5 (nur mit breiten, durchscheinenden Unterwasserblaettern)	Potamogeton 5	1				Magnopotamide	Mpot	L_macrophytes_taxalist_growthform_assess_aquatic					2		
+336900	Ranunculus aquatilis L. 	Ranunculus aquatilis L.		337000			Batrachide	Bat	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		4	VU	2		
+338000	Ranunculus circinatus Sibth.	Ranunculus circinatus Sibth.					Myriophyllide	Myr	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		4	VU	2		
+338500	Ranunculus fluitans Lam.	Ranunculus fluitans Lam.					Myriophyllide	Myr	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	2			2		
+339400	Ranunculus lingua L.	Ranunculus lingua L.					Herbide	Herb	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_priority		4	VU	1		
+340000	Ranunculus peltatus Schrank 	Ranunculus peltatus Schrank		337000			Myriophyllide	Myr	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		3	EN	2		
+340100	Ranunculus penicillatus (Dumort.) Bab. 	Ranunculus penicillatus (Dumort.) Bab.		337000			Myriophyllide	Myr	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		4	VU	2		
+341000	Ranunculus reptans L.	Ranunculus reptans L.					Herbide	Herb	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_priority		1	EN	2		
+341100	Ranunculus rionii Lagger 	Ranunculus rionii Lagger		341895			Myriophyllide	Myr	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		2	CR	4		
+341895	Ranunculus trichophyllus Chaix s.l. 	Ranunculus trichophyllus Chaix s.l.		30000110			Myriophyllide	Myr	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	2			3	L_macrophytes_taxalist_determination_trait_flowers	1
+341900	Ranunculus trichophyllus Chaix s.str. 	Ranunculus trichophyllus Chaix s.str.		341895			Myriophyllide	Myr	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	3			4		
+342000	Ranunculus trichophyllus subsp. eradicatus (Laest.) C. D. K. Cook	Ranunculus trichophyllus subsp. eradicatus (Laest.) C. D. K. Cook		341895			Myriophyllide	Myr	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	2			4		
+337000	"Ranunculus aquatilis aggr. auct. helv.; mit fein zerteilten Tauchblaettern und Schwimmblaettern (R. aquatilis, R. peltatus, R. penicillatus)"	Ranunculus aquatilis aggr. auct. helv.	1				Myriophyllide	Myr	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		4	VU	2		
+30000110	Ranunculus sp. 1 (mit feinen zerteilten Unterwasserblaettern, ohne Schwimmblaetter (R. aquatilis, R. peltatus, R. penicillatus, R. trichophyllus, R. rionii))	Ranunculus sp.	1				Myriophyllide	Myr	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	2			2		
+362500	Sagittaria latifolia Willd.	Sagittaria latifolia Willd.		30000111			Sagittaride	Sag	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_neophyte				2		
+362700	Sagittaria sagittifolia L. 	Sagittaria sagittifolia L.		30000111			Sagittaride	Sag	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_priority		3	EN	3	L_macrophytes_taxalist_determination_trait_fruits	2
+30000111	Sagittaria sp. (emers)	Sagittaria sp.	1		L_macrophytes_taxalist_growthform_assess_twoforms_grfo_em		Sagittaride	Sag	L_macrophytes_taxalist_growthform_assess_helophyte					2		
+30000112	Sagittaria sp. (submers)	Sagittaria sp.	1		L_macrophytes_taxalist_growthform_assess_twoforms_grfo_sub	30000111	Vallisneride	Vall	L_macrophytes_taxalist_growthform_assess_aquatic					2		
+368100	Salvinia natans (L.) All.	Salvinia natans (L.) All.					Lemnide	Lem	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_neophyte				1		
+378200	Schoenoplectus lacustris (L.) Palla 	Schoenoplectus lacustris (L.) Palla		30000114	L_macrophytes_taxalist_growthform_assess_twoforms_grfo_em		Magnocyperiden	Mcyp	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	2			2		
+378300	Schoenoplectus mucronatus (L.) Palla 	Schoenoplectus mucronatus (L.) Palla		30000113			Magnocyperiden	Mcyp	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_priority		4	VU	3	L_macrophytes_taxalist_determination_trait_flowersorfruits	3
+378400	Schoenoplectus pungens (Vahl) Palla 	Schoenoplectus pungens (Vahl) Palla		30000113			Magnocyperiden	Mcyp	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_priority		2	CR	3	L_macrophytes_taxalist_determination_trait_flowersorfruits	3
+378700	Schoenoplectus tabernaemontani (C. C. Gmel.) Palla 	Schoenoplectus tabernaemontani (C. C. Gmel.) Palla		30000114	L_macrophytes_taxalist_growthform_assess_twoforms_grfo_em		Magnocyperiden	Mcyp	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	2			2		
+378800	Schoenoplectus triqueter (L.) Palla 	Schoenoplectus triqueter (L.) Palla		30000113			Magnocyperiden	Mcyp	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_priority		2	CR	3	L_macrophytes_taxalist_determination_trait_flowersorfruits	3
+30000113	Schoenoplectus kantig (S. mucronatus, S. pungens, S. triqueter)	Schoenoplectus kantig	1				Magnocyperiden	Mcyp	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_priority		4	VU	2		
+30000114	Schoenoplectus rund, emers (S. lacustris, S. tabernaemontani)	Schoenoplectus rund	1		L_macrophytes_taxalist_growthform_assess_twoforms_grfo_em		Magnocyperiden	Mcyp	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	2			2		
+30000125	Schoenoplectus rund, submers (S. lacustris, S. tabernaemontani)	Schoenoplectus rund	1		L_macrophytes_taxalist_growthform_assess_twoforms_grfo_sub	30000114	Vallisneride	Vall	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	2			2		
+379700	Scirpus sylvaticus L.	Scirpus sylvaticus L.		30000083			Magnocyperiden	Mcyp	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	1			3	L_macrophytes_taxalist_determination_trait_flowersorfruits	3
+381800	Scrophularia auriculata L.	Scrophularia auriculata L.					Herbide	Herb	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_priority		3	EN	2		
+382200	Scrophularia umbrosa Dumort.	Scrophularia umbrosa Dumort.					Herbide	Herb	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	2			2		
+60000009	Sium latifolium L. (emers)	Sium latifolium L.			L_macrophytes_taxalist_growthform_assess_twoforms_grfo_em		Herbide	Herb	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_priority		2	CR	2		
+60000010	Sium latifolium L. (submers)	Sium latifolium L.			L_macrophytes_taxalist_growthform_assess_twoforms_grfo_sub	60000009	Myriophyllide	Myr	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		2	CR	2		
+402900	Sparganium angustifolium Michx. 	Sparganium angustifolium Michx.		30000117			Vallisneride	Vall	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		3	NT	2		
+60000011	Sparganium emersum Rehmann (emers) 	Sparganium emersum Rehmann		30000115	L_macrophytes_taxalist_growthform_assess_twoforms_grfo_em		Magnomonocotyle	Mmono	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_priority		4	VU	3	L_macrophytes_taxalist_determination_trait_flowersorfruits	3
+60000012	Sparganium emersum Rehmann (submers) 	Sparganium emersum Rehmann		30000116	L_macrophytes_taxalist_growthform_assess_twoforms_grfo_sub	60000011	Vallisneride	Vall	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		4	VU	3	L_macrophytes_taxalist_determination_trait_flowersorfruits	3
+60000013	Sparganium erectum L. s.l. (emers, wenn Unterarten nicht spezifiziert werden)	Sparganium erectum L. s.l.		30000115	L_macrophytes_taxalist_growthform_assess_twoforms_grfo_em		Magnomonocotyle	Mmono	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	2			3	L_macrophytes_taxalist_determination_trait_flowersorfruits	3
+60000014	Sparganium erectum L. s.l. (submers, wenn Unterarten nicht spezifiziert werden)	Sparganium erectum L. s.l.		30000116	L_macrophytes_taxalist_growthform_assess_twoforms_grfo_sub	60000013	Vallisneride	Vall	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	2			3	L_macrophytes_taxalist_determination_trait_flowersorfruits	3
+60000015	Sparganium erectum L. s.str.	Sparganium erectum L. s.str.		60000013	L_macrophytes_taxalist_growthform_assess_twoforms_grfo_em		Magnomonocotyle	Mmono	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	2			4	L_macrophytes_taxalist_determination_trait_fruits	2
+60000016	Sparganium erectum L. s.str. 	Sparganium erectum L. s.str.		60000014	L_macrophytes_taxalist_growthform_assess_twoforms_grfo_sub	60000015	Vallisneride	Vall	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	2			4	L_macrophytes_taxalist_determination_trait_fruits	2
+60000017	Sparganium erectum subsp. microcarpum (Neuman) Domin 	Sparganium erectum subsp. microcarpum (Neuman) Domin		60000013	L_macrophytes_taxalist_growthform_assess_twoforms_grfo_em		Magnomonocotyle	Mmono	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_priority		3	EN	4	L_macrophytes_taxalist_determination_trait_fruits	2
+60000018	Sparganium erectum subsp. microcarpum (Neuman) Domin 	Sparganium erectum subsp. microcarpum (Neuman) Domin		60000014	L_macrophytes_taxalist_growthform_assess_twoforms_grfo_sub	60000017	Vallisneride	Vall	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		3	EN	4	L_macrophytes_taxalist_determination_trait_fruits	2
+60000019	Sparganium erectum subsp. neglectum (Beeby) K. Richt. 	Sparganium erectum subsp. neglectum (Beeby) K. Richt.		60000013	L_macrophytes_taxalist_growthform_assess_twoforms_grfo_em		Magnomonocotyle	Mmono	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	2			4	L_macrophytes_taxalist_determination_trait_fruits	2
+60000020	Sparganium erectum subsp. neglectum (Beeby) K. Richt.	Sparganium erectum subsp. neglectum (Beeby) K. Richt.		60000014	L_macrophytes_taxalist_growthform_assess_twoforms_grfo_sub	60000019	Vallisneride	Vall	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	2			4	L_macrophytes_taxalist_determination_trait_fruits	2
+403800	Sparganium natans L.	Sparganium natans L.		30000117			Vallisneride	Vall	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		3	EN	2		
+30000115	Sparganium 1 (erectum oder emersum, emers) 	Sparganium 1	1		L_macrophytes_taxalist_growthform_assess_twoforms_grfo_em		Magnomonocotyle	Mmono	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	2			2		
+30000116	Sparganium 2 (erectum oder emersum, submers) 	Sparganium 2	1		L_macrophytes_taxalist_growthform_assess_twoforms_grfo_sub	30000115	Vallisneride	Vall	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	2			2		
+30000117	Sparganium 3 (angustifolium, erectum, emersum, natans, submers)	Sparganium 3	1		L_macrophytes_taxalist_growthform_assess_twoforms_grfo_sub	30000115	Vallisneride	Vall	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	2			2		
+405200	Spirodela polyrhiza (L.) Schleid.	Spirodela polyrhiza (L.) Schleid.					Lemnide	Lem	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	3			1		
+406400	Stachys palustris L.	Stachys palustris L.					Herbide	Herb	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	2			2		
+409700	Stratiotes aloides L.	Stratiotes aloides L.					Stratiotide	Str	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_neophyte				1		
+432100	Typha angustifolia L.)	Typha angustifolia L.		30000073			Magnomonocotyle	Mmono	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	3			2		
+432200	Typha latifolia L. 	Typha latifolia L.		30000073			Magnomonocotyle	Mmono	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	1			2		
+432300	Typha minima Hoppe	Typha minima Hoppe		30000073			Magnomonocotyle	Mmono	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_priority		2	CR	2		
+432400	Typha shuttleworthii W. D. J. Koch & Sond. 	Typha shuttleworthii W. D. J. Koch & Sond.		30000073			Magnomonocotyle	Mmono	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_priority		3	EN	2		
+30000073	Typha sp. (angustifolia, latifolia, shuttleworthii, minima)	Typha sp.	1				Magnomonocotyle	Mmono	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	1			2		
+433600	Utricularia australis R. Br.	Utricularia australis R. Br.		30000118			Ceratophyllide	Cer	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	3			3	L_macrophytes_taxalist_determination_trait_flowers	1
+433700	Utricularia bremii Heer	Utricularia bremii Heer		30000119			Ceratophyllide	Cer	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		1	CR	3	L_macrophytes_taxalist_determination_trait_flowers	1
+433800	Utricularia intermedia Hayne 	Utricularia intermedia Hayne		30000119			Ceratophyllide	Cer	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		1	CR	3	L_macrophytes_taxalist_determination_trait_flowers	1
+433900	Utricularia minor L.	Utricularia minor L.		30000119			Ceratophyllide	Cer	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		4	VU	3	L_macrophytes_taxalist_determination_trait_flowers	1
+434100	Utricularia ochroleuca R. W. Hartm. 	Utricularia ochroleuca R. W. Hartm.		30000119			Ceratophyllide	Cer	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		1	CR	3	L_macrophytes_taxalist_determination_trait_flowers	1
+434150	Utricularia stygia G. Thor	Utricularia stygia G. Thor		30000119			Ceratophyllide	Cer	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		2	CR	3	L_macrophytes_taxalist_determination_trait_flowers	1
+434200	Utricularia vulgaris L. 	Utricularia vulgaris L.		30000118			Ceratophyllide	Cer	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		3	EN	3	L_macrophytes_taxalist_determination_trait_flowers	1
+30000118	Utricularia australis Gruppe (vulgaris oder australis)	Utricularia australis Gruppe	1				Ceratophyllide	Cer	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	3			2		
+30000119	Utricularia sp.	Utricularia sp.	1				Ceratophyllide	Cer	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	3			1		
+437700	Vallisneria spiralis L.	Vallisneria spiralis L.					Vallisneride	Vall	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	2			2		
+440500	Veronica anagallis-aquatica L. 	Veronica anagallis-aquatica L.		30000120			Herbide	Herb	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	2			3	L_macrophytes_taxalist_determination_trait_fruits	2
+441000	Veronica beccabunga L.	Veronica beccabunga L.					Herbide	Herb	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	1			2		
+441300	Veronica catenata Pennell 	Veronica catenata Pennell		30000120			Herbide	Herb	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_priority		3	EN	3	L_macrophytes_taxalist_determination_trait_fruits	2
+443300	Veronica scutellata L.	Veronica scutellata L.					Herbide	Herb	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_priority		4	VU	2		
+30000120	Veronica anagallis-aquatica oder catenata (emers)	Veronica anagallis-aquatica oder catenata	1		L_macrophytes_taxalist_growthform_assess_twoforms_grfo_em		Herbide	Herb	L_macrophytes_taxalist_growthform_assess_helophyte	L_macrophytes_taxalist_conservationinfo_index	2			2		
+30000121	Veronica anagallis-aquatica oder catenata (submers)	Veronica anagallis-aquatica oder catenata	1		L_macrophytes_taxalist_growthform_assess_twoforms_grfo_sub	30000120	Herbide	Herb	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_index	2			2		
+455700	Zannichellia palustris L.	Zannichellia palustris L.					Parvopotamide	Ppot	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		4	VU	2		
+500200	Chara aspera Willd. 	Chara aspera Willd.		30000002			Charide	Cha	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		3	VU	4		
+500600	Chara contraria Kuetz.	Chara contraria Kuetz.		30000002			Charide	Cha	L_macrophytes_taxalist_growthform_assess_aquatic				LC	4		
+500700 	Chara crassicaulis Schleich. 	Chara crassicaulis Schleich.		30000002			Charide	Cha	L_macrophytes_taxalist_growthform_assess_aquatic					4		
+500900	Chara denudata A. Braun	Chara denudata A. Braun		30000002			Charide	Cha	L_macrophytes_taxalist_growthform_assess_aquatic					4		
+501000	Chara filiformis Hertzsch	Chara filiformis Hertzsch		30000002			Charide	Cha	L_macrophytes_taxalist_growthform_assess_aquatic					4		
+501200	Chara globularis Thuill.	Chara globularis Thuill.		30000002			Charide	Cha	L_macrophytes_taxalist_growthform_assess_aquatic					4		
+501300	Chara gymnophylla A. Braun	Chara gymnophylla A. Braun		30000002			Charide	Cha	L_macrophytes_taxalist_growthform_assess_aquatic					4		
+501400	Chara hispida L. 	Chara hispida L.		30000002			Charide	Cha	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		3	VU	4		
+501500 	Chara hispidula A. Braun 	Chara hispidula A. Braun		30000002			Charide	Cha	L_macrophytes_taxalist_growthform_assess_aquatic					4		
+501700	Chara intermedia A. Braun	Chara intermedia A. Braun		30000002			Charide	Cha	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		2	EN	4		
+502000	Chara polyacantha A. Braun 	Chara polyacantha A. Braun		30000002			Charide	Cha	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		1	CR	4		
+502200	Chara strigosa A. Braun	Chara strigosa A. Braun		30000002			Charide	Cha	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		1	EN	4		
+502300	Chara tenuispina A. Braun	Chara tenuispina A. Braun		30000002			Charide	Cha	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		1	CR	4		
+502400	Chara tomentosa L.	Chara tomentosa L.		30000002			Charide	Cha	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		3	VU	4		
+502450	Chara virgata Kuetz. 	Chara virgata Kuetz.		30000002			Charide	Cha	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		3	VU	4		
+502500	"Chara vulgaris aggr. (Chara crassicaulis Schleich.; Chara gymnophylla A. Braun; Chara hispidula A. Braun; Chara vulgaris L.)"	Chara vulgaris aggr.		30000002			Charide	Cha	L_macrophytes_taxalist_growthform_assess_aquatic					4		
+502600	Chara vulgaris L. 	Chara vulgaris L.		30000002			Charide	Cha	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		3	VU	4		
+30000002	Chara sp. (alle Arten der Gattung Chara)	Chara sp.					Charide	Cha	L_macrophytes_taxalist_growthform_assess_aquatic					2		
+50000010	Characeen (alle Arten der Gattung Chara, Nitella, Nitellopsis und Tolypella)	Characeen					Charide	Cha	L_macrophytes_taxalist_growthform_assess_aquatic					1		
+503300	Nitella flexilis (L.) C. Agardh 	Nitella flexilis (L.) C. Agardh		30000004			Charide	Cha	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		1	CR	4		
+503400	Nitella gracilis (Sm.) C. Agardh 	Nitella gracilis (Sm.) C. Agardh		30000004			Charide	Cha	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		2	EN	4		
+503600	Nitella mucronata (A. Braun) Miq. 	Nitella mucronata (A. Braun) Miq.		30000004			Charide	Cha	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		2	EN	4		
+503700	Nitella opaca (Bruzelius) C. Agardh 	Nitella opaca (Bruzelius) C. Agardh		30000004			Charide	Cha	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		3	VU	4		
+503800	Nitella syncarpa (Thuill.) Chevall.	Nitella syncarpa (Thuill.) Chevall.		30000004			Charide	Cha	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		2	EN	4		
+30000004	Nitella sp. (Nitella flexilis, gracilis, mucronata, opaca oder syncarpa)	Nitella sp.					Charide	Cha	L_macrophytes_taxalist_growthform_assess_aquatic					2		
+504100	Nitellopsis obtusa (Desv.) J. Groves	Nitellopsis obtusa (Desv.) J. Groves					Charide	Cha	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		4	NT	2		
+504200	Tolypella glomerata (Desv.) Leonh. 	Tolypella glomerata (Desv.) Leonh.		30000005			Charide	Cha	L_macrophytes_taxalist_growthform_assess_aquatic	L_macrophytes_taxalist_conservationinfo_priority		2	EN	4		
+30000005	Tolypella sp. (alle Arten der Gattung Tolypella)	Tolypella sp.					Charide	Cha	L_macrophytes_taxalist_growthform_assess_aquatic					2		
+10000024	Aneura pinguis (L.) Dumort.	Aneura pinguis (L.) Dumort.					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	2			2		
+10000026	Anthelia julacea (L.) Dumort.	Anthelia julacea (L.) Dumort.					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_priority		3	EN	3		
+10000069	Blasia pusilla L.	Blasia pusilla L.					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_priority		4	VU	2		
+10000709	Blindia acuta (Hedw.) Bruch & Schimp.	Blindia acuta (Hedw.) Bruch & Schimp.					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	2			2		
+10000746	Brachythecium rivulare Schimp.	Brachythecium rivulare Schimp.					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	1			2		
+10000884	Bryum gemmiparum De Not.	Bryum gemmiparum De Not.					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_priority		2	CR	2		
+10001019	Calliergonella cuspidata (Hedw.) Loeske	Calliergonella cuspidata (Hedw.) Loeske					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	1			1		
+10001039	Campylium stellatum (Hedw.) Lange & C.E.O.Jensen subsp. stellatum	Campylium stellatum (Hedw.) Lange & C.E.O.Jensen subsp. stellatum					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	1			2		
+10001063	Catoscopium nigritum (Hedw.) Brid.	Catoscopium nigritum (Hedw.) Brid.					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	1		VU	2		
+10000123	Chiloscyphus pallescens (Hoffm.) Dumort. 	Chiloscyphus pallescens (Hoffm.) Dumort.		10000121			Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	2			3		
+10000121	Chiloscyphus polyanthos aggr. (C. pallescens oder C. polyanthos)	Chiloscyphus polyanthos aggr.	1				Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	2			2		
+10002709	Chiloscyphus polyanthos (L.) Corda 	Chiloscyphus polyanthos (L.) Corda		10000121			Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	2			3		
+10001073	Cinclidotus aquaticus (Hedw.) Bruch & Schimp.	Cinclidotus aquaticus (Hedw.) Bruch & Schimp.		30000122			Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_priority		2	EN	2		
+10001074	Cinclidotus danubicus Schiffn. & Baumgartner	Cinclidotus danubicus Schiffn. & Baumgartner		30000122			Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	3			2		
+10001075	Cinclidotus fontinaloides (Hedw.) P.Beauv. 	Cinclidotus fontinaloides (Hedw.) P.Beauv.		30000122			Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	2			2		
+10001079	Cinclidotus riparius (Brid.) Arn.	Cinclidotus riparius (Brid.) Arn.		30000122			Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	2			2		
+30000122	Cinclidotus sp. (C. aquaticus oder C. danubicus oder C. fontnaloides oder C. riparius)	Cinclidotus sp.	1				Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	2			1		
+10001099	Climacium dendroides (Hedw.) F.Weber & D.Mohr	Climacium dendroides (Hedw.) F.Weber & D.Mohr					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	1			1		
+10003290	Conocephalum conicum (L.) Dumort.	Conocephalum conicum (L.) Dumort.					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	1			2		
+10003293	Cratoneuron curvicaule (Jur.) G.Roth 	Cratoneuron curvicaule (Jur.) G.Roth		10001118			Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	2		DD	2		
+10001118	Cratoneuron filicinum aggr. (C. curvicaule oder C. filicinum)	Cratoneuron filicinum aggr.	1				Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	2			2		
+10003297	Cratoneuron filicinum (Hedw.) Spruce 	Cratoneuron filicinum (Hedw.) Spruce		10001118			Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	2			2		
+10003320	Dialytrichia mucronata (Brid.) Broth.	Dialytrichia mucronata (Brid.) Broth.					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_priority		2	CR	2		
+10001161	Dichodontium flavescens (Dicks.) Lindb. 	Dichodontium flavescens (Dicks.) Lindb.		10001160			Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	1		NE	2		
+10001160	Dichodontium pellucidum aggr. (D. flavescens oder D. pellucidum)	Dichodontium pellucidum aggr.	1				Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	1			2		
+10003321	Dichodontium pellucidum (Hedw.) Schimp. 	Dichodontium pellucidum (Hedw.) Schimp.		10001160			Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	1			2		
+10001173	Diobelonella palustris (Dicks.) Ochyra	Diobelonella palustris (Dicks.) Ochyra					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	2			2		
+10001259	Drepanocladus aduncus (Hedw.) Warnst.	Drepanocladus aduncus (Hedw.) Warnst.					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	1			2		
+10003415	Fissidens crassipes Bruch & Schimp. subsp. crassipes	Fissidens crassipes Bruch & Schimp. subsp. crassipes					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	1			2		
+10001717	Fissidens fontanus (Bach.Pyl.) Steud.	Fissidens fontanus (Bach.Pyl.) Steud.					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_priority		4	VU	2		
+10001378	Fissidens grandifrons Brid.	Fissidens grandifrons Brid.					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_priority		1	EN	2		
+10001382	Fissidens rivularis (Spruce) Schimp.	Fissidens rivularis (Spruce) Schimp.					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_priority		4	VU	2		
+10001383	Fissidens rufulus Bruch & Schimp.	Fissidens rufulus Bruch & Schimp.					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_priority		3	EN	2		
+10001401	Fontinalis antipyretica Hedw.	Fontinalis antipyretica Hedw.					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	2			1		
+10001410	Fontinalis hypnoides C.Hartm.	Fontinalis hypnoides C.Hartm.					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_priority		4	VU	2		
+10001412	Fontinalis squamosa Hedw.	Fontinalis squamosa Hedw.					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_priority		4	VU	2		
+10001538	Hydrogrimmia mollis (Bruch & Schimp.) Loeske	Hydrogrimmia mollis (Bruch & Schimp.) Loeske					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	3			3		
+10000505	Hygroamblystegium fluviatile (Hedw.) Loeske	Hygroamblystegium fluviatile (Hedw.) Loeske					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_priority		4	VU	2		
+10000535	Hygroamblystegium tenax (Hedw.) Jenn.	Hygroamblystegium tenax (Hedw.) Jenn.					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	2			2		
+10001540	Hygrohypnum alpestre (Hedw.) Loeske	Hygrohypnum alpestre (Hedw.) Loeske					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_priority		4	VU	2		
+10001542	Hygrohypnum alpinum (Lindb.) Loeske 	Hygrohypnum alpinum (Lindb.) Loeske		30000123			Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_priority		2	EN	2		
+10001543	Hygrohypnum cochlearifolium (Venturi) Broth. 	Hygrohypnum cochlearifolium (Venturi) Broth.		30000123			Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_priority		1	CR	2		
+10001545	Hygrohypnum duriusculum (De Not.) D.W.Jamieson 	Hygrohypnum duriusculum (De Not.) D.W.Jamieson		30000123			Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	3		NT	2		
+10001547	Hygrohypnum eugyrium (Schimp.) Broth. 	Hygrohypnum eugyrium (Schimp.) Broth.		30000123			Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_priority		4	VU	2		
+10001549	Hygrohypnum luridum (Hedw.) Jenn. 	Hygrohypnum luridum (Hedw.) Jenn.		30000123			Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	1			2		
+10001553	Hygrohypnum molle (Hedw.) Loeske 	Hygrohypnum molle (Hedw.) Loeske		30000123			Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_priority		3	VU	2		
+10001554	Hygrohypnum norvegicum (Schimp.) J.J.Amann 	Hygrohypnum norvegicum (Schimp.) J.J.Amann		30000123			Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_priority		2	VU	2		
+10001556	Hygrohypnum ochraceum (Wilson) Loeske 	Hygrohypnum ochraceum (Wilson) Loeske		30000123			Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_priority		4	VU	2		
+10001557	Hygrohypnum smithii (Sw.) Broth. 	Hygrohypnum smithii (Sw.) Broth.		30000123			Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_priority		3	EN	2		
+10001559	Hygrohypnum styriacum (Limpr.) Broth. 	Hygrohypnum styriacum (Limpr.) Broth.		30000123			Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_priority		4	VU	2		
+30000123	Hygrohypnum sp.	Hygrohypnum sp.	1				Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	1			1		
+10004408	Hymenostylium recurvirostrum (Hedw.) Dixon	Hymenostylium recurvirostrum (Hedw.) Dixon					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	1			2		
+10001572	Hyophila involuta (Hook.) A.Jaeger	Hyophila involuta (Hook.) A.Jaeger					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_priority		4	VU	2		
+10000174	Jungermannia atrovirens Dumort.	Jungermannia atrovirens Dumort.					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	1			3		
+10000179	Jungermannia borealis Damsh. & Vana	Jungermannia borealis Damsh. & Vana					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	1		VU	3		
+10000187	Jungermannia exsertifolia subsp. cordifolia (Dumort.) Vana	Jungermannia exsertifolia subsp. cordifolia (Dumort.) Vana					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_priority		4	VU	3		
+10000516	Leptodictyum riparium (Hedw.) Warnst.	Leptodictyum riparium (Hedw.) Warnst.					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	1			2		
+10001672	Leskea polycarpa Hedw.	Leskea polycarpa Hedw.					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	2			2		
+10003114	Lunularia cruciata (L.) Lindb. subsp. cruciata	Lunularia cruciata (L.) Lindb. subsp. cruciata					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	1			2		
+10000290	Marchantia polymorpha L.	Marchantia polymorpha L.					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	1			2		
+10003730	Marsupella emarginata subsp. aquatica (Lindenb.) Meyl.	Marsupella emarginata subsp. aquatica (Lindenb.) Meyl.					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	3			2		
+10000305	Marsupella emarginata (Ehrh.) Dumort. subsp. emarginata	Marsupella emarginata (Ehrh.) Dumort. subsp. emarginata					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	3			2		
+10000331	Nardia compressa (Hook.) Gray	Nardia compressa (Hook.) Gray					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	3		NT	2		
+10001747	Orthotrichum cupulatum Brid.	Orthotrichum cupulatum Brid.					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	1			2		
+10001109	Palustriella commutata aggr. (P. commutata oder P. falcata)	Palustriella commutata aggr.	1				Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	2			2		
+10003292	Palustriella commutata (Hedw.) Ochyra 	Palustriella commutata (Hedw.) Ochyra		10001109			Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	2			2		
+10001117	Palustriella decipiens (De Not.) Ochyra	Palustriella decipiens (De Not.) Ochyra					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	2			2		
+10003295	Palustriella falcata (Brid.) Hedenaes 	Palustriella falcata (Brid.) Hedenaes		10001109			Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	2			2		
+10003824	Pellia endiviifolia (Dicks.) Dumort. subsp. Endiviifolia	Pellia endiviifolia (Dicks.) Dumort. subsp. endiviifolia		30000050			Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	1			2		
+10002671	Pellia epiphylla aggr. (P. epiphylla oder P. neesiana)	Pellia epiphylla aggr.	1				Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	1			2		
+10000355	Pellia epiphylla (L.) Corda subsp. epiphylla 	Pellia epiphylla (L.) Corda subsp. epiphylla		10002671			Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	1			2		
+10003826	Pellia neesiana (Gottsche) Limpr. subsp. neesiana 	Pellia neesiana (Gottsche) Limpr. subsp. neesiana		10002671			Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	1			2		
+30000050	Pellia sp.	Pellia sp.	1				Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	1			1		
+10001815	Philonotis caespitosa Jur. 	Philonotis caespitosa Jur.		30000124			Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_priority		4	VU	2		
+10001817	Philonotis calcarea (Bruch & Schimp.) Schimp. 	Philonotis calcarea (Bruch & Schimp.) Schimp.		30000124			Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	2			2		
+10001812	Philonotis capillaris Lindb.  	Philonotis capillaris Lindb.		30000124			Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	2			2		
+10003837	Philonotis fontana aggr. (P. fontana oder P. tomentella)	Philonotis fontana aggr.	1				Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	2			2		
+10001818	Philonotis fontana (Hedw.) Brid. 	Philonotis fontana (Hedw.) Brid.		10003837			Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	2			2		
+10001819	Philonotis marchica 	Philonotis marchica (Hedw.) Brid.		30000124			Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_priority		2	CR	2		
+10001821	Philonotis rigida Brid. 	Philonotis rigida Brid.		30000124			Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_priority		4	VU	2		
+10001822	Philonotis seriata Mitt. 	Philonotis seriata Mitt.		30000124			Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	2			2		
+10001823	Philonotis tomentella Molendo 	Philonotis tomentella Molendo		10003837			Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	2			2		
+30000124	Philonotis sp.	Philonotis sp.	1				Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	2			1		
+10000371	Porella cordaeana (Huebener) Moore	Porella cordaeana (Huebener) Moore					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_priority		3	EN	2		
+10002076	Racomitrium aciculare (Hedw.) Brid.	Racomitrium aciculare (Hedw.) Brid.					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	2			2		
+10002077	Racomitrium aquaticum (Schrad.) Brid.	Racomitrium aquaticum (Schrad.) Brid.					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	2			2		
+10002124	Rhynchostegium riparioides (Hedw.) Cardot	Rhynchostegium riparioides (Hedw.) Cardot					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	1			2		
+10002618	Riccia fluitans aggr. ( R. fluitans oder R. rhenana)	Riccia fluitans aggr.	1				Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_priority		4		1		
+10000417	Riccia fluitans L.	Riccia fluitans L.		10002618			Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_priority		4	VU	3		
+10000424	Riccia rhenana Muell.Frib.	Riccia rhenana Muell.Frib.		10002618			Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_priority		4	DD	3		
+10000429	Ricciocarpos natans (L.) Corda	Ricciocarpos natans (L.) Corda					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_priority		4	VU	1		
+10000447	Scapania irrigua (Nees) Nees subsp. irrigua	Scapania irrigua (Nees) Nees subsp. irrigua					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	1			3		
+10000455	Scapania paludicola Loeske & Muell.Frib.	Scapania paludicola Loeske & Muell.Frib.					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	1			3		
+10000467	Scapania paludosa (Muell.Frib.) Muell.Frib. 	Scapania paludosa (Muell.Frib.) Muell.Frib.		10002621			Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	2			3		
+10004071	Scapania subalpina (Lindenb.) Dumort. 	Scapania subalpina (Lindenb.) Dumort.		10004076			Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	2			3		
+10002621	Scapania uliginosa aggr. (S. paludosa oder S. uliginosa)	Scapania uliginosa aggr.	1				Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	2			3		
+10000465	Scapania uliginosa (Lindenb.) Dumort. 	Scapania uliginosa (Lindenb.) Dumort.		10002621			Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	2			3		
+10004076	Scapania undulata aggr. (S. subalpina oder  S. undulata)	Scapania undulata aggr. (Scapania subalpina (Lindenb.) Dumort., Scapania undulata s. str.)	1				Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	2			3		
+10000469	Scapania undulata (L.) Dumort. 	Scapania undulata (L.) Dumort.		10004076			Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	2			3		
+10002143	Schistidium agassizii Sull. & Lesq.	Schistidium agassizii Sull. & Lesq.					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_priority		4	VU	2		
+10004097	Schistidium platyphyllum (Mitt.) H.Perss. subsp. platyphyllum 	Schistidium platyphyllum (Mitt.) H.Perss. subsp. platyphyllum		10002163			Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	3			2		
+10002168	Schistidium rivulare (Brid.) Podp. 	Schistidium rivulare (Brid.) Podp.		10002163			Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	3			2		
+10002163	Schistidium rivulare aggr. (S. platyphyllum oder S. rivulare)	Schistidium rivulare aggr.	1				Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	3			2		
+10000739	Sciuro-Hypnum plumosum (Hedw.) Ignatov & Huttunen	Sciuro-Hypnum plumosum (Hedw.) Ignatov & Huttunen					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	2			2		
+10000199	Solenostoma obovatum (Nees) C.Massal.	Solenostoma obovatum (Nees) C.Massal.					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	1			3		
+10002316	Thamnobryum alopecurum (Hedw.) Gangulee	Thamnobryum alopecurum (Hedw.) Gangulee					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	1			1		
+10004265	Tritomaria polita (Nees) Jorg. subsp. polita	Tritomaria polita (Nees) Jorg. subsp. polita					Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte	L_macrophytes_taxalist_conservationinfo_index	2			2		
+50000001	Bryophyta	Bryophyta	1				Bryide	Bry	L_macrophytes_taxalist_growthform_assess_bryophyte					1		
+50000004	faedige Gruenalgen	faedige Gruenalgen	1				Faedige Alge	FaedAlg	L_macrophytes_taxalist_growthform_assess_algae					1		
+30000017	Cladophora sp.	Cladophora sp.		50000004			Faedige Alge	FaedAlg	L_macrophytes_taxalist_growthform_assess_algae					1		
+50000002	Cyanophyta	Cyanophyta		50000004			Faedige Alge	FaedAlg	L_macrophytes_taxalist_growthform_assess_algae					1		
+30000020	Desmidium sp.	Desmidium sp.		50000004			Faedige Alge	FaedAlg	L_macrophytes_taxalist_growthform_assess_algae					1		
+30000021	Diatoma sp.	Diatoma sp.		50000004			Faedige Alge	FaedAlg	L_macrophytes_taxalist_growthform_assess_algae					1		
+30000030	Gloeocystis sp.	Gloeocystis sp.		50000004			Faedige Alge	FaedAlg	L_macrophytes_taxalist_growthform_assess_algae					1		
+30000060	Rhizoclonium sp.	Rhizoclonium sp.		50000004			Faedige Alge	FaedAlg	L_macrophytes_taxalist_growthform_assess_algae					1		
+30000069	Spirogyra sp.	Spirogyra sp.		50000004			Faedige Alge	FaedAlg	L_macrophytes_taxalist_growthform_assess_algae					1		
+30000071	Tetraspora sp.	Tetraspora sp.		50000004			Faedige Alge	FaedAlg	L_macrophytes_taxalist_growthform_assess_algae					1		
+30000074	Ulothrix sp.	Ulothrix sp.		50000004			Faedige Alge	FaedAlg	L_macrophytes_taxalist_growthform_assess_algae					1		
+30000076	Vaucheria sp.	Vaucheria sp.		50000004			Faedige Alge	FaedAlg	L_macrophytes_taxalist_growthform_assess_algae					1		

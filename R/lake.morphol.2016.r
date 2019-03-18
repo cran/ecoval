@@ -47,17 +47,17 @@ lake.morphol.2016.create <- function(language     = "English",
   # ---------------------------------------------------------
   
   attrib.levels = data.frame("E01_Sohlenveraenderungen_FWZ"=
-                               c("E01.01",
-                                 "E01.02",
-                                 "E01.03",
-                                 "E01.04",
-                                 "E01.05",
-                                 "E01.06",
-                                 "E01.0601",
-                                 "E01.0602",
-                                 "E01.0603",
-                                 "E01.07",
-                                 "E01.08"))
+                               c(ecoval.translate("L_lake_morphol_E01_E01.01",dict),
+                                 ecoval.translate("L_lake_morphol_E01_E01.02",dict),
+                                 ecoval.translate("L_lake_morphol_E01_E01.03",dict),
+                                 ecoval.translate("L_lake_morphol_E01_E01.04",dict),
+                                 ecoval.translate("L_lake_morphol_E01_E01.05",dict),
+                                 ecoval.translate("L_lake_morphol_E01_E01.06",dict),
+                                 ecoval.translate("L_lake_morphol_E01_E01.0601",dict),
+                                 ecoval.translate("L_lake_morphol_E01_E01.0602",dict),
+                                 ecoval.translate("L_lake_morphol_E01_E01.0603",dict),
+                                 ecoval.translate("L_lake_morphol_E01_E01.07",dict),
+                                 ecoval.translate("L_lake_morphol_E01_E01.08",dict)))
   colnames(attrib.levels) <- ecoval.translate("A_lake_morphol_E01",dict)
   FlachwasserSohle <- utility.endnode.discrete.create(
     name.node     = ecoval.translate("N_lake_morphol_bedmod_shallowwater",dict), 
@@ -82,38 +82,38 @@ lake.morphol.2016.create <- function(language     = "English",
   # -----------------------------------------------------------
 
   attrib.levels = data.frame("E02_Anlagen_Strukturen_FWZ"=
-                               c("E02.01",
-                                 "E02.02",
-                                 "E02.0201",
-                                 "E02.0202",
-                                 "E02.0203",
-                                 "E02.0204",
-                                 "E02.03",
-                                 "E02.0301",
-                                 "E02.0302",
-                                 "E02.0303",
-                                 "E02.0304",
-                                 "E02.0305",
-                                 "E02.04",
-                                 "E02.0401",
-                                 "E02.0402",
-                                 "E02.0403",
-                                 "E02.0404",
-                                 "E02.0405",
-                                 "E02.0406",
-                                 "E02.0407",
-                                 "E02.0408",
-                                 "E02.0409",
-                                 "E02.0410",
-                                 "E02.0411",
-                                 "E02.0412",
-                                 "E02.0413",
-                                 "E02.05",
-                                 "E02.0501",
-                                 "E02.0502",
-                                 "E02.0503",
-                                 "E02.0504",
-                                 "E02.0505"))
+                               c(ecoval.translate("L_lake_morphol_E02_E02.01",dict),
+                                 ecoval.translate("L_lake_morphol_E02_E02.02",dict),
+                                 ecoval.translate("L_lake_morphol_E02_E02.0201",dict),
+                                 ecoval.translate("L_lake_morphol_E02_E02.0202",dict),
+                                 ecoval.translate("L_lake_morphol_E02_E02.0203",dict),
+                                 ecoval.translate("L_lake_morphol_E02_E02.0204",dict),
+                                 ecoval.translate("L_lake_morphol_E02_E02.03",dict),
+                                 ecoval.translate("L_lake_morphol_E02_E02.0301",dict),
+                                 ecoval.translate("L_lake_morphol_E02_E02.0302",dict),
+                                 ecoval.translate("L_lake_morphol_E02_E02.0303",dict),
+                                 ecoval.translate("L_lake_morphol_E02_E02.0304",dict),
+                                 ecoval.translate("L_lake_morphol_E02_E02.0305",dict),
+                                 ecoval.translate("L_lake_morphol_E02_E02.04",dict),
+                                 ecoval.translate("L_lake_morphol_E02_E02.0401",dict),
+                                 ecoval.translate("L_lake_morphol_E02_E02.0402",dict),
+                                 ecoval.translate("L_lake_morphol_E02_E02.0403",dict),
+                                 ecoval.translate("L_lake_morphol_E02_E02.0404",dict),
+                                 ecoval.translate("L_lake_morphol_E02_E02.0405",dict),
+                                 ecoval.translate("L_lake_morphol_E02_E02.0406",dict),
+                                 ecoval.translate("L_lake_morphol_E02_E02.0407",dict),
+                                 ecoval.translate("L_lake_morphol_E02_E02.0408",dict),
+                                 ecoval.translate("L_lake_morphol_E02_E02.0409",dict),
+                                 ecoval.translate("L_lake_morphol_E02_E02.0410",dict),
+                                 ecoval.translate("L_lake_morphol_E02_E02.0411",dict),
+                                 ecoval.translate("L_lake_morphol_E02_E02.0412",dict),
+                                 ecoval.translate("L_lake_morphol_E02_E02.0413",dict),
+                                 ecoval.translate("L_lake_morphol_E02_E02.05",dict),
+                                 ecoval.translate("L_lake_morphol_E02_E02.0501",dict),
+                                 ecoval.translate("L_lake_morphol_E02_E02.0502",dict),
+                                 ecoval.translate("L_lake_morphol_E02_E02.0503",dict),
+                                 ecoval.translate("L_lake_morphol_E02_E02.0504",dict),
+                                 ecoval.translate("L_lake_morphol_E02_E02.0505",dict)))
   colnames(attrib.levels) <- ecoval.translate("A_lake_morphol_E02",dict)
   FlachwasserAnlagen <- utility.endnode.discrete.create(
     name.node     = ecoval.translate("N_lake_morphol_facilities_shallowwater",dict), 
@@ -159,10 +159,10 @@ lake.morphol.2016.create <- function(language     = "English",
   # ------------------------------------------------
     
   attrib.levels = data.frame("B02_Fliessgewaesseranbindung"=
-                               c("B02.01",
-                                 "B02.02",
-                                 "B02.03",
-                                 "B02.04"))
+                               c(ecoval.translate("L_lake_morphol_B02_B02.01",dict),
+                                 ecoval.translate("L_lake_morphol_B02_B02.02",dict),
+                                 ecoval.translate("L_lake_morphol_B02_B02.03",dict),
+                                 ecoval.translate("L_lake_morphol_B02_B02.04",dict)))
   colnames(attrib.levels) <- ecoval.translate("A_lake_morphol_B02",dict)
   Fliessgewaesseranbindung <- utility.endnode.discrete.create(
     name.node     = ecoval.translate("N_lake_morphol_tributary_mouth",dict), 
@@ -180,31 +180,31 @@ lake.morphol.2016.create <- function(language     = "English",
     # -------------------------------------
     
   attrib.levels = data.frame("B01_Verbauung_UL"=
-                               c("B01.01",
-                                 "B01.02",
-                                 "B01.0201",
-                                 "B01.0202",
-                                 "B01.0203",
-                                 "B01.03",
-                                 "B01.0301",
-                                 "B01.0302",
-                                 "B01.0303",
-                                 "B01.04",
-                                 "B01.0401",
-                                 "B01.0402",
-                                 "B01.0403",
-                                 "B01.0404",
-                                 "B01.0405",
-                                 "B01.05",
-                                 "B01.0501",
-                                 "B01.0502",
-                                 "B01.0503",
-                                 "B01.0504",
-                                 "B01.0505",
-                                 "B01.0506",
-                                 "B01.0507",
-                                 "B01.0508",
-                                 "B01.06"))
+                               c(ecoval.translate("L_lake_morphol_B01_B01.01",dict),
+                                 ecoval.translate("L_lake_morphol_B01_B01.02",dict),
+                                 ecoval.translate("L_lake_morphol_B01_B01.0201",dict),
+                                 ecoval.translate("L_lake_morphol_B01_B01.0202",dict),
+                                 ecoval.translate("L_lake_morphol_B01_B01.0203",dict),
+                                 ecoval.translate("L_lake_morphol_B01_B01.03",dict),
+                                 ecoval.translate("L_lake_morphol_B01_B01.0301",dict),
+                                 ecoval.translate("L_lake_morphol_B01_B01.0302",dict),
+                                 ecoval.translate("L_lake_morphol_B01_B01.0303",dict),
+                                 ecoval.translate("L_lake_morphol_B01_B01.04",dict),
+                                 ecoval.translate("L_lake_morphol_B01_B01.0401",dict),
+                                 ecoval.translate("L_lake_morphol_B01_B01.0402",dict),
+                                 ecoval.translate("L_lake_morphol_B01_B01.0403",dict),
+                                 ecoval.translate("L_lake_morphol_B01_B01.0404",dict),
+                                 ecoval.translate("L_lake_morphol_B01_B01.0405",dict),
+                                 ecoval.translate("L_lake_morphol_B01_B01.05",dict),
+                                 ecoval.translate("L_lake_morphol_B01_B01.0501",dict),
+                                 ecoval.translate("L_lake_morphol_B01_B01.0502",dict),
+                                 ecoval.translate("L_lake_morphol_B01_B01.0503",dict),
+                                 ecoval.translate("L_lake_morphol_B01_B01.0504",dict),
+                                 ecoval.translate("L_lake_morphol_B01_B01.0505",dict),
+                                 ecoval.translate("L_lake_morphol_B01_B01.0506",dict),
+                                 ecoval.translate("L_lake_morphol_B01_B01.0507",dict),
+                                 ecoval.translate("L_lake_morphol_B01_B01.0508",dict),
+                                 ecoval.translate("L_lake_morphol_B01_B01.06",dict)))
   colnames(attrib.levels) <- ecoval.translate("A_lake_morphol_B01",dict)
   Uferverbauung <- utility.endnode.discrete.create(
     name.node     = ecoval.translate("N_lake_morphol_shorline_stabilization",dict), 
@@ -243,10 +243,10 @@ lake.morphol.2016.create <- function(language     = "English",
   # ------------------------------------
  
   attrib.levels = data.frame("C06_Ufersaumvegetation_US"=
-                               c("C06.01",
-                                 "C06.02",
-                                 "C06.03",
-                                 "C06.04"))
+                               c(ecoval.translate("L_lake_morphol_C06_C06.01",dict),
+                                 ecoval.translate("L_lake_morphol_C06_C06.02",dict),
+                                 ecoval.translate("L_lake_morphol_C06_C06.03",dict),
+                                 ecoval.translate("L_lake_morphol_C06_C06.04",dict)))
   colnames(attrib.levels) <- ecoval.translate("A_lake_morphol_C06",dict)
   UfersaumVegetation <- utility.endnode.discrete.create(
     name.node     = ecoval.translate("N_lake_morphol_shore_stripe_vegetation",dict), 
@@ -263,29 +263,29 @@ lake.morphol.2016.create <- function(language     = "English",
   # ------------------------------------------
     
   attrib.levels = data.frame("C01_Siedlung_Gewerbe_Industrie_US"=
-                               c("C01.01",
-                                 "C01.02",
-                                 "C01.03",
-                                 "C01.0301",
-                                 "C01.0302",
-                                 "C01.0303",
-                                 "C01.04",
-                                 "C01.05",
-                                 "C01.0501",
-                                 "C01.0502",
-                                 "C01.0503",
-                                 "C01.0504",
-                                 "C01.06",
-                                 "C01.0601",
-                                 "C01.0602",
-                                 "C01.0603",
-                                 "C01.0604",
-                                 "C01.0605",
-                                 "C01.07",
-                                 "C01.0701",
-                                 "C01.0702",
-                                 "C01.0703",
-                                 "C01.0704"))
+                               c(ecoval.translate("L_lake_morphol_C01_C01.01",dict),
+                                 ecoval.translate("L_lake_morphol_C01_C01.02",dict),
+                                 ecoval.translate("L_lake_morphol_C01_C01.03",dict),
+                                 ecoval.translate("L_lake_morphol_C01_C01.0301",dict),
+                                 ecoval.translate("L_lake_morphol_C01_C01.0302",dict),
+                                 ecoval.translate("L_lake_morphol_C01_C01.0303",dict),
+                                 ecoval.translate("L_lake_morphol_C01_C01.04",dict),
+                                 ecoval.translate("L_lake_morphol_C01_C01.05",dict),
+                                 ecoval.translate("L_lake_morphol_C01_C01.0501",dict),
+                                 ecoval.translate("L_lake_morphol_C01_C01.0502",dict),
+                                 ecoval.translate("L_lake_morphol_C01_C01.0503",dict),
+                                 ecoval.translate("L_lake_morphol_C01_C01.0504",dict),
+                                 ecoval.translate("L_lake_morphol_C01_C01.06",dict),
+                                 ecoval.translate("L_lake_morphol_C01_C01.0601",dict),
+                                 ecoval.translate("L_lake_morphol_C01_C01.0602",dict),
+                                 ecoval.translate("L_lake_morphol_C01_C01.0603",dict),
+                                 ecoval.translate("L_lake_morphol_C01_C01.0604",dict),
+                                 ecoval.translate("L_lake_morphol_C01_C01.0605",dict),
+                                 ecoval.translate("L_lake_morphol_C01_C01.07",dict),
+                                 ecoval.translate("L_lake_morphol_C01_C01.0701",dict),
+                                 ecoval.translate("L_lake_morphol_C01_C01.0702",dict),
+                                 ecoval.translate("L_lake_morphol_C01_C01.0703",dict),
+                                 ecoval.translate("L_lake_morphol_C01_C01.0704",dict)))
   colnames(attrib.levels) <- ecoval.translate("A_lake_morphol_C01",dict)
   UferstreifenSiedlung <- utility.endnode.discrete.create(
     name.node     = ecoval.translate("N_lake_morphol_settlements_industry",dict), 
@@ -321,24 +321,24 @@ lake.morphol.2016.create <- function(language     = "English",
   # -----------------------------
     
   attrib.levels = data.frame("C02_Freizeitnutzung_US"=
-                               c("C02.01",
-                                 "C02.02",
-                                 "C02.03",
-                                 "C02.0301",
-                                 "C02.0302",
-                                 "C02.0303",
-                                 "C02.0304",
-                                 "C02.0305",
-                                 "C02.0306",
-                                 "C02.04",
-                                 "C02.0401",
-                                 "C02.0402",
-                                 "C02.0403",
-                                 "C02.0404",
-                                 "C02.0405",
-                                 "C02.0406",
-                                 "C02.05",
-                                 "C02.0501"))
+                               c(ecoval.translate("L_lake_morphol_C02_C02.01",dict),
+                                 ecoval.translate("L_lake_morphol_C02_C02.02",dict),
+                                 ecoval.translate("L_lake_morphol_C02_C02.03",dict),
+                                 ecoval.translate("L_lake_morphol_C02_C02.0301",dict),
+                                 ecoval.translate("L_lake_morphol_C02_C02.0302",dict),
+                                 ecoval.translate("L_lake_morphol_C02_C02.0303",dict),
+                                 ecoval.translate("L_lake_morphol_C02_C02.0304",dict),
+                                 ecoval.translate("L_lake_morphol_C02_C02.0305",dict),
+                                 ecoval.translate("L_lake_morphol_C02_C02.0306",dict),
+                                 ecoval.translate("L_lake_morphol_C02_C02.04",dict),
+                                 ecoval.translate("L_lake_morphol_C02_C02.0401",dict),
+                                 ecoval.translate("L_lake_morphol_C02_C02.0402",dict),
+                                 ecoval.translate("L_lake_morphol_C02_C02.0403",dict),
+                                 ecoval.translate("L_lake_morphol_C02_C02.0404",dict),
+                                 ecoval.translate("L_lake_morphol_C02_C02.0405",dict),
+                                 ecoval.translate("L_lake_morphol_C02_C02.0406",dict),
+                                 ecoval.translate("L_lake_morphol_C02_C02.05",dict),
+                                 ecoval.translate("L_lake_morphol_C02_C02.0501",dict)))
   colnames(attrib.levels) <- ecoval.translate("A_lake_morphol_C02",dict)
   UferstreifenFreizeit <- utility.endnode.discrete.create(
     name.node     = ecoval.translate("N_lake_morphol_recreational_landuse",dict), 
@@ -369,17 +369,17 @@ lake.morphol.2016.create <- function(language     = "English",
   # ----------------------------------------
   
   attrib.levels = data.frame("C03_Verkehrswege_Flaechen_US"=
-                               c("C03.01",
-                                 "C03.02",
-                                 "C03.03",
-                                 "C03.04",
-                                 "C03.05",
-                                 "C03.06",
-                                 "C03.07",
-                                 "C03.08",
-                                 "C03.09",
-                                 "C03.10",
-                                 "C03.11"))
+                               c(ecoval.translate("L_lake_morphol_C03_C03.01",dict),
+                                 ecoval.translate("L_lake_morphol_C03_C03.02",dict),
+                                 ecoval.translate("L_lake_morphol_C03_C03.03",dict),
+                                 ecoval.translate("L_lake_morphol_C03_C03.04",dict),
+                                 ecoval.translate("L_lake_morphol_C03_C03.05",dict),
+                                 ecoval.translate("L_lake_morphol_C03_C03.06",dict),
+                                 ecoval.translate("L_lake_morphol_C03_C03.07",dict),
+                                 ecoval.translate("L_lake_morphol_C03_C03.08",dict),
+                                 ecoval.translate("L_lake_morphol_C03_C03.09",dict),
+                                 ecoval.translate("L_lake_morphol_C03_C03.10",dict),
+                                 ecoval.translate("L_lake_morphol_C03_C03.11",dict)))
   colnames(attrib.levels) <- ecoval.translate("A_lake_morphol_C03",dict)
   UferstreifenVerkehr <- utility.endnode.discrete.create(
     name.node     = ecoval.translate("N_lake_morphol_traffic_areas",dict), 
@@ -403,18 +403,18 @@ lake.morphol.2016.create <- function(language     = "English",
   # ---------------------------------------
   
   attrib.levels = data.frame("C04_Land_Forstw_Nutzung_US"=
-                               c("C04.01",
-                                 "C04.02",
-                                 "C04.0201",
-                                 "C04.0202",
-                                 "C04.0203",
-                                 "C04.0204",
-                                 "C04.04",
-                                 "C04.03",
-                                 "C04.0301",
-                                 "C04.0302",
-                                 "C04.0303",
-                                 "C04.0304"))
+                               c(ecoval.translate("L_lake_morphol_C04_C04.01",dict),
+                                 ecoval.translate("L_lake_morphol_C04_C04.02",dict),
+                                 ecoval.translate("L_lake_morphol_C04_C04.0201",dict),
+                                 ecoval.translate("L_lake_morphol_C04_C04.0202",dict),
+                                 ecoval.translate("L_lake_morphol_C04_C04.0203",dict),
+                                 ecoval.translate("L_lake_morphol_C04_C04.0204",dict),
+                                 ecoval.translate("L_lake_morphol_C04_C04.04",dict),
+                                 ecoval.translate("L_lake_morphol_C04_C04.03",dict),
+                                 ecoval.translate("L_lake_morphol_C04_C04.0301",dict),
+                                 ecoval.translate("L_lake_morphol_C04_C04.0302",dict),
+                                 ecoval.translate("L_lake_morphol_C04_C04.0303",dict),
+                                 ecoval.translate("L_lake_morphol_C04_C04.0304",dict)))
   colnames(attrib.levels) <- ecoval.translate("A_lake_morphol_C04",dict)
   UferstreifenLandwirtschaft <- utility.endnode.discrete.create(
     name.node     = ecoval.translate("N_lake_morphol_agriculture_forestry",dict), 
@@ -439,13 +439,13 @@ lake.morphol.2016.create <- function(language     = "English",
   # --------------------------------------------
   
   attrib.levels = data.frame("C05_Fliessgewaesserverbauung_US"=
-                               c("C05.01",
-                                 "C05.02",
-                                 "C05.03",
-                                 "C05.04",
-                                 "C05.05",
-                                 "C05.06",
-                                 "C05.07"))
+                               c(ecoval.translate("L_lake_morphol_C05_C05.01",dict),
+                                 ecoval.translate("L_lake_morphol_C05_C05.02",dict),
+                                 ecoval.translate("L_lake_morphol_C05_C05.03",dict),
+                                 ecoval.translate("L_lake_morphol_C05_C05.04",dict),
+                                 ecoval.translate("L_lake_morphol_C05_C05.05",dict),
+                                 ecoval.translate("L_lake_morphol_C05_C05.06",dict),
+                                 ecoval.translate("L_lake_morphol_C05_C05.07",dict)))
   colnames(attrib.levels) <- ecoval.translate("A_lake_morphol_C05",dict)
   Fliessgewaesserverbauung <- utility.endnode.discrete.create(
     name.node     = ecoval.translate("N_lake_morphol_river_control_structures",dict), 
@@ -465,29 +465,29 @@ lake.morphol.2016.create <- function(language     = "English",
   # -------------------------------------------
   
   attrib.levels = data.frame("D01_Nutzung_HL"=
-                               c("D01.01",
-                                 "D01.02",
-                                 "D01.0201",
-                                 "D01.0202",
-                                 "D01.0203",
-                                 "D01.0204",
-                                 "D01.03",
-                                 "D01.0301",
-                                 "D01.0302",
-                                 "D01.0303",
-                                 "D01.0304",
-                                 "D01.04",
-                                 "D01.0401",
-                                 "D01.0402",
-                                 "D01.0403",
-                                 "D01.0404",
-                                 "D01.0405",
-                                 "D01.0406",
-                                 "D01.05",
-                                 "D01.0501",
-                                 "D01.0502",
-                                 "D01.0503",
-                                 "D01.0504"))
+                               c(ecoval.translate("L_lake_morphol_D01_D01.01",dict),
+                                 ecoval.translate("L_lake_morphol_D01_D01.02",dict),
+                                 ecoval.translate("L_lake_morphol_D01_D01.0201",dict),
+                                 ecoval.translate("L_lake_morphol_D01_D01.0202",dict),
+                                 ecoval.translate("L_lake_morphol_D01_D01.0203",dict),
+                                 ecoval.translate("L_lake_morphol_D01_D01.0204",dict),
+                                 ecoval.translate("L_lake_morphol_D01_D01.03",dict),
+                                 ecoval.translate("L_lake_morphol_D01_D01.0301",dict),
+                                 ecoval.translate("L_lake_morphol_D01_D01.0302",dict),
+                                 ecoval.translate("L_lake_morphol_D01_D01.0303",dict),
+                                 ecoval.translate("L_lake_morphol_D01_D01.0304",dict),
+                                 ecoval.translate("L_lake_morphol_D01_D01.04",dict),
+                                 ecoval.translate("L_lake_morphol_D01_D01.0401",dict),
+                                 ecoval.translate("L_lake_morphol_D01_D01.0402",dict),
+                                 ecoval.translate("L_lake_morphol_D01_D01.0403",dict),
+                                 ecoval.translate("L_lake_morphol_D01_D01.0404",dict),
+                                 ecoval.translate("L_lake_morphol_D01_D01.0405",dict),
+                                 ecoval.translate("L_lake_morphol_D01_D01.0406",dict),
+                                 ecoval.translate("L_lake_morphol_D01_D01.05",dict),
+                                 ecoval.translate("L_lake_morphol_D01_D01.0501",dict),
+                                 ecoval.translate("L_lake_morphol_D01_D01.0502",dict),
+                                 ecoval.translate("L_lake_morphol_D01_D01.0503",dict),
+                                 ecoval.translate("L_lake_morphol_D01_D01.0504",dict)))
   colnames(attrib.levels) <- ecoval.translate("A_lake_morphol_D01",dict)
   HinterlandNutzung <- utility.endnode.discrete.create(
     name.node     = ecoval.translate("N_lake_morphol_human_landuse_fartherarea",dict), 
@@ -523,10 +523,10 @@ lake.morphol.2016.create <- function(language     = "English",
   # -------------------------------------------------
   
   attrib.levels = data.frame("D02_Uebergangsvegetation_HL"=
-                               c("D02.01",
-                                 "D02.02",
-                                 "D02.03",
-                                 "D02.04"))
+                               c(ecoval.translate("L_lake_morphol_D02_D02.01",dict),
+                                 ecoval.translate("L_lake_morphol_D02_D02.02",dict),
+                                 ecoval.translate("L_lake_morphol_D02_D02.03",dict),
+                                 ecoval.translate("L_lake_morphol_D02_D02.04",dict)))
   colnames(attrib.levels) <- ecoval.translate("A_lake_morphol_D02",dict)
   HinterlandVegetation <- utility.endnode.discrete.create(
     name.node     = ecoval.translate("N_lake_morphol_vegetation_bordertofartherarea",dict), 
@@ -632,10 +632,34 @@ lake.morphol.2016.create <- function(language     = "English",
 # Peter Reichert 13.01.2017
 
 lake.morphol.2016.read.attrib <- function(directory    = ".",
-                                          attrib.names = c("E01","E02","B02","B01","C06","C01",
-                                                           "C02","C03","C04","C05","D01","D02"),
-                                          col.names    = c("Von","Bis","Code","ID_Uferlinie","Bemerkungen"))
+                                          language     = "English",
+                                          dictionaries = NA,
+                                          attrib.names = NA,
+                                          col.names    = NA)
 {
+  # initialization:
+    
+  dict <- ecoval.dict(language,dictionaries)
+  
+  if ( is.na(attrib.names[1]) ) attrib.names <- c(ecoval.translate("A_lake_morphol_E01",dict),
+                                                  ecoval.translate("A_lake_morphol_E02",dict),
+                                                  ecoval.translate("A_lake_morphol_B02",dict),
+                                                  ecoval.translate("A_lake_morphol_B01",dict),
+                                                  ecoval.translate("A_lake_morphol_C06",dict),
+                                                  ecoval.translate("A_lake_morphol_C01",dict),
+                                                  ecoval.translate("A_lake_morphol_C02",dict),
+                                                  ecoval.translate("A_lake_morphol_C03",dict),
+                                                  ecoval.translate("A_lake_morphol_C04",dict),
+                                                  ecoval.translate("A_lake_morphol_C05",dict),
+                                                  ecoval.translate("A_lake_morphol_D01",dict),
+                                                  ecoval.translate("A_lake_morphol_D02",dict))
+  
+  if ( is.na(col.names[1]) )    col.names    <- c(ecoval.translate("A_lake_morphol_datacol_from",dict),
+                                                  ecoval.translate("A_lake_morphol_datacol_to",dict),
+                                                  ecoval.translate("A_lake_morphol_datacol_code",dict),
+                                                  ecoval.translate("A_lake_morphol_datacol_id",dict),
+                                                  ecoval.translate("A_lake_morphol_datacol_comments",dict))
+  
   # consistency checks:
   
   if ( sum(is.na(col.names[1:3])) > 0 )
