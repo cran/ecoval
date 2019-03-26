@@ -11,7 +11,7 @@ Function to plot the probabilities of all river types according to the type defi
 }
 
 \usage{
-msk.macrophytes.2017.plot.types.scheme(res.calc.types,i,cex=1,...)
+msk.macrophytes.2017.plot.types.scheme(res.calc.types,i,cex=1,cex.labels=1,...)
 }
 
 \arguments{
@@ -24,6 +24,9 @@ row index of site to be plotted.
 }
   \item{cex}{
 scaling factor for font.
+}
+  \item{cex.labels}{
+scaling factor for font of labels.
 }
   \item{...}{
 additional arguments are passed to the function \code{\link{plot}}.

@@ -469,8 +469,50 @@ msk.macrophytes.2017.calc.types <- function(attrib,
 }
 
 
-msk.macrophytes.2017.plot.types.scheme <- function(res.calc.types,i,cex=1,...)
+# msk.macrophytes.2017.plot.types.scheme <- function(res.calc.types,i,cex=1,...)
+# {
+#   row.no <- i
+#   res    <- res.calc.types
+#   
+#   if ( is.na(match("language",names(res))) | is.na(match("dictionaries",names(res))) )
+#     stop("ecoval::msk.macrophytes.2017.plot.types.scheme: list element \"language\" is missing")
+#   if ( is.na(match("types.fields.probs",names(res))) )
+#     stop("ecoval::msk.macrophytes.2017.plot.types.scheme: list element \"types.fields.probs\" is missing")
+#   
+#   site <- row.no
+#   dict <- ecoval.dict(res$language,res$dictionaries)
+#   
+#   nrow = max(as.numeric(substring(colnames(res$types.fields.probs),1,1)))
+#   ncol = max(as.numeric(substring(colnames(res$types.fields.probs),2,2)))
+#   x <- (0:ncol)/ncol
+#   y <- rev(0:nrow)/nrow
+#   
+#   plot(numeric(0),numeric(0),xlim=c(0,1),ylim=c(0,1),xlab="",ylab="",xaxs="i",yaxs="i",axes=FALSE,
+#        ...)
+#   
+#   for ( i in 1:nrow )
+#   {
+#     for ( j in 1:ncol )
+#     {
+#       prob <- res$types.fields.probs[site,paste(i,j,sep="")]
+#       polygon(x=c(x[j],x[j+1],x[j+1],x[j],x[j]),
+#               y=c(y[i],y[i],y[i+1],y[i+1],y[i]),
+#               col=ifelse(is.na(prob),"white",grey(1-0.5*prob)))  # grey between 0.5 and 1.0 to keep the text readable
+#       types <- unique(res$typedef$types[,ecoval.translate("A_macrophytes_rivertypescheme_class",dict)][res$typedef$fields==paste(i,j,sep="")])
+#       types <- c(types,paste(ifelse(is.na(prob),"",100*round(prob,3)),"%"))
+#       text(x=0.5*(x[j]+x[j+1]),
+#            y=0.5*(y[i]+y[i+1]) + 0.5*(y[i]-y[i+1])/length(types) * (((length(types):1)-1)-0.5*(length(types)-1)),
+#            labels=types,adj=c(0.5,0.5),cex=cex)
+#     }
+#   }
+# }
+msk.macrophytes.2017.plot.types.scheme <- function(res.calc.types,i,cex=1,cex.labels=1,...)
 {
+  # local variables and checks:
+  
+  offset.x <- 2
+  offset.y <- 1
+  
   row.no <- i
   res    <- res.calc.types
   
@@ -482,28 +524,52 @@ msk.macrophytes.2017.plot.types.scheme <- function(res.calc.types,i,cex=1,...)
   site <- row.no
   dict <- ecoval.dict(res$language,res$dictionaries)
   
-  nrow = max(as.numeric(substring(colnames(res$types.fields.probs),1,1)))
-  ncol = max(as.numeric(substring(colnames(res$types.fields.probs),2,2)))
+  nrow = max(as.numeric(substring(colnames(res$types.fields.probs),1,1)))+offset.y
+  ncol = max(as.numeric(substring(colnames(res$types.fields.probs),2,2)))+offset.x
   x <- (0:ncol)/ncol
   y <- rev(0:nrow)/nrow
+  
+  # plot area:
   
   plot(numeric(0),numeric(0),xlim=c(0,1),ylim=c(0,1),xlab="",ylab="",xaxs="i",yaxs="i",axes=FALSE,
        ...)
   
-  for ( i in 1:nrow )
+  # plot types and probabilities:
+  
+  for ( i in (offset.y+1):nrow )
   {
-    for ( j in 1:ncol )
+    for ( j in (offset.x+1):ncol )
     {
-      prob <- res$types.fields.probs[site,paste(i,j,sep="")]
+      prob <- res$types.fields.probs[site,paste(i-offset.y,j-offset.x,sep="")]
       polygon(x=c(x[j],x[j+1],x[j+1],x[j],x[j]),
               y=c(y[i],y[i],y[i+1],y[i+1],y[i]),
               col=ifelse(is.na(prob),"white",grey(1-0.5*prob)))  # grey between 0.5 and 1.0 to keep the text readable
-      types <- unique(res$typedef$types[,ecoval.translate("A_macrophytes_rivertypescheme_class",dict)][res$typedef$fields==paste(i,j,sep="")])
+      types <- unique(res$typedef$types[,ecoval.translate("A_macrophytes_rivertypescheme_class",dict)][res$typedef$fields==paste(i-offset.y,j-offset.x,sep="")])
       types <- c(types,paste(ifelse(is.na(prob),"",100*round(prob,3)),"%"))
       text(x=0.5*(x[j]+x[j+1]),
            y=0.5*(y[i]+y[i+1]) + 0.5*(y[i]-y[i+1])/length(types) * (((length(types):1)-1)-0.5*(length(types)-1)),
            labels=types,adj=c(0.5,0.5),cex=cex)
     }
+  }
+  
+  # plot labels:
+  
+  col.labels <- ecoval.translate("R_macrophytes_rivertype_collabels",dict)
+  row.labels <- ecoval.translate("R_macrophytes_rivertype_rowlabels",dict)
+  col.labels <- strsplit(unlist(strsplit(col.labels,split=";")),split=",")
+  row.labels <- strsplit(unlist(strsplit(row.labels,split=";")),split=",")
+  
+  h.cell <- offset.x/nrow
+  n.rows <- length(col.labels)
+  for ( i in 1:n.rows ) 
+  {
+    for ( j in 1:length(col.labels[[i]]) ) text(x=0.5*ifelse(j==1,x[j]+x[j+offset.x],x[j+offset.x-1]+x[j+offset.x]),y=y[1]-i*(y[1]-y[1+offset.y])/(n.rows+1),labels=col.labels[[i]][j],cex=cex.labels)
+  }
+  h.cell <- 1/nrow
+  n.rows <- length(row.labels[[1]])
+  for ( i in 1:length(row.labels) )
+  {
+    for ( j in 1:length(row.labels[[i]]) ) text(x=0.5*(x[1]+x[1+offset.x]),y=y[i+offset.y]-j*h.cell/(n.rows+1),labels=row.labels[[i]][j],cex=cex.labels)
   }
 }
 

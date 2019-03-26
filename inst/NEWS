@@ -3,7 +3,14 @@ Change history of ecoval package
 ================================
 
 
-Changes version 1.2.1 (27.09.2018) -> version 1.2.2 (xx.xx.2019)
+Changes version 1.2.2 (09.03.2019) -> version 1.2.3 (26.03.2019)
+================================================================
+
+PR:     msk.macrophytes.2017: annotation type probability plot
+        msk.macrophytes.2017: French language corrections
+        
+
+Changes version 1.2.1 (27.09.2018) -> version 1.2.2 (09.03.2019)
 ================================================================
 
 PR:     error handling in msk.macrophytes.2017.read.compile.evaluate improved

@@ -339,7 +339,7 @@ msk.macrophytes.2017.compile.sitedat <- function(data.site,
       site.quality <- rbind(site.quality, quality.out)
     }
     
-    if( abs(sum.substrat - 100) > 0.9 ) {
+    if( any(abs(sum.substrat - 100) > 0.9) ) {
       quality.out <- cbind(data.site[abs(sum.substrat - 100) > 0.9,
                                           ecoval.translate("A_macrophytes_site_siteid",dict)],
                                 data.site[abs(sum.substrat - 100) > 0.9,

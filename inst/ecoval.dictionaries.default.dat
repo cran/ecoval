@@ -20,7 +20,7 @@ N_morphol		Good morphological state	Good morphological state	Guter Zustand Oekom
 N_morphol_coverage		No coverage	No coverage	Keine Eindolung	Keine Eindolung	Keine Eindolung	Keine Eindolung	Cours d'eau non mis sous terre
 N_morphol_uncovered		Open river	Open river	Offener Fluss	Offener Fluss	Offener Fluss	Offener Fluss	Cours d'eau ouvert
 N_morphol_widthvar		High width variability	High width variability	Hohe Breitenvariabilitaet	Hohe Breitenvariabilitaet	Hohe Breitenvariabilitaet	Hohe Breitenvariabilitaet	Grande variabilite de la largeur
-N_morphol_bedmod		No bed modification	No bed modification	Keine Sohlenverbauung	Keine Sohlenverbauung	Keine Sohlenverbauung	Keine Sohlenverbauung	Pas d'amenagement du font
+N_morphol_bedmod		No bed modification	No bed modification	Keine Sohlenverbauung	Keine Sohlenverbauung	Keine Sohlenverbauung	Keine Sohlenverbauung	Pas d'amenagement du fond
 N_morphol_bedmod_riprap		No bed modification riprap	No bed modification riprap	Keine Sohlenschuettung	Keine Sohlenschuettung	Keine Sohlenschuettung	Keine Sohlenschuettung	Pas d'enrochement
 N_morphol_bedmod_other		No bed modification other	No bed modification other	Keine andere Sohlenverbauung	Keine andere Sohlenverbauung	Keine andere Sohlenverbauung	Keine andere Sohlenverbauung	Pas d'autre amenagement
 N_morphol_bankmod		No bank modification	No bank modification	Keine Boeschungsverbauung	Keine Boeschungsverbauung	Keine Boeschungsverbauung	Keine Boeschungsverbauung	Pas de renforcement du pied de la berge
@@ -825,7 +825,7 @@ A_macrophytes_site_regimetype		Flowregimetype	Regimetyp	Regimetyp	Regimetyp	Regi
 A_macrophytes_site_biogeographicregion		Biogeographic_Region	Biogeo_FGT	Biogeo_FGT	Biogeo_FGT	Biogeo_FGT	Biogeo_FGT	Biogeo_TCE
 A_macrophytes_site_geology		Geology_Region	Geologie_FGT	Geologie_FGT	Geologie_FGT	Geologie_FGT	Geologie_FGT	Geologie_TCE
 A_macrophytes_site_catchment_forest_percent		Forest	Forest	Forest	Forest	Forest	Forest	Foret
-A_macrophytes_site_catchment_urban_percent		Urban	Urban	Urban	Urban	Urban	Urban	Urbanise
+A_macrophytes_site_catchment_urban_percent		Urban	Urban	Urban	Urban	Urban	Urban	Urbain
 A_macrophytes_site_catchment_agricultureall_percent		Agri_All	Agri_All	Agri_All	Agri_All	Agri_All	Agri_All	Agri_All
 A_macrophytes_site_clogging_class		Clogging	Kolmation	Kolmation	Kolmation	Kolmation	Kolmation	Colmatage
 A_macrophytes_site_turbidity_class		Turbidity	Truebung	Truebung	Truebung	Truebung	Truebung	Turbidite
@@ -894,6 +894,8 @@ R_macrophytes_rivertype_valmaxprob		T4	T4	T4	T4	T4	T4	T4
 R_macrophytes_rivertype_probgrfo		T5	T5	T5	T5	T5	T5	T5
 R_macrophytes_rivertype_probval		T6	T6	T6	T6	T6	T6	T6
 R_macrophytes_rivertype_probscheme		T7	T7	T7	T7	T7	T7	T7
+R_macrophytes_rivertype_collabels		"Shading,<50%,<50%,<50%,<50%,>=50%,>=50%,<50%;Substrate,fine,fine,fine,coarse,coarse,fine,-;Slope,<0.5%,  <0.5% | 0.5-<2%,0.5-<2%,<2%,-,-,>=2%;Depth,>=0.31m,<0.31m | >=0.31m,<0.31m,-,-,-,-"	"Shading,<50%,<50%,<50%,<50%,>=50%,>=50%,<50%;Substrate,fine,fine,fine,coarse,coarse,fine,-;Slope,<0.5%,  <0.5% | 0.5-<2%,0.5-<2%,<2%,-,-,>=2%;Depth,>=0.31m,<0.31m | >=0.31m,<0.31m,-,-,-,-"	"Beschattung,<50%,<50%,<50%,<50%,>=50%,>=50%,<50%;Substrat,fein,fein,fein,grob,grob,fein,-;Gefaelle,<0.5%,  <0.5% | 0.5-<2%,0.5-<2%,<2%,-,-,>=2%;Tiefe,>=0.31m,<0.31m | >=0.31m,<0.31m,-,-,-,-"	"Beschattung,<50%,<50%,<50%,<50%,>=50%,>=50%,<50%;Substrat,fein,fein,fein,grob,grob,fein,-;Gefaelle,<0.5%,  <0.5% | 0.5-<2%,0.5-<2%,<2%,-,-,>=2%;Tiefe,>=0.31m,<0.31m | >=0.31m,<0.31m,-,-,-,-"	"Beschattung,<50%,<50%,<50%,<50%,>=50%,>=50%,<50%;Substrat,fein,fein,fein,grob,grob,fein,-;Gefaelle,<0.5%,  <0.5% | 0.5-<2%,0.5-<2%,<2%,-,-,>=2%;Tiefe,>=0.31m,<0.31m | >=0.31m,<0.31m,-,-,-,-"	"Beschattung,<50%,<50%,<50%,<50%,>=50%,>=50%,<50%;Substrat,fein,fein,fein,grob,grob,fein,-;Gefaelle,<0.5%,  <0.5% | 0.5-<2%,0.5-<2%,<2%,-,-,>=2%;Tiefe,>=0.31m,<0.31m | >=0.31m,<0.31m,-,-,-,-"	"Ombrage,<50%,<50%,<50%,<50%,>=50%,>=50%,<50%;Substrat,fin,fin,fin,grossier,grossier,fin,-;Pente,<0.5%,  <0.5% | 0.5-<2%,0.5-<2%,<2%,-,-,>=2%;Profondeur,>=0.31m,<0.31m | >=0.31m,<0.31m,-,-,-,-"
+R_macrophytes_rivertype_rowlabels		"Discharge < 200l/s,(subst. fine: <40% >6.3cm);Discharge 200-<1000l/s,(subst. fine: <50% >6.3cm);Discharge 1000-<2000l/s,(subst. fine: <50% >6.3cm);Discharge 2000-<10000l/s,(subst. fine: <60% >6.3cm);Discharge >= 10000l/s"	"Discharge < 200l/s,(subst. fine: <40% >6.3cm);Discharge 200-<1000l/s,(subst. fine: <50% >6.3cm);Discharge 1000-<2000l/s,(subst. fine: <50% >6.3cm);Discharge 2000-<10000l/s,(subst. fine: <60% >6.3cm);Discharge >= 10000l/s"	"Abfluss < 200l/s,(Sust. fein: <40% >6.3cm);Abfluss 200-<1000l/s,(Sust. fein: <50% >6.3cm);Abfluss 1000-<2000l/s,(Sust. fein: <50% >6.3cm);Abfluss 2000-<10000l/s,(Sust. fein: <60% >6.3cm);Abfluss>=10000l/s"	"Abfluss < 200l/s,(Sust. fein: <40% >6.3cm);Abfluss 200-<1000l/s,(Sust. fein: <50% >6.3cm);Abfluss 1000-<2000l/s,(Sust. fein: <50% >6.3cm);Abfluss 2000-<10000l/s,(Sust. fein: <60% >6.3cm);Abfluss>=10000l/s"	"Abfluss < 200l/s,(Sust. fein: <40% >6.3cm);Abfluss 200-<1000l/s,(Sust. fein: <50% >6.3cm);Abfluss 1000-<2000l/s,(Sust. fein: <50% >6.3cm);Abfluss 2000-<10000l/s,(Sust. fein: <60% >6.3cm);Abfluss>=10000l/s"	"Abfluss < 200l/s,(Sust. fein: <40% >6.3cm);Abfluss 200-<1000l/s,(Sust. fein: <50% >6.3cm);Abfluss 1000-<2000l/s,(Sust. fein: <50% >6.3cm);Abfluss 2000-<10000l/s,(Sust. fein: <60% >6.3cm);Abfluss>=10000l/s"	"Debit < 200l/s,(subst. fin: <40% >6.3cm);Debit 200-<1000l/s,(subst. fin: <50% >6.3cm);Debit 1000-<2000l/s,(subst. fin: <50% >6.3cm);Debit 2000-<10000l/s,(subst. fin: <60% >6.3cm);Debit >= 10000l/s"
 								
 R_macrophytes_attrib_calc		A1	A1	A1	A1	A1	A1	A1
 R_macrophytes_value_obs		B1	B1	B1	B1	B1	B1	B1
@@ -1025,8 +1027,8 @@ R_macrophytes_doc_variability_limited		moderate	moderate	eingeschraenkt	eingesch
 R_macrophytes_doc_variability_none		none	none	keine	keine	keine	keine	nulle
 								
 R_macrophytes_doc_construction		Construction	Construction	Verbauung	Verbauung	Verbauung	Verbauung	Amenagement
-R_macrophytes_doc_construction_degree		Degree	Degree	Grad	Grad	Grad	Grad	Degre
-R_macrophytes_doc_construction_type		Type	Type	Art	Art	Art	Art	Type
+R_macrophytes_doc_construction_degree		Degree	Degree	Grad	Grad	Grad	Grad	degre
+R_macrophytes_doc_construction_type		Type	Type	Art	Art	Art	Art	type
 R_macrophytes_doc_construction_bedfract_0		none	none	keine	keine	keine	keine	nul
 R_macrophytes_doc_construction_bed		Bed	Bed	Sohle	Sohle	Sohle	Sohle	Fond
 R_macrophytes_doc_construction_bank		Bank	Bank	Boeschung	Boeschung	Boeschung	Boeschung	Pied de la berge
@@ -1071,7 +1073,7 @@ R_macrophytes_doc_riparian		Riparian Zone	Riparian Zone	Uferbereich	Uferbereich	
 R_macrophytes_doc_riparian_width		Width	Width	Breite	Breite	Breite	Breite	Largeur
 R_macrophytes_doc_riparian_left		Left	Left	Links	Links	Links	Links	gauche
 R_macrophytes_doc_riparian_right		Right	Right	Rechts	Rechts	Rechts	Rechts	droite
-R_macrophytes_doc_riparian_texture		Texture	Texture	Beschaffenheit	Beschaffenheit	Beschaffenheit	Beschaffenheit	Texture
+R_macrophytes_doc_riparian_texture		Texture	Texture	Beschaffenheit	Beschaffenheit	Beschaffenheit	Beschaffenheit	Nature
 R_macrophytes_doc_riparian_natural_gravel		gravel	gravel	Kies/Geroell/Fels	Kies/Geroell/Fels	Kies/Geroell/Fels	Kies/Geroell/Fels	Gravier/blocs/rochers
 R_macrophytes_doc_riparian_natural_reeds		reeds	reeds	Roehricht/Ried	Roehricht/Ried	Roehricht/Ried	Roehricht/Ried	Roselieres/marais
 R_macrophytes_doc_riparian_natural_forest		forest	forest	Wald	Wald	Wald	Wald	Foret
@@ -1115,7 +1117,7 @@ R_macrophytes_doc_typology_types		Vegetation River Types	Vegetation River Types	
 R_macrophytes_doc_typology_type		Type	Type	Flusstyp	Flusstyp	Flusstyp	Flusstyp	Type
 R_macrophytes_doc_typology_scheme		Scheme	Scheme	Schema	Schema	Schema	Schema	Schema
 R_macrophytes_doc_typology_modified		Modified	Modified	Modifiziert	Modifiziert	Modifiziert	Modifiziert	Modifie
-R_macrophytes_doc_typology_growthformgroups		Groups of Growth Forms	Groups of Growth Forms	Wuchsformgruppen	Wuchsformgruppen	Wuchsformgruppen	Wuchsformgruppen	Groupes des Formes Croissance
+R_macrophytes_doc_typology_growthformgroups		Probabilities of River Types per Growth Form	Probabilities of River Types per Growth Form	Typwahrscheinlichkeiten nach Wuchsform	Typwahrscheinlichkeiten nach Wuchsform	Typwahrscheinlichkeiten nach Wuchsform	Typwahrscheinlichkeiten nach Wuchsform	Probabilites des types selon la forme de croissance
 R_macrophytes_doc_typology_summary		Summary of Probabilities of Vegetation River Types	Summary of Probabilities of Vegetation River Types	Zusammenfassung Wahrscheinlichkeiten Vegetations-Flusstypen	Zusammenfassung Wahrscheinlichkeiten Vegetations-Flusstypen	Zusammenfassung Wahrscheinlichkeiten Vegetations-Flusstypen	Zusammenfassung Wahrscheinlichkeiten Vegetations-Flusstypen	Resume des probabilites des types des cours d'eau
 								
 R_macrophytes_doc_vegetation_attributes		Vegetation Attributes	Vegetation Attributes	Vegetationsparameter	Vegetationsparameter	Vegetationsparameter	Vegetationsparameter	Attributs de la vegetation

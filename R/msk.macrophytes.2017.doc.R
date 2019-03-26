@@ -383,7 +383,7 @@ msk.macrophytes.2017.doc.site <- function(res,row.no,pic.folder)
   x.start <- 0.1
   y.pos <- 8.71 - 0.31 * seq(0,30,1)
   para.small <- 0.31/2
-  x.pos <- 2.2
+  x.pos <- 2.3
   
   # Open plot device
   plot(0, 0, axes = axis.info, type="n", xaxs="i", yaxs="i", xlim=c(0,10),ylim=c(0,10))
@@ -1346,6 +1346,7 @@ msk.macrophytes.2017.doc.vegetation <- function(res, row.no) {
     plot.index <- 2
     plot.fact <- 0
     
+    max.char <- 42
     for ( k in 1:3 ) {
       dat.plot <- data.species[data.species[,ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)] == grfo.info[k],]
       text(x = 0,   y = y.pos[plot.index]-plot.fact*para.small, labels = grfo.info.lab[k], cex = cex.text, font = 2, pos=4)
@@ -1354,7 +1355,8 @@ msk.macrophytes.2017.doc.vegetation <- function(res, row.no) {
       if( k < 3 ) {
         if( nrow(dat.plot) > 0 ) {
           for ( j in 1:nrow(dat.plot) ) {
-            value.plot  <- get.value(dat.plot,j,ecoval.translate("A_macrophytes_species_name_latin",dict))
+            value.plot <- get.value(dat.plot,j,ecoval.translate("A_macrophytes_species_name_latin",dict))
+            value.plot <- ifelse(nchar(value.plot)<=max.char,value.plot,paste(substring(value.plot,1,max.char),"..."))
             text(x = x.start,   y = y.pos[plot.index]-plot.fact*para.small, labels = ifelse(is.na(value.plot), "", value.plot),
                  cex = cex.text, pos=4)
             
@@ -1417,7 +1419,8 @@ msk.macrophytes.2017.doc.vegetation <- function(res, row.no) {
           dat.plot <- dat.plot[dat.plot[,ecoval.translate("A_macrophytes_species_number_msk",dict)] != 50000001,]
           
           for ( j in 1:nrow(dat.plot) ) {
-            value.plot  <- get.value(dat.plot,j,ecoval.translate("A_macrophytes_species_name_latin",dict))
+            value.plot <- get.value(dat.plot,j,ecoval.translate("A_macrophytes_species_name_latin",dict))
+            value.plot <- ifelse(nchar(value.plot)<=max.char,value.plot,paste(substring(value.plot,1,max.char),"..."))
             text(x = x.start,   y = y.pos[plot.index]-plot.fact*para.small, labels = ifelse(is.na(value.plot), "", value.plot),
                  cex = cex.text, pos=4)
             
@@ -1599,7 +1602,7 @@ msk.macrophytes.2017.doc.valuation <- function(res,row.no) {
     x.start <- 0.1
     y.pos <- 8.25 - 0.5 * seq(0,20,1)
     para.small <- 0.5/2
-    x.pos <- 2.2
+    x.pos <- 2.3
     
     # Define MSK colors
     msk.colors <- c("white",utility.calc.colors(n = 5))

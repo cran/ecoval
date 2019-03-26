@@ -60,6 +60,9 @@ msk.macrophytes.2017.read.compile.evaluate <- function(file.site,
   # initialization
   # --------------
   
+  if ( length(pic.folder) == 0 ) pic.folder <- "."
+  if ( is.na(pic.folder) )       pic.folder <- "."
+  
   if ( is.na(sep.in) )  sep.in  <- sep
   if ( is.na(sep.out) ) sep.out <- sep
   
