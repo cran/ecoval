@@ -983,26 +983,26 @@ R_macrophytes_doc_sectionlength		Section Length	Length Section	Abschnittslaenge	
 								
 R_macrophytes_doc_siteparameters		Site Data	Site Data	Standortdaten	Standortdaten	Standortdaten	Standortdaten	Caracteristiques du site
 R_macrophytes_doc_discharge		Discharge	Discharge	Abfluss	Abfluss	Abfluss	Abfluss	Debit
-R_macrophytes_doc_dischargesource		Source Discharge	Source Discharge	Quelle Abfluss	Quelle Abfluss	Quelle Abfluss	Quelle Abfluss	Source debit
+R_macrophytes_doc_dischargesource		Source discharge	Source discharge	Quelle Abfluss	Quelle Abfluss	Quelle Abfluss	Quelle Abfluss	Source debit
 R_macrophytes_doc_slope		Slope	Slope	Gefaelle	Gefaelle	Gefaelle	Gefaelle	Pente
-R_macrophytes_doc_slopesource		Source Slope	Source Slope	Quelle Gefaelle	Quelle Gefaelle	Quelle Gefaelle	Quelle Gefaelle	Source pente
-R_macrophytes_doc_meandepth		Mean Depth	Mean Depth	Mittlere Tiefe	Mittlere Tiefe	Mittlere Tiefe	Mittlere Tiefe	Profondeur moy.
-R_macrophytes_doc_fractstones		Fraction Stones	Fraction Stones	Steinanteil	Steinanteil	Steinanteil	Steinanteil	Prop. de pierres
+R_macrophytes_doc_slopesource		Source slope	Source slope	Quelle Gefaelle	Quelle Gefaelle	Quelle Gefaelle	Quelle Gefaelle	Source pente
+R_macrophytes_doc_meandepth		Mean depth m.disch	Mean depth m.disch	Mitt. Tiefe m.Abfl.	Mitt. Tiefe m.Abfl.	Mitt. Tiefe m.Abfl.	Mitt. Tiefe m.Abfl.	Prof. moy. m.debit
+R_macrophytes_doc_fractstones		Fraction stones	Fraction stones	Steinanteil	Steinanteil	Steinanteil	Steinanteil	Prop. de pierres
 R_macrophytes_doc_shading		Shading	Shading	Beschattung	Beschattung	Beschattung	Beschattung	Ombrage
 R_macrophytes_doc_elevation		Elevation AMSL	Elevation AMSL	Hoehe ue.M.	Hoehe ue.M.	Hoehe ue.M.	Hoehe ue.M.	Altitude msm
-R_macrophytes_doc_bedwidth		Bed Width	Bed Width	Sohlenbreite	Sohlenbreite	Sohlenbreite	Sohlenbreite	Largeur lit
-R_macrophytes_doc_wettedwidth		Wetted Width	Wetted Width	Benetzte Breite	Benetzte Breite	Benetzte Breite	Benetzte Breite	Largeur lit mouille
-R_macrophytes_doc_streamorder		Stream Order	Stream Order	Flussordnung	Flussordnung	Flussordnung	Flussordnung	Numero ordre
-R_macrophytes_doc_flowregimetype		Flow Regime	Flow Regime	Regimetyp	Regimetyp	Regimetyp	Regimetyp	Type regime
-R_macrophytes_doc_biogeographicregion		Biogeo. Region	Biogeo. Region	Biogeo. Region	Biogeo. Region	Biogeo. Region	Biogeo. Region	Region biogeo.
+R_macrophytes_doc_bedwidth		Bed width	Bed width	Sohlenbreite	Sohlenbreite	Sohlenbreite	Sohlenbreite	Largeur lit
+R_macrophytes_doc_wettedwidth		Wetted width	Wetted width	Benetzte Breite	Benetzte Breite	Benetzte Breite	Benetzte Breite	Largeur lit mouille
+R_macrophytes_doc_streamorder		Stream order	Stream order	Flussordnung	Flussordnung	Flussordnung	Flussordnung	Numero ordre
+R_macrophytes_doc_flowregimetype		Flow regime	Flow regime	Regimetyp	Regimetyp	Regimetyp	Regimetyp	Type regime
+R_macrophytes_doc_biogeographicregion		Biogeo. region	Biogeo. region	Biogeo. Region	Biogeo. Region	Biogeo. Region	Biogeo. Region	Region biogeo.
 R_macrophytes_doc_geology		Geology	Geology	Geologie	Geologie	Geologie	Geologie	Geologie
-R_macrophytes_doc_typescheme		Type Scheme	Type Scheme	Typ Schema	Typ Schema	Typ Schema	Typ Schema	Type schema
-R_macrophytes_doc_typevaluation		Type Valuat.	Type Valuat.	Typ Bewert.	Typ Bewert.	Typ Bewert.	Typ Bewert.	Type eval.
+R_macrophytes_doc_typescheme		Type scheme	Type scheme	Typ Schema	Typ Schema	Typ Schema	Typ Schema	Type schema
+R_macrophytes_doc_typevaluation		Type valuat.	Type valuat.	Typ Bewert.	Typ Bewert.	Typ Bewert.	Typ Bewert.	Type eval.
 R_macrophytes_doc_filepicture		File picture	File picture	Bilddatei	Bilddatei	Bilddatei	Bilddatei	Fichier photo
 R_macrophytes_doc_picturemissing		no picture available	no picture available	kein Bild vorhanden	kein Bild vorhanden	kein Bild vorhanden	kein Bild vorhanden	pas de photo
 								
 R_macrophytes_doc_complementarysiteparameters		Complementary Site Data	Complementary Site Data	Ergaenzende Standortdaten	Ergaenzende Standortdaten	Ergaenzende Standortdaten	Ergaenzende Standortdaten	Caracteristiques complementaires du site
-R_macrophytes_doc_dischargehydrom		Discharge hydrometric	Discharge hydrometric	Abfluss hydrometrisch	Abfluss hydrometrisch	Abfluss hydrometrisch	Abfluss hydrometrisch	Debit hydrometrique
+R_macrophytes_doc_dischargehydrom		Discharge closest hydrometric station	Discharge closest hydrometric station	Abfluss naechste hydrometrische Station	Abfluss naechste hydrometrische Station	Abfluss naechste hydrometrische Station	Abfluss naechste hydrometrische Station	Debit station hydrometrique plus proche
 R_macrophytes_doc_dischargehydrom_avg		Mean	Mean	Mittelwert	Mittelwert	Mittelwert	Mittelwert	Moyenne
 R_macrophytes_doc_dischargehydrom_day		Observed	Observed	Tageswert	Tageswert	Tageswert	Tageswert	Jour
 R_macrophytes_doc_waterdepth		Water depth	Water depth	Wassertiefe	Wassertiefe	Wassertiefe	Wassertiefe	Profondeur
@@ -1015,13 +1015,13 @@ R_macrophytes_doc_substratestability_mobile		mobile	mobile	beweglich	beweglich	b
 R_macrophytes_doc_velocity		Velocity	Velocity	Stroemung	Stroemung	Stroemung	Stroemung	Courant
 								
 R_macrophytes_doc_ecomorphology		Ecomorphology	Ecomorphology	Oekomorphologie	Oekomorphologie	Oekomorphologie	Oekomorphologie	Ecomorphologie
-R_macrophytes_doc_ecomorphologicalstate		Ecomorph. State	Ecomorph. State	Oekomorph. Zustand	Oekomorph. Zustand	Oekomorph. Zustand	Oekomorph. Zustand	Evaluation ecom.
+R_macrophytes_doc_ecomorphologicalstate		Ecomorph. state	Ecomorph. state	Oekomorph. Zustand	Oekomorph. Zustand	Oekomorph. Zustand	Oekomorph. Zustand	Evaluation ecom.
 R_macrophytes_doc_ecomorphology_I_natural		I natural/close to nat.	I natural/close to nat.	I natuerlich/naturnah	I natuerlich/naturnah	I natuerlich/naturnah	I natuerlich/naturnah	I naturel/semi-naturel
 R_macrophytes_doc_ecomorphology_II_slightlydegraded		II slightly degraded	II slightly degraded	II wenig beeintraechtigt	II wenig beeintraechtigt	II wenig beeintraechtigt	II wenig beeintraechtigt	II peu atteint
 R_macrophytes_doc_ecomorphology_III_stronglydegraded		III strongly degraded	III strongly degraded	III stark beeintraechtigt	III stark beeintraechtigt	III stark beeintraechtigt	III stark beeintraechtigt	III tres atteint
 R_macrophytes_doc_ecomorphology_IV_artificial		IV non natural/artificial	IV non natural/artificial	IV naturfern/kuenstlich	IV naturfern/kuenstlich	IV naturfern/kuenstlich	IV naturfern/kuenstlich	IV non naturel/artificiel
-R_macrophytes_doc_widthvariability		Width Variability	Width Variability	Breitenvariabilitaet	Breitenvariabilitaet	Breitenvariabilitaet	Breitenvariabilitaet	Variabilite largeur
-R_macrophytes_doc_depthvariability		Depth Variability	Depth Variability	Tiefenvariabilitaet	Tiefenvariabilitaet	Tiefenvariabilitaet	Tiefenvariabilitaet	Variabilite profondeur
+R_macrophytes_doc_widthvariability		Width variability	Width variability	Breitenvariabilitaet	Breitenvariabilitaet	Breitenvariabilitaet	Breitenvariabilitaet	Variabilite largeur
+R_macrophytes_doc_depthvariability		Depth variability	Depth variability	Tiefenvariabilitaet	Tiefenvariabilitaet	Tiefenvariabilitaet	Tiefenvariabilitaet	Variabilite profondeur
 R_macrophytes_doc_variability_strong		high	high	ausgepraegt	ausgepraegt	ausgepraegt	ausgepraegt	prononcee
 R_macrophytes_doc_variability_limited		moderate	moderate	eingeschraenkt	eingeschraenkt	eingeschraenkt	eingeschraenkt	limitee
 R_macrophytes_doc_variability_none		none	none	keine	keine	keine	keine	nulle
@@ -1069,7 +1069,7 @@ R_macrophytes_doc_construction_bankmat_imperm3		wall	wall	Mauer	Mauer	Mauer	Maue
 R_macrophytes_doc_construction_bankmat_imperm4		other	other	andere	andere	andere	andere	autre
 R_macrophytes_doc_construction_bankmat_imperm5		no construction	no construction	keine Verbauung	keine Verbauung	keine Verbauung	keine Verbauung	pas d'amenagement
 								
-R_macrophytes_doc_riparian		Riparian Zone	Riparian Zone	Uferbereich	Uferbereich	Uferbereich	Uferbereich	Zone riveraine
+R_macrophytes_doc_riparian		Riparian zone	Riparian zone	Uferbereich	Uferbereich	Uferbereich	Uferbereich	Zone riveraine
 R_macrophytes_doc_riparian_width		Width	Width	Breite	Breite	Breite	Breite	Largeur
 R_macrophytes_doc_riparian_left		Left	Left	Links	Links	Links	Links	gauche
 R_macrophytes_doc_riparian_right		Right	Right	Rechts	Rechts	Rechts	Rechts	droite
@@ -1086,7 +1086,7 @@ R_macrophytes_doc_riparian_seminatural		seminatural	seminatural	gewaesserfremd	g
 R_macrophytes_doc_riparian_artificial		artificial	artificial	kuenstlich	kuenstlich	kuenstlich	kuenstlich	artificielle
 R_macrophytes_doc_riparian_other		other	other	andere	andere	andere	andere	autre
 								
-R_macrophytes_doc_surrounding		Surrounding Area	Surrounding Area	Umland	Umland	Umland	Umland	Environnement
+R_macrophytes_doc_surrounding		Surrounding area	Surrounding area	Umland	Umland	Umland	Umland	Environnement
 R_macrophytes_doc_surrounding_mixedforest		mixed forest	mixed forest	Mischwald	Mischwald	Mischwald	Mischwald	foret mixte
 R_macrophytes_doc_surrounding_coniferforest		conifer forest	conifer forest	Nadelwald	Nadelwald	Nadelwald	Nadelwald	foret de coniferes
 R_macrophytes_doc_surrounding_broadleafforest		broadleaf forest	broadleaf forest	Laubwald	Laubwald	Laubwald	Laubwald	foret de feuillus
@@ -1121,21 +1121,21 @@ R_macrophytes_doc_typology_growthformgroups		Probabilities of River Types per Gr
 R_macrophytes_doc_typology_summary		Summary of Probabilities of Vegetation River Types	Summary of Probabilities of Vegetation River Types	Zusammenfassung Wahrscheinlichkeiten Vegetations-Flusstypen	Zusammenfassung Wahrscheinlichkeiten Vegetations-Flusstypen	Zusammenfassung Wahrscheinlichkeiten Vegetations-Flusstypen	Zusammenfassung Wahrscheinlichkeiten Vegetations-Flusstypen	Resume des probabilites des types des cours d'eau
 								
 R_macrophytes_doc_vegetation_attributes		Vegetation Attributes	Vegetation Attributes	Vegetationsparameter	Vegetationsparameter	Vegetationsparameter	Vegetationsparameter	Attributs de la vegetation
-R_macrophytes_doc_vegetation_nodata		No Vegetation Data	No Vegetation Data	Keine Vegetationsdaten	Keine Vegetationsdaten	Keine Vegetationsdaten	Keine Vegetationsdaten	Pas des donnees pour la vegetation
+R_macrophytes_doc_vegetation_nodata		No vegetation data	No vegetation data	Keine Vegetationsdaten	Keine Vegetationsdaten	Keine Vegetationsdaten	Keine Vegetationsdaten	Pas des donnees pour la vegetation
 R_macrophytes_doc_vegetation_number		Number	Number	Anzahl	Anzahl	Anzahl	Anzahl	Nombre
 R_macrophytes_doc_vegetation_coverage		Coverage	Coverage	Deckung	Deckung	Deckung	Deckung	Recouvr.
 R_macrophytes_doc_vegetation_areafraction		Fraction	Fraction	Anteil	Anteil	Anteil	Anteil	Part
 R_macrophytes_doc_vegetation_macrophytes		Macrophytes	Macrophytes	Makrophyten	Makrophyten	Makrophyten	Makrophyten	Macrophytes
-R_macrophytes_doc_vegetation_growthforms		Growth Forms	Growth Forms	Wuchsformen	Wuchsformen	Wuchsformen	Wuchsformen	Formes de Croissance
-R_macrophytes_doc_vegetation_algae		Filamentous Algae	Filamentous Algae	Faedige Algen	Faedige Algen	Faedige Algen	Faedige Algen	Algues
+R_macrophytes_doc_vegetation_growthforms		Growth forms	Growth forms	Wuchsformen	Wuchsformen	Wuchsformen	Wuchsformen	Formes de Croissance
+R_macrophytes_doc_vegetation_algae		Filamentous algae	Filamentous algae	Faedige Algen	Faedige Algen	Faedige Algen	Faedige Algen	Algues
 R_macrophytes_doc_vegetation_neophytes		Neophytes	Neophytes	Neophyten	Neophyten	Neophyten	Neophyten	Neophytes
-R_macrophytes_doc_vegetation_indexspecies		Index Species	Index Species	Leitarten	Leitarten	Leitarten	Leitarten	Especes index
-R_macrophytes_doc_vegetation_priorityspecies		Priority Species	Priority Species	Prioritaere Arten	Prioritaere Arten	Prioritaere Arten	Prioritaere Arten	Especes prioritaires
+R_macrophytes_doc_vegetation_indexspecies		Index species	Index species	Leitarten	Leitarten	Leitarten	Leitarten	Especes index
+R_macrophytes_doc_vegetation_priorityspecies		Priority species	Priority species	Prioritaere Arten	Prioritaere Arten	Prioritaere Arten	Prioritaere Arten	Especes prioritaires
 R_macrophytes_doc_vegetation_aquatic		Aquatic	Aquatic	Aquatische	Aquatische	Aquatische	Aquatische	Hydrophytes
 R_macrophytes_doc_vegetation_helphytes		Helophytes	Helophytes	Helophyten	Helophyten	Helophyten	Helophyten	Helophytes
 R_macrophytes_doc_vegetation_bryophytes		Bryophytes	Bryophytes	Moose	Moose	Moose	Moose	Bryophytes
-R_macrophytes_doc_vegetation_fractionartificial		Fraction Artificial	Fraction Artificial	Anteil kuenstlich	Anteil kuenstlich	Anteil kuenstlich	Anteil kuenstlich	Part artificiel
-R_macrophytes_doc_vegetation_growthform		Growth Form	Growth Form	Wuchsform	Wuchsform	Wuchsform	Wuchsform	Forme croiss.
+R_macrophytes_doc_vegetation_fractionartificial		Fraction artificial	Fraction artificial	Anteil kuenstlich	Anteil kuenstlich	Anteil kuenstlich	Anteil kuenstlich	Part artificiel
+R_macrophytes_doc_vegetation_growthform		Growth form	Growth form	Wuchsform	Wuchsform	Wuchsform	Wuchsform	Forme croiss.
 R_macrophytes_doc_vegetation_listoftaxa		List of Species	List of Species	Artenliste	Artenliste	Artenliste	Artenliste	Liste des especes
 R_macrophytes_doc_vegetation_speciesinfo		Info	Info	Info	Info	Info	Info	Info
 R_macrophytes_doc_vegetation_indexvalue		IV	LW	LW	LW	LW	LW	VC

@@ -246,7 +246,7 @@ msk.macrophytes.2017.doc.site <- function(res,row.no,pic.folder)
   
   text(x = x.start, y = y.pos[5], labels = paste(ecoval.translate("R_macrophytes_doc_meandepth",dict),":",sep=""), font = 2, cex = cex.text, pos=4)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_waterdepth_m",dict))
-  text(x = x.pos,   y = y.pos[5], labels = ifelse(is.na(value.plot), "", paste(round(value.plot,1), "m")), font = 2, cex = cex.text, pos=4)
+  text(x = x.pos,   y = y.pos[5], labels = ifelse(is.na(value.plot), "", paste(formatC(round(value.plot,2),format="f",digits=2), "m")), font = 2, cex = cex.text, pos=4)
   
   text(x = x.start, y = y.pos[6], labels = paste(ecoval.translate("R_macrophytes_doc_fractstones",dict),":",sep=""), font = 2, cex = cex.text, pos=4)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_coarsegravel_percent",dict))
@@ -405,11 +405,11 @@ msk.macrophytes.2017.doc.site <- function(res,row.no,pic.folder)
   
   text(x = x.start+(x.pos*2.5), y = y.pos[2], labels = paste(ecoval.translate("R_macrophytes_doc_waterdepth_daymean",dict),":",sep=""), cex = cex.text, pos=4)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_waterdepth_dayavg_m",dict))
-  text(x = x.start+(x.pos*3.2), y = y.pos[2], labels = ifelse(is.na(value.plot), "", paste(round(value.plot,1), "m")),cex = cex.text, pos=4)
+  text(x = x.start+(x.pos*3.2), y = y.pos[2], labels = ifelse(is.na(value.plot), "", paste(formatC(round(value.plot,2),format="f",digits=2), "m")),cex = cex.text, pos=4)
   
   text(x = x.start+(x.pos*2.5), y = y.pos[3], labels = paste(ecoval.translate("R_macrophytes_doc_waterdepth_daymax",dict),":",sep=""), cex = cex.text, pos=4)
   value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_waterdepth_daymax_m",dict))
-  text(x = x.start+(x.pos*3.2), y = y.pos[3], labels = ifelse(is.na(value.plot), "", paste(round(value.plot,1), "m")),cex = cex.text, pos=4)
+  text(x = x.start+(x.pos*3.2), y = y.pos[3], labels = ifelse(is.na(value.plot), "", paste(formatC(round(value.plot,2),format="f",digits=2), "m")),cex = cex.text, pos=4)
   
   # Substratstabilitaet
   class.names <- c("",
@@ -430,7 +430,7 @@ msk.macrophytes.2017.doc.site <- function(res,row.no,pic.folder)
   text(x = 0, y = y.pos[6]-3*para.small, labels =  ecoval.translate("R_macrophytes_doc_ecomorphology",dict), col = "dodgerblue", cex = cex.title, font = 2, pos=4)
   
   # General ecomorphological state (MSK Oek F)
-  value.plot  <- get.value(data.site,row.no,ecoval.translate("N_morphol",dict))
+  value.plot  <- get.value(data.site,row.no,gsub(" ","_",ecoval.translate("N_morphol",dict)))
   class <- calc.class(value.plot, classes = c(1,1,1,2,2,2,3,3,4,4))
   value.plot <- ifelse(is.na(value.plot), "", value.plot)
   text(x = x.start, y = y.pos[7]-4*para.small, labels = paste(ecoval.translate("R_macrophytes_doc_ecomorphologicalstate",dict),":",sep=""), cex = cex.text, font = 2, pos=4)

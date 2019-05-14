@@ -697,31 +697,17 @@ msk.macrophytes.2017.compile.speciesdat <- function (data.species,
           
           # Do quality check for bryophyte species
           if( data.species[i,"WF_short"] == "Bry" ) {
-            if ( detval.taxalist.dat <= 2 ) {
-              if( detunc.data.species == 4 ) {
-                if( !is.na(grouptaxa.taxalist.dat) ) {
-                  data.species[i,ecoval.translate("A_macrophytes_species_number_msk",dict)] <- grouptaxa.taxalist.dat
-                  data.species[i,ecoval.translate("A_macrophytes_species_name_latin",dict)] <- taxalist.dat[match(grouptaxa.taxalist.dat,taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk", dict)]),
-                                                                                                            ecoval.translate("A_macrophytes_species_name_latin",dict)]
-                  data.species[i,ecoval.translate("A_macrophytes_species_determinationuncertainty",dict)] <- NA
-                  
-                  data.species[i,ecoval.translate("A_macrophytes_species_commentvalidation_taxa",dict)] <- "Ersetzt durch Sammeltaxon"
-                } else {
-                  rows.delete <- c(rows.delete, rownames(data.species)[i])
-                }
-              }
-            } else {
-              if ( detval.taxalist.dat == 3 ) {
-                if( !is.na(grouptaxa.taxalist.dat) ) {
-                  data.species[i,ecoval.translate("A_macrophytes_species_number_msk",dict)] <- grouptaxa.taxalist.dat
-                  data.species[i,ecoval.translate("A_macrophytes_species_name_latin",dict)] <- taxalist.dat[match(grouptaxa.taxalist.dat,taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk", dict)]),
-                                                                                                            ecoval.translate("A_macrophytes_species_name_latin",dict)]
-                  data.species[i,ecoval.translate("A_macrophytes_species_determinationuncertainty",dict)] <- NA
-                  
-                  data.species[i,ecoval.translate("A_macrophytes_species_commentvalidation_taxa",dict)] <- "Ersetzt durch Sammeltaxon"
-                } else {
-                  rows.delete <- c(rows.delete, rownames(data.species)[i])
-                }
+            if ( ( detval.taxalist.dat <= 2 & detunc.data.species == 4 ) |
+                 ( detval.taxalist.dat == 3 & detunc.data.species != 2 ) ) {
+              if( !is.na(grouptaxa.taxalist.dat) ) {
+                data.species[i,ecoval.translate("A_macrophytes_species_number_msk",dict)] <- grouptaxa.taxalist.dat
+                data.species[i,ecoval.translate("A_macrophytes_species_name_latin",dict)] <- taxalist.dat[match(grouptaxa.taxalist.dat,taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk", dict)]),
+                                                                                                          ecoval.translate("A_macrophytes_species_name_latin",dict)]
+                data.species[i,ecoval.translate("A_macrophytes_species_determinationuncertainty",dict)] <- NA
+                
+                data.species[i,ecoval.translate("A_macrophytes_species_commentvalidation_taxa",dict)] <- "Ersetzt durch Sammeltaxon"
+              } else {
+                rows.delete <- c(rows.delete, rownames(data.species)[i])
               }
             }
           } else {

@@ -36,7 +36,7 @@ msk.macrophytes.2017.read.compile.evaluate(file.site,
 name of text file with site characteristics.
 }
   \item{pic.folder}{
-name of folder with site pictures.
+(optional) name of folder to search for site pictures (pictures found will be displayed).
 }
   \item{file.species}{
 (optional) name of text file with species observations.
