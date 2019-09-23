@@ -3,6 +3,14 @@ Change history of ecoval package
 ================================
 
 
+Changes version 1.2.4 (14.05.2019) -> version 1.2.5 (23.09.2019)
+================================================================
+
+PR:     msk.macrophytes.2017: error for input for one site only corrected
+
+PR:     msk.macrophytes.2017: site input rows without date and site id are ignored
+
+
 Changes version 1.2.3 (26.03.2019) -> version 1.2.4 (14.05.2019)
 ================================================================
 

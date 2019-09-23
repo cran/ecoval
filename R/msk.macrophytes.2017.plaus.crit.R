@@ -221,12 +221,12 @@ msk.macrophytes.2017.plaus.crit <- function(res,
   better.val.other.type[res$types.val.obs %in% c(ecoval.translate("L_macrophytes_rivertype_class_smallhelophytebryophyte",dict),
                                                  ecoval.translate("L_macrophytes_rivertype_class_smallbryophyte",dict)) &
                         apply(res$val.types[,c(ecoval.translate("L_macrophytes_rivertype_class_smallsubmerged",dict),
-                                               ecoval.translate("L_macrophytes_rivertype_class_smallhelophyte",dict))],1,max,na.rm=TRUE) > res$val[,1]] <- 1
+                                               ecoval.translate("L_macrophytes_rivertype_class_smallhelophyte",dict)),drop=FALSE],1,max,na.rm=TRUE) > res$val[,1]] <- 1
   
   better.val.other.type[res$types.val.obs %in% c(ecoval.translate("L_macrophytes_rivertype_class_mediumhelophytebryophyte",dict),
                                                  ecoval.translate("L_macrophytes_rivertype_class_mediumbryophyte",dict)) &
                         apply(res$val.types[,c(ecoval.translate("L_macrophytes_rivertype_class_mediumsubmerged",dict),
-                                               ecoval.translate("L_macrophytes_rivertype_class_mediumhelophyte",dict))],1,max,na.rm=TRUE) > res$val[,1]] <- 1
+                                               ecoval.translate("L_macrophytes_rivertype_class_mediumhelophyte",dict)),drop=FALSE],1,max,na.rm=TRUE) > res$val[,1]] <- 1
   
   better.val.other.type[res$types.val.obs == ecoval.translate("L_macrophytes_rivertype_class_largebryophyte",dict) &
                         res$val.types[,ecoval.translate("L_macrophytes_rivertype_class_largesubmerged",dict)] > res$val[,1]] <- 1
@@ -689,8 +689,8 @@ msk.macrophytes.2017.plaus.crit <- function(res,
   plaus.template[,ecoval.translate("A_macrophytes_rivertypescheme_orig_class",dict)] <- res$types.scheme.obs
   plaus.template[,ecoval.translate("A_macrophytes_rivertypeval_orig_class",dict)]    <- res$types.val.obs
   
-  plaus.template[,ecoval.translate("A_macrophytes_rivertypescheme_proposed_class",dict)] <- apply(plaus.suggest[,c(2:4,6:8)],1,collapse.char)
-  plaus.template[,ecoval.translate("A_macrophytes_rivertypeval_proposed_class",dict)]    <- apply(plaus.suggest[,c(1,5)],1,collapse.char)
+  plaus.template[,ecoval.translate("A_macrophytes_rivertypescheme_proposed_class",dict)] <- apply(plaus.suggest[,c(2:4,6:8),drop=FALSE],1,collapse.char)
+  plaus.template[,ecoval.translate("A_macrophytes_rivertypeval_proposed_class",dict)]    <- apply(plaus.suggest[,c(1,5),drop=FALSE],1,collapse.char)
   
   return(data.frame(plaus.warning,
                     plaus.suggest,

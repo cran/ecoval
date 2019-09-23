@@ -946,8 +946,11 @@ R_macrophytes_error_message		Message	Meldung	Meldung	Meldung	Meldung	Meldung	Mes
 R_macrophytes_error_type		Type_Message	Typ_Meldung	Typ_Meldung	Typ_Meldung	Typ_Meldung	Typ_Meldung	Type_Message
 R_macrophytes_error_dataset		Dataset	Datensatz	Datensatz	Datensatz	Datensatz	Datensatz	Donnees
 R_macrophytes_error_sitedate		SiteData	Standortdaten	Standortdaten	Standortdaten	Standortdaten	Standortdaten	DonneesSites
-R_macrophytes_error_speciesdata		SpeciesDate	Artdaten	Artdaten	Artdaten	Artdaten	Artdaten	DonneesEspeces
+R_macrophytes_error_speciesdata		SpeciesData	Artdaten	Artdaten	Artdaten	Artdaten	Artdaten	DonneesEspeces
 R_macrophytes_error_sitescolmissing		Site data need the following columns	Standortparameter muessen folgende Spalten enthalten	Standortparameter muessen folgende Spalten enthalten	Standortparameter muessen folgende Spalten enthalten	Standortparameter muessen folgende Spalten enthalten	Standortparameter muessen folgende Spalten enthalten	Donnees sites ont besoin des colonnes suivantes
+R_macrophytes_error_nositedata		No site data found	Keine Standortdaten gefunden	Keine Standortdaten gefunden	Keine Standortdaten gefunden	Keine Standortdaten gefunden	Keine Standortdaten gefunden	Pas de donnees sites trouvees
+R_macrophytes_error_nospeciesdata		No species data found	Keine Artdaten gefunden	Keine Artdaten gefunden	Keine Artdaten gefunden	Keine Artdaten gefunden	Keine Artdaten gefunden	Pas de donnees especes trouvees
+R_macrophytes_error_dupsitedate		Multiple rowe with same siteid and date	Mehrere Zeilen mit gleicher StellenID und gleichem Datum	Mehrere Zeilen mit gleicher StellenID und gleichem Datum	Mehrere Zeilen mit gleicher StellenID und gleichem Datum	Mehrere Zeilen mit gleicher StellenID und gleichem Datum	Mehrere Zeilen mit gleicher StellenID und gleichem Datum	Plusieures lignes pour la meme site a le meme date
 R_macrophytes_error_incompleterecord		Complement record	Eintrag ergaenzen	Eintrag ergaenzen	Eintrag ergaenzen	Eintrag ergaenzen	Eintrag ergaenzen	Completer la saisie
 R_macrophytes_error_completevalue		Complete value	Wert ergaenzen	Wert ergaenzen	Wert ergaenzen	Wert ergaenzen	Wert ergaenzen	Completer la valeur
 R_macrophytes_error_completesourceofvalue		Complete source of value	Quelle Wert ergaenzen	Quelle Wert ergaenzen	Quelle Wert ergaenzen	Quelle Wert ergaenzen	Quelle Wert ergaenzen	Completer la source de la valeur

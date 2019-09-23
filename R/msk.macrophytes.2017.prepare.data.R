@@ -66,7 +66,7 @@ msk.macrophytes.2017.compile.sitedat <- function(data.site,
                     ecoval.translate("A_macrophytes_site_substrate_artificial_percent", dict))
   ind.req <- match(req.colnames,colnames(data.site))
   if ( anyNA(ind.req) )
-    {
+  {
     site.quality <- rbind(site.quality,
                           c("","","",
                             paste(paste(ecoval.translate("R_macrophytes_error_sitescolmissing", dict),":",sep=""),
@@ -82,10 +82,49 @@ msk.macrophytes.2017.compile.sitedat <- function(data.site,
                 site.quality = site.quality))
     
   } else {
+    # Eliminate rows without site and data entry:
+    data.site <- data.site[!is.na(data.site[,ecoval.translate("A_macrophytes_site_siteid",dict)]) & !is.na(data.site[,ecoval.translate("A_macrophytes_site_samplingdate",dict)]),]
+    if ( nrow(data.site) == 0 )
+    {
+      site.quality <- rbind(site.quality,
+                            c("","","",
+                              ecoval.translate("R_macrophytes_error_nositedata", dict),
+                              ecoval.translate("R_macrophytes_error_error", dict)))
+      
+      # ERGAENZT: Complement "site.quality" data.frame with data-set information
+      site.quality <- cbind(site.quality, rep(ecoval.translate("R_macrophytes_error_sitedate", dict), nrow(site.quality)))
+      colnames(site.quality)[ncol(site.quality)] <- ecoval.translate("R_macrophytes_error_dataset", dict)
+      
+      # Return results
+      return(list(data.site = NA,
+                  site.quality = site.quality))
+      
+    }
+            
     # Add row names and unique sample identifier column
     
-    rownames(data.site) <- paste(data.site[,ecoval.translate("A_macrophytes_site_siteid",dict)],
-                                 data.site[,ecoval.translate("A_macrophytes_site_samplingdate",dict)], sep = "_")
+    rnames <- paste(data.site[,ecoval.translate("A_macrophytes_site_siteid",dict)],
+                    data.site[,ecoval.translate("A_macrophytes_site_samplingdate",dict)], sep = "_")
+    dup <- duplicated(rnames)
+    if ( sum(dup) > 0 )
+    {
+      site.quality <- rbind(site.quality,
+                            c("","","",
+                              paste(paste(ecoval.translate("R_macrophytes_error_dupsitedate", dict),":",sep=""),
+                                    paste(rnames[dup],collapse=", ")),
+                              ecoval.translate("R_macrophytes_error_error", dict)))
+      
+      # ERGAENZT: Complement "site.quality" data.frame with data-set information
+      site.quality <- cbind(site.quality, rep(ecoval.translate("R_macrophytes_error_sitedate", dict), nrow(site.quality)))
+      colnames(site.quality)[ncol(site.quality)] <- ecoval.translate("R_macrophytes_error_dataset", dict)
+      
+      # Return results
+      return(list(data.site = NA,
+                  site.quality = site.quality))
+      
+    }
+    
+    rownames(data.site) <- rnames
     data.site <- data.frame(rownames(data.site), data.site, stringsAsFactors = FALSE)
     colnames(data.site)[1] <- ecoval.translate("A_macrophytes_site_sampleid",dict)
     
@@ -466,6 +505,27 @@ msk.macrophytes.2017.compile.speciesdat <- function (data.species,
     
   } else {
     
+    # Eliminate rows without site and data entry:
+    data.species <- data.species[!is.na(data.species[,ecoval.translate("A_macrophytes_site_siteid",dict)]) & !is.na(data.species[,ecoval.translate("A_macrophytes_site_samplingdate",dict)]),]
+    if ( nrow(data.species) == 0 )
+    {
+      species.quality <- rbind(species.quality,
+                               c("","","",
+                                 ecoval.translate("R_macrophytes_error_nospeciesdata", dict),
+                                 ecoval.translate("R_macrophytes_error_error", dict)))
+      
+      # ERGAENZT: Complement "species.quality" data.frame with data-set information
+      species.quality <- cbind(species.quality, rep(ecoval.translate("R_macrophytes_error_speciesdata", dict), nrow(species.quality)))
+      colnames(species.quality)[ncol(species.quality)] <- ecoval.translate("R_macrophytes_error_dataset", dict)
+      
+      # Return results
+      return(list(species.assess       = NA, 
+                  species.removed      = NA, 
+                  species.quality      = species.quality, 
+                  taxalist             = taxalist.dat))
+      
+    }
+
     # ADD UNIQUE IDENTIFIER FOR INDIVIDUAL ASSESSMENTS IN EXTRA COLUMN; AND SPECIES WITHIN ASSESSMENTS AS ROWNAMES
     data.species <- data.frame(paste(data.species[,ecoval.translate("A_macrophytes_site_siteid",dict)],
                                      data.species[,ecoval.translate("A_macrophytes_site_samplingdate",dict)], sep = "_"),
