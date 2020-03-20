@@ -3,6 +3,26 @@ Change history of ecoval package
 ================================
 
 
+Changes version 1.2.5 (23.09.2019) -> version 1.2.6 (19.03.2020)
+================================================================
+
+PR:     msk.macrophytes.2017: 
+         - taxa output on site documentation sheets sorted
+         - dealing with characea adapted to the model used for bryophytes
+         - characea species output on site documentation sheets indented
+           and greyed to clarify that coverage is already considered in 
+           aggregate taxon
+         - codes for NA in bryophyte and characea species coverages extended
+           from -999 to also consider NA, Na, na
+         - coverages for bryophyte and characea species coverages are now
+           processed if available (if all are available, their sum must be 
+           equal to the coverage of the aggregate taxon; if aggregate taxon
+           is missing, in this case it is added)
+         - code cleaned from explicit use of taxa list species numbers 
+           and -999 code for NA
+         - taxalist updated
+         
+
 Changes version 1.2.4 (14.05.2019) -> version 1.2.5 (23.09.2019)
 ================================================================
 

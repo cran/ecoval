@@ -84,7 +84,7 @@ msk.macrophytes.2017.read.compile.evaluate <- function(file.site,
   
   data.site <- read.csv(file.site,
                         header = TRUE,
-                        na.strings = c("",NA),
+                        na.strings = c("","NA","Na","na"),
                         stringsAsFactors = FALSE,
                         sep = sep.in)
   
@@ -103,7 +103,7 @@ msk.macrophytes.2017.read.compile.evaluate <- function(file.site,
   {
     data.species <- read.csv(file.species,
                              header = TRUE,
-                             na.strings = c("",NA),
+                             na.strings = c("","NA","Na","na","-999"),
                              stringsAsFactors = FALSE,
                              sep = sep.in)
   
@@ -156,7 +156,7 @@ msk.macrophytes.2017.read.compile.evaluate <- function(file.site,
     {
       data.typeplaus <- read.csv(file.typeplaus,
                                  header = TRUE,
-                                 na.strings = c("",NA),
+                                 na.strings = c("","NA"),
                                  stringsAsFactors = FALSE,
                                  sep = sep.in)
       req.colnames <- c(ecoval.translate("A_macrophytes_site_siteid",dict),

@@ -450,16 +450,19 @@ msk.macrophytes.2017.compile.speciesdat <- function (data.species,
                                                      language          = "English",
                                                      dictionaries      = NA)
 {
-  # get dictionary:
+  # Get dictionary:
   
   dict <- ecoval.dict(language,dictionaries)
   
-  # get taxa list:
+  # Get taxa list and translate entries to the active language:
   
   taxalist.dat <- ecoval::msk.macrophytes.2017_ListTaxa
+  
   for ( j in 1:ncol(taxalist.dat) ) colnames(taxalist.dat)[j] <- ecoval.translate(colnames(taxalist.dat)[j],dict)
   col.gf <- match(ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict),colnames(taxalist.dat))
   if ( !is.na(col.gf) ) for ( i in 1:nrow(taxalist.dat) ) taxalist.dat[i,col.gf] <- ecoval.translate(taxalist.dat[i,col.gf],dict)
+  col.gfabbrev <- match(ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict),colnames(taxalist.dat))
+  if ( !is.na(col.gfabbrev) ) for ( i in 1:nrow(taxalist.dat) ) taxalist.dat[i,col.gfabbrev] <- ecoval.translate(taxalist.dat[i,col.gfabbrev],dict)
   col.es <- match(ecoval.translate("A_macrophytes_taxalist_growthform_assess_twoforms_grfo",dict),colnames(taxalist.dat))
   if ( !is.na(col.es) ) for ( i in 1:nrow(taxalist.dat) ) taxalist.dat[i,col.es] <- ifelse(is.na(taxalist.dat[i,col.es]),NA,ecoval.translate(taxalist.dat[i,col.es],dict))
   col.trait <- match(ecoval.translate("A_macrophytes_taxalist_determination_trait",dict),colnames(taxalist.dat))
@@ -467,7 +470,8 @@ msk.macrophytes.2017.compile.speciesdat <- function (data.species,
   col.cons <- match(ecoval.translate("A_macrophytes_taxalist_conservationinfo",dict),colnames(taxalist.dat))
   if ( !is.na(col.cons) ) for ( i in 1:nrow(taxalist.dat) ) taxalist.dat[i,col.cons] <- ifelse(is.na(taxalist.dat[i,col.cons]),NA,ecoval.translate(taxalist.dat[i,col.cons],dict))
   
-  # Create data.frame to collect information on quality checks
+  # Create data.frame to collect information on quality checks:
+  
   species.quality <- matrix(NA, nrow = 0, ncol = 5)
   colnames(species.quality) <- c(ecoval.translate("A_macrophytes_site_siteid",dict),
                                  ecoval.translate("A_macrophytes_site_samplingdate",dict),
@@ -475,7 +479,8 @@ msk.macrophytes.2017.compile.speciesdat <- function (data.species,
                                  ecoval.translate("R_macrophytes_error_message",dict),
                                  ecoval.translate("R_macrophytes_error_type",dict))
   
-  # check if all required columns are contained in data.species
+  # Check if all required columns are contained in data.species:
+  
   req.colnames <- c(ecoval.translate("A_macrophytes_site_siteid",dict),
                     ecoval.translate("A_macrophytes_site_samplingdate",dict),
                     ecoval.translate("A_macrophytes_species_number_msk",dict),
@@ -502,540 +507,662 @@ msk.macrophytes.2017.compile.speciesdat <- function (data.species,
                 species.removed      = NA, 
                 species.quality      = species.quality, 
                 taxalist             = taxalist.dat))
-    
-  } else {
-    
-    # Eliminate rows without site and data entry:
-    data.species <- data.species[!is.na(data.species[,ecoval.translate("A_macrophytes_site_siteid",dict)]) & !is.na(data.species[,ecoval.translate("A_macrophytes_site_samplingdate",dict)]),]
-    if ( nrow(data.species) == 0 )
-    {
-      species.quality <- rbind(species.quality,
-                               c("","","",
-                                 ecoval.translate("R_macrophytes_error_nospeciesdata", dict),
-                                 ecoval.translate("R_macrophytes_error_error", dict)))
-      
-      # ERGAENZT: Complement "species.quality" data.frame with data-set information
-      species.quality <- cbind(species.quality, rep(ecoval.translate("R_macrophytes_error_speciesdata", dict), nrow(species.quality)))
-      colnames(species.quality)[ncol(species.quality)] <- ecoval.translate("R_macrophytes_error_dataset", dict)
-      
-      # Return results
-      return(list(species.assess       = NA, 
-                  species.removed      = NA, 
-                  species.quality      = species.quality, 
-                  taxalist             = taxalist.dat))
-      
-    }
-
-    # ADD UNIQUE IDENTIFIER FOR INDIVIDUAL ASSESSMENTS IN EXTRA COLUMN; AND SPECIES WITHIN ASSESSMENTS AS ROWNAMES
-    data.species <- data.frame(paste(data.species[,ecoval.translate("A_macrophytes_site_siteid",dict)],
-                                     data.species[,ecoval.translate("A_macrophytes_site_samplingdate",dict)], sep = "_"),
-                               data.species, stringsAsFactors = FALSE)
-    colnames(data.species)[1] <- ecoval.translate("A_macrophytes_site_sampleid",dict)
-    rownames(data.species) <- paste(data.species[,colnames(data.species)[1]],rownames(data.species), sep = "_")
-    
-    # Perform quality checks
-    
-    # Function to generate output for quality checks
-    split.last.underline <- function(x)
-    {
-      y <- strsplit(x,split="_")[[1]]
-      n <- length(y)
-      x2 <- y[n]
-      x1 <- NA
-      if ( n == 2 ) x1 <- y[1]
-      if ( n > 2 )  x1 <- paste(y[1:(n-1)],collapse="_")
-      return(c(x1,x2))
-    }
-    
-    # Quality checks
-    
-    # CHECK IF ALL CORE DATA REQUIRED AS UNIQUE IDENTIFIER ARE PRESENT
-    
-    # SITE CODE
-    if ( sum(is.na(data.species[,ecoval.translate("A_macrophytes_site_siteid",dict)])) > 0 ) {
-      quality.out <- unique(data.species[is.na(data.species[,ecoval.translate("A_macrophytes_site_siteid",dict)]),
-                                         ecoval.translate("A_macrophytes_site_sampleid",dict)])
-      
-      quality.out <- cbind(t(sapply(quality.out , split.last.underline)))
-      quality.out <- cbind(quality.out, rep(ecoval.translate("A_macrophytes_site_siteid",dict), nrow(quality.out)))
-      quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_completevalue", dict), nrow(quality.out)))
-      quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_error", dict), nrow(quality.out)))
-      #quality.out[quality.out == "NA"] <- NA
-      colnames(quality.out) <- colnames(species.quality)
-      species.quality <- rbind(species.quality, quality.out)
-    }
-    
-    # DATE
-    if ( sum( is.na(data.species[,ecoval.translate("A_macrophytes_site_samplingdate",dict)]) ) > 0 ) {
-      quality.out <- unique(data.species[is.na(data.species[,ecoval.translate("A_macrophytes_site_samplingdate",dict)]),
-                                         ecoval.translate("A_macrophytes_site_sampleid",dict)])
-      quality.out <- cbind(t(sapply(quality.out , split.last.underline)))
-      
-      quality.out <- cbind(quality.out, rep(ecoval.translate("A_macrophytes_site_samplingdate",dict), nrow(quality.out)))
-      quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_completevalue", dict), nrow(quality.out)))
-      quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_error", dict), nrow(quality.out)))
-      #quality.out[quality.out == "NA"] <- NA
-      colnames(quality.out) <- colnames(species.quality)
-      species.quality <- rbind(species.quality, quality.out)
-    }
-    
-    # SPECIES NUMBER
-    if( sum( is.na(data.species[,ecoval.translate("A_macrophytes_species_number_msk",dict)]) ) > 0 ) {
-      quality.out <- unique(data.species[is.na(data.species[,ecoval.translate("A_macrophytes_species_number_msk",dict)]),
-                                         ecoval.translate("A_macrophytes_site_sampleid",dict)])
-      quality.out <- cbind(t(sapply(quality.out , split.last.underline)))
-      
-      quality.out <- cbind(quality.out, rep(ecoval.translate("A_macrophytes_species_number_msk",dict), nrow(quality.out)))
-      quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_completevalue", dict), nrow(quality.out)))
-      quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_error", dict), nrow(quality.out)))
-      #quality.out[quality.out == "NA"] <- NA
-      colnames(quality.out) <- colnames(species.quality)
-      species.quality <- rbind(species.quality, quality.out)
-    }
-    
-    # VALIDATE SPECIES DATA
-    
-    # QUALITY CHECK OF OBLIGATORY PARAMETERS 
-    
-    # ABSOLUTE COVER OF INDIVIDUAL SPECIES
-    
-    # Check if cover values are given for each species
-    if( sum( is.na(data.species[,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)]) ) > 0 ) {
-      quality.out <- unique(data.species[is.na(data.species[,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)]),
-                                         ecoval.translate("A_macrophytes_site_sampleid",dict)])
-      quality.out <- cbind(t(sapply(quality.out , split.last.underline)))
-      
-      quality.out <- cbind(quality.out, rep(ecoval.translate("A_macrophytes_species_absolutecover_percent",dict), nrow(quality.out)))
-      quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_completevalue", dict), nrow(quality.out)))
-      quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_error", dict), nrow(quality.out)))
-      #quality.out[quality.out == "NA"] <- NA
-      colnames(quality.out) <- colnames(species.quality)
-      species.quality <- rbind(species.quality, quality.out)
-    }
-    
-    # Check if 0% cover values are present, which is either not correct or species should be not contained in data
-    if( sum( data.species[,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)] == 0, na.rm = T ) > 0 ) {
-      quality.out <- unique(data.species[data.species[,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)] == 0,
-                                         ecoval.translate("A_macrophytes_site_sampleid",dict)])
-      quality.out <- cbind(t(sapply(quality.out, split.last.underline)), row.names = NULL)
-      
-      quality.out <- cbind(quality.out, rep(ecoval.translate("A_macrophytes_species_absolutecover_percent",dict), nrow(quality.out)))
-      quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_value0percent", dict), nrow(quality.out)))
-      quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_error", dict), nrow(quality.out)))
-      #quality.out[quality.out == "NA"] <- NA
-      colnames(quality.out) <- colnames(species.quality)
-      species.quality <- rbind(species.quality, quality.out)
-    }
-    
-    # Check if values < 0 are only -999, i.e.code for presence of bryophytes
-    if( sum( data.species[,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)] < 0 &
-             data.species[,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)] != -999, na.rm = T ) > 0 ) {
-      quality.out <- unique(data.species[data.species[,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)] < 0 &
-                                           data.species[,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)] != -999,
-                                         ecoval.translate("A_macrophytes_site_sampleid",dict)])
-      quality.out <- cbind(t(sapply(quality.out , split.last.underline)))
-      
-      quality.out <- cbind(quality.out, rep(ecoval.translate("A_macrophytes_species_absolutecover_percent",dict), nrow(quality.out)))
-      quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_valuelt0percent", dict), nrow(quality.out)))
-      quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_error", dict), nrow(quality.out)))
-      #quality.out[quality.out == "NA"] <- NA
-      colnames(quality.out) <- colnames(species.quality)
-      species.quality <- rbind(species.quality, quality.out)
-    }
-    
-    # Check if remaining cover values contain data out of range > 100%
-    if( sum( data.species[,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)] > 100, na.rm = T ) > 0 ) {
-      quality.out <- unique(data.species[data.species[,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)] > 100,
-                                         ecoval.translate("A_macrophytes_site_sampleid",dict)])
-      quality.out <- cbind(t(sapply(quality.out , split.last.underline)))
-      
-      quality.out <- cbind(quality.out, rep(ecoval.translate("A_macrophytes_species_absolutecover_percent",dict), nrow(quality.out)))
-      quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_valuegt100percent", dict), nrow(quality.out)))
-      quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_error", dict), nrow(quality.out)))
-      quality.out[quality.out == "NA"] <- NA
-      colnames(quality.out) <- colnames(species.quality)
-      species.quality <- rbind(species.quality, quality.out)
-    }
-    
-    # Check sum of cover values is > 100%. Since some people record bryophyte cover for each species this can occur,
-    # but needs checking. The chec
-    Erhebung_Code <- unique(data.species[,ecoval.translate("A_macrophytes_site_sampleid",dict)])
-    dg.abs.check <- rep("ok",length(Erhebung_Code))
-
-    for ( i in 1:length(dg.abs.check) ) {
-      dg.abs.select <- data.species[data.species[,ecoval.translate("A_macrophytes_site_sampleid",dict)] == Erhebung_Code[i],]
-      
-      if( sum(dg.abs.select[,ecoval.translate("A_macrophytes_species_number_msk",dict)] == 50000001,na.rm=T) > 0 ) {
-        if( sum(dg.abs.select[,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)] == -999) > 0 ) {
-          if( sum(dg.abs.select[dg.abs.select[,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)] != -999,
-                                ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)]) > 100 ) {
-            dg.abs.check[i] <- "error"
-          }
-        } else {
-          if( sum(dg.abs.select[dg.abs.select[,ecoval.translate("A_macrophytes_species_number_msk",dict)] != 50000001,
-                                ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)]) > 100 ) {
-            dg.abs.check[i] <- "error"
-          } 
-        }
-      } else {
-        if( sum(dg.abs.select[dg.abs.select[,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)] != -999,
-                              ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)]) > 100 ) {
-          dg.abs.check[i] <- "error"
-        }
-      }
-    }
-    
-    if( sum(dg.abs.check == "error", na.rm =T) > 0 ) {
-      quality.out <- Erhebung_Code[dg.abs.check == "error"]
-      quality.out <- cbind(t(sapply(quality.out , split.last.underline)))
-      
-      quality.out <- cbind(quality.out, rep(ecoval.translate("A_macrophytes_species_absolutecover_percent",dict), nrow(quality.out)))
-      quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_sumabscoveragegt100%", dict), nrow(quality.out)))
-      quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_error", dict), nrow(quality.out)))
-      colnames(quality.out) <- colnames(species.quality)
-      species.quality <- rbind(species.quality, quality.out)
-    }
-    
-    
-    # Check if uncertanity of determination is given for each species, only if sampling protocol 2018 was used
-    if ( sampling.protocol == "v2018" ) {
-      if( sum( is.na(data.species[,ecoval.translate("A_macrophytes_species_determinationuncertainty",dict)]), na.rm = T) > 0 ) {
-        quality.out <- unique(data.species[is.na(data.species[,ecoval.translate("A_macrophytes_species_determinationuncertainty",dict)]),
-                                           ecoval.translate("A_macrophytes_site_sampleid",dict)])
-        quality.out <- cbind(t(sapply(quality.out , split.last.underline)))
-        
-        quality.out <- cbind(quality.out, rep(ecoval.translate("A_macrophytes_species_determinationuncertainty",dict), nrow(quality.out)))
-        quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_completevalue", dict), nrow(quality.out)))
-        quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_error", dict), nrow(quality.out)))
-        #quality.out[quality.out == "NA"] <- NA
-        colnames(quality.out) <- colnames(species.quality)
-        species.quality <- rbind(species.quality, quality.out)
-      }
-    }
-    
-    ## Reduce data-set to species on taxalist
-    species.not.taxalist <- data.species[data.species[,ecoval.translate("A_macrophytes_species_number_msk",dict)] %in%
-                                           taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk",dict)] == FALSE,]
-    
-    data.species <- data.species[data.species[,ecoval.translate("A_macrophytes_species_number_msk",dict)] %in%
-                                   taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk",dict)],]
-    
-    # Add column for comments regarding species validation (determination quality, see below)
-    data.species[, ecoval.translate("A_macrophytes_species_commentvalidation_taxa",dict)] <- NA
-    
-    # Add growthform information to data
-    data.species$WF_short <- NA
-    data.species$WF_assess <- NA
-    
-    for( i in 1:nrow(data.species) ) {
-      row.taxalist <- match(data.species[i,ecoval.translate("A_macrophytes_species_number_msk",dict)],
-                            taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk",dict)])
-      if( !is.na(row.taxalist) ) {
-        data.species[i, "WF_short"]  <- taxalist.dat[row.taxalist, ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)]
-        data.species[i, "WF_assess"] <- taxalist.dat[row.taxalist, ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)]
-      }
-    }
-    
-    # Check species assignments and determination accuracy, but only for data collected with sampling protocol published 2017/2018
-    # For old data species are taken as they are and determination uncertanity is not considered
-    
-    # Create vector that collects data entries to be deleted
-    rows.delete <- c()
-    
-    if ( sampling.protocol == "v2018" ) {
-      
-      for ( i in 1:nrow(data.species) ) {
-        row.taxalist <- match(data.species[i,ecoval.translate("A_macrophytes_species_number_msk",dict)],
-                              taxalist.dat[ ,ecoval.translate("A_macrophytes_species_number_msk",dict)])
-        
-        detunc.data.species  <- data.species[i,ecoval.translate("A_macrophytes_species_determinationuncertainty",dict)]
-        
-        if( !is.na(detunc.data.species) ) {
-          # Get corresponding determination value and taxa-group assigment from taxalist
-          detval.taxalist.dat <- taxalist.dat[row.taxalist, ecoval.translate("A_macrophytes_taxalist_determination",dict)]
-          grouptaxa.taxalist.dat <- taxalist.dat[row.taxalist, ecoval.translate("A_macrophytes_taxalist_taxagroups_assign",dict)]
-          
-          # Do quality check for bryophyte species
-          if( data.species[i,"WF_short"] == "Bry" ) {
-            if ( ( detval.taxalist.dat <= 2 & detunc.data.species == 4 ) |
-                 ( detval.taxalist.dat == 3 & detunc.data.species != 2 ) ) {
-              if( !is.na(grouptaxa.taxalist.dat) ) {
-                data.species[i,ecoval.translate("A_macrophytes_species_number_msk",dict)] <- grouptaxa.taxalist.dat
-                data.species[i,ecoval.translate("A_macrophytes_species_name_latin",dict)] <- taxalist.dat[match(grouptaxa.taxalist.dat,taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk", dict)]),
-                                                                                                          ecoval.translate("A_macrophytes_species_name_latin",dict)]
-                data.species[i,ecoval.translate("A_macrophytes_species_determinationuncertainty",dict)] <- NA
-                
-                data.species[i,ecoval.translate("A_macrophytes_species_commentvalidation_taxa",dict)] <- "Ersetzt durch Sammeltaxon"
-              } else {
-                rows.delete <- c(rows.delete, rownames(data.species)[i])
-              }
-            }
-          } else {
-            
-            # Quality check for all higher macrophytes species
-            if ( detval.taxalist.dat <= 2 ) {
-              if( detunc.data.species == 4 ) {
-                if( !is.na(grouptaxa.taxalist.dat) ) {
-                  data.species[i,ecoval.translate("A_macrophytes_species_number_msk",dict)] <- grouptaxa.taxalist.dat
-                  data.species[i,ecoval.translate("A_macrophytes_species_name_latin",dict)] <- taxalist.dat[match(grouptaxa.taxalist.dat,taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk", dict)]),
-                                                                                                            ecoval.translate("A_macrophytes_species_name_latin",dict)]
-                  data.species[i,ecoval.translate("A_macrophytes_species_determinationuncertainty",dict)] <- NA
-                  
-                  data.species[i,ecoval.translate("A_macrophytes_species_commentvalidation_taxa",dict)] <- "Ersetzt durch Sammeltaxon"
-                  
-                  data.species[i, "WF_short"]  <- taxalist.dat[match(grouptaxa.taxalist.dat,taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk", dict)]),
-                                                               ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)]
-                  data.species[i, "WF_assess"] <- taxalist.dat[match(grouptaxa.taxalist.dat,taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk", dict)]),
-                                                               ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)]
-                  
-                } else {
-                  rows.delete <- c(rows.delete, rownames(data.species)[i])
-                }
-              }
-            } else {
-              if ( detval.taxalist.dat == 3 ) {
-                # For species with a determination value of 3 in the taxalist check if phenology trait necessary for correct
-                # determination of the taxon was present
-                phen.check.code <- taxalist.dat[match(data.species[i,ecoval.translate("A_macrophytes_species_number_msk",dict)],
-                                                      taxalist.dat[ ,ecoval.translate("A_macrophytes_species_number_msk",dict)]),
-                                                ecoval.translate("A_macrophytes_taxalist_phenology_trait",dict)]
-                phen.check.ok <- FALSE
-                
-                # Code 1 for species in taxalist: Blossoms need to be present
-                if( phen.check.code == 1 ) {
-                  phen.check.ok <- !is.na(data.species[i,ecoval.translate("A_macrophytes_species_phenology_blossom",dict)])
-                } else {
-                  # Code 2 for species in taxalist: Fruits need to be present
-                  if( phen.check.code == 2 ) {
-                    phen.check.ok <- !is.na(data.species[i,ecoval.translate("A_macrophytes_species_phenology_fruits",dict)]) 
-                  } else {
-                    # Code 3 for species in taxalist: Blossoms OR fruits need to be present
-                    if( phen.check.code == 3 ) {
-                      phen.check.ok <- !is.na(data.species[i,ecoval.translate("A_macrophytes_species_phenology_fruits",dict)]) | !is.na(data.species[i,ecoval.translate("A_macrophytes_species_phenology_blossom",dict)])
-                    } else {
-                      # Code 3 for species in taxalist: Blossoms AND fruits need to be present
-                      if( phen.check.code == 4 ) {
-                        phen.check.ok <- !is.na(data.species[i,ecoval.translate("A_macrophytes_species_phenology_fruits",dict)]) & !is.na(data.species[i,ecoval.translate("A_macrophytes_species_phenology_blossom",dict)])
-                        
-                      }
-                    }
-                  }
-                }
-                
-                
-                # Species is corrected to group-taxa if required phenology trait was not present or if determination was insecure
-                if ( !phen.check.ok | detunc.data.species > 3 ) {
-                  if ( !is.na(grouptaxa.taxalist.dat) ) {
-                    data.species[i,ecoval.translate("A_macrophytes_species_number_msk",dict)] <- grouptaxa.taxalist.dat
-                    data.species[i,ecoval.translate("A_macrophytes_species_name_latin",dict)] <- taxalist.dat[match(grouptaxa.taxalist.dat,taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk", dict)]),
-                                                                                                              ecoval.translate("A_macrophytes_species_name_latin",dict)]
-                    data.species[i,ecoval.translate("A_macrophytes_species_determinationuncertainty",dict)] <- NA
-                    
-                    data.species[i,ecoval.translate("A_macrophytes_species_commentvalidation_taxa",dict)] <- "Ersetzt durch Sammeltaxon"
-                    
-                    data.species[i, "WF_short"]  <- taxalist.dat[match(grouptaxa.taxalist.dat,taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk", dict)]),
-                                                                 ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)]
-                    data.species[i, "WF_assess"] <- taxalist.dat[match(grouptaxa.taxalist.dat,taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk", dict)]),
-                                                                 ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)]
-                  } else {
-                    rows.delete <- c(rows.delete, rownames(data.species)[i])
-                  }
-                }
-              } else {
-                if ( detval.taxalist.dat == 4 ) {
-                  if ( !is.na(grouptaxa.taxalist.dat) ) {
-                    data.species[i,ecoval.translate("A_macrophytes_species_number_msk",dict)] <- grouptaxa.taxalist.dat
-                    data.species[i,ecoval.translate("A_macrophytes_species_name_latin",dict)] <- taxalist.dat[match(grouptaxa.taxalist.dat,taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk", dict)]),
-                                                                                                              ecoval.translate("A_macrophytes_species_name_latin",dict)]
-                    data.species[i,ecoval.translate("A_macrophytes_species_determinationuncertainty",dict)] <- NA
-                    
-                    data.species[i,ecoval.translate("A_macrophytes_species_commentvalidation_taxa",dict)] <- "Ersetzt durch Sammeltaxon"
-                    
-                    data.species[i, "WF_short"]  <- taxalist.dat[match(grouptaxa.taxalist.dat,taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk", dict)]),
-                                                                 ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)]
-                    data.species[i, "WF_assess"] <- taxalist.dat[match(grouptaxa.taxalist.dat,taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk", dict)]),
-                                                                 ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)]
-                  } else {
-                    rows.delete <- c(rows.delete, rownames(data.species)[i])
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    
-    
-    # Remove species that did not conform to determination quality requirements
-    data.species.removed <- data.species[rownames(data.species) %in% rows.delete,]
-    data.species         <- data.species[rownames(data.species) %in% rows.delete == FALSE,]
-    
-    # Create final version of species data for calculation of attributes
-    # - Bryophyte data are standardized so that absolute cover of all moss species in site is contained in the taxon Bryophyta
-    #   and presence of individual moss taxa is marked by -999
-    # - Filamentous algae data are summarized in the Taxon "faedige Gruenalge", and only this
-    #   taxon remains in the data
-    data.species.assess <- data.species[0,]
-    assessment.unique <- unique(data.species[,ecoval.translate("A_macrophytes_site_sampleid",dict)])
-    
-    collect.bryophyta.covabs.missing <- c()
-    collect.bryophyta.missing <- c()
-    
-    for ( i in 1:length(assessment.unique) ) {
-      data.species.select <- data.species[data.species[,ecoval.translate("A_macrophytes_site_sampleid",dict)] == assessment.unique[i],]
-      
-      # Standardize bryophyte data
-      # The taxon "Bryophyta" (Taxa Number: 50000001) contains absolute bryophyte cover of all species, and presence
-      # of individual bryophyte taxa is marked by -999
-      data.species.bryo <- data.species.select[data.species.select[,"WF_assess"] ==
-                                                 ecoval.translate("L_macrophytes_taxalist_growthform_assess_bryophyte",dict),]
-      
-      if( nrow(data.species.bryo) > 1 ) {
-        
-        if( sum( data.species.bryo[,ecoval.translate("A_macrophytes_species_number_msk",dict)] == 50000001, na.rm = T) == 1 ) {
-          
-          if( !is.na(data.species.bryo[data.species.bryo[,ecoval.translate("A_macrophytes_species_number_msk",dict)] == 50000001,
-                                       ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)]) |
-              data.species.bryo[data.species.bryo[,ecoval.translate("A_macrophytes_species_number_msk",dict)] == 50000001,
-                                ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)] != -999 ) {
-            
-            data.species.bryo[data.species.bryo[,ecoval.translate("A_macrophytes_species_number_msk",dict)] != 50000001,
-                              ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)] <- -999
-            
-            
-            data.species.select <- rbind(data.species.select[data.species.select[,"WF_assess"] != ecoval.translate("L_macrophytes_taxalist_growthform_assess_bryophyte",dict),],
-                                         data.species.bryo, stringsAsFactors = FALSE)
-            
-          } else {
-            collect.bryophyta.covabs.missing <- c(collect.bryophyta.covabs.missing, assessment.unique[i])
-          }
-          
-        } else {
-          collect.bryophyta.missing <- c(collect.bryophyta.missing, assessment.unique[i])
-        }
-      } else {
-        # Check if site only contains taxon bryophyta after limiting taxa to taxalist, if yes bryophyta is removed
-        if( nrow(data.species.bryo) == 1 ) {
-          if ( data.species.bryo[1,ecoval.translate("A_macrophytes_species_number_msk",dict)] == 50000001 ) {
-            data.species.select <- data.species.select[data.species.select[,"WF_assess"] != ecoval.translate("L_macrophytes_taxalist_growthform_assess_bryophyte",dict),]
-          } else {
-            collect.bryophyta.missing <- c(collect.bryophyta.missing, assessment.unique[i])
-          }
-        }
-      }
-      
-      
-      # Combine all taxa representing filamentous green algae in one row
-      data.species.algae <- data.species.select[data.species.select[,"WF_assess"] == ecoval.translate("L_macrophytes_taxalist_growthform_assess_algae",dict),]
-      
-      if( nrow(data.species.algae) > 0 ) {
-        sum.algae <- sum(data.species.algae[,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)])
-        
-        data.species.algae <- data.species.algae[1,]
-        data.species.algae[1,] <- NA
-        
-        data.species.algae[1,ecoval.translate("A_macrophytes_site_sampleid",dict)] <- data.species.select[1, ecoval.translate("A_macrophytes_site_sampleid",dict)] 
-        data.species.algae[1,ecoval.translate("A_macrophytes_site_siteid",dict)] <- data.species.select[1,ecoval.translate("A_macrophytes_site_siteid",dict)]
-        data.species.algae[1,ecoval.translate("A_macrophytes_site_samplingdate",dict)] <- data.species.select[1,ecoval.translate("A_macrophytes_site_samplingdate",dict)]
-        data.species.algae[1,ecoval.translate("A_macrophytes_species_number_msk",dict)] <- 50000004
-        data.species.algae[1,ecoval.translate("A_macrophytes_species_name_latin",dict)] <- "faedige Gruenalge"
-        data.species.algae[1,ecoval.translate("A_macrophytes_species_absolutecover_percent", dict)] <- sum.algae
-        data.species.algae[1,"WF_short"]  <- "FaedAlg"
-        data.species.algae[1,"WF_assess"] <- ecoval.translate("L_macrophytes_taxalist_growthform_assess_algae",dict)
-        
-        data.species.select <- rbind(data.species.select[data.species.select[,"WF_assess"] != ecoval.translate("L_macrophytes_taxalist_growthform_assess_algae",dict),],
-                                     data.species.algae, stringsAsFactors = FALSE)
-      }
-      
-      data.species.assess <- rbind(data.species.assess, data.species.select, stringsAsFactors = FALSE)
-    }
-    
-    if( length(collect.bryophyta.covabs.missing) > 0 ) {
-      quality.out <- cbind(t(sapply(collect.bryophyta.covabs.missing , split.last.underline)),
-                                rep(ecoval.translate("A_macrophytes_species_number_msk",dict),
-                                    length(collect.bryophyta.covabs.missing)),
-                                rep(ecoval.translate("R_macrophytes_error_abscoveragebrymissing", dict),
-                                    length(collect.bryophyta.covabs.missing)),
-                                rep(ecoval.translate("R_macrophytes_error_error", dict),
-                                    length(collect.bryophyta.covabs.missing)))
-      colnames(quality.out) <- colnames(species.quality)
-      species.quality <- rbind(species.quality, quality.out)
-    }
-    
-    if( length(collect.bryophyta.missing) > 0 ) {
-      quality.out <- cbind(t(sapply(collect.bryophyta.missing , split.last.underline)),
-                                rep(ecoval.translate("A_macrophytes_species_number_msk",dict),
-                                    length(collect.bryophyta.missing)),
-                                rep(ecoval.translate("R_macrophytes_error_taxonbrymissing", dict),
-                                    length(collect.bryophyta.missing)),
-                                rep(ecoval.translate("R_macrophytes_error_error", dict),
-                                    length(collect.bryophyta.missing)))
-      colnames(quality.out) <- colnames(species.quality)
-      species.quality <- rbind(species.quality, quality.out)
-    }
-    
-    
-    # Combine species data in single row if two species in original data where assigned to the same "Sammeltaxon"
-    data.species.collect <- data.species.assess[0,]
-    assessment.unique    <- unique(data.species.assess[,ecoval.translate("A_macrophytes_site_sampleid",dict)])
-    
-    for ( i in 1:length(assessment.unique) ) {
-      data.species.select <- data.species.assess[data.species.assess[,ecoval.translate("A_macrophytes_site_sampleid",dict)] == assessment.unique[i],]
-      spec.id <- unique(data.species.select[,ecoval.translate("A_macrophytes_species_number_msk",dict)])
-      
-      if( length(spec.id) < nrow(data.species.select) ) {
-        # Extract species numbers of species that are present multiple times
-        spec.no.collect <- c()
-        for( k in 1:length(spec.id) ) {
-          if( sum(data.species.select[,ecoval.translate("A_macrophytes_species_number_msk",dict)] == spec.id[k]) > 1 ) {
-            spec.no.collect <- c(spec.no.collect,spec.id[k]) 
-          }
-        }
-        
-        # Adjust species data and combine with entire data.set
-        for( k in 1:length(spec.no.collect) ) {
-          data.species.sub <- data.species.select[data.species.select[,ecoval.translate("A_macrophytes_species_number_msk",dict)] == spec.no.collect[k],]
-          data.species.sub[1,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)] <- sum(data.species.sub[,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)])
-          data.species.sub[1,ecoval.translate("A_macrophytes_species_artificialsubstrate_relcover_percent",dict)] <- sum(data.species.sub[,ecoval.translate("A_macrophytes_species_artificialsubstrate_relcover_percent",dict)])
-          data.species.sub[1,ecoval.translate("A_macrophytes_species_determinationuncertainty",dict)] <- NA
-          
-          data.species.select <- data.species.select[data.species.select[,ecoval.translate("A_macrophytes_species_number_msk",dict)] != spec.no.collect[k],]
-          data.species.select <- rbind(data.species.select,data.species.sub[1,], stringsAsFactors = FALSE)
-        }
-      }
-      
-      data.species.collect <- rbind(data.species.collect,data.species.select, stringsAsFactors = FALSE)
-    }
-    
-    data.species.assess <- data.species.collect
-    
-    # Replace headers for growthforms with names defined in dictionary
-    colnames(data.species.assess)[match("WF_short", colnames(data.species.assess))]  <- ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)
-    colnames(data.species.assess)[match("WF_assess", colnames(data.species.assess))]  <- ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)
-    
-    # Combine all data containing removed species, either due to taxalist or insufficient determination, in one data.frame
-    data.species.removed[,ecoval.translate("A_macrophytes_species_reason_elimination",dict)] <- rep(ecoval.translate("A_macrophytes_species_reason_insufficientquality",dict), nrow(data.species.removed))
-    species.not.taxalist[,ecoval.translate("A_macrophytes_species_reason_elimination",dict)] <- rep(ecoval.translate("A_macrophytes_species_reason_notontaxalist",dict), nrow(species.not.taxalist))
-    
-    # Remove additional columns in data.species.removed introduced during data perparation after reductioh to species not on taxalist
-    data.species.removed <- data.species.removed[,colnames(data.species.removed) %in% colnames(species.not.taxalist)]
-    
-    # Create output data.frame with alle removed species
-    data.species.removed <- rbind(data.species.removed, species.not.taxalist, stringsAsFactors = FALSE)
+  }
+  
+  # Eliminate rows without site and data entry:
+  
+  data.species <- data.species[!is.na(data.species[,ecoval.translate("A_macrophytes_site_siteid",dict)]) & !is.na(data.species[,ecoval.translate("A_macrophytes_site_samplingdate",dict)]),]
+  if ( nrow(data.species) == 0 )
+  {
+    species.quality <- rbind(species.quality,
+                             c("","","",
+                               ecoval.translate("R_macrophytes_error_nospeciesdata", dict),
+                               ecoval.translate("R_macrophytes_error_error", dict)))
     
     # Complement "species.quality" data.frame with data-set information
     species.quality <- cbind(species.quality, rep(ecoval.translate("R_macrophytes_error_speciesdata", dict), nrow(species.quality)))
     colnames(species.quality)[ncol(species.quality)] <- ecoval.translate("R_macrophytes_error_dataset", dict)
     
-    # Return list with generared outputs
-    return(list(species.assess       = data.species.assess, 
-                species.removed      = data.species.removed, 
+    # Return results
+    return(list(species.assess       = NA, 
+                species.removed      = NA, 
                 species.quality      = species.quality, 
                 taxalist             = taxalist.dat))
     
-    
   }
+  
+  # Add unique identifier for individual assessments in extra column; and species within assessments as row names:
+  
+  data.species <- data.frame(paste(data.species[,ecoval.translate("A_macrophytes_site_siteid",dict)],
+                                   data.species[,ecoval.translate("A_macrophytes_site_samplingdate",dict)], sep = "_"),
+                             data.species, stringsAsFactors = FALSE)
+  colnames(data.species)[1] <- ecoval.translate("A_macrophytes_site_sampleid",dict)
+
+  # Function to generate output for quality checks
+  split.last.underline <- function(x)
+  {
+    y <- strsplit(x,split="_")[[1]]
+    n <- length(y)
+    x2 <- y[n]
+    x1 <- NA
+    if ( n == 2 ) x1 <- y[1]
+    if ( n > 2 )  x1 <- paste(y[1:(n-1)],collapse="_")
+    return(c(x1,x2))
+  }
+  
+  # Perform quality checks
+  
+  # CHECK IF ALL CORE DATA REQUIRED AS UNIQUE IDENTIFIER ARE PRESENT
+  
+  # # SITE CODE  # *** note: lines without site code are now eliminated above
+  #
+  # ind.na <- is.na(data.species[,ecoval.translate("A_macrophytes_site_siteid",dict)])  # site code NA
+  # if ( sum(ind.na) > 0 ) {
+  #   quality.out <- unique(data.species[ind.na,ecoval.translate("A_macrophytes_site_sampleid",dict)])
+  #   quality.out <- cbind(t(sapply(quality.out , split.last.underline)))
+  #   quality.out <- cbind(quality.out, rep(ecoval.translate("A_macrophytes_site_siteid",dict), nrow(quality.out)))
+  #   quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_completevalue", dict), nrow(quality.out)))
+  #   quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_error", dict), nrow(quality.out)))
+  #   colnames(quality.out) <- colnames(species.quality)
+  #   species.quality <- rbind(species.quality, quality.out)
+  # }
+  # 
+  # # DATE  # *** note: lines without data are now eliminated above
+  #
+  # ind.na <- is.na(data.species[,ecoval.translate("A_macrophytes_site_samplingdate",dict)])  # sampling data NA
+  # if ( sum(ind.na) > 0 ) {
+  #   quality.out <- unique(data.species[ind.na,ecoval.translate("A_macrophytes_site_sampleid",dict)])
+  #   quality.out <- cbind(t(sapply(quality.out , split.last.underline)))
+  #   quality.out <- cbind(quality.out, rep(ecoval.translate("A_macrophytes_site_samplingdate",dict), nrow(quality.out)))
+  #   quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_completevalue", dict), nrow(quality.out)))
+  #   quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_error", dict), nrow(quality.out)))
+  #   colnames(quality.out) <- colnames(species.quality)
+  #   species.quality <- rbind(species.quality, quality.out)
+  # }
+  
+  # SPECIES NUMBER
+  
+  ind.na <- is.na(data.species[,ecoval.translate("A_macrophytes_species_number_msk",dict)])  # species taxa list number NA
+  if( sum(ind.na) > 0 ) {
+    quality.out <- unique(data.species[ind.na,ecoval.translate("A_macrophytes_site_sampleid",dict)])
+    quality.out <- cbind(t(sapply(quality.out , split.last.underline)))
+    quality.out <- cbind(quality.out, rep(ecoval.translate("A_macrophytes_species_number_msk",dict), nrow(quality.out)))
+    quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_completevalue", dict), nrow(quality.out)))
+    quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_error", dict), nrow(quality.out)))
+    colnames(quality.out) <- colnames(species.quality)
+    species.quality <- rbind(species.quality, quality.out)
+  }
+  
+  # VALIDATE SPECIES DATA
+  
+  # QUALITY CHECK OF OBLIGATORY PARAMETERS 
+  
+  # ABSOLUTE COVER OF INDIVIDUAL SPECIES
+  
+  ind.na <- is.na(data.species[,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)])
+  ind.bry <- data.species[,ecoval.translate("A_macrophytes_species_number_msk",dict)] %in%
+    taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk",dict)][taxalist.dat[,ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)]==
+                                                                               ecoval.translate("L_macrophytes_taxalist_growthform_abbrev_bry",dict)]
+  ind.brysum <- data.species[,ecoval.translate("A_macrophytes_species_number_msk",dict)] %in%
+    taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk",dict)][taxalist.dat[,ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)]==
+                                                                               ecoval.translate("L_macrophytes_taxalist_growthform_abbrev_brysum",dict)]
+  ind.cha <- data.species[,ecoval.translate("A_macrophytes_species_number_msk",dict)] %in%
+    taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk",dict)][taxalist.dat[,ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)]==
+                                                                               ecoval.translate("L_macrophytes_taxalist_growthform_abbrev_cha",dict)]
+  ind.chasum <- data.species[,ecoval.translate("A_macrophytes_species_number_msk",dict)] %in%
+    taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk",dict)][taxalist.dat[,ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)]==
+                                                                               ecoval.translate("L_macrophytes_taxalist_growthform_abbrev_chasum",dict)]
+  
+  # Check if cover values are given for each species except bryophytes and characea
+  
+  ind.illegal.na <- ind.na & !ind.bry & !ind.cha
+  if( sum( ind.illegal.na ) > 0 ) {
+    quality.out <- unique(data.species[ind.illegal.na,ecoval.translate("A_macrophytes_site_sampleid",dict)])
+    quality.out <- cbind(t(sapply(quality.out , split.last.underline)))
+    quality.out <- cbind(quality.out, rep(ecoval.translate("A_macrophytes_species_absolutecover_percent",dict), nrow(quality.out)))
+    quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_completevalue", dict), nrow(quality.out)))
+    quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_error", dict), nrow(quality.out)))
+    colnames(quality.out) <- colnames(species.quality)
+    species.quality <- rbind(species.quality, quality.out)
+  }
+  
+  # Check if 0% cover values are present, which is either not correct or species should be not contained in data
+  
+  ind.zero <- data.species[,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)] == 0; ind.zero[is.na(ind.zero)] <- FALSE
+  if( sum(ind.zero) > 0 ) {
+    quality.out <- unique(data.species[ind.zero,ecoval.translate("A_macrophytes_site_sampleid",dict)])
+    quality.out <- cbind(t(sapply(quality.out, split.last.underline)), row.names = NULL)
+    quality.out <- cbind(quality.out, rep(ecoval.translate("A_macrophytes_species_absolutecover_percent",dict), nrow(quality.out)))
+    quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_value0percent", dict), nrow(quality.out)))
+    quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_error", dict), nrow(quality.out)))
+    colnames(quality.out) <- colnames(species.quality)
+    species.quality <- rbind(species.quality, quality.out)
+  }
+  
+  # Check if <0% cover values are present
+  
+  ind.ltzero <- data.species[,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)] < 0; ind.ltzero[is.na(ind.ltzero)] <- FALSE
+  if( sum(ind.ltzero) > 0 ) {
+    quality.out <- unique(data.species[ind.ltzero,ecoval.translate("A_macrophytes_site_sampleid",dict)])
+    quality.out <- cbind(t(sapply(quality.out, split.last.underline)), row.names = NULL)
+    quality.out <- cbind(quality.out, rep(ecoval.translate("A_macrophytes_species_absolutecover_percent",dict), nrow(quality.out)))
+    quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_valuelt0percent", dict), nrow(quality.out)))
+    quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_error", dict), nrow(quality.out)))
+    colnames(quality.out) <- colnames(species.quality)
+    species.quality <- rbind(species.quality, quality.out)
+  }
+  
+  # Check if >100% cover values are present
+  
+  ind.gt100 <- data.species[,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)] >= 100; ind.gt100[is.na(ind.gt100)] <- FALSE
+  if( sum(ind.gt100) > 0 ) {
+    quality.out <- unique(data.species[ind.gt100,ecoval.translate("A_macrophytes_site_sampleid",dict)])
+    quality.out <- cbind(t(sapply(quality.out, split.last.underline)), row.names = NULL)
+    quality.out <- cbind(quality.out, rep(ecoval.translate("A_macrophytes_species_absolutecover_percent",dict), nrow(quality.out)))
+    quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_valuegt100percent", dict), nrow(quality.out)))
+    quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_error", dict), nrow(quality.out)))
+    colnames(quality.out) <- colnames(species.quality)
+    species.quality <- rbind(species.quality, quality.out)
+  }
+  
+  # Check consistency of sum bry and sum cha with brysum and chasum.
+  
+  Erhebung_Code <- unique(data.species[,ecoval.translate("A_macrophytes_site_sampleid",dict)])
+  dg.abs.check <- rep("",length(Erhebung_Code))
+  for ( i in 1:length(dg.abs.check) ) 
+  {
+    ind.sampling <- data.species[,ecoval.translate("A_macrophytes_site_sampleid",dict)] == Erhebung_Code[i]
+    if ( sum(ind.brysum&ind.sampling) > 0 & sum(ind.bry&ind.sampling) > 0 ) 
+    {
+      dg.brysum <- sum(data.species[ind.brysum&ind.sampling,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)],na.rm=TRUE)
+      dg.bry    <- sum(data.species[ind.bry   &ind.sampling,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)],na.rm=TRUE)
+      dg.bryall <- sum(data.species[ind.bry   &ind.sampling,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)],na.rm=FALSE)
+      if ( !is.na(dg.brysum) )
+      {
+        if ( !is.na(dg.bryall) )  # all species coverages available
+        {
+          if( abs(dg.brysum-dg.bryall) > 0.001 ) dg.abs.check[i] <- paste(dg.abs.check[i],"bry",sep="")
+        }
+        else
+        {
+          if ( !is.na(dg.bry) ) # some species coverages available
+          {
+            if( dg.bry > dg.brysum ) dg.abs.check[i] <- paste(dg.abs.check[i],"bry",sep="")
+          }
+        }
+      }
+    }
+    if ( sum(ind.chasum&ind.sampling) > 0 & sum(ind.cha&ind.sampling) > 0 ) 
+    {
+      dg.chasum <- sum(data.species[ind.chasum&ind.sampling,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)],na.rm=TRUE)
+      dg.cha    <- sum(data.species[ind.cha   &ind.sampling,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)],na.rm=TRUE)
+      dg.chaall <- sum(data.species[ind.cha   &ind.sampling,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)],na.rm=FALSE)
+      if ( !is.na(dg.chasum) )
+      {
+        if ( !is.na(dg.chaall) )  # all species coverages available
+        {
+          if( abs(dg.chasum-dg.chaall) > 0.001 ) dg.abs.check[i] <- paste(dg.abs.check[i],"cha",sep="")
+        }
+        else
+        {
+          if ( !is.na(dg.cha) ) # some species coverages available
+          {
+            if( dg.cha > dg.chasum ) dg.abs.check[i] <- paste(dg.abs.check[i],"cha",sep="")
+          }
+        }
+      }
+    }
+  }
+  if( sum(dg.abs.check == "bry", na.rm =T) > 0 ) {
+    quality.out <- Erhebung_Code[substring(dg.abs.check,1,3) == "bry"]
+    quality.out <- cbind(t(sapply(quality.out , split.last.underline)))
+    quality.out <- cbind(quality.out, rep(ecoval.translate("A_macrophytes_species_absolutecover_percent",dict), nrow(quality.out)))
+    quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_sumbryincompatible", dict), nrow(quality.out)))
+    quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_error", dict), nrow(quality.out)))
+    colnames(quality.out) <- colnames(species.quality)
+    species.quality <- rbind(species.quality, quality.out)
+  }
+  if( sum(dg.abs.check == "cha",na.rm=T) > 0 | sum(dg.abs.check == "brycha", na.rm =T) > 0 ) {
+    quality.out <- Erhebung_Code[dg.abs.check == "cha" | dg.abs.check == "brycha"]
+    quality.out <- cbind(t(sapply(quality.out , split.last.underline)))
+    quality.out <- cbind(quality.out, rep(ecoval.translate("A_macrophytes_species_absolutecover_percent",dict), nrow(quality.out)))
+    quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_sumchaincompatible", dict), nrow(quality.out)))
+    quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_error", dict), nrow(quality.out)))
+    colnames(quality.out) <- colnames(species.quality)
+    species.quality <- rbind(species.quality, quality.out)
+  }
+  
+  # Check sum of cover values is > 100%.
+  
+  Erhebung_Code <- unique(data.species[,ecoval.translate("A_macrophytes_site_sampleid",dict)])
+  dg.abs.check <- rep("ok",length(Erhebung_Code))
+  for ( i in 1:length(dg.abs.check) ) {
+    ind.sampling <- data.species[,ecoval.translate("A_macrophytes_site_sampleid",dict)] == Erhebung_Code[i]
+    ind.test <- ind.sampling
+    if ( sum(ind.brysum&ind.sampling) > 0 ) ind.test <- ind.test & !ind.bry  # if summary species present, exclude individual taxa
+    if ( sum(ind.chasum&ind.sampling) > 0 ) ind.test <- ind.test & !ind.cha  # if summary species present, exclude individual taxa
+    if ( sum(data.species[ind.test,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)],na.rm=TRUE) > 100 )
+    {
+      dg.abs.check[i] <- "error"
+    }
+  }
+  if( sum(dg.abs.check == "error", na.rm =T) > 0 ) {
+    quality.out <- Erhebung_Code[dg.abs.check == "error"]
+    quality.out <- cbind(t(sapply(quality.out , split.last.underline)))
+    quality.out <- cbind(quality.out, rep(ecoval.translate("A_macrophytes_species_absolutecover_percent",dict), nrow(quality.out)))
+    quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_sumabscoveragegt100%", dict), nrow(quality.out)))
+    quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_error", dict), nrow(quality.out)))
+    colnames(quality.out) <- colnames(species.quality)
+    species.quality <- rbind(species.quality, quality.out)
+  }
+  
+  # Check if uncertainty of determination is given for each species, only if sampling protocol 2018 was used
+  
+  if ( sampling.protocol == "v2018" ) {
+    ind.na <- is.na(data.species[,ecoval.translate("A_macrophytes_species_determinationuncertainty",dict)])
+    if( sum( ind.na ) > 0 ) {
+      quality.out <- unique(data.species[ind.na,ecoval.translate("A_macrophytes_site_sampleid",dict)])
+      quality.out <- cbind(t(sapply(quality.out , split.last.underline)))
+      quality.out <- cbind(quality.out, rep(ecoval.translate("A_macrophytes_species_determinationuncertainty",dict), nrow(quality.out)))
+      quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_completevalue", dict), nrow(quality.out)))
+      quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_error", dict), nrow(quality.out)))
+      colnames(quality.out) <- colnames(species.quality)
+      species.quality <- rbind(species.quality, quality.out)
+    }
+  }
+  
+  ## Reduce data-set to species on taxalist
+  
+  species.not.taxalist <- data.species[data.species[,ecoval.translate("A_macrophytes_species_number_msk",dict)] %in%
+                                         taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk",dict)] == FALSE,]
+  
+  data.species <- data.species[data.species[,ecoval.translate("A_macrophytes_species_number_msk",dict)] %in%
+                                 taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk",dict)],]
+  
+  # Add column for comments regarding species validation (determination quality, see below)
+  
+  data.species[, ecoval.translate("A_macrophytes_species_commentvalidation_taxa",dict)] <- NA
+  
+  # Add growthform information to data
+  
+  names <- colnames(data.species)
+  data.species <- cbind(data.species,NA,NA)
+  colnames(data.species) <- c(names,ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict),ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict))
+
+  for( i in 1:nrow(data.species) ) {
+    row.taxalist <- match(data.species[i,ecoval.translate("A_macrophytes_species_number_msk",dict)],
+                          taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk",dict)])
+    if( !is.na(row.taxalist) ) {
+      data.species[i, ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)] <- taxalist.dat[row.taxalist, ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)]
+      data.species[i, ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)] <- taxalist.dat[row.taxalist, ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)]
+    }
+  }
+  
+  # Check for double entries (only for taxa in taxa list).
+  
+  Erhebung_Code <- unique(data.species[,ecoval.translate("A_macrophytes_site_sampleid",dict)])
+  spec.num.check <- rep("ok",length(Erhebung_Code))
+  for ( i in 1:length(Erhebung_Code) ) {
+    ind.sampling <- data.species[,ecoval.translate("A_macrophytes_site_sampleid",dict)] == Erhebung_Code[i]
+    spec.number <- data.species[ind.sampling,ecoval.translate("A_macrophytes_species_number_msk",dict)]
+    if ( length(spec.number) != length(unique(spec.number))) spec.num.check[i] <- "error"
+  }
+  if( sum(spec.num.check == "error", na.rm =T) > 0 ) {
+    quality.out <- Erhebung_Code[spec.num.check == "error"]
+    quality.out <- cbind(t(sapply(quality.out , split.last.underline)))
+    quality.out <- cbind(quality.out, rep(ecoval.translate("A_macrophytes_species_number_msk",dict), nrow(quality.out)))
+    quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_doubleentries", dict), nrow(quality.out)))
+    quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_error", dict), nrow(quality.out)))
+    colnames(quality.out) <- colnames(species.quality)
+    species.quality <- rbind(species.quality, quality.out)
+  }
+
+  # Check species assignments and determination accuracy, and assign them to aggregates if this is adequate
+  # This is only done for data collected with sampling protocol published 2017/2018
+  # For old data species are taken as they are and determination uncertanity is not considered
+  
+  rows.delete <- rep(FALSE,nrow(data.species))
+  if ( sampling.protocol == "v2018" ) {
+    
+    for ( i in 1:nrow(data.species) ) {
+      row.taxalist <- match(data.species[i,ecoval.translate("A_macrophytes_species_number_msk",dict)],
+                            taxalist.dat[ ,ecoval.translate("A_macrophytes_species_number_msk",dict)])
+      
+      detunc.data.species  <- data.species[i,ecoval.translate("A_macrophytes_species_determinationuncertainty",dict)]
+      
+      if( !is.na(detunc.data.species) ) {
+        # Get corresponding determination value and taxa-group assigment from taxalist
+        detval.taxalist.dat <- taxalist.dat[row.taxalist, ecoval.translate("A_macrophytes_taxalist_determination",dict)]
+        grouptaxon.taxalist.dat <- taxalist.dat[row.taxalist, ecoval.translate("A_macrophytes_taxalist_taxagroups_assign",dict)]
+        
+        # Do quality check for bryophyte species
+        if( data.species[i,ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)] == ecoval.translate("L_macrophytes_taxalist_growthform_abbrev_bry",dict) ) {
+          if ( ( detval.taxalist.dat <= 2 & detunc.data.species == 4 ) |
+               ( detval.taxalist.dat == 3 & detunc.data.species != 2 ) ) {
+            if( !is.na(grouptaxon.taxalist.dat) ) {
+              data.species[i,ecoval.translate("A_macrophytes_species_number_msk",dict)] <- grouptaxon.taxalist.dat
+              data.species[i,ecoval.translate("A_macrophytes_species_name_latin",dict)] <- taxalist.dat[match(grouptaxon.taxalist.dat,taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk", dict)]),
+                                                                                                        ecoval.translate("A_macrophytes_species_name_latin",dict)]
+              data.species[i,ecoval.translate("A_macrophytes_species_determinationuncertainty",dict)] <- NA
+              
+              data.species[i,ecoval.translate("A_macrophytes_species_commentvalidation_taxa",dict)] <- ecoval.translate("R_macrophytes_doc_speciesreplaced",dict)
+            } else {
+              rows.delete[i] <- TRUE
+            }
+          }
+        } else {   # end if bryophyte
+          
+          # Quality check for all higher macrophytes species
+          if ( detval.taxalist.dat <= 2 ) {   # detval <= 2
+            if( detunc.data.species == 4 ) {   # detunc = 4
+              if( !is.na(grouptaxon.taxalist.dat) ) {   # aggregate tayon exists
+                data.species[i,ecoval.translate("A_macrophytes_species_number_msk",dict)] <- grouptaxon.taxalist.dat
+                data.species[i,ecoval.translate("A_macrophytes_species_name_latin",dict)] <- taxalist.dat[match(grouptaxon.taxalist.dat,taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk", dict)]),
+                                                                                                          ecoval.translate("A_macrophytes_species_name_latin",dict)]
+                data.species[i,ecoval.translate("A_macrophytes_species_determinationuncertainty",dict)] <- NA
+                
+                data.species[i,ecoval.translate("A_macrophytes_species_commentvalidation_taxa",dict)] <- ecoval.translate("R_macrophytes_doc_speciesreplaced",dict)
+                
+                data.species[i,ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)]  <- taxalist.dat[match(grouptaxon.taxalist.dat,taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk", dict)]),
+                                                             ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)]
+                data.species[i,ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)] <- taxalist.dat[match(grouptaxon.taxalist.dat,taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk", dict)]),
+                                                             ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)]
+                
+              } else {   # no aggregate taxon
+                rows.delete[i] <- TRUE
+              }
+            }   # end detunc = 4
+          } else {   # detval > 2
+            if ( detval.taxalist.dat == 3 ) {
+              # For species with a determination value of 3 in the taxalist check if phenology trait necessary for correct
+              # determination of the taxon was present
+              phen.check.code <- taxalist.dat[match(data.species[i,ecoval.translate("A_macrophytes_species_number_msk",dict)],
+                                                    taxalist.dat[ ,ecoval.translate("A_macrophytes_species_number_msk",dict)]),
+                                              ecoval.translate("A_macrophytes_taxalist_phenology_trait",dict)]
+              phen.check.ok <- FALSE
+              
+              # Code 1 for species in taxalist: Blossoms need to be present
+              if( phen.check.code == 1 ) {
+                phen.check.ok <- !is.na(data.species[i,ecoval.translate("A_macrophytes_species_phenology_blossom",dict)])
+              } else {
+                # Code 2 for species in taxalist: Fruits need to be present
+                if( phen.check.code == 2 ) {
+                  phen.check.ok <- !is.na(data.species[i,ecoval.translate("A_macrophytes_species_phenology_fruits",dict)]) 
+                } else {
+                  # Code 3 for species in taxalist: Blossoms OR fruits need to be present
+                  if( phen.check.code == 3 ) {
+                    phen.check.ok <- !is.na(data.species[i,ecoval.translate("A_macrophytes_species_phenology_fruits",dict)]) | !is.na(data.species[i,ecoval.translate("A_macrophytes_species_phenology_blossom",dict)])
+                  } else {
+                    # Code 3 for species in taxalist: Blossoms AND fruits need to be present
+                    if( phen.check.code == 4 ) {
+                      phen.check.ok <- !is.na(data.species[i,ecoval.translate("A_macrophytes_species_phenology_fruits",dict)]) & !is.na(data.species[i,ecoval.translate("A_macrophytes_species_phenology_blossom",dict)])
+                      
+                    }
+                  }
+                }
+              }
+
+              # Species is corrected to group-taxon if required phenology trait was not present or if determination was insecure
+              if ( !phen.check.ok | detunc.data.species > 3 ) {
+                if ( !is.na(grouptaxon.taxalist.dat) ) {
+                  data.species[i,ecoval.translate("A_macrophytes_species_number_msk",dict)] <- grouptaxon.taxalist.dat
+                  data.species[i,ecoval.translate("A_macrophytes_species_name_latin",dict)] <- taxalist.dat[match(grouptaxon.taxalist.dat,taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk", dict)]),
+                                                                                                            ecoval.translate("A_macrophytes_species_name_latin",dict)]
+                  data.species[i,ecoval.translate("A_macrophytes_species_determinationuncertainty",dict)] <- NA
+                  
+                  data.species[i,ecoval.translate("A_macrophytes_species_commentvalidation_taxa",dict)] <- ecoval.translate("R_macrophytes_doc_speciesreplaced",dict)
+                  
+                  data.species[i,ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)]  <- taxalist.dat[match(grouptaxon.taxalist.dat,taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk", dict)]),
+                                                               ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)]
+                  data.species[i,ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)] <- taxalist.dat[match(grouptaxon.taxalist.dat,taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk", dict)]),
+                                                               ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)]
+                } else {
+                  rows.delete[i] <- TRUE
+                }
+              }
+            } else {
+              if ( detval.taxalist.dat == 4 ) {
+                if ( !is.na(grouptaxon.taxalist.dat) ) {
+                  data.species[i,ecoval.translate("A_macrophytes_species_number_msk",dict)] <- grouptaxon.taxalist.dat
+                  data.species[i,ecoval.translate("A_macrophytes_species_name_latin",dict)] <- taxalist.dat[match(grouptaxon.taxalist.dat,taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk", dict)]),
+                                                                                                            ecoval.translate("A_macrophytes_species_name_latin",dict)]
+                  data.species[i,ecoval.translate("A_macrophytes_species_determinationuncertainty",dict)] <- NA
+                  
+                  data.species[i,ecoval.translate("A_macrophytes_species_commentvalidation_taxa",dict)] <- ecoval.translate("R_macrophytes_doc_speciesreplaced",dict)
+                  
+                  data.species[i,ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)]  <- taxalist.dat[match(grouptaxon.taxalist.dat,taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk", dict)]),
+                                                               ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)]
+                  data.species[i,ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)] <- taxalist.dat[match(grouptaxon.taxalist.dat,taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk", dict)]),
+                                                               ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)]
+                } else {
+                  rows.delete[i] <- TRUE
+                }
+              }
+            }
+          }
+        }   # end not bryophyte 
+      }   # end if( !is.na(detunc.data.species) )
+    }   # end for ( i in 1:nrow(data.species) )
+  }   # end if ( sampling.protocol == "v2018" )
+  # Correct overall bryophyta and characea coverage:
+  if ( sum(rows.delete) > 0 )
+  {
+    for ( i in which(rows.delete) )
+    {
+      ind.sampling <- data.species[,ecoval.translate("A_macrophytes_site_sampleid",dict)] == 
+                        data.species[i,ecoval.translate("A_macrophytes_site_sampleid",dict)]
+      
+      # bryophytes:
+      
+      if ( data.species[i,ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)] == 
+             ecoval.translate("L_macrophytes_taxalist_growthform_abbrev_bry",dict) )
+      {
+        if ( !is.na(data.species[i,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)]) )
+        {
+          ind.brysum <- which(ind.sampling & 
+                                data.species[,ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)] == 
+                                  ecoval.translate("L_macrophytes_taxalist_growthform_abbrev_brysum",dict) )
+          if ( length(ind.brysum) == 1 ) 
+          {
+            data.species[ind.brysum,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)] =
+              data.species[ind.brysum,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)] -
+              data.species[i,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)]
+          }
+        }
+      }
+      
+      # characea:
+      
+      if ( data.species[i,ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)] == 
+           ecoval.translate("L_macrophytes_taxalist_growthform_abbrev_cha",dict) )
+      {
+        if ( !is.na(data.species[i,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)]) )
+        {
+          ind.chasum <- which(ind.sampling & 
+                                data.species[,ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)] == 
+                                ecoval.translate("L_macrophytes_taxalist_growthform_abbrev_chasum",dict) )
+          if ( length(ind.chasum) == 1 ) 
+          {
+            data.species[ind.chasum,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)] =
+              data.species[ind.chasum,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)] -
+              data.species[i,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)]
+          }
+        }
+      }
+    }
+  }
+  # Remove species that did not conform to determination quality requirements
+  species.insuff.determ. <- data.species[rows.delete,]
+  data.species           <- data.species[!rows.delete,]
+  
+  # Aggregate douplicated species (can occur due to aggregation made above), aggregate algae, 
+  # and add aggregate taxon for bryophytes and characea if needed:
+  
+  ind.bry <- data.species[,ecoval.translate("A_macrophytes_species_number_msk",dict)] %in%
+    taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk",dict)][taxalist.dat[,ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)]==
+                                                                               ecoval.translate("L_macrophytes_taxalist_growthform_abbrev_bry",dict)]
+  ind.brysum <- data.species[,ecoval.translate("A_macrophytes_species_number_msk",dict)] %in%
+    taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk",dict)][taxalist.dat[,ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)]==
+                                                                               ecoval.translate("L_macrophytes_taxalist_growthform_abbrev_brysum",dict)]
+  ind.cha <- data.species[,ecoval.translate("A_macrophytes_species_number_msk",dict)] %in%
+    taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk",dict)][taxalist.dat[,ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)]==
+                                                                               ecoval.translate("L_macrophytes_taxalist_growthform_abbrev_cha",dict)]
+  ind.chasum <- data.species[,ecoval.translate("A_macrophytes_species_number_msk",dict)] %in%
+    taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk",dict)][taxalist.dat[,ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)]==
+                                                                               ecoval.translate("L_macrophytes_taxalist_growthform_abbrev_chasum",dict)]
+  rows.delete <- rep(FALSE,nrow(data.species))
+  rows.add <- data.species[0,]
+  sampling.unique <- unique(data.species[,ecoval.translate("A_macrophytes_site_sampleid",dict)])
+  dg.abs.check <- rep("",length(sampling.unique))
+  for ( i in 1:length(sampling.unique) ) 
+  {
+    ind.sampling <- data.species[,ecoval.translate("A_macrophytes_site_sampleid",dict)] == sampling.unique[i]
+    ind.samp <- which(ind.sampling)
+    if ( length(ind.samp) > 0 )
+    {
+      # replace algae species by aggregate:
+      
+      ind <- ind.samp[data.species[ind.sampling,ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)] == 
+                               ecoval.translate("L_macrophytes_taxalist_growthform_assess_algae",dict)]
+      if ( length(ind) > 0 )
+      {
+        for ( j in ind )
+        {
+          row.taxalist <- which(taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk",dict)] == 
+                                  data.species[j,ecoval.translate("A_macrophytes_species_number_msk",dict)])
+          taxagroup.assign <- taxalist.dat[row.taxalist,ecoval.translate("A_macrophytes_taxalist_taxagroups_assign",dict)]
+          if ( !is.na(taxagroup.assign) )
+          {
+            data.species[j,ecoval.translate("A_macrophytes_species_number_msk",dict)] <- 
+              taxagroup.assign
+            data.species[j,ecoval.translate("A_macrophytes_species_name_latin",dict)] <- 
+              taxalist.dat[which(taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk",dict)] == taxagroup.assign),
+                                 ecoval.translate("A_macrophytes_species_name_latin",dict)]
+          }
+        }
+      }
+      
+      # add aggregate taxa for bryophytes and characea if needed:
+      
+      if ( sum(ind.bry&ind.sampling) > 0 & sum(ind.brysum&ind.sampling)==0 )
+      {
+        rows.add <- rbind(rows.add,rep(NA,ncol(rows.add)))
+        colnames(rows.add) <- colnames(data.species)
+        ind.add <- nrow(rows.add)
+        ind.copy <- which(ind.bry&ind.sampling)[1]
+        rows.add[ind.add,ecoval.translate("A_macrophytes_site_siteid",dict)] <- 
+          data.species[ind.copy,ecoval.translate("A_macrophytes_site_siteid",dict)]
+        rows.add[ind.add,ecoval.translate("A_macrophytes_site_samplingdate",dict)] <- 
+          data.species[ind.copy,ecoval.translate("A_macrophytes_site_samplingdate",dict)]
+        rows.add[ind.add,ecoval.translate("A_macrophytes_site_sampleid",dict)] <- 
+          data.species[ind.copy,ecoval.translate("A_macrophytes_site_sampleid",dict)]
+        rows.add[ind.add,ecoval.translate("A_macrophytes_species_number_msk",dict)] <- 
+          taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk",dict)][taxalist.dat[,ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)]==
+                                                                                   ecoval.translate("L_macrophytes_taxalist_growthform_abbrev_brysum",dict)]        
+        rows.add[ind.add,ecoval.translate("A_macrophytes_species_name_latin",dict)] <- 
+          taxalist.dat[,ecoval.translate("A_macrophytes_species_name_latin",dict)][taxalist.dat[,ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)]==
+                                                                                     ecoval.translate("L_macrophytes_taxalist_growthform_abbrev_brysum",dict)]        
+        rows.add[ind.add,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)] <- 
+          sum(data.species[ind.bry&ind.sampling,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)])
+        rows.add[ind.add,ecoval.translate("A_macrophytes_species_artificialsubstrate_relcover_percent",dict)] <- 
+          sum(data.species[ind.bry&ind.sampling,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)]*
+                data.species[ind.bry&ind.sampling,ecoval.translate("A_macrophytes_species_artificialsubstrate_relcover_percent",dict)])/
+          sum(data.species[ind.bry&ind.sampling,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)])
+        rows.add[ind.add,ecoval.translate("A_macrophytes_species_determinationuncertainty",dict)] <- 1
+        rows.add[ind.add,ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)] <- 
+          ecoval.translate("L_macrophytes_taxalist_growthform_abbrev_brysum",dict)
+        rows.add[ind.add,ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)] <- 
+          ecoval.translate("L_macrophytes_taxalist_growthform_assess_bryophyte",dict)
+        if ( is.na(rows.add[ind.add,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)]) ) dg.abs.check[i] <- paste(dg.abs.check[i],"bry")
+      }
+
+      if ( sum(ind.cha&ind.sampling) > 0 & sum(ind.chasum&ind.sampling)==0 )
+      {
+        rows.add <- rbind(rows.add,rep(NA,ncol(rows.add)))
+        colnames(rows.add) <- colnames(data.species)
+        ind.add <- nrow(rows.add)
+        ind.copy <- which(ind.cha&ind.sampling)[1]
+        rows.add[ind.add,ecoval.translate("A_macrophytes_site_siteid",dict)] <- 
+          data.species[ind.copy,ecoval.translate("A_macrophytes_site_siteid",dict)]
+        rows.add[ind.add,ecoval.translate("A_macrophytes_site_samplingdate",dict)] <- 
+          data.species[ind.copy,ecoval.translate("A_macrophytes_site_samplingdate",dict)]
+        rows.add[ind.add,ecoval.translate("A_macrophytes_site_sampleid",dict)] <- 
+          data.species[ind.copy,ecoval.translate("A_macrophytes_site_sampleid",dict)]
+        rows.add[ind.add,ecoval.translate("A_macrophytes_species_number_msk",dict)] <- 
+          taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk",dict)][taxalist.dat[,ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)]==
+                                                                                     ecoval.translate("L_macrophytes_taxalist_growthform_abbrev_chasum",dict)]        
+        rows.add[ind.add,ecoval.translate("A_macrophytes_species_name_latin",dict)] <- 
+          taxalist.dat[,ecoval.translate("A_macrophytes_species_name_latin",dict)][taxalist.dat[,ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)]==
+                                                                                     ecoval.translate("L_macrophytes_taxalist_growthform_abbrev_chasum",dict)]        
+        rows.add[ind.add,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)] <- 
+          sum(data.species[ind.cha&ind.sampling,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)])
+        rows.add[ind.add,ecoval.translate("A_macrophytes_species_artificialsubstrate_relcover_percent",dict)] <- 
+          sum(data.species[ind.cha&ind.sampling,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)]*
+                data.species[ind.cha&ind.sampling,ecoval.translate("A_macrophytes_species_artificialsubstrate_relcover_percent",dict)])/
+          sum(data.species[ind.cha&ind.sampling,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)])
+        rows.add[ind.add,ecoval.translate("A_macrophytes_species_determinationuncertainty",dict)] <- 1
+        rows.add[ind.add,ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)] <- 
+          ecoval.translate("L_macrophytes_taxalist_growthform_abbrev_chasum",dict)
+        rows.add[ind.add,ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)] <- 
+          ecoval.translate("L_macrophytes_taxalist_growthform_assess_aquatic",dict)
+        if ( is.na(rows.add[ind.add,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)]) ) dg.abs.check[i] <- paste(dg.abs.check[i],"cha")
+      }
+      
+      # aggregate identical taxa:
+      
+      species_no <- unique(data.species[ind.sampling,ecoval.translate("A_macrophytes_species_number_msk",dict)])
+      for ( j in 1:length(species_no) )
+      {
+        ind <- ind.samp[data.species[ind.sampling,ecoval.translate("A_macrophytes_species_number_msk",dict)] == species_no[j]]
+        if ( length(ind) > 1 )
+        {
+          data.species[ind[1],ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)] <- 
+            sum(data.species[ind,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)])
+          rows.delete[ind[2:length(ind)]] <- TRUE
+        }
+      }
+    }
+  }
+  data.species <- data.species[!rows.delete,]
+  if ( nrow(rows.add) > 0 ) data.species <- rbind(data.species,rows.add)
+  if( sum(dg.abs.check == "bry",na.rm=T) > 0 ) {
+    quality.out <- Erhebung_Code[substring(dg.abs.check,1,3) == "bry"]
+    quality.out <- cbind(t(sapply(quality.out , split.last.underline)))
+    quality.out <- cbind(quality.out, rep(ecoval.translate("A_macrophytes_species_absolutecover_percent",dict), nrow(quality.out)))
+    quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_abscoveragebrymissing", dict), nrow(quality.out)))
+    quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_error", dict), nrow(quality.out)))
+    colnames(quality.out) <- colnames(species.quality)
+    species.quality <- rbind(species.quality, quality.out)
+  }
+  if( sum(dg.abs.check == "cha",na.rm=T)>0 | sum(dg.abs.check == "brycha",na.rm =T) > 0 ) {
+    quality.out <- Erhebung_Code[dg.abs.check == "cha" | dg.abs.check == "brycha"]
+    quality.out <- cbind(t(sapply(quality.out , split.last.underline)))
+    quality.out <- cbind(quality.out, rep(ecoval.translate("A_macrophytes_species_absolutecover_percent",dict), nrow(quality.out)))
+    quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_abscoveragechamissing", dict), nrow(quality.out)))
+    quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_error", dict), nrow(quality.out)))
+    colnames(quality.out) <- colnames(species.quality)
+    species.quality <- rbind(species.quality, quality.out)
+  }
+  
+  # Combine all data containing removed species, either due to taxalist or insufficient determination, in one data.frame
+  species.insuff.determ.[,ecoval.translate("A_macrophytes_species_reason_elimination",dict)] <- rep(ecoval.translate("A_macrophytes_species_reason_insufficientquality",dict), nrow(species.insuff.determ.))
+  species.not.taxalist[,ecoval.translate("A_macrophytes_species_reason_elimination",dict)] <- rep(ecoval.translate("A_macrophytes_species_reason_notontaxalist",dict), nrow(species.not.taxalist))
+  
+  # Remove additional columns in species.insuff.determ. introduced during data perparation after reductioh to species not on taxalist
+  species.insuff.determ. <- species.insuff.determ.[,colnames(species.insuff.determ.) %in% colnames(species.not.taxalist)]
+  
+  # Create output data.frame with all removed species
+  species.removed <- rbind(species.insuff.determ., species.not.taxalist, stringsAsFactors = FALSE)
+  
+  # Complement "species.quality" data.frame with data-set information
+  species.quality <- cbind(species.quality, rep(ecoval.translate("R_macrophytes_error_speciesdata", dict), nrow(species.quality)))
+  colnames(species.quality)[ncol(species.quality)] <- ecoval.translate("R_macrophytes_error_dataset", dict)
+  
+  # Return list with generated outputs
+  return(list(species.assess       = data.species, 
+              species.removed      = species.removed, 
+              species.quality      = species.quality, 
+              taxalist             = taxalist.dat))
 }
 
 
@@ -1059,6 +1186,8 @@ msk.macrophytes.2017.calc.attrib <- function(data.site,
   for ( j in 1:ncol(taxalist.dat) ) colnames(taxalist.dat)[j] <- ecoval.translate(colnames(taxalist.dat)[j],dict)
   col.gf <- match(ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict),colnames(taxalist.dat))
   if ( !is.na(col.gf) ) for ( i in 1:nrow(taxalist.dat) ) taxalist.dat[i,col.gf] <- ecoval.translate(taxalist.dat[i,col.gf],dict)
+  col.gfabbrev <- match(ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict),colnames(taxalist.dat))
+  if ( !is.na(col.gfabbrev) ) for ( i in 1:nrow(taxalist.dat) ) taxalist.dat[i,col.gfabbrev] <- ecoval.translate(taxalist.dat[i,col.gfabbrev],dict)
   col.es <- match(ecoval.translate("A_macrophytes_taxalist_growthform_assess_twoforms_grfo",dict),colnames(taxalist.dat))
   if ( !is.na(col.es) ) for ( i in 1:nrow(taxalist.dat) ) taxalist.dat[i,col.es] <- ifelse(is.na(taxalist.dat[i,col.es]),NA,ecoval.translate(taxalist.dat[i,col.es],dict))
   col.trait <- match(ecoval.translate("A_macrophytes_taxalist_determination_trait",dict),colnames(taxalist.dat))
@@ -1067,6 +1196,7 @@ msk.macrophytes.2017.calc.attrib <- function(data.site,
   if ( !is.na(col.cons) ) for ( i in 1:nrow(taxalist.dat) ) taxalist.dat[i,col.cons] <- ifelse(is.na(taxalist.dat[i,col.cons]),NA,ecoval.translate(taxalist.dat[i,col.cons],dict))
   
   # Create data.frame to collect calculated attributes
+  
   attrib.names <- c(ecoval.translate("A_macrophytes_taxa_all_richness_count",dict),
                     ecoval.translate("A_macrophytes_taxa_helophytes_richness_count",dict),
                     ecoval.translate("A_macrophytes_taxa_aquatic_richness_count",dict),
@@ -1131,12 +1261,12 @@ msk.macrophytes.2017.calc.attrib <- function(data.site,
                  ecoval.translate("A_macrophytes_taxa_bryophytes_abscover_percent",dict),
                  ecoval.translate("A_macrophytes_filamentousgreenalgae_abscover_percent",dict))] <- 0
   
-  
   # Calculate attributes for all data contained in data.site
   
   for ( i in 1:nrow(attrib.dat) ) {
     
-    # Create data-frame with vegetation data sample event
+    # Create data.frame with vegetation data of sampling i:
+    
     data.select <- data.species[data.species[,ecoval.translate("A_macrophytes_site_sampleid",dict)] == rownames(attrib.dat)[i],
                                 c(ecoval.translate("A_macrophytes_species_name_latin",dict),
                                   ecoval.translate("A_macrophytes_species_number_msk",dict),
@@ -1145,17 +1275,49 @@ msk.macrophytes.2017.calc.attrib <- function(data.site,
                                   ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict),
                                   ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict))]
     
+    # get indices of bryophytes and characea:
+    
+    ind.bry <- data.select[,ecoval.translate("A_macrophytes_species_number_msk",dict)] %in%
+      taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk",dict)][taxalist.dat[,ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)]==
+                                                                                 ecoval.translate("L_macrophytes_taxalist_growthform_abbrev_bry",dict)]
+    ind.brysum <- data.select[,ecoval.translate("A_macrophytes_species_number_msk",dict)] %in%
+      taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk",dict)][taxalist.dat[,ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)]==
+                                                                                 ecoval.translate("L_macrophytes_taxalist_growthform_abbrev_brysum",dict)]
+    ind.cha <- data.select[,ecoval.translate("A_macrophytes_species_number_msk",dict)] %in%
+      taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk",dict)][taxalist.dat[,ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)]==
+                                                                                 ecoval.translate("L_macrophytes_taxalist_growthform_abbrev_cha",dict)]
+    ind.chasum <- data.select[,ecoval.translate("A_macrophytes_species_number_msk",dict)] %in%
+      taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk",dict)][taxalist.dat[,ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)]==
+                                                                                 ecoval.translate("L_macrophytes_taxalist_growthform_abbrev_chasum",dict)]
+    ind.alg <- data.select[,ecoval.translate("A_macrophytes_species_number_msk",dict)] %in%
+      taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk",dict)][taxalist.dat[,ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)]==
+                                                                                 ecoval.translate("L_macrophytes_taxalist_growthform_assess_algae",dict)]
+    ind.helo <- data.select[,ecoval.translate("A_macrophytes_species_number_msk",dict)] %in%
+      taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk",dict)][taxalist.dat[,ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)]==
+                                                                                 ecoval.translate("L_macrophytes_taxalist_growthform_assess_helophyte",dict)]
+    ind.aquatic <- data.select[,ecoval.translate("A_macrophytes_species_number_msk",dict)] %in%
+      taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk",dict)][taxalist.dat[,ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)]==
+                                                                                 ecoval.translate("L_macrophytes_taxalist_growthform_assess_aquatic",dict)]
+    
     if( nrow(data.select) > 0 ) {
       
       ## ABSOLUTE COVER / BIOMASS ATTRIBUTES
       
-      # Absolute cover of all vegetation in site
-      attrib.dat[i, ecoval.translate("A_macrophytes_allvegetation_abscover_percent",dict)] <- sum(data.select[data.select[,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)] != -999,
-                                                                                                              ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)], na.rm = TRUE)
-      # Calculate and add relative cover per species (Colname: "Rel_Deckung") in selected vegetation data
-      data.select$Rel_Deckung <- data.select[, ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)] * 100/attrib.dat[i, ecoval.translate("A_macrophytes_allvegetation_abscover_percent",dict)] 
-      data.select[data.select[, ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)] == -999, "Rel_Deckung"] <- -999
+      # Absolute cover of all vegetation at site
       
+      attrib.dat[i, ecoval.translate("A_macrophytes_allvegetation_abscover_percent",dict)] <- 
+        sum(data.select[!(ind.bry|ind.cha),ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)])
+
+      # Calculate and add relative cover per species (Colname: "Rel_Deckung") in selected vegetation data
+      
+      data.select$Rel_Deckung <- data.select[, ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)] * 100 /
+        attrib.dat[i, ecoval.translate("A_macrophytes_allvegetation_abscover_percent",dict)] 
+
+      # Absolute cover of only higher macrophytes
+      
+      attrib.dat[i, ecoval.translate("A_macrophytes_allmacrophytes_abscover_percent",dict)] <- 
+        sum(data.select[!(ind.bry|ind.cha|ind.alg),ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)])
+
       # Add relevant information from taxalist to data-set
       data.select$neophyte_info <- rep(NA, nrow(data.select))
       data.select$priority      <- rep(NA, nrow(data.select))
@@ -1170,81 +1332,105 @@ msk.macrophytes.2017.calc.attrib <- function(data.site,
         data.select[j, "guide_value"]   <- taxalist.dat[row.taxalist, ecoval.translate("A_macrophytes_taxalist_indexspecies",dict)]
       }
       
-      # Generate data.frame for calculation of richness and dominance by removing species potentially occuring both emergent and submerged
+      # Generate data.frame for calculation of richness and dominance by bundling species that can be emerged or submerged
+      
       data.select.richness <- data.select
-      
-      data.select.richness$spec_select   <- rep(NA, nrow(data.select))
-      
-      for (j in 1:nrow(data.select.richness)) {
+      rows.delete <- rep(FALSE,nrow(data.select.richness))
+      for ( j in 1:nrow(data.select.richness) )
+      {
         row.taxalist <- match(data.select.richness[j,ecoval.translate("A_macrophytes_species_number_msk",dict)],
                               taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk",dict)])
-        data.select.richness[j,"spec_select"]    <- taxalist.dat[row.taxalist,
-                                                                 ecoval.translate("A_macrophytes_taxalist_growthform_assess_twoforms_grfoval",dict)]
-      }
-      
-      if( sum(!is.na(data.select.richness[,"spec_select"])) > 0 ) {
-        spec.assign <- unique(na.omit(data.select.richness[,"spec_select"]))
-        
-        if( length(spec.assign) > 0 ) {
-          
-          for ( k in 1:length(spec.assign) ) {
-            spec.assign.1 <- match(spec.assign[k], data.select.richness[,ecoval.translate("A_macrophytes_species_number_msk",dict)])
-            
-            if( !is.na(spec.assign.1) ) {
-              dg.abs <- sum(data.select.richness[spec.assign.1,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)],
-                            data.select.richness[match(spec.assign[k],data.select.richness[,"spec_select"]),ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)])
-              dg.rel <- sum(data.select.richness[spec.assign.1,"Rel_Deckung"],
-                            data.select.richness[match(spec.assign[k],data.select.richness[,"spec_select"]),"Rel_Deckung"])
-              
-              data.select.richness[spec.assign.1,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)] <- dg.abs
-              data.select.richness[spec.assign.1,"Rel_Deckung"] <- dg.rel
-              
-              data.select.richness <- data.select.richness[-match(spec.assign[k],data.select.richness[,"spec_select"]),]
-            }
+        number.msk.grfoval <- taxalist.dat[row.taxalist,ecoval.translate("A_macrophytes_taxalist_growthform_assess_twoforms_grfoval",dict)]
+        if ( !is.na(number.msk.grfoval) )
+        {
+          row.data.select <- match(number.msk.grfoval,data.select.richness[,ecoval.translate("A_macrophytes_species_number_msk",dict)])
+          if ( !is.na(row.data.select) )
+          {
+            # add absolute coverage from row that should be eliminated:
+            data.select.richness[row.data.select,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)] <-
+              data.select.richness[row.data.select,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)] +
+                data.select.richness[j,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)]
+            # add absolute coverage from row that should be eliminated:
+            data.select.richness[row.data.select,"Rel_Deckung"] <-
+              data.select.richness[row.data.select,"Rel_Deckung"] +
+                data.select.richness[j,"Rel_Deckung"]
+            # mark row for deletion:
+            rows.delete[j] <- TRUE
           }
         }
       }
+      if ( sum(rows.delete) > 0 ) data.select.richness <- data.select.richness[!rows.delete,]
+
+      # get indices of bryophytes and characea:
       
-      # Generate data.frames with only data on higher macrophytes (i.e. no algae)
-      dat.makro <- data.select[data.select[,ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)] != ecoval.translate("L_macrophytes_taxalist_growthform_assess_algae",dict),]
-      dat.makro.richness <- data.select.richness[data.select.richness[,ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)] != ecoval.translate("L_macrophytes_taxalist_growthform_assess_algae",dict),]
+      ind.richness.bry <- data.select.richness[,ecoval.translate("A_macrophytes_species_number_msk",dict)] %in%
+        taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk",dict)][taxalist.dat[,ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)]==
+                                                                                   ecoval.translate("L_macrophytes_taxalist_growthform_abbrev_bry",dict)]
+      ind.richness.brysum <- data.select.richness[,ecoval.translate("A_macrophytes_species_number_msk",dict)] %in%
+        taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk",dict)][taxalist.dat[,ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)]==
+                                                                                   ecoval.translate("L_macrophytes_taxalist_growthform_abbrev_brysum",dict)]
+      ind.richness.cha <- data.select.richness[,ecoval.translate("A_macrophytes_species_number_msk",dict)] %in%
+        taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk",dict)][taxalist.dat[,ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)]==
+                                                                                   ecoval.translate("L_macrophytes_taxalist_growthform_abbrev_cha",dict)]
+      ind.richness.chasum <- data.select.richness[,ecoval.translate("A_macrophytes_species_number_msk",dict)] %in%
+        taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk",dict)][taxalist.dat[,ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)]==
+                                                                                   ecoval.translate("L_macrophytes_taxalist_growthform_abbrev_chasum",dict)]
+      ind.richness.alg <- data.select.richness[,ecoval.translate("A_macrophytes_species_number_msk",dict)] %in%
+        taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk",dict)][taxalist.dat[,ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)]==
+                                                                                   ecoval.translate("L_macrophytes_taxalist_growthform_assess_algae",dict)]
+      ind.richness.helo <- data.select.richness[,ecoval.translate("A_macrophytes_species_number_msk",dict)] %in%
+        taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk",dict)][taxalist.dat[,ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)]==
+                                                                                   ecoval.translate("L_macrophytes_taxalist_growthform_assess_helophyte",dict)]
+      ind.richness.aquatic <- data.select.richness[,ecoval.translate("A_macrophytes_species_number_msk",dict)] %in%
+        taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk",dict)][taxalist.dat[,ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)]==
+                                                                                   ecoval.translate("L_macrophytes_taxalist_growthform_assess_aquatic",dict)]
       
-      # Absolute cover of only higher macrophytes
-      attrib.dat[i, ecoval.translate("A_macrophytes_allmacrophytes_abscover_percent",dict)] <- sum(dat.makro[dat.makro[,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)] != -999,
-                                                                                                             ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)])
+      # # Generate data.frames with only data on higher macrophytes (i.e. no algae)
+      # dat.makro <- data.select[data.select[,ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)] != ecoval.translate("L_macrophytes_taxalist_growthform_assess_algae",dict),]
+      # dat.makro.richness <- data.select.richness[data.select.richness[,ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)] != ecoval.translate("L_macrophytes_taxalist_growthform_assess_algae",dict),]
+
       ## DIVERSITY ATTRIBUTES
       
       # SPECIES RICHNESS
       
-      # Species richness of all growthforms, without algae (calculated with dat.makro.richness)
-      attrib.dat[i, ecoval.translate("A_macrophytes_taxa_all_richness_count",dict)] <- nrow(dat.makro.richness[dat.makro.richness[,ecoval.translate("A_macrophytes_species_number_msk",dict)] != 50000001,]) #ATTRIBUT
+      # number of summary taxa and algae:
       
+      num.bry     <- sum(ind.richness.bry); if( num.bry==0 & sum(ind.richness.brysum)>0 ) num.bry <- 1
+      num.aquatic <- sum(ind.richness.aquatic) - sum(ind.richness.chasum); if ( sum(ind.richness.cha)==0 & sum(ind.richness.chasum)>0 ) num.aquatic <- num.aquatic+1
+      num.helo    <- sum(ind.richness.helo)
+      num.alg     <- sum(ind.richness.alg)
+      
+      # Species richness of all growthforms, without algae:
+      
+      attrib.dat[i,ecoval.translate("A_macrophytes_taxa_all_richness_count",dict)] <- num.bry + num.aquatic + num.helo
+
       # Species richness per growthform group (i.e. aquatic, helophyte, bryophyte)
-      attrib.dat[i, ecoval.translate("A_macrophytes_taxa_aquatic_richness_count",dict)]     <- sum(dat.makro.richness[dat.makro.richness[,ecoval.translate("A_macrophytes_species_number_msk",dict)] != 50000001, 
-                                                                                                                      ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)] == ecoval.translate("L_macrophytes_taxalist_growthform_assess_aquatic",dict),
-                                                                                                   na.rm = T) #ATTRIBUT
-      attrib.dat[i, ecoval.translate("A_macrophytes_taxa_helophytes_richness_count",dict)]  <- sum(dat.makro.richness[dat.makro.richness[,ecoval.translate("A_macrophytes_species_number_msk",dict)] != 50000001,
-                                                                                                                      ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)] == ecoval.translate("L_macrophytes_taxalist_growthform_assess_helophyte",dict),
-                                                                                                   na.rm = T) #ATTRIBUT
-      attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_richness_count",dict)]  <- sum(dat.makro.richness[dat.makro.richness[,ecoval.translate("A_macrophytes_species_number_msk",dict)] != 50000001,
-                                                                                                                      ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)] == ecoval.translate("L_macrophytes_taxalist_growthform_assess_bryophyte",dict),
-                                                                                                   na.rm = T) #ATTRIBUT
-      attrib.dat[i, ecoval.translate("A_macrophytes_taxa_neophytes_richness_count",dict)]  <- sum(dat.makro.richness[, "neophyte_info"] == "N", na.rm = T) #ATTRIBUT
+
+      attrib.dat[i,ecoval.translate("A_macrophytes_taxa_aquatic_richness_count",dict)] <- num.aquatic
       
+      attrib.dat[i,ecoval.translate("A_macrophytes_taxa_helophytes_richness_count",dict)] <- num.helo
+
+      attrib.dat[i,ecoval.translate("A_macrophytes_taxa_bryophytes_richness_count",dict)]  <- num.bry
       
-      # GROWTHFORM RICHNESS (Calculated with dat.makro)
-      attrib.dat[i, ecoval.translate("A_macrophytes_growthform_all_richness_count",dict)]         <- length(na.omit(unique(dat.makro[dat.makro[,ecoval.translate("A_macrophytes_species_number_msk",dict)] != 50000001,
-                                                                                                                                     ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)]))) #ATTRIBUT
+      attrib.dat[i,ecoval.translate("A_macrophytes_taxa_neophytes_richness_count",dict)] <-
+        sum(data.select.richness[!(ind.richness.brysum|ind.richness.chasum|ind.richness.alg),"neophyte_info"] == "N",na.rm=T)
       
-      attrib.dat[i, ecoval.translate("A_macrophytes_growthform_helophytes_richness_count",dict)]  <- length(na.omit(unique(dat.makro[dat.makro[,ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)] == ecoval.translate("L_macrophytes_taxalist_growthform_assess_helophyte",dict),
-                                                                                                                                     ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)]))) #ATTRIBUT
+      # GROWTHFORM RICHNESS
       
-      attrib.dat[i, ecoval.translate("A_macrophytes_growthform_aquatic_richness_count",dict)]     <- length(na.omit(unique(dat.makro[dat.makro[,ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)] == ecoval.translate("L_macrophytes_taxalist_growthform_assess_aquatic",dict),
-                                                                                                                                     ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)]))) #ATTRIBUT
+      attrib.dat[i,ecoval.translate("A_macrophytes_growthform_all_richness_count",dict)] <- 
+        length(na.omit(unique(data.select[!(ind.brysum|ind.chasum|ind.alg),ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)])))
+
+      attrib.dat[i,ecoval.translate("A_macrophytes_growthform_helophytes_richness_count",dict)] <- 
+        length(na.omit(unique(data.select[ind.helo,ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)])))
+
+      attrib.dat[i,ecoval.translate("A_macrophytes_growthform_aquatic_richness_count",dict)] <- 
+        length(na.omit(unique(data.select[ind.aquatic&(!ind.chasum),ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)])))
+
       ## COMMUNITY COMPOSITION
       
       # HEIPs DOMINANCE INDEX (calculated with data.select.richness)
-      dat.rel.sw <- data.select.richness[data.select.richness[,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)] != -999, "Rel_Deckung"]
+      #dat.rel.sw <- data.select.richness[!(ind.richness.bry|ind.richness.cha|ind.richness.alg), "Rel_Deckung"]
+      dat.rel.sw <- data.select.richness[!(ind.richness.bry|ind.richness.cha), "Rel_Deckung"]  # previous implementation was with algae
       n.taxa.sw  <- length(na.omit(dat.rel.sw))
       sw.index.bry <- -(sum((dat.rel.sw/100) * log((dat.rel.sw/100))))
       if ( n.taxa.sw == 1 ) sw.index.bry <- 0
@@ -1257,71 +1443,92 @@ msk.macrophytes.2017.calc.attrib <- function(data.site,
       rm(list = c("dat.rel.sw", "n.taxa.sw", "sw.index.bry"))
       
       # NEOPHYTES RELATIVE COVER
-      attrib.dat[i, ecoval.translate("A_macrophytes_neophytes_relcover_percent",dict)] <- sum(dat.makro[dat.makro[, "neophyte_info"] == "N", "Rel_Deckung"], na.rm = T) #ATTRIBUT
+      attrib.dat[i,ecoval.translate("A_macrophytes_neophytes_relcover_percent",dict)] <- 
+        sum(data.select[data.select[, "neophyte_info"] == "N" & !(ind.bry|ind.cha|ind.alg), "Rel_Deckung"], na.rm = T) #ATTRIBUT
       
       # RELATIVE COVER OF GROWTHFORMS (i.e. AQUATIC, HELOPHYTES, and BRYOPHYTES)
-      attrib.dat[i, ecoval.translate("A_macrophytes_taxa_aquatic_relcover_percent",dict)] <- sum(data.select[data.select[,ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)] == ecoval.translate("L_macrophytes_taxalist_growthform_assess_aquatic",dict),
-                                                                                                             "Rel_Deckung"])  #ATTRIBUT
-      if ( I(attrib.dat[i, ecoval.translate("A_macrophytes_taxa_aquatic_relcover_percent",dict)] - 100) > 0 & I(attrib.dat[i, ecoval.translate("A_macrophytes_taxa_aquatic_relcover_percent",dict)] - 100) < 0.01 ) {
+      attrib.dat[i,ecoval.translate("A_macrophytes_taxa_aquatic_relcover_percent",dict)] <- 
+        sum(data.select[ind.aquatic&!ind.cha,"Rel_Deckung"])
+
+      if ( I(attrib.dat[i, ecoval.translate("A_macrophytes_taxa_aquatic_relcover_percent",dict)] - 100) > 0 & 
+           I(attrib.dat[i, ecoval.translate("A_macrophytes_taxa_aquatic_relcover_percent",dict)] - 100) < 0.01 ) {
         attrib.dat[i, ecoval.translate("A_macrophytes_taxa_aquatic_relcover_percent",dict)] <- 100
       }
       
-      attrib.dat[i, ecoval.translate("A_macrophytes_taxa_helophytes_relcover_percent",dict)] <- sum(data.select[data.select[,ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)] == ecoval.translate("L_macrophytes_taxalist_growthform_assess_helophyte",dict),
-                                                                                                                "Rel_Deckung"])  #ATTRIBUT
-      if ( I(attrib.dat[i, ecoval.translate("A_macrophytes_taxa_helophytes_relcover_percent",dict)] - 100) > 0 & I(attrib.dat[i, ecoval.translate("A_macrophytes_taxa_helophytes_relcover_percent",dict)] - 100) < 0.01 ) {
-        attrib.dat[i, ecoval.translate("A_macrophytes_taxa_helophytes_relcover_percent",dict)] <- 100
+      attrib.dat[i,ecoval.translate("A_macrophytes_taxa_helophytes_relcover_percent",dict)] <- 
+        sum(data.select[ind.helo,"Rel_Deckung"])
+
+      if ( I(attrib.dat[i, ecoval.translate("A_macrophytes_taxa_helophytes_relcover_percent",dict)] - 100) > 0 & 
+           I(attrib.dat[i, ecoval.translate("A_macrophytes_taxa_helophytes_relcover_percent",dict)] - 100) < 0.01 ) {
+        attrib.dat[i,ecoval.translate("A_macrophytes_taxa_helophytes_relcover_percent",dict)] <- 100
       }
       
-      attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_relcover_percent",dict)] <- sum(data.select[data.select[,ecoval.translate("A_macrophytes_species_number_msk",dict)] == 50000001,
-                                                                                                                "Rel_Deckung"])
-      if ( I(attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_relcover_percent",dict)] - 100) > 0 & I(attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_relcover_percent",dict)] - 100) < 0.01 ) {
-        attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_relcover_percent",dict)] <- 100
+      attrib.dat[i,ecoval.translate("A_macrophytes_taxa_bryophytes_relcover_percent",dict)] <- 
+        sum(data.select[ind.brysum,"Rel_Deckung"])
+
+      if ( I(attrib.dat[i,ecoval.translate("A_macrophytes_taxa_bryophytes_relcover_percent",dict)] - 100) > 0 & 
+           I(attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_relcover_percent",dict)] - 100) < 0.01 ) {
+        attrib.dat[i,ecoval.translate("A_macrophytes_taxa_bryophytes_relcover_percent",dict)] <- 100
       }
       
-      attrib.dat[i, ecoval.translate("A_macrophytes_filamentousgreenalgae_relcover_percent",dict)] <- sum(data.select[data.select[,ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)] == ecoval.translate("L_macrophytes_taxalist_growthform_assess_algae",dict),
-                                                                                                                      "Rel_Deckung"]) #ATTRIBUT
-      if ( I(attrib.dat[i, ecoval.translate("A_macrophytes_filamentousgreenalgae_relcover_percent",dict)] - 100) > 0 & I(attrib.dat[i, ecoval.translate("A_macrophytes_filamentousgreenalgae_relcover_percent",dict)] - 100) < 0.01 ) {
-        attrib.dat[i, ecoval.translate("A_macrophytes_filamentousgreenalgae_relcover_percent",dict)] <- 100
+      attrib.dat[i,ecoval.translate("A_macrophytes_filamentousgreenalgae_relcover_percent",dict)] <- 
+        sum(data.select[ind.alg,"Rel_Deckung"])
+
+      if ( I(attrib.dat[i,ecoval.translate("A_macrophytes_filamentousgreenalgae_relcover_percent",dict)] - 100) > 0 & 
+           I(attrib.dat[i, ecoval.translate("A_macrophytes_filamentousgreenalgae_relcover_percent",dict)] - 100) < 0.01 ) {
+        attrib.dat[i,ecoval.translate("A_macrophytes_filamentousgreenalgae_relcover_percent",dict)] <- 100
       }
       
       # ADJUST RELATIVE COVER BRYOPHYTES TO PROPORTION ON ARTIFICIAL SUBSTRATE FOR ASSESSMENT
       if( attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_relcover_percent",dict)] > 0 ) {
-        attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_artificialsubstrate_relcover_percent",dict)] <- data.select[data.select[, ecoval.translate("A_macrophytes_species_number_msk",dict)] == 50000001,
-                                                                                                                                  ecoval.translate("A_macrophytes_species_artificialsubstrate_relcover_percent", dict)]  # Attribute for illustrative purposes in value function
+        attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_artificialsubstrate_relcover_percent",dict)] <- 
+          data.select[ind.brysum,ecoval.translate("A_macrophytes_species_artificialsubstrate_relcover_percent", dict)]  # Attribute for illustrative purposes in value function
         
-        if( is.na(attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_artificialsubstrate_relcover_percent",dict)]) | attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_artificialsubstrate_relcover_percent",dict)] == -888 ) {
-          attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_artificialsubstrate_relcover_percent",dict)] <- NA
-          attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_adjusted_relcover_percent",dict)] <- attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_relcover_percent",dict)] #ATTRIBUT
+        if( is.na(attrib.dat[i,ecoval.translate("A_macrophytes_taxa_bryophytes_artificialsubstrate_relcover_percent",dict)]) ) {
+          attrib.dat[i,ecoval.translate("A_macrophytes_taxa_bryophytes_adjusted_relcover_percent",dict)] <- 
+            attrib.dat[i,ecoval.translate("A_macrophytes_taxa_bryophytes_relcover_percent",dict)] #ATTRIBUT
         } else {
-          attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_adjusted_relcover_percent",dict)] <- (attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_relcover_percent",dict)] * (1 - (attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_artificialsubstrate_relcover_percent",dict)]/100))) + (0.33 * (attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_relcover_percent",dict)] * (attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_artificialsubstrate_relcover_percent",dict)]/100))) #ATTRIBUT
+          attrib.dat[i,ecoval.translate("A_macrophytes_taxa_bryophytes_adjusted_relcover_percent",dict)] <- 
+            attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_relcover_percent",dict)] * 
+               (1 - attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_artificialsubstrate_relcover_percent",dict)]/100) +
+            0.33 * attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_relcover_percent",dict)] * 
+                       attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_artificialsubstrate_relcover_percent",dict)]/100 #ATTRIBUT
         }
       } else {
-        attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_adjusted_relcover_percent",dict)] <- 0
+        attrib.dat[i,ecoval.translate("A_macrophytes_taxa_bryophytes_adjusted_relcover_percent",dict)] <- 0
       }
       
       # ABSOLUTE COVER BY GROWTHFORMS, i.e. AQUATIC, HELOPHYTES, and BRYOPHYTES
-      attrib.dat[i, ecoval.translate("A_macrophytes_taxa_aquatic_abscover_percent",dict)] <- sum(data.select[data.select[, ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)] == ecoval.translate("L_macrophytes_taxalist_growthform_assess_aquatic",dict),
-                                                                                                             ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)], na.rm = T)
-      if ( I(attrib.dat[i, ecoval.translate("A_macrophytes_taxa_aquatic_abscover_percent",dict)] - 100) > 0 & I(attrib.dat[i, ecoval.translate("A_macrophytes_taxa_aquatic_abscover_percent",dict)] - 100) < 0.01 ) {
-        attrib.dat[i, ecoval.translate("A_macrophytes_taxa_aquatic_abscover_percent",dict)] <- 100
+      attrib.dat[i,ecoval.translate("A_macrophytes_taxa_aquatic_abscover_percent",dict)] <- 
+        sum(data.select[ind.aquatic&!ind.cha,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)], na.rm = T)
+      
+      if ( I(attrib.dat[i,ecoval.translate("A_macrophytes_taxa_aquatic_abscover_percent",dict)] - 100) > 0 & 
+           I(attrib.dat[i, ecoval.translate("A_macrophytes_taxa_aquatic_abscover_percent",dict)] - 100) < 0.01 ) {
+        attrib.dat[i,ecoval.translate("A_macrophytes_taxa_aquatic_abscover_percent",dict)] <- 100
       }
       
-      attrib.dat[i, ecoval.translate("A_macrophytes_taxa_helophytes_abscover_percent",dict)] <- sum(data.select[data.select[, ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)] == ecoval.translate("L_macrophytes_taxalist_growthform_assess_helophyte",dict),
-                                                                                                                ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)], na.rm = T)
-      if ( I(attrib.dat[i, ecoval.translate("A_macrophytes_taxa_helophytes_abscover_percent",dict)] - 100) > 0 & I(attrib.dat[i, ecoval.translate("A_macrophytes_taxa_helophytes_abscover_percent",dict)] - 100) < 0.01 ) {
-        attrib.dat[i, ecoval.translate("A_macrophytes_taxa_helophytes_abscover_percent",dict)] <- 100
+      attrib.dat[i,ecoval.translate("A_macrophytes_taxa_helophytes_abscover_percent",dict)] <- 
+        sum(data.select[ind.helo,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)], na.rm = T)
+      
+      if ( I(attrib.dat[i, ecoval.translate("A_macrophytes_taxa_helophytes_abscover_percent",dict)] - 100) > 0 & 
+           I(attrib.dat[i, ecoval.translate("A_macrophytes_taxa_helophytes_abscover_percent",dict)] - 100) < 0.01 ) {
+        attrib.dat[i,ecoval.translate("A_macrophytes_taxa_helophytes_abscover_percent",dict)] <- 100
       }
       
-      attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_abscover_percent",dict)] <- sum(data.select[data.select[, ecoval.translate("A_macrophytes_species_number_msk",dict)] == 50000001,
-                                                                                                                ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)], na.rm = T)
-      if ( I(attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_abscover_percent",dict)] - 100) > 0 & I(attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_abscover_percent",dict)] - 100) < 0.01 ) {
-        attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_abscover_percent",dict)] <- 100
+      attrib.dat[i,ecoval.translate("A_macrophytes_taxa_bryophytes_abscover_percent",dict)] <- 
+        sum(data.select[ind.brysum,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)], na.rm = T)
+      
+      if ( I(attrib.dat[i,ecoval.translate("A_macrophytes_taxa_bryophytes_abscover_percent",dict)] - 100) > 0 & 
+           I(attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_abscover_percent",dict)] - 100) < 0.01 ) {
+        attrib.dat[i,ecoval.translate("A_macrophytes_taxa_bryophytes_abscover_percent",dict)] <- 100
       }
       
-      attrib.dat[i, ecoval.translate("A_macrophytes_filamentousgreenalgae_abscover_percent",dict)] <- sum(data.select[data.select[, ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)] == ecoval.translate("L_macrophytes_taxalist_growthform_assess_algae",dict),
-                                                                                                                      ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)]) #ATTRIBUT
-      if ( I(attrib.dat[i, ecoval.translate("A_macrophytes_filamentousgreenalgae_abscover_percent",dict)] - 100) > 0 & I(attrib.dat[i, ecoval.translate("A_macrophytes_filamentousgreenalgae_abscover_percent",dict)] - 100) < 0.01 ) {
-        attrib.dat[i, ecoval.translate("A_macrophytes_filamentousgreenalgae_abscover_percent",dict)] <- 100
+      attrib.dat[i,ecoval.translate("A_macrophytes_filamentousgreenalgae_abscover_percent",dict)] <- 
+        sum(data.select[ind.alg,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)]) #ATTRIBUT
+      
+      if ( I(attrib.dat[i,ecoval.translate("A_macrophytes_filamentousgreenalgae_abscover_percent",dict)] - 100) > 0 & 
+           I(attrib.dat[i, ecoval.translate("A_macrophytes_filamentousgreenalgae_abscover_percent",dict)] - 100) < 0.01 ) {
+        attrib.dat[i,ecoval.translate("A_macrophytes_filamentousgreenalgae_abscover_percent",dict)] <- 100
       }
       
       ## SPECIES QUALITY / CONSERVAT
@@ -1329,80 +1536,74 @@ msk.macrophytes.2017.calc.attrib <- function(data.site,
       # PRIORITY SPECIES
       
       # NUMBER OF SPECIES FOR EACH PRIORITY CATEGORY
-      attrib.dat[i, ecoval.translate("A_macrophytes_priorityspecies1_count",dict)] <- sum(dat.makro$priority == 1, na.rm = T) #ATTRIBUT
-      if( abs(attrib.dat[i, ecoval.translate("A_macrophytes_priorityspecies1_count",dict)]) == Inf ) {
-        attrib.dat[i, ecoval.translate("A_macrophytes_priorityspecies1_count",dict)] <- 0
+      attrib.dat[i,ecoval.translate("A_macrophytes_priorityspecies1_count",dict)] <- sum(data.select[!ind.alg,"priority"] == 1, na.rm = T) #ATTRIBUT
+      if( abs(attrib.dat[i,ecoval.translate("A_macrophytes_priorityspecies1_count",dict)]) == Inf ) {
+        attrib.dat[i,ecoval.translate("A_macrophytes_priorityspecies1_count",dict)] <- 0
       }
       
-      attrib.dat[i, ecoval.translate("A_macrophytes_priorityspecies2_count",dict)] <- sum(dat.makro$priority == 2, na.rm = T) #ATTRIBUT
-      if( abs(attrib.dat[i, ecoval.translate("A_macrophytes_priorityspecies2_count",dict)]) == Inf ) {
-        attrib.dat[i, ecoval.translate("A_macrophytes_priorityspecies2_count",dict)] <- 0
+      attrib.dat[i,ecoval.translate("A_macrophytes_priorityspecies2_count",dict)] <- sum(data.select[!ind.alg,"priority"] == 2, na.rm = T) #ATTRIBUT
+      if( abs(attrib.dat[i,ecoval.translate("A_macrophytes_priorityspecies2_count",dict)]) == Inf ) {
+        attrib.dat[i,ecoval.translate("A_macrophytes_priorityspecies2_count",dict)] <- 0
       }
       
-      attrib.dat[i, ecoval.translate("A_macrophytes_priorityspecies3_count",dict)] <- sum(dat.makro$priority == 3, na.rm = T) #ATTRIBUT
-      if( abs(attrib.dat[i, ecoval.translate("A_macrophytes_priorityspecies3_count",dict)]) == Inf ) {
-        attrib.dat[i, ecoval.translate("A_macrophytes_priorityspecies3_count",dict)] <- 0
+      attrib.dat[i,ecoval.translate("A_macrophytes_priorityspecies3_count",dict)] <- sum(data.select[!ind.alg,"priority"] == 3, na.rm = T) #ATTRIBUT
+      if( abs(attrib.dat[i,ecoval.translate("A_macrophytes_priorityspecies3_count",dict)]) == Inf ) {
+        attrib.dat[i,ecoval.translate("A_macrophytes_priorityspecies3_count",dict)] <- 0
       }
       
-      attrib.dat[i, ecoval.translate("A_macrophytes_priorityspecies4_count",dict)] <- sum(dat.makro$priority == 4, na.rm = T) #ATTRIBUT
-      if( abs(attrib.dat[i, ecoval.translate("A_macrophytes_priorityspecies4_count",dict)]) == Inf ) {
-        attrib.dat[i, ecoval.translate("A_macrophytes_priorityspecies4_count",dict)] <- 0
+      attrib.dat[i,ecoval.translate("A_macrophytes_priorityspecies4_count",dict)] <- sum(data.select[!ind.alg,"priority"] == 4, na.rm = T) #ATTRIBUT
+      if( abs(attrib.dat[i,ecoval.translate("A_macrophytes_priorityspecies4_count",dict)]) == Inf ) {
+        attrib.dat[i,ecoval.translate("A_macrophytes_priorityspecies4_count",dict)] <- 0
       }
       
       # GUIDE VALUES, NUMBER OF SPECIES ("Leitarten")
       
-      # HELOPHYTES AND AQUATIC MACROPHYTES
-      dat.makro.select <- dat.makro[dat.makro[,ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)] != ecoval.translate("L_macrophytes_taxalist_growthform_assess_bryophyte",dict),]
-      
       # Anzahl Arten mit spezifischem Leitwert
-      attrib.dat[i, ecoval.translate("A_macrophytes_indexspeciesmac1_count",dict)]  <- sum(dat.makro.select$guide_value == 1, na.rm = T)
-      if( abs(attrib.dat[i, ecoval.translate("A_macrophytes_indexspeciesmac1_count",dict)]) == Inf ) {
-        attrib.dat[i, ecoval.translate("A_macrophytes_indexspeciesmac1_count",dict)] <- 0
+      attrib.dat[i,ecoval.translate("A_macrophytes_indexspeciesmac1_count",dict)]  <- 
+        sum(data.select[!(ind.alg|ind.bry|ind.brysum),"guide_value"] == 1, na.rm = T)
+      if( abs(attrib.dat[i,ecoval.translate("A_macrophytes_indexspeciesmac1_count",dict)]) == Inf ) {
+        attrib.dat[i,ecoval.translate("A_macrophytes_indexspeciesmac1_count",dict)] <- 0
       }
       
-      attrib.dat[i, ecoval.translate("A_macrophytes_indexspeciesmac2_count",dict)]  <- sum(dat.makro.select$guide_value == 2, na.rm = T)
-      if( abs(attrib.dat[i, ecoval.translate("A_macrophytes_indexspeciesmac2_count",dict)]) == Inf ) {
-        attrib.dat[i, ecoval.translate("A_macrophytes_indexspeciesmac2_count",dict)] <- 0
+      attrib.dat[i,ecoval.translate("A_macrophytes_indexspeciesmac2_count",dict)]  <- 
+        sum(data.select[!(ind.alg|ind.bry|ind.brysum),"guide_value"] == 2, na.rm = T)
+      if( abs(attrib.dat[i,ecoval.translate("A_macrophytes_indexspeciesmac2_count",dict)]) == Inf ) {
+        attrib.dat[i,ecoval.translate("A_macrophytes_indexspeciesmac2_count",dict)] <- 0
       }
       
-      attrib.dat[i, ecoval.translate("A_macrophytes_indexspeciesmac3_count",dict)]  <- sum(dat.makro.select$guide_value == 3, na.rm = T)
-      if( abs(attrib.dat[i, ecoval.translate("A_macrophytes_indexspeciesmac3_count",dict)]) == Inf ) {
-        attrib.dat[i, ecoval.translate("A_macrophytes_indexspeciesmac3_count",dict)] <- 0
+      attrib.dat[i,ecoval.translate("A_macrophytes_indexspeciesmac3_count",dict)]  <- 
+        sum(data.select[!(ind.alg|ind.bry|ind.brysum),"guide_value"] == 3, na.rm = T)
+      if( abs(attrib.dat[i,ecoval.translate("A_macrophytes_indexspeciesmac3_count",dict)]) == Inf ) {
+        attrib.dat[i,ecoval.translate("A_macrophytes_indexspeciesmac3_count",dict)] <- 0
       }
-      
-      rm(list = c("dat.makro.select"))
-      
-      
+
       # BRYOPHYTES
-      dat.makro.select <- dat.makro[dat.makro[,ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)] == ecoval.translate("L_macrophytes_taxalist_growthform_assess_bryophyte",dict),]
-      
-      attrib.dat[i, ecoval.translate("A_macrophytes_indexspeciesbry1_count",dict)]  <- sum(dat.makro.select$guide_value == 1, na.rm = T)
+
+      attrib.dat[i, ecoval.translate("A_macrophytes_indexspeciesbry1_count",dict)]  <- sum(data.select[ind.bry,"guide_value"] == 1, na.rm = T)
       if( abs(attrib.dat[i, ecoval.translate("A_macrophytes_indexspeciesbry1_count",dict)]) == Inf ) {
         attrib.dat[i, ecoval.translate("A_macrophytes_indexspeciesbry1_count",dict)] <- 0
       }
       
-      attrib.dat[i, ecoval.translate("A_macrophytes_indexspeciesbry2_count",dict)]  <- sum(dat.makro.select$guide_value == 2, na.rm = T)
+      attrib.dat[i, ecoval.translate("A_macrophytes_indexspeciesbry2_count",dict)]  <- sum(data.select[ind.bry,"guide_value"] == 2, na.rm = T)
       if( abs(attrib.dat[i, ecoval.translate("A_macrophytes_indexspeciesbry2_count",dict)]) == Inf ) {
         attrib.dat[i, ecoval.translate("A_macrophytes_indexspeciesbry2_count",dict)] <- 0
       }
       
-      attrib.dat[i, ecoval.translate("A_macrophytes_indexspeciesbry3_count",dict)]  <- sum(dat.makro.select$guide_value == 3, na.rm = T)
+      attrib.dat[i, ecoval.translate("A_macrophytes_indexspeciesbry3_count",dict)]  <- sum(data.select[ind.bry,"guide_value"] == 3, na.rm = T)
       if( abs(attrib.dat[i, ecoval.translate("A_macrophytes_indexspeciesbry3_count",dict)]) == Inf ) {
         attrib.dat[i, ecoval.translate("A_macrophytes_indexspeciesbry3_count",dict)] <- 0
       }
-      
-      rm( list = c("dat.makro.select") )
-      
-      
+
       ## Collect taxon names grouped by growthform ZH
-      attrib.dat[i, ecoval.translate("A_macrophytes_taxa_aquatic",dict)]    <- paste(dat.makro[dat.makro[, ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)] == ecoval.translate("L_macrophytes_taxalist_growthform_assess_aquatic",dict),
-                                                                                               ecoval.translate("A_macrophytes_species_name_latin",dict)], collapse = "; ")
-      attrib.dat[i, ecoval.translate("A_macrophytes_taxa_helophytes",dict)] <- paste(dat.makro[dat.makro[, ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)] == ecoval.translate("L_macrophytes_taxalist_growthform_assess_helophyte",dict),
-                                                                                               ecoval.translate("A_macrophytes_species_name_latin",dict)], collapse = "; ")
-      attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes",dict)] <- paste(dat.makro[dat.makro[, ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)] == ecoval.translate("L_macrophytes_taxalist_growthform_assess_bryophyte",dict) & dat.makro[, ecoval.translate("A_macrophytes_species_number_msk",dict)] != 50000001,
-                                                                                               ecoval.translate("A_macrophytes_species_name_latin",dict)], collapse = "; ")
       
-      rm(list = c("data.select", "dat.makro"))
+      attrib.dat[i,ecoval.translate("A_macrophytes_taxa_aquatic",dict)]    <- 
+        paste(data.select[ind.aquatic&!ind.chasum,ecoval.translate("A_macrophytes_species_name_latin",dict)], collapse = "; ")
+      attrib.dat[i,ecoval.translate("A_macrophytes_taxa_helophytes",dict)] <- 
+        paste(data.select[ind.helo,ecoval.translate("A_macrophytes_species_name_latin",dict)], collapse = "; ")
+      attrib.dat[i,ecoval.translate("A_macrophytes_taxa_bryophytes",dict)] <- 
+        paste(data.select[ind.bry,ecoval.translate("A_macrophytes_species_name_latin",dict)], collapse = "; ")
+      
+      rm(list = c("data.select"))
     }
     
   }

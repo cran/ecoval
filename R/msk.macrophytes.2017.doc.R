@@ -1030,11 +1030,14 @@ msk.macrophytes.2017.doc.vegetation <- function(res, row.no) {
     data.species$Artinfo <- NA
     
     # add relative cover
-    data.species$DG.Rel <- -999
+    data.species$DG.Rel <- NA
     for( k in 1:nrow(data.species) ) {
-      if(data.species[k,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)] != -999) {
+      if(!is.na(data.species[k,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)])) {
         data.species[k,"DG.Rel"] <- 100 * data.species[k,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)] /
-          sum(data.species[data.species[,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)] != -999,
+          sum(data.species[data.species[,ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)] != 
+                             ecoval.translate("L_macrophytes_taxalist_growthform_abbrev_bry",dict) &
+                           data.species[,ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)] != 
+                             ecoval.translate("L_macrophytes_taxalist_growthform_abbrev_cha",dict),
                            ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)])
       }
     }
@@ -1167,13 +1170,13 @@ msk.macrophytes.2017.doc.vegetation <- function(res, row.no) {
     # All macrophytes
     text(x = 0,   y = y.pos[2], labels = ecoval.translate("R_macrophytes_doc_vegetation_macrophytes",dict), cex = cex.text, font = 2, pos=4)
     value.plot  <- get.value(data.attrib,row.no,ecoval.translate("A_macrophytes_taxa_all_richness_count",dict))
-    text(x = x.pos,     y = y.pos[2], labels = ifelse(is.na(value.plot), "", value.plot), cex = cex.text, pos=4)
+    text(x = x.pos,     y = y.pos[2], labels = ifelse(is.na(value.plot), "", value.plot), cex = cex.text, font=2, pos=4)
     
     value.plot  <- get.value(data.attrib,row.no,ecoval.translate("A_macrophytes_allmacrophytes_abscover_percent",dict))
-    text(x = x.pos*1.5, y = y.pos[2], labels = ifelse(is.na(value.plot), "", round(value.plot,1)), cex = cex.text, pos=4)
+    text(x = x.pos*1.5, y = y.pos[2], labels = ifelse(is.na(value.plot), "", round(value.plot,1)), cex = cex.text, font=2, pos=4)
     
     value.plot  <- 100-get.value(data.attrib,row.no,ecoval.translate("A_macrophytes_filamentousgreenalgae_relcover_percent",dict))
-    text(x = x.pos*2.5, y = y.pos[2], labels = ifelse(is.na(value.plot), "", round(value.plot,1)), cex = cex.text, pos=4)
+    text(x = x.pos*2.5, y = y.pos[2], labels = ifelse(is.na(value.plot), "", round(value.plot,1)), cex = cex.text, font=2, pos=4)
     
     # aquatic species
     text(x = x.start,   y = y.pos[3], labels = ecoval.translate("R_macrophytes_doc_vegetation_aquatic",dict), cex = cex.text, pos=4)
@@ -1225,7 +1228,7 @@ msk.macrophytes.2017.doc.vegetation <- function(res, row.no) {
     text(x = 0,         y = y.pos[7]-para.small, labels = ecoval.translate("R_macrophytes_doc_vegetation_growthforms",dict), font = 2, cex = cex.text, pos=4)
     
     value.plot  <- get.value(data.attrib,row.no,ecoval.translate("A_macrophytes_growthform_all_richness_count",dict))
-    text(x = x.pos, y = y.pos[7]-para.small, labels = ifelse(is.na(value.plot), "", value.plot), cex = cex.text, pos=4)
+    text(x = x.pos, y = y.pos[7]-para.small, labels = ifelse(is.na(value.plot), "", value.plot), cex = cex.text, font=2, pos=4)
     
     # aquatic growthforms
     text(x = x.start,   y = y.pos[8]-para.small, labels = ecoval.translate("R_macrophytes_doc_vegetation_aquatic",dict), cex = cex.text, pos=4)
@@ -1245,19 +1248,24 @@ msk.macrophytes.2017.doc.vegetation <- function(res, row.no) {
     text(x = 0,         y = y.pos[10]-2*para.small, labels = ecoval.translate("R_macrophytes_doc_vegetation_algae",dict), cex = cex.text, font = 2, pos=4)
     
     value.plot  <- get.value(data.attrib,row.no,ecoval.translate("A_macrophytes_filamentousgreenalgae_abscover_percent",dict))
-    text(x = x.pos*1.5, y = y.pos[10]-2*para.small, labels = ifelse(is.na(value.plot), "", round(value.plot,1)), cex = cex.text, pos=4)
+    text(x = x.pos*1.5, y = y.pos[10]-2*para.small, labels = ifelse(is.na(value.plot), "", round(value.plot,1)), cex = cex.text, font=2, pos=4)
     
     value.plot  <- get.value(data.attrib,row.no,ecoval.translate("A_macrophytes_filamentousgreenalgae_relcover_percent",dict))
-    text(x = x.pos*2.5, y = y.pos[10]-2*para.small, labels = ifelse(is.na(value.plot), "", round(value.plot,1)), cex = cex.text, pos=4)
+    text(x = x.pos*2.5, y = y.pos[10]-2*para.small, labels = ifelse(is.na(value.plot), "", round(value.plot,1)), cex = cex.text, font=2, pos=4)
     
     # neophytes
     text(x = 0,         y = y.pos[11]-2*para.small, labels = ecoval.translate("R_macrophytes_doc_vegetation_neophytes",dict), cex = cex.text, font = 2, pos=4)
     
     value.plot  <- get.value(data.attrib,row.no,ecoval.translate("A_macrophytes_taxa_neophytes_richness_count",dict))
-    text(x = x.pos, y = y.pos[11]-2*para.small, labels = ifelse(is.na(value.plot), "", value.plot), cex = cex.text, pos=4)
+    text(x = x.pos, y = y.pos[11]-2*para.small, labels = ifelse(is.na(value.plot), "", value.plot), cex = cex.text, font=2, pos=4)
+    
+    value.plot  <- get.value(data.attrib,row.no,ecoval.translate("A_macrophytes_neophytes_relcover_percent",dict))/100*
+                     (get.value(data.attrib,row.no,ecoval.translate("A_macrophytes_allmacrophytes_abscover_percent",dict))+
+                        get.value(data.attrib,row.no,ecoval.translate("A_macrophytes_filamentousgreenalgae_abscover_percent",dict)))
+    text(x = x.pos*1.5, y = y.pos[11]-2*para.small, labels = ifelse(is.na(value.plot), "", round(value.plot,1)), cex = cex.text, font=2, pos=4)
     
     value.plot  <- get.value(data.attrib,row.no,ecoval.translate("A_macrophytes_neophytes_relcover_percent",dict))
-    text(x = x.pos*2.5, y = y.pos[11]-2*para.small, labels = ifelse(is.na(value.plot), "", round(value.plot,1)), cex = cex.text, pos=4)
+    text(x = x.pos*2.5, y = y.pos[11]-2*para.small, labels = ifelse(is.na(value.plot), "", round(value.plot,1)), cex = cex.text, font=2, pos=4)
     
     # add species quality and conservation status information
     
@@ -1352,25 +1360,96 @@ msk.macrophytes.2017.doc.vegetation <- function(res, row.no) {
       text(x = 0,   y = y.pos[plot.index]-plot.fact*para.small, labels = grfo.info.lab[k], cex = cex.text, font = 2, pos=4)
       plot.index <- plot.index+1
       
+      # sort species alphabetically, except characea that are put to the end (again alphabetically)
+      if ( nrow(dat.plot) > 0 )
+      {
+        ind.cha    <- dat.plot[,ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)] == 
+          ecoval.translate("L_macrophytes_taxalist_growthform_abbrev_cha",dict)
+        ind.chasum <- dat.plot[,ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)] == 
+          ecoval.translate("L_macrophytes_taxalist_growthform_abbrev_chasum",dict)
+        if ( sum(ind.cha) + sum(ind.chasum) == 0 )  # no characea
+        {
+          dat.plot <- dat.plot[order(dat.plot[,ecoval.translate("A_macrophytes_species_name_latin",dict)]),]
+        }
+        else
+        {
+          n.cha     <- sum(ind.cha)
+          n.non.cha <- sum(!ind.cha&!ind.chasum)
+          n.tot     <- nrow(dat.plot)
+          # first non-characea:
+          dat.plot <- dat.plot[c(which(!ind.cha&!ind.chasum),which(ind.chasum),which(ind.cha)),]
+          # sort non-characea:
+          if ( n.non.cha > 0 ) dat.plot[1:n.non.cha,] <- dat.plot[order(dat.plot[1:n.non.cha,ecoval.translate("A_macrophytes_species_name_latin",dict)]),] 
+          if ( n.cha > 1 )     dat.plot[(n.tot-n.cha+1):n.tot,] <- dat.plot[n.tot-n.cha+order(dat.plot[(n.tot-n.cha+1):n.tot,ecoval.translate("A_macrophytes_species_name_latin",dict)]),] 
+        }
+      }
+      
       if( k < 3 ) {
+        value.plot1 <- NA
+        value.plot2 <- NA
+        if ( grfo.info[k] == ecoval.translate("L_macrophytes_taxalist_growthform_assess_aquatic",dict) )
+        {
+          value.plot1 <- get.value(data.attrib,row.no,ecoval.translate("A_macrophytes_taxa_aquatic_abscover_percent",dict))
+          value.plot2 <- get.value(data.attrib,row.no,ecoval.translate("A_macrophytes_taxa_aquatic_relcover_percent",dict))
+        }
+        else
+        {
+          if ( grfo.info[k] == ecoval.translate("L_macrophytes_taxalist_growthform_assess_helophyte",dict) )
+          {
+            value.plot1 <- get.value(data.attrib,row.no,ecoval.translate("A_macrophytes_taxa_helophytes_abscover_percent",dict))
+            value.plot2 <- get.value(data.attrib,row.no,ecoval.translate("A_macrophytes_taxa_helophytes_relcover_percent",dict))
+          }
+        }
+        text(x = x.pos*2.4,   y = y.pos[plot.index-1]-plot.fact*para.small,
+             labels = ifelse(is.na(value.plot1),"",round(value.plot1,1)),
+             cex = cex.text, font=2, pos=4)
+        text(x = x.pos*3.0,   y = y.pos[plot.index-1]-plot.fact*para.small,
+             labels = ifelse(is.na(value.plot2),"",round(value.plot2,1)),
+             cex = cex.text, font=2, pos=4)
         if( nrow(dat.plot) > 0 ) {
           for ( j in 1:nrow(dat.plot) ) {
             value.plot <- get.value(dat.plot,j,ecoval.translate("A_macrophytes_species_name_latin",dict))
             value.plot <- ifelse(nchar(value.plot)<=max.char,value.plot,paste(substring(value.plot,1,max.char),"..."))
-            text(x = x.start,   y = y.pos[plot.index]-plot.fact*para.small, labels = ifelse(is.na(value.plot), "", value.plot),
-                 cex = cex.text, pos=4)
+            
+            # shift names of characea:
+            if ( dat.plot[j,ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)] == 
+                   ecoval.translate("L_macrophytes_taxalist_growthform_abbrev_cha",dict) )
+            {
+              text(x = x.start+0.1,   y = y.pos[plot.index]-plot.fact*para.small, labels = ifelse(is.na(value.plot), "", value.plot),
+                   cex = cex.text, col = "grey60", pos=4)
+            }
+            else
+            {
+              text(x = x.start,   y = y.pos[plot.index]-plot.fact*para.small, labels = ifelse(is.na(value.plot), "", value.plot),
+                   cex = cex.text, pos=4)
+            }
             
             value.plot  <- get.value(dat.plot,j,ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict))
             text(x = x.pos*1.9, y = y.pos[plot.index]-plot.fact*para.small, labels = ifelse(is.na(value.plot), "", value.plot),
                  cex = cex.text, pos=4)
             
-            value.plot  <- get.value(dat.plot,j,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict))
-            text(x = x.pos*2.4, y = y.pos[plot.index]-plot.fact*para.small, labels = ifelse(is.na(value.plot), "", round(value.plot,1)),
-                 cex = cex.text, pos=4)
+            # write coverage in grey for characea:
+            if ( dat.plot[j,ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)] == 
+                   ecoval.translate("L_macrophytes_taxalist_growthform_abbrev_cha",dict) )
+            {
+              value.plot  <- get.value(dat.plot,j,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict))
+              text(x = x.pos*2.4, y = y.pos[plot.index]-plot.fact*para.small, labels = ifelse(is.na(value.plot), "", round(value.plot,1)),
+                   cex = cex.text, col = "grey60", pos=4)
             
-            value.plot  <- get.value(dat.plot,j,"DG.Rel")
-            text(x = x.pos*3.0, y = y.pos[plot.index]-plot.fact*para.small, labels = ifelse(is.na(value.plot), "", round(value.plot,1)),
-                 cex = cex.text, pos=4)
+              value.plot  <- get.value(dat.plot,j,"DG.Rel")
+              text(x = x.pos*3.0, y = y.pos[plot.index]-plot.fact*para.small, labels = ifelse(is.na(value.plot), "", round(value.plot,1)),
+                   cex = cex.text, col = "grey60", pos=4)
+            }
+            else
+            {
+              value.plot  <- get.value(dat.plot,j,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict))
+              text(x = x.pos*2.4, y = y.pos[plot.index]-plot.fact*para.small, labels = ifelse(is.na(value.plot), "", round(value.plot,1)),
+                   cex = cex.text, pos=4)
+              
+              value.plot  <- get.value(dat.plot,j,"DG.Rel")
+              text(x = x.pos*3.0, y = y.pos[plot.index]-plot.fact*para.small, labels = ifelse(is.na(value.plot), "", round(value.plot,1)),
+                   cex = cex.text, pos=4)
+            }
             
             value.plot  <- get.value(dat.plot,j,"Artinfo")
             text(x = x.pos*3.6, y = y.pos[plot.index]-plot.fact*para.small, labels = ifelse(is.na(value.plot), "", value.plot),
@@ -1400,23 +1479,19 @@ msk.macrophytes.2017.doc.vegetation <- function(res, row.no) {
       if( k == 3 ) {
         if( nrow(dat.plot) > 0 ) {
           value.plot <- get.value(dat.plot,
-                                  which(dat.plot[,ecoval.translate("A_macrophytes_species_number_msk",dict)] == 50000001),
+                                  which(dat.plot[,ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)] == ecoval.translate("L_macrophytes_taxalist_growthform_abbrev_brysum",dict)),
                                   ecoval.translate("A_macrophytes_species_absolutecover_percent",dict))
           text(x = x.pos*2.4,   y = y.pos[plot.index-1]-plot.fact*para.small,
                labels = ifelse(is.na(value.plot),"",round(value.plot,1)),
-               # labels = round(dat.plot[dat.plot[,ecoval.translate("A_macrophytes_species_number_msk",dict)] == 50000001,
-               #                         ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)],1),
-               cex = cex.text, pos=4)
+               cex = cex.text, font=2, pos=4)
           value.plot <- get.value(dat.plot,
-                                  which(dat.plot[,ecoval.translate("A_macrophytes_species_number_msk",dict)] == 50000001),
+                                  which(dat.plot[,ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)] == ecoval.translate("L_macrophytes_taxalist_growthform_abbrev_brysum",dict)),
                                   "DG.Rel")
           text(x = x.pos*3.0,   y = y.pos[plot.index-1]-plot.fact*para.small,
                labels = ifelse(is.na(value.plot),"",round(value.plot,1)),
-               # labels = round(dat.plot[dat.plot[,ecoval.translate("A_macrophytes_species_number_msk",dict)] == 50000001,
-               #                         "DG.Rel"],1),
-               cex = cex.text, pos=4)
+               cex = cex.text, font=2, pos=4)
           
-          dat.plot <- dat.plot[dat.plot[,ecoval.translate("A_macrophytes_species_number_msk",dict)] != 50000001,]
+          dat.plot <- dat.plot[dat.plot[,ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)] != ecoval.translate("L_macrophytes_taxalist_growthform_abbrev_brysum",dict),]
           
           for ( j in 1:nrow(dat.plot) ) {
             value.plot <- get.value(dat.plot,j,ecoval.translate("A_macrophytes_species_name_latin",dict))
@@ -1428,6 +1503,14 @@ msk.macrophytes.2017.doc.vegetation <- function(res, row.no) {
             text(x = x.pos*1.9, y = y.pos[plot.index]-plot.fact*para.small, labels = ifelse(is.na(value.plot), "", value.plot),
                  cex = cex.text, pos=4)
             
+            value.plot  <- get.value(dat.plot,j,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict))
+            text(x = x.pos*2.4, y = y.pos[plot.index]-plot.fact*para.small, labels = ifelse(is.na(value.plot), "", round(value.plot,1)),
+                 cex = cex.text, pos=4)
+      
+            value.plot  <- get.value(dat.plot,j,"DG.Rel")
+            text(x = x.pos*3.0, y = y.pos[plot.index]-plot.fact*para.small, labels = ifelse(is.na(value.plot), "", round(value.plot,1)),
+                 cex = cex.text, pos=4)
+
             value.plot  <- get.value(dat.plot,j,"Artinfo")
             text(x = x.pos*3.6, y = y.pos[plot.index]-plot.fact*para.small, labels = ifelse(is.na(value.plot), "", value.plot),
                  cex = cex.text, pos=4)
