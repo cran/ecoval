@@ -55,6 +55,7 @@ importFrom("stats",
            "dunif","runif",
            "dnorm","pnorm","qnorm","rnorm",
            "dlnorm","plnorm","qlnorm","rlnorm",
-           "spline")
+           "spline",
+           "aggregate")
 importFrom("grDevices",
            "grey","pdf","dev.off","rgb")

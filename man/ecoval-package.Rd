@@ -13,8 +13,8 @@ Procedures for the Ecological Assessment of Surface Waters
 \tabular{ll}{
 Package: \tab ecoval\cr
 Type: \tab Package\cr
-Version: \tab 1.2.5\cr
-Date: \tab 2020-03-19\cr
+Version: \tab 1.2.7\cr
+Date: \tab 2020-04-2\cr
 License: \tab GPL-3\cr
 Depends: \tab utility, rivernet, jpeg\cr
 }

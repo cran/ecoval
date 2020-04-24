@@ -598,7 +598,9 @@ msk.macrophytes.2017.compile.speciesdat <- function (data.species,
   # QUALITY CHECK OF OBLIGATORY PARAMETERS 
   
   # ABSOLUTE COVER OF INDIVIDUAL SPECIES
-  
+
+  ind.taxalist <- data.species[,ecoval.translate("A_macrophytes_species_number_msk",dict)] %in%
+                    taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk",dict)]  
   ind.na <- is.na(data.species[,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)])
   ind.bry <- data.species[,ecoval.translate("A_macrophytes_species_number_msk",dict)] %in%
     taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk",dict)][taxalist.dat[,ecoval.translate("A_macrophytes_taxalist_growthform_abbrev",dict)]==
@@ -615,12 +617,15 @@ msk.macrophytes.2017.compile.speciesdat <- function (data.species,
   
   # Check if cover values are given for each species except bryophytes and characea
   
-  ind.illegal.na <- ind.na & !ind.bry & !ind.cha
+  ind.illegal.na <- ind.na & !ind.bry & !ind.cha & ind.taxalist
   if( sum( ind.illegal.na ) > 0 ) {
-    quality.out <- unique(data.species[ind.illegal.na,ecoval.translate("A_macrophytes_site_sampleid",dict)])
+    #quality.out <- unique(data.species[ind.illegal.na,ecoval.translate("A_macrophytes_site_sampleid",dict)])
+    site_sample_species <- aggregate(data.species[ind.illegal.na,ecoval.translate("A_macrophytes_species_number_msk",dict)],
+                                     by=list(data.species[ind.illegal.na,ecoval.translate("A_macrophytes_site_sampleid",dict)]),FUN=paste,collapse=",")
+    quality.out <- site_sample_species[,1]
     quality.out <- cbind(t(sapply(quality.out , split.last.underline)))
     quality.out <- cbind(quality.out, rep(ecoval.translate("A_macrophytes_species_absolutecover_percent",dict), nrow(quality.out)))
-    quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_completevalue", dict), nrow(quality.out)))
+    quality.out <- cbind(quality.out, paste(rep(ecoval.translate("R_macrophytes_error_completevalue", dict), nrow(quality.out)),":",site_sample_species[,2]))
     quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_error", dict), nrow(quality.out)))
     colnames(quality.out) <- colnames(species.quality)
     species.quality <- rbind(species.quality, quality.out)
@@ -761,10 +766,12 @@ msk.macrophytes.2017.compile.speciesdat <- function (data.species,
   if ( sampling.protocol == "v2018" ) {
     ind.na <- is.na(data.species[,ecoval.translate("A_macrophytes_species_determinationuncertainty",dict)])
     if( sum( ind.na ) > 0 ) {
-      quality.out <- unique(data.species[ind.na,ecoval.translate("A_macrophytes_site_sampleid",dict)])
+      site_sample_species <- aggregate(data.species[ind.na,ecoval.translate("A_macrophytes_species_number_msk",dict)],
+                                       by=list(data.species[ind.na,ecoval.translate("A_macrophytes_site_sampleid",dict)]),FUN=paste,collapse=",")
+      quality.out <- site_sample_species[,1]
       quality.out <- cbind(t(sapply(quality.out , split.last.underline)))
       quality.out <- cbind(quality.out, rep(ecoval.translate("A_macrophytes_species_determinationuncertainty",dict), nrow(quality.out)))
-      quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_completevalue", dict), nrow(quality.out)))
+      quality.out <- cbind(quality.out, paste(rep(ecoval.translate("R_macrophytes_error_completevalue", dict), nrow(quality.out)),":",site_sample_species[,2]))
       quality.out <- cbind(quality.out, rep(ecoval.translate("R_macrophytes_error_error", dict), nrow(quality.out)))
       colnames(quality.out) <- colnames(species.quality)
       species.quality <- rbind(species.quality, quality.out)
@@ -1298,7 +1305,7 @@ msk.macrophytes.2017.calc.attrib <- function(data.site,
     ind.aquatic <- data.select[,ecoval.translate("A_macrophytes_species_number_msk",dict)] %in%
       taxalist.dat[,ecoval.translate("A_macrophytes_species_number_msk",dict)][taxalist.dat[,ecoval.translate("A_macrophytes_taxalist_growthform_assess",dict)]==
                                                                                  ecoval.translate("L_macrophytes_taxalist_growthform_assess_aquatic",dict)]
-    
+
     if( nrow(data.select) > 0 ) {
       
       ## ABSOLUTE COVER / BIOMASS ATTRIBUTES
@@ -1443,92 +1450,105 @@ msk.macrophytes.2017.calc.attrib <- function(data.site,
       rm(list = c("dat.rel.sw", "n.taxa.sw", "sw.index.bry"))
       
       # NEOPHYTES RELATIVE COVER
-      attrib.dat[i,ecoval.translate("A_macrophytes_neophytes_relcover_percent",dict)] <- 
-        sum(data.select[data.select[, "neophyte_info"] == "N" & !(ind.bry|ind.cha|ind.alg), "Rel_Deckung"], na.rm = T) #ATTRIBUT
-      
+      ind.neo <- data.select[, "neophyte_info"] == "N"; ind.neo <- ifelse(is.na(ind.neo),FALSE,ind.neo)
+      attrib.dat[i,ecoval.translate("A_macrophytes_neophytes_relcover_percent",dict)] <-
+        sum(data.select[ind.neo , "Rel_Deckung"]) #ATTRIBUT
+
       # RELATIVE COVER OF GROWTHFORMS (i.e. AQUATIC, HELOPHYTES, and BRYOPHYTES)
       attrib.dat[i,ecoval.translate("A_macrophytes_taxa_aquatic_relcover_percent",dict)] <- 
         sum(data.select[ind.aquatic&!ind.cha,"Rel_Deckung"])
-
-      if ( I(attrib.dat[i, ecoval.translate("A_macrophytes_taxa_aquatic_relcover_percent",dict)] - 100) > 0 & 
-           I(attrib.dat[i, ecoval.translate("A_macrophytes_taxa_aquatic_relcover_percent",dict)] - 100) < 0.01 ) {
+      if ( !is.na(attrib.dat[i,ecoval.translate("A_macrophytes_taxa_aquatic_relcover_percent",dict)]) )
+      {
+        if ( attrib.dat[i, ecoval.translate("A_macrophytes_taxa_aquatic_relcover_percent",dict)] - 100 > 0 & 
+             attrib.dat[i, ecoval.translate("A_macrophytes_taxa_aquatic_relcover_percent",dict)] - 100 < 0.01 )
         attrib.dat[i, ecoval.translate("A_macrophytes_taxa_aquatic_relcover_percent",dict)] <- 100
       }
       
       attrib.dat[i,ecoval.translate("A_macrophytes_taxa_helophytes_relcover_percent",dict)] <- 
         sum(data.select[ind.helo,"Rel_Deckung"])
-
-      if ( I(attrib.dat[i, ecoval.translate("A_macrophytes_taxa_helophytes_relcover_percent",dict)] - 100) > 0 & 
-           I(attrib.dat[i, ecoval.translate("A_macrophytes_taxa_helophytes_relcover_percent",dict)] - 100) < 0.01 ) {
-        attrib.dat[i,ecoval.translate("A_macrophytes_taxa_helophytes_relcover_percent",dict)] <- 100
+      if ( !is.na(attrib.dat[i,ecoval.translate("A_macrophytes_taxa_helophytes_relcover_percent",dict)]) )
+      {
+        if ( attrib.dat[i, ecoval.translate("A_macrophytes_taxa_helophytes_relcover_percent",dict)] - 100 > 0 & 
+             attrib.dat[i, ecoval.translate("A_macrophytes_taxa_helophytes_relcover_percent",dict)] - 100 < 0.01 )
+          attrib.dat[i,ecoval.translate("A_macrophytes_taxa_helophytes_relcover_percent",dict)] <- 100
       }
       
       attrib.dat[i,ecoval.translate("A_macrophytes_taxa_bryophytes_relcover_percent",dict)] <- 
         sum(data.select[ind.brysum,"Rel_Deckung"])
-
-      if ( I(attrib.dat[i,ecoval.translate("A_macrophytes_taxa_bryophytes_relcover_percent",dict)] - 100) > 0 & 
-           I(attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_relcover_percent",dict)] - 100) < 0.01 ) {
-        attrib.dat[i,ecoval.translate("A_macrophytes_taxa_bryophytes_relcover_percent",dict)] <- 100
+      if ( !is.na(attrib.dat[i,ecoval.translate("A_macrophytes_taxa_bryophytes_relcover_percent",dict)]) )
+      {
+        if ( attrib.dat[i,ecoval.translate("A_macrophytes_taxa_bryophytes_relcover_percent",dict)] - 100 > 0 & 
+             attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_relcover_percent",dict)] - 100 < 0.01 )
+          attrib.dat[i,ecoval.translate("A_macrophytes_taxa_bryophytes_relcover_percent",dict)] <- 100
       }
       
       attrib.dat[i,ecoval.translate("A_macrophytes_filamentousgreenalgae_relcover_percent",dict)] <- 
         sum(data.select[ind.alg,"Rel_Deckung"])
-
-      if ( I(attrib.dat[i,ecoval.translate("A_macrophytes_filamentousgreenalgae_relcover_percent",dict)] - 100) > 0 & 
-           I(attrib.dat[i, ecoval.translate("A_macrophytes_filamentousgreenalgae_relcover_percent",dict)] - 100) < 0.01 ) {
-        attrib.dat[i,ecoval.translate("A_macrophytes_filamentousgreenalgae_relcover_percent",dict)] <- 100
+      if ( !is.na(attrib.dat[i,ecoval.translate("A_macrophytes_filamentousgreenalgae_relcover_percent",dict)]) )
+      {
+        if ( attrib.dat[i,ecoval.translate("A_macrophytes_filamentousgreenalgae_relcover_percent",dict)] - 100 > 0 & 
+             attrib.dat[i, ecoval.translate("A_macrophytes_filamentousgreenalgae_relcover_percent",dict)] - 100 < 0.01 )
+          attrib.dat[i,ecoval.translate("A_macrophytes_filamentousgreenalgae_relcover_percent",dict)] <- 100
       }
       
       # ADJUST RELATIVE COVER BRYOPHYTES TO PROPORTION ON ARTIFICIAL SUBSTRATE FOR ASSESSMENT
-      if( attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_relcover_percent",dict)] > 0 ) {
-        attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_artificialsubstrate_relcover_percent",dict)] <- 
-          data.select[ind.brysum,ecoval.translate("A_macrophytes_species_artificialsubstrate_relcover_percent", dict)]  # Attribute for illustrative purposes in value function
+      attrib.dat[i,ecoval.translate("A_macrophytes_taxa_bryophytes_adjusted_relcover_percent",dict)] <- NA
+      if ( !is.na(attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_relcover_percent",dict)]) )
+      {
+        if( attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_relcover_percent",dict)] > 0 ) {
+          attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_artificialsubstrate_relcover_percent",dict)] <- 
+            data.select[ind.brysum,ecoval.translate("A_macrophytes_species_artificialsubstrate_relcover_percent", dict)]  # Attribute for illustrative purposes in value function
         
-        if( is.na(attrib.dat[i,ecoval.translate("A_macrophytes_taxa_bryophytes_artificialsubstrate_relcover_percent",dict)]) ) {
-          attrib.dat[i,ecoval.translate("A_macrophytes_taxa_bryophytes_adjusted_relcover_percent",dict)] <- 
-            attrib.dat[i,ecoval.translate("A_macrophytes_taxa_bryophytes_relcover_percent",dict)] #ATTRIBUT
+          if( is.na(attrib.dat[i,ecoval.translate("A_macrophytes_taxa_bryophytes_artificialsubstrate_relcover_percent",dict)]) ) {
+            attrib.dat[i,ecoval.translate("A_macrophytes_taxa_bryophytes_adjusted_relcover_percent",dict)] <- 
+              attrib.dat[i,ecoval.translate("A_macrophytes_taxa_bryophytes_relcover_percent",dict)] #ATTRIBUT
+          } else {
+            attrib.dat[i,ecoval.translate("A_macrophytes_taxa_bryophytes_adjusted_relcover_percent",dict)] <- 
+              attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_relcover_percent",dict)] * 
+                 (1 - attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_artificialsubstrate_relcover_percent",dict)]/100) +
+              0.33 * attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_relcover_percent",dict)] * 
+                         attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_artificialsubstrate_relcover_percent",dict)]/100 #ATTRIBUT
+          }
         } else {
-          attrib.dat[i,ecoval.translate("A_macrophytes_taxa_bryophytes_adjusted_relcover_percent",dict)] <- 
-            attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_relcover_percent",dict)] * 
-               (1 - attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_artificialsubstrate_relcover_percent",dict)]/100) +
-            0.33 * attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_relcover_percent",dict)] * 
-                       attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_artificialsubstrate_relcover_percent",dict)]/100 #ATTRIBUT
+          attrib.dat[i,ecoval.translate("A_macrophytes_taxa_bryophytes_adjusted_relcover_percent",dict)] <- 0
         }
-      } else {
-        attrib.dat[i,ecoval.translate("A_macrophytes_taxa_bryophytes_adjusted_relcover_percent",dict)] <- 0
       }
       
       # ABSOLUTE COVER BY GROWTHFORMS, i.e. AQUATIC, HELOPHYTES, and BRYOPHYTES
       attrib.dat[i,ecoval.translate("A_macrophytes_taxa_aquatic_abscover_percent",dict)] <- 
-        sum(data.select[ind.aquatic&!ind.cha,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)], na.rm = T)
-      
-      if ( I(attrib.dat[i,ecoval.translate("A_macrophytes_taxa_aquatic_abscover_percent",dict)] - 100) > 0 & 
-           I(attrib.dat[i, ecoval.translate("A_macrophytes_taxa_aquatic_abscover_percent",dict)] - 100) < 0.01 ) {
-        attrib.dat[i,ecoval.translate("A_macrophytes_taxa_aquatic_abscover_percent",dict)] <- 100
+        sum(data.select[ind.aquatic&!ind.cha,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)])
+      if ( !is.na(attrib.dat[i,ecoval.translate("A_macrophytes_taxa_aquatic_abscover_percent",dict)]) )
+      {
+        if ( attrib.dat[i,ecoval.translate("A_macrophytes_taxa_aquatic_abscover_percent",dict)] - 100 > 0 & 
+             attrib.dat[i, ecoval.translate("A_macrophytes_taxa_aquatic_abscover_percent",dict)] - 100 < 0.01 )
+          attrib.dat[i,ecoval.translate("A_macrophytes_taxa_aquatic_abscover_percent",dict)] <- 100
       }
       
       attrib.dat[i,ecoval.translate("A_macrophytes_taxa_helophytes_abscover_percent",dict)] <- 
-        sum(data.select[ind.helo,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)], na.rm = T)
-      
-      if ( I(attrib.dat[i, ecoval.translate("A_macrophytes_taxa_helophytes_abscover_percent",dict)] - 100) > 0 & 
-           I(attrib.dat[i, ecoval.translate("A_macrophytes_taxa_helophytes_abscover_percent",dict)] - 100) < 0.01 ) {
-        attrib.dat[i,ecoval.translate("A_macrophytes_taxa_helophytes_abscover_percent",dict)] <- 100
+        sum(data.select[ind.helo,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)])
+      if ( !is.na(attrib.dat[i,ecoval.translate("A_macrophytes_taxa_helophytes_abscover_percent",dict)]) )
+      {
+        if ( attrib.dat[i, ecoval.translate("A_macrophytes_taxa_helophytes_abscover_percent",dict)] - 100 > 0 & 
+             attrib.dat[i, ecoval.translate("A_macrophytes_taxa_helophytes_abscover_percent",dict)] - 100 < 0.01 )
+          attrib.dat[i,ecoval.translate("A_macrophytes_taxa_helophytes_abscover_percent",dict)] <- 100
       }
       
       attrib.dat[i,ecoval.translate("A_macrophytes_taxa_bryophytes_abscover_percent",dict)] <- 
-        sum(data.select[ind.brysum,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)], na.rm = T)
-      
-      if ( I(attrib.dat[i,ecoval.translate("A_macrophytes_taxa_bryophytes_abscover_percent",dict)] - 100) > 0 & 
-           I(attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_abscover_percent",dict)] - 100) < 0.01 ) {
-        attrib.dat[i,ecoval.translate("A_macrophytes_taxa_bryophytes_abscover_percent",dict)] <- 100
+        sum(data.select[ind.brysum,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)])
+      if ( !is.na(attrib.dat[i,ecoval.translate("A_macrophytes_taxa_bryophytes_abscover_percent",dict)]) )
+      {
+        if ( attrib.dat[i,ecoval.translate("A_macrophytes_taxa_bryophytes_abscover_percent",dict)] - 100 > 0 & 
+             attrib.dat[i, ecoval.translate("A_macrophytes_taxa_bryophytes_abscover_percent",dict)] - 100 < 0.01 )
+          attrib.dat[i,ecoval.translate("A_macrophytes_taxa_bryophytes_abscover_percent",dict)] <- 100
       }
       
       attrib.dat[i,ecoval.translate("A_macrophytes_filamentousgreenalgae_abscover_percent",dict)] <- 
         sum(data.select[ind.alg,ecoval.translate("A_macrophytes_species_absolutecover_percent",dict)]) #ATTRIBUT
-      
-      if ( I(attrib.dat[i,ecoval.translate("A_macrophytes_filamentousgreenalgae_abscover_percent",dict)] - 100) > 0 & 
-           I(attrib.dat[i, ecoval.translate("A_macrophytes_filamentousgreenalgae_abscover_percent",dict)] - 100) < 0.01 ) {
-        attrib.dat[i,ecoval.translate("A_macrophytes_filamentousgreenalgae_abscover_percent",dict)] <- 100
+      if ( !is.na(attrib.dat[i,ecoval.translate("A_macrophytes_filamentousgreenalgae_abscover_percent",dict)]) )
+      {
+        if ( attrib.dat[i,ecoval.translate("A_macrophytes_filamentousgreenalgae_abscover_percent",dict)] - 100 > 0 & 
+             attrib.dat[i, ecoval.translate("A_macrophytes_filamentousgreenalgae_abscover_percent",dict)] - 100 < 0.01 )
+          attrib.dat[i,ecoval.translate("A_macrophytes_filamentousgreenalgae_abscover_percent",dict)] <- 100
       }
       
       ## SPECIES QUALITY / CONSERVAT

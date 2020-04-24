@@ -3,6 +3,14 @@ Change history of ecoval package
 ================================
 
 
+Changes version 1.2.6 (19.03.2020) -> version 1.2.7 (24.04.2020)
+================================================================
+
+PR:     msk.macrophytes.2017: coverage of -999 or NA or empty allowed for 
+                                taxa that are not in the taxa list
+                              error corrected regarding coverage of neophytes
+
+
 Changes version 1.2.5 (23.09.2019) -> version 1.2.6 (19.03.2020)
 ================================================================
 

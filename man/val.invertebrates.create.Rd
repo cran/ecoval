@@ -66,7 +66,7 @@ Bundesamt fuer Umwelt, Bern. Umwelt-Vollzug Nr. 1026: 61 S. 2010.
 \url{http://www.bafu.admin.ch/uv-1026-d}\cr\cr
 Indice Biologique Global Normalise IBGN, NF-T90-350. Guide Technique.
 Agences de l'Eau, 2000.
-\url{http://www.km-dev.com/eaufrance/francais/etudes/pdf/IBGN.pdf}\cr\cr
+\url{https://hal.archives-ouvertes.fr/hal-00490432/document}\cr\cr
 Beketov M.A., Foit K., Schafer R.B., Schriever C.A., Sacchi A., Capri E., Biggs J., Wells C. & Liess M.
 SPEAR indicates pesticide effects in streams - Comparative use of species- and family-level biomonitoring data.
 Environmental Pollution, 157, 1841-1848, 2009.
