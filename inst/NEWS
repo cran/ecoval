@@ -3,6 +3,27 @@ Change history of ecoval package
 ================================
 
 
+Changes version 1.2.8 (16.11.2020) -> version 1.2.9 (10.12.2021)
+================================================================
+
+PR:     msk.macrophytes.2017: illegal file name characters replaced by "-"
+                                when constructing file names from date and site
+                                user input (designed by Mikolaj Rybinski)
+                              error with picture name search fixed
+
+
+Changes version 1.2.7 (24.11.2020) -> version 1.2.8 (16.11.2020)
+================================================================
+
+PR:     msk.macrophytes.2017: NA strings from NA, Na, na, -999 extended by
+                                -999.00, -999,00
+                              picture exensions of .jpg .JPG, .jpeg, .JPEG 
+                                extended by no extension
+                              two picture column names checked for available
+                                pictures (first A_macrophytes_site_picture,
+                                the A_macrophytes_site_picture1)
+
+
 Changes version 1.2.6 (19.03.2020) -> version 1.2.7 (24.04.2020)
 ================================================================
 

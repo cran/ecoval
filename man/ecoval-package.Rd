@@ -13,8 +13,8 @@ Procedures for the Ecological Assessment of Surface Waters
 \tabular{ll}{
 Package: \tab ecoval\cr
 Type: \tab Package\cr
-Version: \tab 1.2.7\cr
-Date: \tab 2020-04-2\cr
+Version: \tab 1.2.9\cr
+Date: \tab 2021-12-10\cr
 License: \tab GPL-3\cr
 Depends: \tab utility, rivernet, jpeg\cr
 }
@@ -24,7 +24,7 @@ Depends: \tab utility, rivernet, jpeg\cr
 Functions for evaluating and visualizing ecological assessment procedures for surface waters. \cr\cr
 Functions to generate branches (modules) of the assessment value function: \cr\cr
 
-Swiss river assessment program and individual modules (MSK, \url{http://www.modul-stufen-konzept.ch}): \cr\cr
+Swiss river assessment program and individual modules (MSK, \url{https://modul-stufen-konzept.ch}): \cr\cr
 \code{\link{msk.create}}, \cr
 \code{\link{msk.morphol.1998.create}}, \cr
 \code{\link{msk.hydrol.2011.create}}, \cr
@@ -43,7 +43,7 @@ Additional modules in the evaluation state:\cr\cr
 Integrative assessment value function considering modules of the Swiss assessment program and modules at the evaluation stage:\cr\cr
 \code{\link{ecoval.river.create}}, \cr\cr
 
-Moduls of the Swiss lake assessment program (see \url{http://www.modul-stufen-konzept.ch}): \cr\cr
+Moduls of the Swiss lake assessment program (see \url{https://modul-stufen-konzept.ch}): \cr\cr
 \code{\link{lake.morphol.2016.create}}, \cr\cr
 
 Node names, attribute names and identifiers for attribute levels (if not numeric) can be translated into different languages. See: \cr\cr
@@ -63,20 +63,20 @@ Maintainer: Nele Schuwirth <nele.schuwirth@eawag.ch>
 Langhans, S.D., Lienert, J., Schuwirth, N. and Reichert, P.
 How to make river assessments comparable: A demonstration for hydromorphology, 
 Ecological Indicators 32, 264-275, 2013. 
-\url{http://dx.doi.org/10.1016/j.ecolind.2013.03.027}\cr\cr
+\doi{10.1016/j.ecolind.2013.03.027}\cr\cr
 Langhans, S.D., Reichert, P. and Schuwirth, N.
 The method matters: indicator aggregation in ecological river assessment. 
 Ecological Indicators 45, 494-507, 2014.
-\url{http://dx.doi.org/10.1016/j.ecolind.2014.05.014}\cr\cr
+\doi{10.1016/j.ecolind.2014.05.014}\cr\cr
 Reichert, P., Schuwirth, N. and Langhans, S. 
 Constructing, evaluating and visualizing value and utility functions for decision support,
 Environmental Modelling & Software 46, 283-291, 2013. 
-\url{http://dx.doi.org/10.1016/j.envsoft.2013.01.017}\cr\cr
+\doi{10.1016/j.envsoft.2013.01.017}\cr\cr
 Reichert, P., Borsuk, M., Hostmann, M., Schweizer, S., Sporri, C., Tockner, K. and Truffer, B.
 Concepts of decision support for river rehabilitation,
 Environmental Modelling and Software 22, 188-201, 2007.
 \cr\cr
-\url{http://www.modul-stufen-konzept.ch}
+\url{https://modul-stufen-konzept.ch}
 }
 
 \keyword{ package }

@@ -57,15 +57,15 @@ ecoval.plotsymbols(nodes,x,y,r,u,
 Reichert, P., Schuwirth, N. and Langhans, S. 
 Constructing, evaluating and visualizing value and utility functions for decision support,
 Environmental Modelling & Software 46, 283-291, 2013. 
-\url{http://dx.doi.org/10.1016/j.envsoft.2013.01.017}\cr\cr
+\doi{10.1016/j.envsoft.2013.01.017}\cr\cr
 Reichert, P., Langhans, S., Lienert, J. and Schuwirth, N. 
 The conceptual foundation of environmental decision support. 
 Journal of Environmental Management. 154, 316-332, 2015.
-\url{http://dx.doi.org/10.1016/j.jenvman.2015.01.053}\cr\cr
+\doi{10.1016/j.jenvman.2015.01.053}\cr\cr
 Baumann P., Langhans S.D.
 Methoden zur Untersuchung und Beurteilung der Fliessgewaesser. Synthese der Beurteilungen auf Stufe F (flaechendeckend).
 Umwelt-Vollzug Nr. Bundesamt fuer Umwelt, Bern: 47 S.\cr\cr
-\url{http://www.modul-stufen-konzept.ch}
+\url{https://modul-stufen-konzept.ch}
 }
 
 \seealso{

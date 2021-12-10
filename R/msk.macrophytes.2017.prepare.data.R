@@ -27,6 +27,10 @@
 # FUNCTION TO READ AND VALIDATE SITE DATA
 # =======================================
 
+get.site.sampleid <- function(siteid, samplingdate) {
+  fs::path_sanitize(paste(siteid, samplingdate, sep = "_"), replacement = "-")
+}
+
 msk.macrophytes.2017.compile.sitedat <- function(data.site,
                                                  language     = "English",
                                                  dictionaries = NA)
@@ -103,8 +107,8 @@ msk.macrophytes.2017.compile.sitedat <- function(data.site,
             
     # Add row names and unique sample identifier column
     
-    rnames <- paste(data.site[,ecoval.translate("A_macrophytes_site_siteid",dict)],
-                    data.site[,ecoval.translate("A_macrophytes_site_samplingdate",dict)], sep = "_")
+    rnames <- get.site.sampleid(data.site[,ecoval.translate("A_macrophytes_site_siteid",dict)],
+                                data.site[,ecoval.translate("A_macrophytes_site_samplingdate",dict)])
     dup <- duplicated(rnames)
     if ( sum(dup) > 0 )
     {
@@ -533,8 +537,8 @@ msk.macrophytes.2017.compile.speciesdat <- function (data.species,
   
   # Add unique identifier for individual assessments in extra column; and species within assessments as row names:
   
-  data.species <- data.frame(paste(data.species[,ecoval.translate("A_macrophytes_site_siteid",dict)],
-                                   data.species[,ecoval.translate("A_macrophytes_site_samplingdate",dict)], sep = "_"),
+  data.species <- data.frame(get.site.sampleid(data.species[,ecoval.translate("A_macrophytes_site_siteid",dict)],
+                                               data.species[,ecoval.translate("A_macrophytes_site_samplingdate",dict)]),
                              data.species, stringsAsFactors = FALSE)
   colnames(data.species)[1] <- ecoval.translate("A_macrophytes_site_sampleid",dict)
 

@@ -348,14 +348,23 @@ msk.macrophytes.2017.doc.site <- function(res,row.no,pic.folder)
     }
   }
   
-  # Add picture
-  value.plot  <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_picture1",dict))
-  pic <- value.plot
-  pic.ext <-  c(".jpg", ".JPG", ".jpeg", ".JPEG")
-  pic.test <- paste(pic, pic.ext, sep="")  %in% list.files(pic.folder)
-  
-  if( !is.na(match(TRUE,pic.test)) ) {
-    pic <- readJPEG(paste(pic.folder,"/", pic, pic.ext[match(TRUE,pic.test)], sep = ""), native = FALSE) # INPUT: Maybe open to other picture formats?
+  # Add picture ( first from picture1, if no picture found use first name from pictures (semicolon separated))
+  pics    <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_pictures",dict))
+  pics1   <- NA; if ( !is.na(pics) ) pics1 <- strsplit(pics,split=";")[[1]][1]
+  pic1    <- get.value(data.site,row.no,ecoval.translate("A_macrophytes_site_picture1",dict))
+  pic.ext <-  c("",".jpg", ".JPG", ".jpeg", ".JPEG")
+  pic     <- c(pic1,pics1); pic <- pic[!is.na(pic)]
+  ind.pic <- NA
+  pic.withext <- character(0)
+  if ( length(pic) > 0 ) 
+  {
+    for ( i in 1:length(pic) ) pic.withext <- c(pic.withext,paste(pic[i],pic.ext,sep=""))
+    pic.avail <- pic.withext %in% list.files(pic.folder)
+    if ( any(pic.avail) ) ind.pic   <- match(TRUE,pic.avail)
+  }
+
+  if( !is.na(ind.pic) ) {
+    pic <- readJPEG(paste(pic.folder,pic.withext[ind.pic],sep="/"),native=FALSE) # INPUT: Maybe open to other picture formats?
     aspect <- ncol(pic)/nrow(pic)
     new_height <- 780
     new_width  <- round(new_height*aspect)

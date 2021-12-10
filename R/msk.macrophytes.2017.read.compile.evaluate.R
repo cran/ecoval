@@ -20,15 +20,11 @@ msk.macrophytes.2017.read.compile.evaluate <- function(file.site,
   
   # function to add prefix to file name:
   
-  prepend.filename <- function(prefix,filename)
+  prepend.filename <- function(prefix, filename, sep="_")
   {
-    parts <- strsplit(filename,split="/")[[1]]
-    n <- length(parts)
-    name <- paste(prefix,parts[n],sep="")
-    if ( n > 1 ) name <- paste(c(parts[1:(n-1)],name),collapse="/")
-    return(name)
+    file.path(dirname(filename), paste0(prefix, sep, basename(filename)))
   }
-  
+
   # function to compress values table:
   
   val.compact.table <- function(val,
@@ -103,7 +99,7 @@ msk.macrophytes.2017.read.compile.evaluate <- function(file.site,
   {
     data.species <- read.csv(file.species,
                              header = TRUE,
-                             na.strings = c("","NA","Na","na","-999"),
+                             na.strings = c("","NA","Na","na","-999","-999.00","-999,00"),
                              stringsAsFactors = FALSE,
                              sep = sep.in)
   
@@ -190,9 +186,8 @@ msk.macrophytes.2017.read.compile.evaluate <- function(file.site,
       else
       {
         # match sample ids:
-        rownames(data.typeplaus) <- paste(data.typeplaus[,ecoval.translate("A_macrophytes_site_siteid",dict)],
-                                          data.typeplaus[,ecoval.translate("A_macrophytes_site_samplingdate",dict)],
-                                          sep="_")
+        rownames(data.typeplaus) <- get.site.sampleid(data.typeplaus[,ecoval.translate("A_macrophytes_site_siteid",dict)],
+                                                      data.typeplaus[,ecoval.translate("A_macrophytes_site_samplingdate",dict)])
         data.typeplaus <- data.typeplaus[res$data.site[,ecoval.translate("A_macrophytes_site_sampleid",dict)],]
         res$types.plaus=data.typeplaus[,req.colnames]
       }
@@ -244,8 +239,8 @@ msk.macrophytes.2017.read.compile.evaluate <- function(file.site,
     {
       for ( i in 1:nrow(res$data.site) ) 
       {
-        pdf(prepend.filename(paste(res$data.site[i,ecoval.translate("A_macrophytes_site_siteid",dict)],"_",
-                                   res$data.site[i,ecoval.translate("A_macrophytes_site_samplingdate",dict)],"_",sep=""),
+        pdf(prepend.filename(get.site.sampleid(res$data.site[i,ecoval.translate("A_macrophytes_site_siteid",dict)],
+                                               res$data.site[i,ecoval.translate("A_macrophytes_site_samplingdate",dict)]),
                              file.doc),
             height=11.69,width=8.27)
         msk.macrophytes.2017.doc.site(res=res,row.no=i,pic.folder=pic.folder)
@@ -281,8 +276,8 @@ msk.macrophytes.2017.read.compile.evaluate <- function(file.site,
     {
       for ( i in 1:nrow(res$data.site) ) 
       {
-        pdf(prepend.filename(paste(res$data.site[i,ecoval.translate("A_macrophytes_site_siteid",dict)],"_",
-                                   res$data.site[i,ecoval.translate("A_macrophytes_site_samplingdate",dict)],"_",sep=""),
+        pdf(prepend.filename(get.site.sampleid(res$data.site[i,ecoval.translate("A_macrophytes_site_siteid",dict)],
+                                               res$data.site[i,ecoval.translate("A_macrophytes_site_samplingdate",dict)]),
                              file.doc),
             height=11.69,width=8.27)
         msk.macrophytes.2017.doc.site(res=res,row.no=i,pic.folder=pic.folder)
@@ -486,8 +481,8 @@ msk.macrophytes.2017.read.compile.evaluate <- function(file.site,
   {
     for ( i in 1:nrow(res$data.site) ) 
     {
-      pdf(prepend.filename(paste(res$data.site[i,ecoval.translate("A_macrophytes_site_siteid",dict)],"_",
-                                 res$data.site[i,ecoval.translate("A_macrophytes_site_samplingdate",dict)],"_",sep=""),
+      pdf(prepend.filename(get.site.sampleid(res$data.site[i,ecoval.translate("A_macrophytes_site_siteid",dict)],
+                                             res$data.site[i,ecoval.translate("A_macrophytes_site_samplingdate",dict)]),
                            file.doc),
           height=11.69,width=8.27)
       msk.macrophytes.2017.doc.site(res=res,row.no=i,pic.folder=pic.folder)

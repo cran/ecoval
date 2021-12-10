@@ -43,6 +43,7 @@ export("ecoval.plotsymbols")
 import(utility)
 import(rivernet)
 import(jpeg)
+import(fs)
 
 importFrom("utils",
            "read.table","write.table","read.csv")
